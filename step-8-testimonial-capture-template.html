@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Testimonial Capture Template – Rise Beyond the 9 to 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #1a1a1a; --blush: #e8d9d0; --blush-deep: #d4c0b4;
+    --cream: #f5f0e8; --warm-grey: #6b6560; --light-grey: #d9d3cc; --white: #ffffff;
+  }
+  body { background: var(--black); font-family: 'Inter', sans-serif; color: var(--black); min-height: 100vh; }
+  .page { max-width: 680px; margin: 0 auto; background: var(--white); min-height: 100vh; display: flex; flex-direction: column; }
+
+  .header { background: var(--black); padding: 36px 48px 28px; position: relative; overflow: hidden; flex-shrink: 0; }
+  .sunburst { position: absolute; right: -20px; top: -20px; width: 130px; height: 130px; opacity: 0.1; }
+  .brand-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; color: var(--blush); opacity: 0.6; margin-bottom: 10px; }
+  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 600; line-height: 1.1; color: var(--white); }
+  .header h1 em { color: var(--blush); font-style: italic; font-weight: 400; }
+  .header-sub { font-size: 12px; color: var(--blush); opacity: 0.55; font-weight: 300; margin-top: 8px; }
+  .strip { background: var(--blush); padding: 11px 48px; font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--black); }
+
+  .tabs { display: flex; border-bottom: 2px solid var(--light-grey); background: var(--cream); }
+  .tab { flex: 1; padding: 13px 8px; font-size: 11px; font-weight: 600; color: var(--warm-grey); cursor: pointer; text-align: center; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.15s; }
+  .tab.active { color: var(--black); border-bottom-color: var(--black); background: var(--white); }
+  .tab:hover:not(.active) { color: var(--black); }
+
+  .tab-content { display: none; padding: 32px 48px 48px; }
+  .tab-content.active { display: block; }
+  .intro-text { font-size: 13px; color: var(--warm-grey); line-height: 1.7; margin-bottom: 24px; }
+
+  .print-btn { background: var(--blush-deep); color: var(--black); border: none; padding: 11px 22px; font-size: 11.5px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; margin-bottom: 24px; display: block; }
+
+  /* QUESTIONS */
+  .q-section { margin-bottom: 24px; }
+  .q-section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: var(--warm-grey); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--light-grey); }
+  .field-group { margin-bottom: 14px; }
+  .field-label { font-size: 11.5px; font-weight: 600; color: var(--black); margin-bottom: 4px; display: block; }
+  .field-why { font-size: 11px; color: var(--warm-grey); font-style: italic; margin-bottom: 6px; display: block; }
+  textarea, input[type="text"] {
+    width: 100%; border: 1.5px solid var(--light-grey); background: var(--white);
+    padding: 10px 14px; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--black);
+    outline: none; resize: none; line-height: 1.6; transition: border-color 0.15s;
+  }
+  textarea:focus, input[type="text"]:focus { border-color: var(--black); }
+
+  /* OUTREACH MESSAGE */
+  .message-box { background: var(--cream); border-left: 3px solid var(--blush-deep); padding: 16px 20px; margin-bottom: 16px; font-size: 12.5px; line-height: 1.7; color: var(--black); font-style: italic; position: relative; }
+  .message-label { font-style: normal; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: var(--warm-grey); margin-bottom: 8px; display: block; }
+  .btn-copy-msg { background: var(--black); color: var(--white); border: none; font-size: 10px; font-weight: 500; padding: 5px 12px; cursor: pointer; font-family: 'Inter', sans-serif; margin-top: 10px; display: inline-block; }
+  .btn-copy-msg:hover { opacity: 0.75; }
+  .btn-copy-msg.copied { background: var(--blush-deep); color: var(--black); }
+
+  /* FORMAT GUIDE */
+  .format-card { border: 1.5px solid var(--light-grey); margin-bottom: 12px; }
+  .format-header { background: var(--black); padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; }
+  .format-name { font-weight: 600; font-size: 12px; color: var(--white); }
+  .format-use { font-size: 10px; color: var(--blush); opacity: 0.6; }
+  .format-body { padding: 14px 16px; font-size: 12.5px; color: var(--black); line-height: 1.65; }
+  .format-body strong { font-weight: 600; }
+  .format-example { background: var(--cream); padding: 10px 14px; margin-top: 10px; font-size: 12px; color: var(--warm-grey); font-style: italic; line-height: 1.6; }
+
+  /* AI BOX */
+  .ai-box { background: var(--black); padding: 22px 26px; margin-top: 24px; }
+  .ai-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--blush); opacity: 0.7; margin-bottom: 8px; }
+  .ai-title { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--white); margin-bottom: 8px; }
+  .ai-desc { font-size: 12px; color: var(--blush); opacity: 0.65; line-height: 1.6; margin-bottom: 14px; }
+  .ai-prompt { background: #111; border-left: 3px solid var(--blush-deep); padding: 14px 16px; font-size: 11.5px; color: var(--blush); line-height: 1.7; font-style: italic; margin-bottom: 14px; white-space: pre-wrap; }
+  .btn-copy { background: var(--blush); color: var(--black); border: none; padding: 10px 18px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
+  .btn-copy:hover { opacity: 0.8; }
+  .btn-copy.copied { background: var(--blush-deep); }
+
+  .footer { background: var(--black); padding: 14px 48px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--blush); font-style: italic; }
+  .footer-step { font-size: 10px; color: var(--blush); opacity: 0.4; letter-spacing: 0.08em; }
+
+  @media print {
+    body { background: white; }
+    .tabs, .print-btn, .ai-box { display: none; }
+    .tab-content { display: block !important; }
+    .header, .strip, .format-header, .footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  @media (max-width: 520px) {
+    .header, .tab-content, .footer, .strip { padding-left: 24px; padding-right: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <svg class="sunburst" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(65,65)" fill="white">
+        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/><polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/><polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/><polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/><polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/><polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/><polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/><polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/><polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <p class="brand-tag">Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 8</p>
+    <h1>Testimonial<br><em>Capture Template</em></h1>
+    <p class="header-sub">Your client's story is your most powerful marketing asset.</p>
+  </div>
+  <div class="strip">The best testimonials name specific results and real emotions. Generic praise sells nothing.</div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('questions')">Questions to ask</div>
+    <div class="tab" onclick="switchTab('outreach')">How to ask</div>
+    <div class="tab" onclick="switchTab('formats')">How to use it</div>
+  </div>
+
+  <!-- TAB 1: QUESTIONS -->
+  <div class="tab-content active" id="tab-questions">
+    <p class="intro-text">These questions are designed to draw out specific, emotional, useful testimonials - not generic "it was great!" responses. Send them to your client after you've worked together. Give them a few days to answer without rushing.</p>
+    <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+
+    <div class="q-section">
+      <div class="q-section-label">Before working together</div>
+      <div class="field-group">
+        <label class="field-label">1. What was your situation before we worked together?</label>
+        <span class="field-why">Why: establishes the "before" - the context that makes the transformation meaningful</span>
+        <textarea rows="3" placeholder="Client's answer..."></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">2. What was the main problem you were trying to solve?</label>
+        <span class="field-why">Why: their words describing their own problem become your best marketing copy</span>
+        <textarea rows="3" placeholder="Client's answer..."></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">3. What had you already tried before this? What didn't work?</label>
+        <span class="field-why">Why: positions your approach as different from what else is out there</span>
+        <textarea rows="3" placeholder="Client's answer..."></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">4. What made you decide to work with me specifically?</label>
+        <span class="field-why">Why: reveals what made you stand out - valuable intel for your messaging</span>
+        <textarea rows="2" placeholder="Client's answer..."></textarea>
+      </div>
+    </div>
+
+    <div class="q-section">
+      <div class="q-section-label">Results and transformation</div>
+      <div class="field-group">
+        <label class="field-label">5. What specific results have you seen since we worked together?</label>
+        <span class="field-why">Why: specifics sell. "I made £2k in my first month" beats "I made money"</span>
+        <textarea rows="3" placeholder="Client's answer..."></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">6. What has changed for you personally - not just in business?</label>
+        <span class="field-why">Why: emotional transformation resonates more than numbers alone</span>
+        <textarea rows="3" placeholder="Client's answer..."></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">7. What was the most valuable part of working together?</label>
+        <span class="field-why">Why: tells you (and future clients) what your real differentiator is</span>
+        <textarea rows="2" placeholder="Client's answer..."></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">8. Was there anything that surprised you about the experience?</label>
+        <span class="field-why">Why: often produces the most authentic, quotable responses</span>
+        <textarea rows="2" placeholder="Client's answer..."></textarea>
+      </div>
+    </div>
+
+    <div class="q-section">
+      <div class="q-section-label">For future clients</div>
+      <div class="field-group">
+        <label class="field-label">9. Who would you recommend this to, and why?</label>
+        <span class="field-why">Why: their description of who benefits becomes your targeting copy</span>
+        <textarea rows="2" placeholder="Client's answer..."></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">10. What would you say to someone who is on the fence about working with me?</label>
+        <span class="field-why">Why: directly addresses the objections your future clients have</span>
+        <textarea rows="3" placeholder="Client's answer..."></textarea>
+      </div>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Turn answers into a polished case study</div>
+      <div class="ai-desc">Paste your client's answers into this prompt to get a ready-to-use testimonial, case study, and social post.</div>
+      <div class="ai-prompt">I have collected testimonial answers from a client and I need to turn them into polished marketing assets.
+
+Client's answers:
+Before: [paste their answer to Q1 and Q2]
+What they tried before: [Q3]
+Why they chose me: [Q4]
+Specific results: [Q5]
+Personal transformation: [Q6]
+Most valuable part: [Q7]
+Surprise: [Q8]
+Who they'd recommend to: [Q9]
+What they'd say to someone on the fence: [Q10]
+
+My niche: [who you help and what you help them do]
+Client's first name (if happy to use): [name or "my client"]
+
+Please create:
+1. A 3-4 sentence testimonial quote in their voice (use their words where possible)
+2. A short case study (150-200 words): headline, their situation, the solution, the result
+3. An Instagram/Facebook post sharing their story (with a hook, their journey, and a CTA)
+4. A one-line soundbite I can use as a pull quote on my website or in my bio
+
+Keep everything honest and specific. Use their actual language - don't clean it up so much it sounds generic.</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <!-- TAB 2: HOW TO ASK -->
+  <div class="tab-content" id="tab-outreach">
+    <p class="intro-text">Asking for a testimonial feels awkward. It doesn't need to. Here are ready-to-send messages for every situation - copy, personalise, and send.</p>
+
+    <div class="message-box">
+      <span class="message-label">After completing a programme or package - WhatsApp</span>
+      Hey [name], I've genuinely loved working with you over the past [timeframe]. Watching you go from [where they started] to [where they are now] has been incredible. I'm putting together some case studies and I wondered if you'd be happy to answer a few quick questions about your experience? It'll take about 10 minutes and your answers will help other women in exactly the situation you were in decide if this is right for them. Would that be okay?
+      <br><br>
+      <button class="btn-copy-msg" onclick="copyMsg(this)">Copy message</button>
+    </div>
+
+    <div class="message-box">
+      <span class="message-label">After a single session or quick win - WhatsApp</span>
+      Hi [name], so glad our session was useful! I'm building out some client stories and I'd love to include yours if you're open to it. There are just a few questions - totally fine to keep it brief. Would you mind if I sent them over?
+      <br><br>
+      <button class="btn-copy-msg" onclick="copyMsg(this)">Copy message</button>
+    </div>
+
+    <div class="message-box">
+      <span class="message-label">Follow-up if they said yes but haven't responded - WhatsApp</span>
+      Hey [name], just following up on the testimonial questions I sent over - no rush at all, I know life gets busy! If it's easier I can jump on a quick 10 minute call and just ask you a few things verbally? Totally your call. Either way, no pressure at all.
+      <br><br>
+      <button class="btn-copy-msg" onclick="copyMsg(this)">Copy message</button>
+    </div>
+
+    <div class="message-box">
+      <span class="message-label">Asking to use a DM or comment they already sent you</span>
+      Hey [name], I loved what you said the other day about [their comment]. Would you be happy for me to share that as a testimonial? I'd credit you by first name only unless you'd prefer I keep it anonymous. Let me know and thank you either way - it genuinely means a lot.
+      <br><br>
+      <button class="btn-copy-msg" onclick="copyMsg(this)">Copy message</button>
+    </div>
+
+    <div style="background:var(--cream);border-left:3px solid var(--blush-deep);padding:14px 18px;margin-top:8px;font-size:12.5px;color:var(--warm-grey);line-height:1.65;">
+      <strong style="color:var(--black);">Always ask permission before sharing.</strong> A quick "is it okay to share this?" takes 10 seconds and protects the relationship. Never share a client's name, photo, or details without explicit consent - and always offer the option to stay anonymous.
+    </div>
+  </div>
+
+  <!-- TAB 3: HOW TO USE -->
+  <div class="tab-content" id="tab-formats">
+    <p class="intro-text">A testimonial is only valuable if you actually use it. Here are the formats that convert best and where to put them.</p>
+
+    <div class="format-card">
+      <div class="format-header"><div class="format-name">The quote testimonial</div><div class="format-use">Bio, website, sales page</div></div>
+      <div class="format-body">
+        <strong>What it is:</strong> A 2-4 sentence direct quote from your client in their own words.<br><br>
+        <strong>What makes it work:</strong> Specificity. "Jo helped me make my first £1,500 month while still working full time" is 10x more powerful than "Jo is amazing and changed my life."<br><br>
+        <strong>Where to use it:</strong> Your Instagram bio link page, your website homepage, your sales page, your offer one-pager, as a pinned post.
+        <div class="format-example">"Before working with Jo I had three business ideas and zero direction. Six weeks later I had my first paying client and a clear plan for the next three months. I finally feel like this is actually happening." - Sarah, 38</div>
+      </div>
+    </div>
+
+    <div class="format-card">
+      <div class="format-header"><div class="format-name">The screenshot testimonial</div><div class="format-use">Stories, posts, sales conversations</div></div>
+      <div class="format-body">
+        <strong>What it is:</strong> A screenshot of a genuine DM, WhatsApp message, or comment from a client sharing their win.<br><br>
+        <strong>What makes it work:</strong> It's unedited and real. People trust screenshots more than polished quotes because they can see it happened naturally.<br><br>
+        <strong>Where to use it:</strong> Instagram and Facebook stories, as a carousel slide, in your DM conversations when someone asks if it works.
+        <div class="format-example">Tip: Keep a dedicated folder on your phone for client win screenshots. When someone sends you a great message, screenshot it immediately before the conversation moves on.</div>
+      </div>
+    </div>
+
+    <div class="format-card">
+      <div class="format-header"><div class="format-name">The case study post</div><div class="format-use">Feed posts, email, website</div></div>
+      <div class="format-body">
+        <strong>What it is:</strong> A longer-form story post that covers before, journey, and after.<br><br>
+        <strong>What makes it work:</strong> It tells a complete story that your ideal client can see themselves in. The "before" is as important as the "after" - it needs to feel familiar.<br><br>
+        <strong>Where to use it:</strong> As a regular feed post (aim for one client story per month), in a nurture email sequence, on your website as a case study page.
+        <div class="format-example">Structure: Hook (their before in one line) → Their situation → What changed → The result → Who this is for → CTA</div>
+      </div>
+    </div>
+
+    <div class="format-card">
+      <div class="format-header"><div class="format-name">The video testimonial</div><div class="format-use">Sales pages, website, reels</div></div>
+      <div class="format-body">
+        <strong>What it is:</strong> A short video (60-120 seconds) of your client sharing their experience in their own words.<br><br>
+        <strong>What makes it work:</strong> Authenticity. Seeing and hearing a real person is the closest thing to word of mouth in the digital world.<br><br>
+        <strong>Where to use it:</strong> Your sales page, a pinned reel, your website. Even a slightly shaky phone video works - polish matters far less than genuine emotion.
+        <div class="format-example">Ask them to cover: who they are, what they were struggling with, what changed, and one thing they'd say to someone thinking about working with you.</div>
+      </div>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Write a case study post from a screenshot</div>
+      <div class="ai-desc">Got a great client message or comment? Use this prompt to turn it into a full case study post.</div>
+      <div class="ai-prompt">I have a client testimonial I want to turn into a case study post for social media.
+
+The testimonial (their words): [paste their message, DM, or comment exactly as written]
+Additional context I know about their journey (optional): [anything you know about where they started and what changed]
+Client's first name (or "my client" if anonymous): [name]
+My niche: [who you help and what you help them do]
+
+Please write:
+1. A case study post for Instagram/Facebook (hook, their before, what changed, their result, CTA - around 200 words)
+2. A shorter version for a story slide (under 50 words with a strong opening line)
+3. An email version for my list (subject line + 3-paragraph body)
+
+Keep their voice and words wherever possible. The hook should speak directly to someone in the same situation they were in at the start.</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Rise Beyond the 9 to 5</span>
+    <span class="footer-step">Step 8 of 8 · Testimonial Capture Template</span>
+  </div>
+</div>
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+function copyMsg(btn) {
+  const box = btn.closest('.message-box');
+  const clone = box.cloneNode(true);
+  clone.querySelector('button').remove();
+  clone.querySelector('.message-label').remove();
+  const text = clone.textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy message'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+function copyAI(btn) {
+  const prompt = btn.previousElementSibling.textContent.trim();
+  navigator.clipboard.writeText(prompt).then(() => {
+    btn.textContent = 'Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy prompt →'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
