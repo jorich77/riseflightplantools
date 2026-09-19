@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales Conversation Playbook – Rise Beyond the 9 to 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #1a1a1a; --blush: #e8d9d0; --blush-deep: #d4c0b4;
+    --cream: #f5f0e8; --warm-grey: #6b6560; --light-grey: #d9d3cc; --white: #ffffff;
+  }
+  body { background: var(--black); font-family: 'Inter', sans-serif; color: var(--black); min-height: 100vh; padding: 0; }
+  .page { max-width: 720px; margin: 0 auto; background: var(--white); }
+
+  /* HEADER */
+  .header { background: var(--black); padding: 40px 48px 32px; position: relative; overflow: hidden; }
+  .sunburst { position: absolute; right: -20px; top: -20px; width: 130px; height: 130px; opacity: 0.1; }
+  .brand-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; color: var(--blush); opacity: 0.6; margin-bottom: 10px; }
+  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 600; line-height: 1.1; color: var(--white); }
+  .header h1 em { color: var(--blush); font-style: italic; font-weight: 400; }
+  .header-sub { font-size: 12px; color: var(--blush); opacity: 0.55; font-weight: 300; margin-top: 8px; }
+  .strip { background: var(--blush); padding: 11px 48px; font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--black); }
+
+  /* TABS */
+  .tabs { display: flex; border-bottom: 2px solid var(--light-grey); background: var(--cream); }
+  .tab { flex: 1; padding: 14px 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; color: var(--warm-grey); cursor: pointer; text-align: center; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.15s; }
+  .tab.active { color: var(--black); border-bottom-color: var(--black); background: var(--white); }
+  .tab:hover:not(.active) { color: var(--black); background: var(--blush); }
+
+  /* CONTENT */
+  .tab-content { display: none; padding: 36px 48px 48px; }
+  .tab-content.active { display: block; }
+
+  .section-intro { font-size: 13px; color: var(--warm-grey); line-height: 1.7; margin-bottom: 28px; max-width: 540px; }
+
+  /* STAGE */
+  .stage { margin-bottom: 28px; }
+  .stage-header { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+  .stage-num { width: 28px; height: 28px; min-width: 28px; border-radius: 50%; background: var(--black); color: var(--white); font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+  .stage-title { font-weight: 600; font-size: 13px; color: var(--black); }
+  .stage-body { padding-left: 42px; }
+  .stage-body p { font-size: 12.5px; color: var(--warm-grey); line-height: 1.65; margin-bottom: 10px; }
+  .stage-rule { height: 1px; background: var(--light-grey); margin: 20px 0; }
+
+  /* TEMPLATES */
+  .template-block { background: var(--cream); border-left: 3px solid var(--blush-deep); padding: 16px 20px; margin-bottom: 14px; font-size: 12.5px; line-height: 1.7; color: var(--black); font-style: italic; position: relative; }
+  .template-label { font-style: normal; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: var(--warm-grey); margin-bottom: 8px; display: block; }
+  .copy-btn { position: absolute; top: 12px; right: 12px; background: var(--black); color: var(--white); border: none; font-size: 10px; font-weight: 500; padding: 4px 10px; cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity 0.15s; }
+  .copy-btn:hover { opacity: 0.75; }
+  .copy-btn.copied { background: var(--blush-deep); color: var(--black); }
+
+  /* OBJECTIONS */
+  .objection { border-bottom: 1px solid var(--light-grey); padding: 16px 0; }
+  .objection:last-child { border-bottom: none; }
+  .obj-q { font-weight: 600; font-size: 13px; margin-bottom: 8px; color: var(--black); }
+  .obj-a { font-size: 12.5px; color: var(--warm-grey); line-height: 1.65; }
+  .obj-a em { color: var(--black); font-style: normal; font-weight: 500; }
+
+  /* FOOTER */
+  .footer { background: var(--black); padding: 14px 48px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--blush); font-style: italic; }
+  .footer-step { font-size: 10px; color: var(--blush); opacity: 0.4; letter-spacing: 0.08em; }
+
+  @media (max-width: 500px) {
+    .header, .tab-content, .footer { padding-left: 24px; padding-right: 24px; }
+    .strip { padding-left: 24px; padding-right: 24px; }
+    .tab { font-size: 10px; padding: 12px 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <svg class="sunburst" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(65,65)" fill="white">
+        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/><polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/><polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/><polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/><polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/><polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/><polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/><polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/><polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <p class="brand-tag">Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 6</p>
+    <h1>Sales Conversation<br><em>Playbook</em></h1>
+    <p class="header-sub">From first message to confident close - without feeling pushy.</p>
+  </div>
+
+  <div class="strip">You are not selling to people. You are finding the ones who already want what you have.</div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('dm')">DM Framework</div>
+    <div class="tab" onclick="switchTab('templates')">Message Templates</div>
+    <div class="tab" onclick="switchTab('objections')">Objections</div>
+  </div>
+
+  <!-- TAB 1: DM FRAMEWORK -->
+  <div class="tab-content active" id="tab-dm">
+    <p class="section-intro">Every sales conversation follows the same five stages. Work through them in order - never jump to the pitch before you've built rapport.</p>
+
+    <div class="stage">
+      <div class="stage-header"><div class="stage-num">1</div><div class="stage-title">Open - make a genuine connection</div></div>
+      <div class="stage-body">
+        <p>Comment on something specific from their content, stories, or bio. Not "love your page!" - something real that shows you actually looked.</p>
+        <p>Goal: get a reply. Nothing more. Don't mention your business yet.</p>
+      </div>
+    </div>
+    <div class="stage-rule"></div>
+
+    <div class="stage">
+      <div class="stage-header"><div class="stage-num">2</div><div class="stage-title">Build rapport - ask about them</div></div>
+      <div class="stage-body">
+        <p>Ask one question about their situation. Listen to the answer. Ask a follow-up. People feel heard when you ask more than you say.</p>
+        <p>Goal: understand what they're struggling with. Let them tell you.</p>
+      </div>
+    </div>
+    <div class="stage-rule"></div>
+
+    <div class="stage">
+      <div class="stage-header"><div class="stage-num">3</div><div class="stage-title">Identify the problem - dig deeper</div></div>
+      <div class="stage-body">
+        <p>Once they've shared a struggle, reflect it back. "It sounds like the main thing holding you back is X - is that right?" This shows you've listened and positions you as someone who gets it.</p>
+        <p>Goal: confirm the problem before you mention any solution.</p>
+      </div>
+    </div>
+    <div class="stage-rule"></div>
+
+    <div class="stage">
+      <div class="stage-header"><div class="stage-num">4</div><div class="stage-title">Transition to a call - soft and natural</div></div>
+      <div class="stage-body">
+        <p>Only move here once you've confirmed there's a real problem and genuine interest. Frame the call as a conversation to help them, not a sales call.</p>
+        <p>Goal: get a call booked. Use your template below.</p>
+      </div>
+    </div>
+    <div class="stage-rule"></div>
+
+    <div class="stage">
+      <div class="stage-header"><div class="stage-num">5</div><div class="stage-title">Confirm and prepare them</div></div>
+      <div class="stage-body">
+        <p>Once booked, send a short message the day before. Remind them of the time, what to expect, and ask them to think about one thing: what would change for them if this problem was solved?</p>
+        <p>Goal: make sure they show up primed and ready to engage.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: TEMPLATES -->
+  <div class="tab-content" id="tab-templates">
+    <p class="section-intro">These are starting points - not scripts. Personalise every single one. If it sounds like a template, it will feel like one.</p>
+
+    <div class="template-block">
+      <span class="template-label">Warm outreach - someone who engaged with your content</span>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      Hey [name], I noticed you commented on my post about [topic] - really resonated with what you said about [their specific comment]. Are you in the middle of trying to [relevant goal] right now?
+    </div>
+
+    <div class="template-block">
+      <span class="template-label">Cold outreach - someone who fits your ideal client profile</span>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      Hi [name], I came across your profile and loved [something specific]. I work with [your niche] to help them [result you deliver]. Curious - is [specific problem] something you're working through at the moment?
+    </div>
+
+    <div class="template-block">
+      <span class="template-label">Transition to a call</span>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      It sounds like you're at exactly the point where a quick conversation could really help. I do a free [20/30]-minute call where we look at where you are, what's getting in the way, and what your next step could be - no pressure, just clarity. Would that be useful?
+    </div>
+
+    <div class="template-block">
+      <span class="template-label">Call confirmation (send the day before)</span>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      Looking forward to our call tomorrow at [time]. To get the most from it, have a think about this one question: if [the main problem we discussed] was sorted in the next 90 days, what would that change for you? See you then.
+    </div>
+
+    <div class="template-block">
+      <span class="template-label">Story/content CTA (for followers watching your stories)</span>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      If this resonates and you're wondering whether [your offer] could work for you, DM me the word [keyword] and I'll send you the details.
+    </div>
+  </div>
+
+  <!-- TAB 3: OBJECTIONS -->
+  <div class="tab-content" id="tab-objections">
+    <p class="section-intro">An objection is not a no. It's a question in disguise. Stay calm, acknowledge it, and redirect. Never argue.</p>
+
+    <div class="objection">
+      <div class="obj-q">"I can't afford it right now."</div>
+      <div class="obj-a">I completely understand - it's a real investment. Can I ask - if money wasn't the issue, would this be something you'd want to do? <em>If yes:</em> then let's talk about what's actually possible, because there may be options. <em>If no:</em> that's really useful to know - what would need to be different for it to feel right?</div>
+    </div>
+
+    <div class="objection">
+      <div class="obj-q">"I need to think about it."</div>
+      <div class="obj-a">Of course - it's a big decision and I'd never want you to rush. What specifically do you need to think through? Sometimes talking it out helps, and I'm happy to answer anything that's sitting with you.</div>
+    </div>
+
+    <div class="objection">
+      <div class="obj-q">"I don't have time right now."</div>
+      <div class="obj-a">That's exactly why most people come to me - they're already stretched. The question is: will you have more time in three months if nothing changes? This is designed to work around a busy life, not add to it.</div>
+    </div>
+
+    <div class="objection">
+      <div class="obj-q">"I've tried things like this before and it didn't work."</div>
+      <div class="obj-a">That's really important and I'm glad you said it - can you tell me what happened? What was missing? I'd rather understand what went wrong before than promise something that repeats it.</div>
+    </div>
+
+    <div class="objection">
+      <div class="obj-q">"I need to ask my partner first."</div>
+      <div class="obj-a">Completely makes sense - this affects both of you. Would it help if I put together a short summary of what's included and the investment so you have something clear to share with them?</div>
+    </div>
+
+    <div class="objection">
+      <div class="obj-q">"I'm not sure it'll work for me specifically."</div>
+      <div class="obj-a">That's a fair concern. Tell me more about your situation - what feels different about it? In my experience the people who worry most about whether it'll work are often the ones who get the most out of it, because they show up fully.</div>
+    </div>
+
+    <div class="objection">
+      <div class="obj-q">"Can you just tell me the price?"</div>
+      <div class="obj-a">I can - and I will. I just want to make sure I'm giving you the right number, because it depends on what level of support makes sense for where you are. Can I ask you one quick question first?</div>
+    </div>
+
+    <div class="objection">
+      <div class="obj-q">"I want to wait until [after summer / the new year / things calm down]."</div>
+      <div class="obj-a">I hear that - and I'd ask you gently: has there been a right time before? In my experience things don't calm down, they just change shape. What would actually need to be true for the time to feel right?</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Rise Beyond the 9 to 5</span>
+    <span class="footer-step">Step 6 of 8 · Sales Conversation Playbook</span>
+  </div>
+</div>
+
+<script>
+  function switchTab(id) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function copyText(btn) {
+    const block = btn.parentElement;
+    const text = block.childNodes[block.childNodes.length - 1].textContent.trim();
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'Copied';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+</script>
+</body>
+</html>
