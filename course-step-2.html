@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Step 2 – Choose Your Flight Path | Rise Flight Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --black:#1a1a1a; --blush:#e8d9d0; --blush-deep:#d4c0b4; --cream:#f5f0e8; --warm-grey:#6b6560; --light-grey:#d9d3cc; --white:#ffffff; }
+  body { background: var(--cream); font-family: 'Inter', sans-serif; color: var(--black); min-height: 100vh; }
+  .page { max-width: 720px; margin: 0 auto; background: var(--white); }
+  .header { background: var(--black); padding: 36px 48px 28px; position: relative; overflow: hidden; }
+  .sunburst { position: absolute; right: -20px; top: -20px; width: 130px; height: 130px; opacity: 0.08; }
+  .step-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; color: var(--blush); opacity: 0.7; margin-bottom: 10px; }
+  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 600; line-height: 1.1; color: var(--white); }
+  .header-sub { font-size: 12px; color: var(--blush); opacity: 0.55; font-weight: 300; margin-top: 8px; }
+  .strip { background: var(--blush); padding: 11px 48px; font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--black); }
+  .body { padding: 36px 48px 48px; }
+  .video-wrap { background: var(--black); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; margin-bottom: 32px; position: relative; }
+  .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+  .video-placeholder { text-align: center; color: var(--blush); opacity: 0.4; }
+  .video-placeholder .play { font-size: 48px; margin-bottom: 8px; }
+  .video-placeholder p { font-size: 12px; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--warm-grey); margin-bottom: 10px; }
+  .description { font-size: 13.5px; color: var(--warm-grey); line-height: 1.75; margin-bottom: 28px; }
+  .description strong { color: var(--black); font-weight: 600; }
+  .what-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
+  .what-list li { font-size: 13px; color: var(--black); line-height: 1.6; padding-left: 20px; position: relative; }
+  .what-list li::before { content: '→'; position: absolute; left: 0; color: var(--blush-deep); font-weight: 600; }
+  .tools-section { margin-bottom: 36px; }
+  .tool-btn { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; background: var(--black); color: var(--white); text-decoration: none; transition: opacity 0.15s; }
+  .tool-btn:hover { opacity: 0.85; }
+  .tool-btn-name { font-size: 13px; font-weight: 500; }
+  .tool-btn-tag { font-size: 10px; color: var(--blush); opacity: 0.7; margin-top: 2px; }
+  .tool-btn-arrow { font-size: 14px; color: var(--blush); flex-shrink: 0; }
+  .nav-row { display: flex; justify-content: flex-end; padding-top: 24px; border-top: 1px solid var(--light-grey); }
+  .btn-next { background: var(--blush); color: var(--black); border: none; padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity 0.15s; }
+  .btn-next:hover { opacity: 0.8; }
+  .footer { background: var(--black); padding: 14px 48px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--blush); font-style: italic; }
+  .footer-step { font-size: 10px; color: var(--blush); opacity: 0.4; letter-spacing: 0.08em; }
+  @media (max-width: 520px) { .header, .body, .footer, .strip { padding-left: 24px; padding-right: 24px; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <svg class="sunburst" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(65,65)" fill="white">
+        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/><polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/><polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/><polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/><polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/><polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/><polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/><polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/><polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <p class="step-tag">Step 2 of 8 · The Rise Flight Plan</p>
+    <h1>Choose Your Flight Path</h1>
+    <p class="header-sub">Pick the business model that fits your life.</p>
+  </div>
+  <div class="strip">There are six ways to build an online business. Only one is right for you right now.</div>
+  <div class="body">
+    <div class="video-wrap">
+      <!-- Replace with your video embed URL e.g. <iframe src="https://www.loom.com/embed/YOUR_ID" allowfullscreen></iframe> -->
+      <div class="video-placeholder">
+        <div class="play">▶</div>
+        <p>Video coming soon</p>
+      </div>
+    </div>
+    <div class="section-label">What this step is about</div>
+    <p class="description">Most people stay stuck because they try to do everything at once - or they copy what someone else is doing without checking if it actually fits their life. <strong>Step 2 is about choosing one business model and committing to it.</strong> Not forever - just for now. You'll explore six proven online business models, understand how each one works, and use the Decision Framework to identify the best fit for your skills, time, and goals.</p>
+    <div class="section-label" style="margin-bottom:10px;">In this step you will</div>
+    <ul class="what-list"><li>Explore the 6 online business models available to you</li><li>Identify which model fits your skills, time, and income goals</li><li>Use the quiz to get your top 2 model recommendations</li><li>Walk away with a clear decision and a starting point</li></ul>
+    <div class="tools-section">
+      <div class="section-label" style="margin-bottom:10px;">Your tools for this step</div>
+      <a class="tool-btn" href="https://riseflightplantools.vercel.app/step-2-business-path-decision-framework.html" target="_blank"><div><div class="tool-btn-name">Business Path Decision Framework</div><div class="tool-btn-tag">Interactive quiz · includes 6 model guides</div></div><div class="tool-btn-arrow">↗</div></a>
+
+    </div>
+    <div class="nav-row">
+      <a class="btn-next" href="course-step-3.html">Step 3: Find Your People →</a>
+    </div>
+  </div>
+  <div class="footer">
+    <span class="footer-brand">Rise Beyond the 9 to 5</span>
+    <span class="footer-step">Step 2 of 8</span>
+  </div>
+</div>
+</body>
+</html>
