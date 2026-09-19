@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fill Your Pipeline – Rise Beyond the 9 to 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #1a1a1a; --blush: #e8d9d0; --blush-deep: #d4c0b4;
+    --cream: #f5f0e8; --warm-grey: #6b6560; --light-grey: #d9d3cc; --white: #ffffff;
+  }
+  body { background: var(--black); font-family: 'Inter', sans-serif; color: var(--black); min-height: 100vh; }
+  .page { max-width: 720px; margin: 0 auto; background: var(--white); min-height: 100vh; display: flex; flex-direction: column; }
+
+  .header { background: var(--black); padding: 36px 48px 28px; position: relative; overflow: hidden; flex-shrink: 0; }
+  .sunburst { position: absolute; right: -20px; top: -20px; width: 130px; height: 130px; opacity: 0.1; }
+  .brand-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; color: var(--blush); opacity: 0.6; margin-bottom: 10px; }
+  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 600; line-height: 1.1; color: var(--white); }
+  .header h1 em { color: var(--blush); font-style: italic; font-weight: 400; }
+  .header-sub { font-size: 12px; color: var(--blush); opacity: 0.55; font-weight: 300; margin-top: 8px; }
+  .strip { background: var(--blush); padding: 11px 48px; font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--black); }
+
+  /* STRATEGY SELECTOR */
+  .selector { padding: 24px 48px; background: var(--cream); border-bottom: 1px solid var(--light-grey); }
+  .selector-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--warm-grey); margin-bottom: 12px; }
+  .strategy-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill { padding: 8px 16px; border: 1.5px solid var(--light-grey); font-size: 11.5px; font-weight: 500; cursor: pointer; color: var(--warm-grey); transition: all 0.15s; background: var(--white); }
+  .pill.active { background: var(--black); color: var(--white); border-color: var(--black); }
+  .pill:hover:not(.active) { border-color: var(--black); color: var(--black); }
+
+  /* CONTENT */
+  .strategy-content { display: none; padding: 36px 48px 48px; flex: 1; }
+  .strategy-content.active { display: block; }
+
+  .strategy-hero { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+  .strategy-icon { font-size: 32px; flex-shrink: 0; }
+  .strategy-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; line-height: 1.1; margin-bottom: 4px; }
+  .strategy-tagline { font-size: 12.5px; color: var(--warm-grey); font-style: italic; }
+
+  .meta-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; padding: 16px 0; border-top: 1px solid var(--light-grey); border-bottom: 1px solid var(--light-grey); }
+  .meta-item { }
+  .meta-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: var(--warm-grey); margin-bottom: 3px; }
+  .meta-value { font-size: 12.5px; font-weight: 600; color: var(--black); }
+
+  .section { margin-bottom: 24px; }
+  .section h3 { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--warm-grey); margin-bottom: 12px; }
+  .section p { font-size: 12.5px; color: var(--black); line-height: 1.65; margin-bottom: 8px; }
+  .step-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .step-list li { font-size: 12.5px; color: var(--black); line-height: 1.6; padding-left: 20px; position: relative; }
+  .step-list li::before { content: '→'; position: absolute; left: 0; color: var(--blush-deep); font-weight: 600; }
+
+  .watch-box { background: var(--cream); border-left: 3px solid var(--blush-deep); padding: 14px 18px; margin: 16px 0; font-size: 12.5px; color: var(--warm-grey); line-height: 1.65; font-style: italic; }
+  .watch-box strong { font-style: normal; color: var(--black); }
+
+  .action-box { background: var(--black); padding: 20px 24px; margin: 20px 0; }
+  .action-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--blush); opacity: 0.7; margin-bottom: 8px; }
+  .action-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--white); margin-bottom: 10px; }
+  .action-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .action-list li { font-size: 12px; color: var(--blush); opacity: 0.8; padding-left: 16px; position: relative; line-height: 1.55; }
+  .action-list li::before { content: '✓'; position: absolute; left: 0; color: var(--blush-deep); }
+
+  /* AI BOX */
+  .ai-box { background: var(--black); padding: 22px 26px; margin-top: 24px; }
+  .ai-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--blush); opacity: 0.7; margin-bottom: 8px; }
+  .ai-title { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--white); margin-bottom: 8px; }
+  .ai-desc { font-size: 12px; color: var(--blush); opacity: 0.65; line-height: 1.6; margin-bottom: 14px; }
+  .ai-prompt { background: #111; border-left: 3px solid var(--blush-deep); padding: 14px 16px; font-size: 11.5px; color: var(--blush); line-height: 1.7; font-style: italic; margin-bottom: 14px; white-space: pre-wrap; }
+  .btn-copy { background: var(--blush); color: var(--black); border: none; padding: 10px 18px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity 0.15s; }
+  .btn-copy:hover { opacity: 0.8; }
+  .btn-copy.copied { background: var(--blush-deep); }
+
+  .footer { background: var(--black); padding: 14px 48px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--blush); font-style: italic; }
+  .footer-step { font-size: 10px; color: var(--blush); opacity: 0.4; letter-spacing: 0.08em; }
+
+  @media (max-width: 520px) {
+    .header, .selector, .strategy-content, .footer, .strip { padding-left: 24px; padding-right: 24px; }
+    .meta-row { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <svg class="sunburst" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(65,65)" fill="white">
+        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/><polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/><polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/><polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/><polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/><polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/><polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/><polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/><polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <p class="brand-tag">Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 5</p>
+    <h1>Fill Your<br><em>Pipeline</em></h1>
+    <p class="header-sub">Choose your lead generation strategy. Master it for 30 days.</p>
+  </div>
+  <div class="strip">You don't need all five strategies. You need to master one.</div>
+
+  <div class="selector">
+    <div class="selector-label">Choose your strategy</div>
+    <div class="strategy-pills">
+      <div class="pill active" onclick="show('dms')">Warm DM Outreach</div>
+      <div class="pill" onclick="show('leadmagnet')">Lead Magnet + Email</div>
+      <div class="pill" onclick="show('challenges')">Challenges + Events</div>
+      <div class="pill" onclick="show('offline')">Offline + Referrals</div>
+      <div class="pill" onclick="show('ads')">Paid Ads</div>
+    </div>
+  </div>
+
+  <!-- STRATEGY 1: WARM DMs -->
+  <div class="strategy-content active" id="strat-dms">
+    <div class="strategy-hero">
+      <div class="strategy-icon">💬</div>
+      <div>
+        <div class="strategy-title">Warm DM Outreach</div>
+        <div class="strategy-tagline">The fastest route to your first client. No ads, no funnel - just conversations.</div>
+      </div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-item"><div class="meta-label">Time to first lead</div><div class="meta-value">24-48 hours</div></div>
+      <div class="meta-item"><div class="meta-label">Investment needed</div><div class="meta-value">Zero</div></div>
+      <div class="meta-item"><div class="meta-label">Best for</div><div class="meta-value">Getting first clients fast</div></div>
+      <div class="meta-item"><div class="meta-label">Effort level</div><div class="meta-value">Daily, 20-30 minutes</div></div>
+    </div>
+
+    <div class="section">
+      <h3>What it is</h3>
+      <p>Warm DM outreach means proactively starting conversations with people who already have some awareness of you - they follow you, liked your post, watched your reel, or fit your ideal client profile. You're not cold calling strangers. You're opening a door that's already slightly ajar.</p>
+    </div>
+
+    <div class="section">
+      <h3>Who to reach out to</h3>
+      <ul class="step-list">
+        <li>People who liked or commented on your last 5-10 posts</li>
+        <li>People who watched more than 50% of your reels (check your insights)</li>
+        <li>New followers who match your ideal client profile</li>
+        <li>People who replied to your stories</li>
+        <li>People who viewed your profile multiple times</li>
+        <li>Existing contacts in your phone who fit your ideal client</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>How to do it - the daily routine</h3>
+      <ul class="step-list">
+        <li>Spend 10 minutes engaging genuinely on their content before you DM - like posts, leave a real comment</li>
+        <li>Send 5-10 DMs per day - not a pitch, a conversation opener based on something specific about them</li>
+        <li>Use the DM framework from your Sales Conversation Playbook to move from conversation to booked call</li>
+        <li>Track every conversation in a simple spreadsheet: name, date contacted, status, next step</li>
+        <li>Follow up with anyone who went quiet using your Follow-Up Kit</li>
+      </ul>
+    </div>
+
+    <div class="watch-box"><strong>Important:</strong> never open with a pitch. Comment on something real - their content, their bio, something they shared. People can smell copy-paste. Personalise every single message.</div>
+
+    <div class="action-box">
+      <div class="action-label">Your week 1 actions</div>
+      <div class="action-title">Start here</div>
+      <ul class="action-list">
+        <li>Make a list of 20 people to reach out to this week</li>
+        <li>Send 5 warm DMs today - conversation openers only, no pitch</li>
+        <li>Set up a simple tracker (Google Sheet: name, date, status, next step)</li>
+        <li>Aim for 3 conversations booked as discovery calls by end of week</li>
+      </ul>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Write your DM outreach messages</div>
+      <div class="ai-desc">Copy this prompt to get personalised DM templates for your niche.</div>
+      <div class="ai-prompt">I need to write warm DM outreach messages for my online business. I am not pitching - I am starting genuine conversations with people who already follow me or engage with my content.
+
+My niche: I help [who you help] who [their problem] to [the result].
+My business model: [coaching / services / network marketing / etc.]
+The type of person I'm reaching out to: [e.g. mums who follow accounts about leaving the 9-5, people who liked my post about X]
+
+Please write me 5 different DM opening messages for different scenarios:
+1. Someone who liked one of my posts
+2. Someone who commented on my content
+3. A new follower who fits my ideal client profile
+4. Someone I know personally who might be my ideal client
+5. Someone who watched my reel or story
+
+For each message:
+- Make it feel like a real human wrote it, not a bot
+- Reference something specific about them where possible
+- Keep it under 3 sentences
+- Do NOT mention my offer or ask for a call yet - that comes later
+- Tone: warm, curious, genuine</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <!-- STRATEGY 2: LEAD MAGNET -->
+  <div class="strategy-content" id="strat-leadmagnet">
+    <div class="strategy-hero">
+      <div class="strategy-icon">📧</div>
+      <div>
+        <div class="strategy-title">Lead Magnet + Email Marketing</div>
+        <div class="strategy-tagline">Build an audience you own. Nurture them to a sale on autopilot.</div>
+      </div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-item"><div class="meta-label">Time to first lead</div><div class="meta-value">1-2 weeks to set up</div></div>
+      <div class="meta-item"><div class="meta-label">Investment needed</div><div class="meta-value">Zero (free tools)</div></div>
+      <div class="meta-item"><div class="meta-label">Best for</div><div class="meta-value">Building a long-term asset</div></div>
+      <div class="meta-item"><div class="meta-label">Effort level</div><div class="meta-value">High upfront, then automated</div></div>
+    </div>
+
+    <div class="section">
+      <h3>What it is</h3>
+      <p>A lead magnet is a free resource you give away in exchange for someone's email address. Once you have their email, you nurture them with a sequence of emails that builds trust and naturally leads into your paid offer. Your email list is the one platform you own - no algorithm can take it away.</p>
+    </div>
+
+    <div class="section">
+      <h3>What makes a great lead magnet</h3>
+      <ul class="step-list">
+        <li>Solves one specific problem your ideal client has right now</li>
+        <li>Delivers a quick win - they should feel better or clearer within minutes of consuming it</li>
+        <li>Is simple to create - a checklist, a template, a mini guide, a quiz, a short video training</li>
+        <li>Naturally leads into your paid offer - it solves a small problem that points to the bigger one you solve</li>
+        <li>Has a compelling name that makes someone immediately think "I need that"</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>How to set it up</h3>
+      <ul class="step-list">
+        <li>Create your lead magnet (aim for something you can build in a day - a PDF, a Canva checklist, a Loom video)</li>
+        <li>Set up a free Mailerlite or Brevo account and create a simple landing page</li>
+        <li>Write a 3-5 email welcome sequence: email 1 delivers the resource, emails 2-5 build trust and introduce your offer</li>
+        <li>Add your lead magnet link to your bio, your stories, and mention it in your content regularly</li>
+        <li>Promote it consistently - at least 3 times a week across your content</li>
+      </ul>
+    </div>
+
+    <div class="watch-box"><strong>The most common mistake:</strong> creating a lead magnet and never promoting it. Your lead magnet needs to be mentioned as often as your offer. Make it part of your daily content rotation.</div>
+
+    <div class="action-box">
+      <div class="action-label">Your week 1 actions</div>
+      <div class="action-title">Start here</div>
+      <ul class="action-list">
+        <li>Decide on your lead magnet (what one quick win can you give your ideal client?)</li>
+        <li>Create it this week - done beats perfect</li>
+        <li>Set up Mailerlite free account and create your landing page</li>
+        <li>Write your first 3 welcome emails</li>
+        <li>Post about your lead magnet every day this week</li>
+      </ul>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Create your lead magnet and email sequence</div>
+      <div class="ai-desc">Copy this prompt to get your lead magnet idea, landing page copy, and a 5-email welcome sequence.</div>
+      <div class="ai-prompt">I need to create a lead magnet and email welcome sequence for my online business.
+
+My niche: I help [who you help] who [their problem] to [the result].
+My paid offer: [what you sell and at what price]
+My ideal client's most urgent problem right now: [the thing keeping them up at night]
+
+Please create:
+1. Three lead magnet ideas that would attract my ideal client and that I could create quickly (checklist, guide, template, quiz, mini training)
+2. A landing page headline and 3-bullet description for my favourite idea
+3. A 5-email welcome sequence:
+   - Email 1: Deliver the lead magnet + warm welcome (subject line + body)
+   - Email 2: Your story - why you do this (subject line + body)
+   - Email 3: A tip or teaching that demonstrates your expertise (subject line + body)
+   - Email 4: A client result or case study (subject line + body)
+   - Email 5: Soft introduction to your paid offer (subject line + body)
+
+For each email: keep it under 200 words, conversational tone, one clear CTA. Not salesy - like an email from a knowledgeable friend.</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <!-- STRATEGY 3: CHALLENGES -->
+  <div class="strategy-content" id="strat-challenges">
+    <div class="strategy-hero">
+      <div class="strategy-icon">🚀</div>
+      <div>
+        <div class="strategy-title">Challenges + Free Events</div>
+        <div class="strategy-tagline">Deliver value upfront. Build trust at scale. Convert warm audiences into paying clients.</div>
+      </div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-item"><div class="meta-label">Time to first lead</div><div class="meta-value">2-4 weeks to launch</div></div>
+      <div class="meta-item"><div class="meta-label">Investment needed</div><div class="meta-value">Zero to £100</div></div>
+      <div class="meta-item"><div class="meta-label">Best for</div><div class="meta-value">List building + conversions</div></div>
+      <div class="meta-item"><div class="meta-label">Effort level</div><div class="meta-value">High during event, then repeatable</div></div>
+    </div>
+
+    <div class="section">
+      <h3>What it is</h3>
+      <p>A challenge is a free 3-7 day event where participants complete a daily action toward a specific goal. A free workshop is a single live session delivering a transformation. Both build your email list, create trust through delivered value, and end with a natural pitch to your paid offer. Challenges in particular are one of the most powerful conversion tools available to online business owners.</p>
+    </div>
+
+    <div class="section">
+      <h3>How to run a challenge</h3>
+      <ul class="step-list">
+        <li>Choose a specific, achievable outcome for your 5-day challenge (e.g. "Find your business idea in 5 days")</li>
+        <li>Create a simple daily action for each day - short, specific, completable in 15-30 minutes</li>
+        <li>Host it in a free Facebook group or on Zoom - keep it simple</li>
+        <li>Promote it for 2 weeks before it starts - aim for 20+ sign-ups before you run it for the first time</li>
+        <li>Deliver daily content (a video, a live, or a post) with the day's task</li>
+        <li>On day 4 or 5, present your paid offer as the natural next step for people who want to go further</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>How to run a free workshop</h3>
+      <ul class="step-list">
+        <li>Pick one problem you can solve in 60-90 minutes with a clear before/after</li>
+        <li>Promote for 1-2 weeks, aim for 10+ sign-ups</li>
+        <li>Deliver the workshop on Zoom (free plan is fine for under 40 minutes)</li>
+        <li>Reserve the last 10-15 minutes to present your paid offer</li>
+        <li>Follow up with everyone who attended within 24 hours</li>
+      </ul>
+    </div>
+
+    <div class="watch-box"><strong>Note:</strong> There is a full 8-step challenge creation course available as an add-on to this programme. If challenges feel like the right strategy for you, that course gives you the complete system to run and repeat them.</div>
+
+    <div class="action-box">
+      <div class="action-label">Your week 1 actions</div>
+      <div class="action-title">Start here</div>
+      <ul class="action-list">
+        <li>Choose: 5-day challenge or 60-min free workshop</li>
+        <li>Define the specific outcome participants will achieve</li>
+        <li>Set a launch date 3-4 weeks from now</li>
+        <li>Start promoting sign-ups this week - one post per day</li>
+      </ul>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Plan your first challenge or workshop</div>
+      <div class="ai-desc">Copy this prompt to get a complete challenge plan and promotional content.</div>
+      <div class="ai-prompt">I want to run a free challenge or workshop to build my email list and get clients.
+
+My niche: I help [who you help] who [their problem] to [the result].
+My paid offer: [what you sell]
+Format I've chosen: [5-day challenge / 60-minute free workshop]
+Platform I'll use: [Facebook group / Zoom / Instagram Live]
+
+Please create:
+1. A compelling title for my challenge or workshop (specific outcome + time frame)
+2. A description I can use to promote it (3-4 sentences - what they'll achieve, who it's for, how to sign up)
+3. If challenge: outline for each of the 5 days (day title + the one action participants complete)
+4. If workshop: a 60-minute agenda with timings
+5. A pitch structure for the end of the event that naturally leads into my paid offer
+6. 5 social media post ideas to promote sign-ups in the 2 weeks before
+
+Make the challenge/workshop title and content specific to my niche - not generic. The daily tasks should be achievable in 15-30 minutes.</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <!-- STRATEGY 4: OFFLINE -->
+  <div class="strategy-content" id="strat-offline">
+    <div class="strategy-hero">
+      <div class="strategy-icon">🤝</div>
+      <div>
+        <div class="strategy-title">Offline + Referrals</div>
+        <div class="strategy-tagline">Your warmest leads are closer than you think. Real relationships convert better than any funnel.</div>
+      </div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-item"><div class="meta-label">Time to first lead</div><div class="meta-value">Immediate</div></div>
+      <div class="meta-item"><div class="meta-label">Investment needed</div><div class="meta-value">Zero to minimal</div></div>
+      <div class="meta-item"><div class="meta-label">Best for</div><div class="meta-value">First clients + fast trust</div></div>
+      <div class="meta-item"><div class="meta-label">Effort level</div><div class="meta-value">Relationship-led, consistent</div></div>
+    </div>
+
+    <div class="section">
+      <h3>What it is</h3>
+      <p>Offline and referral strategies use real-world relationships to generate clients - networking events, word of mouth, asking existing clients for referrals, speaking at events, or partnering with complementary businesses. People buy from people they know and trust. Offline methods build that trust faster than any algorithm.</p>
+    </div>
+
+    <div class="section">
+      <h3>Networking events</h3>
+      <ul class="step-list">
+        <li>Search Eventbrite, Meetup, or Facebook Events for local business networking events in your area</li>
+        <li>Attend at least one event per month - consistency builds recognition</li>
+        <li>Have your one-sentence audience statement ready: "I help [who] to [result]"</li>
+        <li>Focus on asking questions and listening - the person who asks the best questions is remembered most</li>
+        <li>Follow up within 24 hours with everyone you spoke to - a LinkedIn connection and a short personal message</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Word of mouth + referrals</h3>
+      <ul class="step-list">
+        <li>Tell everyone in your network what you do - friends, family, former colleagues, neighbours</li>
+        <li>After completing work with a client, always ask: "Do you know anyone else who might benefit from this?"</li>
+        <li>Create a simple referral incentive: a discount off their next session or a thank-you gift</li>
+        <li>Post about client wins and results publicly (with permission) - this is passive word of mouth</li>
+        <li>Ask satisfied clients to leave a Google review or a testimonial you can share</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Speaking and partnerships</h3>
+      <ul class="step-list">
+        <li>Offer to speak at local women's groups, business clubs, or community events - even for free at first</li>
+        <li>Partner with complementary businesses who serve the same audience (e.g. a yoga teacher if you help women with wellbeing)</li>
+        <li>Offer to be a guest on local podcasts or online shows in your niche</li>
+        <li>Run a free talk at a local library, community centre, or co-working space</li>
+      </ul>
+    </div>
+
+    <div class="action-box">
+      <div class="action-label">Your week 1 actions</div>
+      <div class="action-title">Start here</div>
+      <ul class="action-list">
+        <li>Tell 10 people in your network what you do this week - in person, by text, or on a call</li>
+        <li>Find one networking event near you this month and register</li>
+        <li>Message your most recent 3 clients and ask if they know anyone who could benefit</li>
+        <li>Write your one-sentence audience statement so you're ready when someone asks what you do</li>
+      </ul>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Write your networking intro and referral messages</div>
+      <div class="ai-desc">Copy this prompt to get everything you need for offline relationship building.</div>
+      <div class="ai-prompt">I am building my online business through offline networking and referrals and I need help with my messaging.
+
+My niche: I help [who you help] who [their problem] to [the result].
+My business model: [coaching / services / products / etc.]
+My personal story in one line: [why you do this]
+
+Please write me:
+1. My 30-second "elevator pitch" for networking events - what I do, who I help, and what makes it different. Conversational, not salesy. End with a natural question I can ask them.
+2. A message I can send to existing contacts to let them know what I'm doing (WhatsApp or email) - honest, not pushy, asking for referrals naturally
+3. A referral request message to send to a satisfied client asking if they know anyone who might benefit
+4. A follow-up message to send within 24 hours after meeting someone at a networking event
+5. A pitch for offering to speak at a local event - what I'd talk about and why it would be valuable for their audience
+
+Tone for all: warm, real, and human. Not corporate.</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <!-- STRATEGY 5: ADS -->
+  <div class="strategy-content" id="strat-ads">
+    <div class="strategy-hero">
+      <div class="strategy-icon">📢</div>
+      <div>
+        <div class="strategy-title">Paid Ads</div>
+        <div class="strategy-tagline">Scale what's already working. Ads amplify - they don't fix.</div>
+      </div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-item"><div class="meta-label">Time to first lead</div><div class="meta-value">48-72 hours once live</div></div>
+      <div class="meta-item"><div class="meta-label">Investment needed</div><div class="meta-value">£5-£20/day minimum</div></div>
+      <div class="meta-item"><div class="meta-label">Best for</div><div class="meta-value">Scaling a proven offer</div></div>
+      <div class="meta-item"><div class="meta-label">Effort level</div><div class="meta-value">Technical setup + daily monitoring</div></div>
+    </div>
+
+    <div class="section">
+      <h3>What it is</h3>
+      <p>Paid ads - primarily Facebook and Instagram ads - put your content or lead magnet in front of a targeted cold audience at scale. They can generate leads quickly, but only work when you already have a proven offer, a clear message, and a working funnel. Ads are an accelerant - they make good things grow faster and bad things burn money faster.</p>
+    </div>
+
+    <div class="section">
+      <h3>When you're ready for ads</h3>
+      <ul class="step-list">
+        <li>You've made at least 3-5 organic sales of your offer - it converts when people know about it</li>
+        <li>You have a clear, specific audience you can target in Ads Manager</li>
+        <li>You have a landing page or lead magnet that converts organic traffic (at least 20-30% opt-in rate)</li>
+        <li>You have a budget you're comfortable spending without guaranteeing a return - start with £5-£10/day</li>
+        <li>You understand the basics of the Facebook Ads Manager interface</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>How to start with ads</h3>
+      <ul class="step-list">
+        <li>Start by boosting content that already performed well organically - this is the lowest risk entry point</li>
+        <li>Run a lead generation campaign to your lead magnet - build your list before you try to sell directly</li>
+        <li>Set a daily budget of £5-£10 and run for 7 days before making any changes</li>
+        <li>Test one variable at a time - one audience, one creative, one hook - change one thing per test</li>
+        <li>Track cost per lead - aim for under £2-£3 per email sign-up for a free lead magnet</li>
+      </ul>
+    </div>
+
+    <div class="watch-box"><strong>Important:</strong> Do not run ads until you have made organic sales first. If your message isn't converting for free, spending money on it will just lose money faster. Get organic working first - then scale with ads.</div>
+
+    <div class="action-box">
+      <div class="action-label">Your week 1 actions (if you're ready)</div>
+      <div class="action-title">Start here</div>
+      <ul class="action-list">
+        <li>Confirm you have at least 3 organic sales before running ads</li>
+        <li>Set up your Facebook Business Manager and Ads Manager account</li>
+        <li>Install the Meta Pixel on your landing page</li>
+        <li>Choose your first campaign: boosted post or lead magnet campaign</li>
+        <li>Set your daily budget (£5-£10) and a 7-day test period</li>
+      </ul>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Write your ad copy and targeting brief</div>
+      <div class="ai-desc">Copy this prompt to get ad copy and a targeting strategy for your first campaign.</div>
+      <div class="ai-prompt">I am setting up my first Facebook and Instagram ads and I need help with the copy and targeting.
+
+My niche: I help [who you help] who [their problem] to [the result].
+What I'm advertising: [lead magnet name / offer name]
+The outcome people get: [specific result]
+My ideal client: [age range, gender, situation, interests]
+My budget: [daily budget]
+My goal: [email sign-ups / discovery call bookings / direct sales]
+
+Please write me:
+1. Three ad headlines (under 40 characters each) - one pain-focused, one curiosity-based, one result-focused
+2. Three ad body copy options (under 125 characters each) for the primary text
+3. A longer ad copy option (3-4 sentences) for a more detailed ad
+4. A targeting brief: which Facebook audience interests and demographics I should test first
+5. A call-to-action recommendation and why
+
+For the copy:
+- Lead with the problem or the result - not a description of what I offer
+- Make it feel like it was written by a person, not a marketer
+- Every word should earn its place - no filler</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Rise Beyond the 9 to 5</span>
+    <span class="footer-step">Step 5 of 8 · Fill Your Pipeline</span>
+  </div>
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.strategy-content').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  document.getElementById('strat-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyAI(btn) {
+  const prompt = btn.previousElementSibling.textContent.trim();
+  navigator.clipboard.writeText(prompt).then(() => {
+    btn.textContent = 'Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy prompt →'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
