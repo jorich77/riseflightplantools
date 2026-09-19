@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Call & Follow-Up Kit – Rise Beyond the 9 to 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #1a1a1a; --blush: #e8d9d0; --blush-deep: #d4c0b4;
+    --cream: #f5f0e8; --warm-grey: #6b6560; --light-grey: #d9d3cc; --white: #ffffff;
+  }
+  body { background: var(--black); font-family: 'Inter', sans-serif; color: var(--black); min-height: 100vh; }
+  .page { max-width: 720px; margin: 0 auto; background: var(--white); }
+
+  .header { background: var(--black); padding: 40px 48px 32px; position: relative; overflow: hidden; }
+  .sunburst { position: absolute; right: -20px; top: -20px; width: 130px; height: 130px; opacity: 0.1; }
+  .brand-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; color: var(--blush); opacity: 0.6; margin-bottom: 10px; }
+  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 600; line-height: 1.1; color: var(--white); }
+  .header h1 em { color: var(--blush); font-style: italic; font-weight: 400; }
+  .header-sub { font-size: 12px; color: var(--blush); opacity: 0.55; font-weight: 300; margin-top: 8px; }
+  .strip { background: var(--blush); padding: 11px 48px; font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--black); }
+
+  .tabs { display: flex; border-bottom: 2px solid var(--light-grey); background: var(--cream); }
+  .tab { flex: 1; padding: 14px 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; color: var(--warm-grey); cursor: pointer; text-align: center; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.15s; }
+  .tab.active { color: var(--black); border-bottom-color: var(--black); background: var(--white); }
+  .tab:hover:not(.active) { color: var(--black); background: var(--blush); }
+
+  .tab-content { display: none; padding: 36px 48px 48px; }
+  .tab-content.active { display: block; }
+  .section-intro { font-size: 13px; color: var(--warm-grey); line-height: 1.7; margin-bottom: 28px; max-width: 540px; }
+
+  /* CALL OUTLINE */
+  .call-phase { margin-bottom: 32px; }
+  .phase-header { background: var(--black); color: var(--white); padding: 10px 18px; display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .phase-time { font-size: 10px; font-weight: 500; color: var(--blush); opacity: 0.7; min-width: 48px; }
+  .phase-title { font-weight: 600; font-size: 12px; letter-spacing: 0.03em; }
+  .phase-body { padding: 0 4px; }
+  .question-row { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--light-grey); }
+  .question-row:last-child { border-bottom: none; }
+  .q-marker { color: var(--blush-deep); font-weight: 600; font-size: 12px; flex-shrink: 0; padding-top: 1px; }
+  .q-text { font-size: 12.5px; color: var(--black); line-height: 1.6; }
+  .q-note { font-size: 11px; color: var(--warm-grey); margin-top: 4px; font-style: italic; }
+
+  /* CHECKLIST */
+  .check-group { margin-bottom: 24px; }
+  .check-group-label { font-weight: 600; font-size: 11px; letter-spacing: 0.06em; color: var(--warm-grey); margin-bottom: 10px; }
+  .check-item { display: flex; align-items: flex-start; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--light-grey); cursor: pointer; }
+  .check-item:last-child { border-bottom: none; }
+  .check-box { width: 18px; height: 18px; min-width: 18px; border: 1.5px solid var(--light-grey); margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: background 0.12s, border-color 0.12s; }
+  .check-box.checked { background: var(--black); border-color: var(--black); }
+  .check-box.checked::after { content: ''; width: 6px; height: 4px; border-left: 2px solid white; border-bottom: 2px solid white; transform: rotate(-45deg) translateY(-1px); display: block; }
+  .check-label { font-size: 12.5px; color: var(--black); line-height: 1.6; }
+  .check-item.checked-item .check-label { color: var(--warm-grey); text-decoration: line-through; }
+
+  /* FOLLOW-UP TEMPLATES */
+  .followup-card { border: 1.5px solid var(--light-grey); margin-bottom: 16px; }
+  .followup-header { background: var(--cream); padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; }
+  .followup-title { font-weight: 600; font-size: 12px; color: var(--black); }
+  .followup-timing { font-size: 10px; color: var(--warm-grey); font-weight: 500; }
+  .followup-body { padding: 16px 18px; font-size: 12.5px; line-height: 1.7; color: var(--black); font-style: italic; position: relative; }
+  .copy-btn { background: var(--black); color: var(--white); border: none; font-size: 10px; font-weight: 500; padding: 4px 10px; cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity 0.15s; margin-top: 10px; display: inline-block; }
+  .copy-btn:hover { opacity: 0.75; }
+  .copy-btn.copied { background: var(--blush-deep); color: var(--black); }
+
+  .tip-box { background: var(--cream); border-left: 3px solid var(--blush-deep); padding: 14px 18px; margin-top: 24px; font-size: 12px; color: var(--warm-grey); line-height: 1.65; }
+  .tip-box strong { color: var(--black); }
+
+  .footer { background: var(--black); padding: 14px 48px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--blush); font-style: italic; }
+  .footer-step { font-size: 10px; color: var(--blush); opacity: 0.4; letter-spacing: 0.08em; }
+
+  @media (max-width: 500px) {
+    .header, .tab-content, .footer { padding-left: 24px; padding-right: 24px; }
+    .strip { padding-left: 24px; padding-right: 24px; }
+    .tab { font-size: 10px; padding: 12px 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <svg class="sunburst" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(65,65)" fill="white">
+        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/><polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/><polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/><polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/><polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/><polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/><polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/><polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/><polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <p class="brand-tag">Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 6</p>
+    <h1>Call & Follow-Up<br><em>Kit</em></h1>
+    <p class="header-sub">Run a confident discovery call. Follow up without feeling awkward.</p>
+  </div>
+
+  <div class="strip">The call is not a pitch. It is a conversation where you find out if you can genuinely help.</div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('outline')">Call Outline</div>
+    <div class="tab" onclick="switchTab('prep')">Pre-Call Prep</div>
+    <div class="tab" onclick="switchTab('followup')">Follow-Up Sequence</div>
+  </div>
+
+  <!-- TAB 1: CALL OUTLINE -->
+  <div class="tab-content active" id="tab-outline">
+    <p class="section-intro">A 30-minute discovery call has five phases. Stick to the timing - it keeps you in control and shows professionalism.</p>
+
+    <div class="call-phase">
+      <div class="phase-header"><span class="phase-time">0-3 min</span><span class="phase-title">Welcome and set the frame</span></div>
+      <div class="phase-body">
+        <div class="question-row"><span class="q-marker">→</span><div class="q-text">Thank them for their time. Tell them how the call will work: "I'll ask you a few questions to understand where you are, you can ask me anything, and at the end we'll both know whether it makes sense to work together."<div class="q-note">This removes pressure immediately. They're not being sold to - they're being heard.</div></div></div>
+      </div>
+    </div>
+
+    <div class="call-phase">
+      <div class="phase-header"><span class="phase-time">3-12 min</span><span class="phase-title">Understand their situation</span></div>
+      <div class="phase-body">
+        <div class="question-row"><span class="q-marker">Q</span><div class="q-text">Tell me about where you are right now - what does your day-to-day look like?</div></div>
+        <div class="question-row"><span class="q-marker">Q</span><div class="q-text">What made you say yes to this call today?</div></div>
+        <div class="question-row"><span class="q-marker">Q</span><div class="q-text">How long has this been a problem for you?</div></div>
+        <div class="question-row"><span class="q-marker">Q</span><div class="q-text">What have you already tried? What happened?<div class="q-note">Listen more than you talk here. Take notes.</div></div></div>
+      </div>
+    </div>
+
+    <div class="call-phase">
+      <div class="phase-header"><span class="phase-time">12-20 min</span><span class="phase-title">Explore where they want to go</span></div>
+      <div class="phase-body">
+        <div class="question-row"><span class="q-marker">Q</span><div class="q-text">If we fast forward 12 months and things have gone really well - what does that look like for you?</div></div>
+        <div class="question-row"><span class="q-marker">Q</span><div class="q-text">What would change in your life if you hit that goal?</div></div>
+        <div class="question-row"><span class="q-marker">Q</span><div class="q-text">What's the cost of staying where you are?<div class="q-note">This is where they sell themselves. Your job is to help them articulate it.</div></div></div>
+      </div>
+    </div>
+
+    <div class="call-phase">
+      <div class="phase-header"><span class="phase-time">20-27 min</span><span class="phase-title">Present your solution</span></div>
+      <div class="phase-body">
+        <div class="question-row"><span class="q-marker">→</span><div class="q-text">Only now do you share what you offer. Connect it directly to what they told you: "Based on what you've shared, here's how I think I can help..."<div class="q-note">Keep it brief. Cover: what it is, what's included, the result they can expect, and the investment.</div></div></div>
+      </div>
+    </div>
+
+    <div class="call-phase">
+      <div class="phase-header"><span class="phase-time">27-30 min</span><span class="phase-title">Close and next steps</span></div>
+      <div class="phase-body">
+        <div class="question-row"><span class="q-marker">Q</span><div class="q-text">How does that sound to you?</div></div>
+        <div class="question-row"><span class="q-marker">Q</span><div class="q-text">Do you have any questions before we talk about next steps?</div></div>
+        <div class="question-row"><span class="q-marker">→</span><div class="q-text">If they're a yes: tell them exactly what happens next (payment link, onboarding, start date).<div class="q-note">If they need to think: agree a specific follow-up time. Never leave it as "I'll be in touch."</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: PRE-CALL PREP -->
+  <div class="tab-content" id="tab-prep">
+    <p class="section-intro">Five minutes of preparation makes the difference between a call that flows and one that feels awkward. Run through this before every call.</p>
+
+    <div class="check-group">
+      <div class="check-group-label">Before the call</div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Look at their social profile - note one specific thing to reference</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Re-read your DM conversation so the context is fresh</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Have your offer details ready - price, what's included, payment link</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Have this call outline open in front of you</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Note-taking ready (pen and paper or open doc)</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Quiet space, good signal, headphones in</span></div>
+    </div>
+
+    <div class="check-group">
+      <div class="check-group-label">Mindset check</div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">I am here to find out if I can genuinely help this person - not to close at all costs</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">A no is fine - not everyone is the right fit</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">I will ask more than I say in the first half of this call</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">I believe in what I offer and what it can do for the right person</span></div>
+    </div>
+
+    <div class="check-group">
+      <div class="check-group-label">After the call</div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Send a follow-up message within 2 hours (use your template)</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Note down what they shared - for future conversations and content ideas</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Log the outcome in your weekly stats tracker</span></div>
+    </div>
+  </div>
+
+  <!-- TAB 3: FOLLOW-UP -->
+  <div class="tab-content" id="tab-followup">
+    <p class="section-intro">Most sales happen in the follow-up. Most people give up after one message. Send all three of these - spaced out, warm, and never desperate.</p>
+
+    <div class="followup-card">
+      <div class="followup-header">
+        <span class="followup-title">Message 1 - Same day or next morning</span>
+        <span class="followup-timing">Within 24 hours</span>
+      </div>
+      <div class="followup-body">
+        Hey [name], really enjoyed our conversation today. What you shared about [specific thing they mentioned] really stayed with me - it's exactly the kind of situation I love working with. I've sent the details over - have a read when you get a chance and let me know if you have any questions. No rush at all.
+        <br><br>
+        <button class="copy-btn" onclick="copyFollowup(this)">Copy message</button>
+      </div>
+    </div>
+
+    <div class="followup-card">
+      <div class="followup-header">
+        <span class="followup-title">Message 2 - Value add</span>
+        <span class="followup-timing">3-4 days later</span>
+      </div>
+      <div class="followup-body">
+        Hi [name], just thinking of you after our call. I came across [a resource / a post / something relevant] that made me think of what you mentioned about [their specific problem] - thought it might be useful. [Share the thing.] Still happy to answer any questions about working together whenever you're ready.
+        <br><br>
+        <button class="copy-btn" onclick="copyFollowup(this)">Copy message</button>
+      </div>
+    </div>
+
+    <div class="followup-card">
+      <div class="followup-header">
+        <span class="followup-title">Message 3 - Gentle close</span>
+        <span class="followup-timing">7-10 days later</span>
+      </div>
+      <div class="followup-body">
+        Hey [name], just circling back one last time - I know life gets busy. I have [a spot opening up / a new cohort starting on X date] and wanted to make sure you had the chance to grab it if it still feels right. If the timing isn't there, completely understand - just let me know either way so I can plan accordingly. Hope you're doing well.
+        <br><br>
+        <button class="copy-btn" onclick="copyFollowup(this)">Copy message</button>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>After message 3:</strong> if there's still no response, move on. You've shown up three times with warmth and zero pressure. Anyone who is meant to work with you will respond. Keep creating content - they may come back in their own time.
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Rise Beyond the 9 to 5</span>
+    <span class="footer-step">Step 6 of 8 · Call & Follow-Up Kit</span>
+  </div>
+</div>
+
+<script>
+  function switchTab(id) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function toggleCheck(el) {
+    el.classList.toggle('checked-item');
+    el.querySelector('.check-box').classList.toggle('checked');
+  }
+
+  function copyFollowup(btn) {
+    const body = btn.parentElement;
+    const clone = body.cloneNode(true);
+    clone.querySelector('button').remove();
+    const text = clone.textContent.trim();
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'Copied';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy message'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+</script>
+</body>
+</html>
