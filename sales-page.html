@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Rise Flight Plan – Build Your Freedom Business</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #1a1a1a; --blush: #e8d9d0; --blush-deep: #d4c0b4;
+    --cream: #f5f0e8; --warm-grey: #6b6560; --light-grey: #d9d3cc; --white: #ffffff;
+  }
+  body { background: var(--white); font-family: 'Inter', sans-serif; color: var(--black); }
+  .page { max-width: 680px; margin: 0 auto; }
+
+  /* ── HERO ── */
+  .hero { background: var(--black); padding: 64px 48px 56px; position: relative; overflow: hidden; text-align: center; }
+  .sunburst { position: absolute; left: 50%; top: -40px; transform: translateX(-50%); width: 340px; height: 340px; opacity: 0.05; }
+  .hero-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; color: var(--blush); opacity: 0.7; margin-bottom: 20px; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 600; line-height: 1.0; color: var(--white); margin-bottom: 20px; }
+  .hero h1 em { color: var(--blush); font-style: italic; font-weight: 400; display: block; }
+  .hero-sub { font-size: 16px; color: var(--blush); opacity: 0.7; line-height: 1.7; max-width: 480px; margin: 0 auto 36px; font-weight: 300; }
+  .hero-sub strong { color: var(--blush); opacity: 1; font-weight: 600; font-style: normal; }
+  .btn-cta { display: inline-block; background: var(--blush); color: var(--black); padding: 18px 48px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; text-decoration: none; letter-spacing: 0.04em; transition: opacity 0.15s; }
+  .btn-cta:hover { opacity: 0.85; }
+  .hero-price { font-size: 12px; color: var(--blush); opacity: 0.45; margin-top: 12px; }
+
+  /* ── FOR YOU ── */
+  .for-you { background: var(--cream); padding: 56px 48px; }
+  .section-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; color: var(--warm-grey); margin-bottom: 12px; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 600; line-height: 1.15; margin-bottom: 24px; }
+  .section-title em { font-style: italic; color: var(--warm-grey); font-weight: 400; }
+  .pain-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .pain-list li { font-size: 14px; color: var(--black); line-height: 1.65; padding-left: 22px; position: relative; }
+  .pain-list li::before { content: '–'; position: absolute; left: 0; color: var(--blush-deep); font-weight: 600; }
+
+  /* ── STRIP ── */
+  .strip { background: var(--black); padding: 28px 48px; text-align: center; }
+  .strip p { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; color: var(--blush); line-height: 1.5; max-width: 480px; margin: 0 auto; }
+
+  /* ── WHAT IT IS ── */
+  .what { padding: 56px 48px; }
+  .what p { font-size: 14px; color: var(--warm-grey); line-height: 1.8; margin-bottom: 16px; }
+  .what p strong { color: var(--black); }
+
+  /* ── 8 STEPS ── */
+  .steps { background: var(--cream); padding: 56px 48px; }
+  .steps-grid { display: flex; flex-direction: column; gap: 4px; margin-top: 24px; }
+  .step-row { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--light-grey); }
+  .step-row:last-child { border-bottom: none; }
+  .step-n { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; color: var(--blush-deep); min-width: 32px; line-height: 1; padding-top: 2px; }
+  .step-text { }
+  .step-name { font-weight: 600; font-size: 14px; color: var(--black); margin-bottom: 3px; }
+  .step-desc { font-size: 12.5px; color: var(--warm-grey); line-height: 1.6; }
+
+  /* ── WHAT'S INCLUDED ── */
+  .included { padding: 56px 48px; }
+  .included-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+  .included-item { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; background: var(--cream); }
+  .included-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .included-title { font-weight: 600; font-size: 13.5px; color: var(--black); margin-bottom: 3px; }
+  .included-desc { font-size: 12px; color: var(--warm-grey); line-height: 1.55; }
+
+  /* ── ABOUT ── */
+  .about { background: var(--black); padding: 56px 48px; display: flex; gap: 36px; align-items: flex-start; }
+  .about-photo { width: 120px; min-width: 120px; height: 120px; object-fit: cover; object-position: top; }
+  .about-text { }
+  .about-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+  .about-role { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--blush); opacity: 0.6; margin-bottom: 14px; }
+  .about-bio { font-size: 13px; color: var(--white); opacity: 0.65; line-height: 1.75; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: var(--cream); padding: 56px 48px; }
+  .testi-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+  .testi-card { background: var(--white); padding: 24px 28px; border-left: 3px solid var(--blush-deep); }
+  .testi-quote { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: var(--black); line-height: 1.6; margin-bottom: 12px; }
+  .testi-name { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--warm-grey); }
+  .testi-placeholder { opacity: 0.4; }
+
+  /* ── FAQ ── */
+  .faq { padding: 56px 48px; }
+  .faq-list { display: flex; flex-direction: column; gap: 0; margin-top: 24px; }
+  .faq-item { border-bottom: 1px solid var(--light-grey); }
+  .faq-q { font-weight: 600; font-size: 14px; color: var(--black); padding: 18px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+  .faq-q:hover { color: var(--warm-grey); }
+  .faq-arrow { font-size: 12px; color: var(--warm-grey); transition: transform 0.2s; flex-shrink: 0; margin-left: 12px; }
+  .faq-arrow.open { transform: rotate(180deg); }
+  .faq-a { font-size: 13.5px; color: var(--warm-grey); line-height: 1.75; padding: 0 0 18px; display: none; }
+  .faq-a.open { display: block; }
+
+  /* ── CTA BOTTOM ── */
+  .cta-bottom { background: var(--black); padding: 64px 48px; text-align: center; }
+  .cta-bottom h2 { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 600; color: var(--white); line-height: 1.15; margin-bottom: 16px; }
+  .cta-bottom h2 em { color: var(--blush); font-style: italic; font-weight: 400; }
+  .cta-bottom p { font-size: 14px; color: var(--blush); opacity: 0.6; line-height: 1.7; max-width: 400px; margin: 0 auto 36px; }
+  .price-block { margin-bottom: 28px; }
+  .price-was { font-size: 13px; color: var(--blush); opacity: 0.35; text-decoration: line-through; margin-bottom: 4px; }
+  .price-now { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 600; color: var(--blush); line-height: 1; }
+  .price-note { font-size: 12px; color: var(--blush); opacity: 0.45; margin-top: 6px; }
+  .guarantee { font-size: 12px; color: var(--blush); opacity: 0.45; margin-top: 16px; line-height: 1.6; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.06); padding: 16px 48px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--blush); font-style: italic; opacity: 0.5; }
+  .footer-links { font-size: 11px; color: var(--blush); opacity: 0.3; }
+
+  @media (max-width: 520px) {
+    .hero { padding: 48px 24px 44px; }
+    .hero h1 { font-size: 38px; }
+    .for-you, .what, .steps, .included, .testimonials, .faq, .cta-bottom, .footer { padding-left: 24px; padding-right: 24px; }
+    .strip { padding-left: 24px; padding-right: 24px; }
+    .about { padding: 40px 24px; flex-direction: column; gap: 24px; }
+    .about-photo { width: 90px; height: 90px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <svg class="sunburst" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(65,65)" fill="white">
+        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/><polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/><polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/><polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/><polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/><polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/><polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/><polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/><polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <p class="hero-tag">Rise Beyond the 9 to 5</p>
+    <h1>The Rise<br><em>Flight Plan</em></h1>
+    <p class="hero-sub">The step-by-step programme for mums who are done waiting and ready to build an online business that fits around their family - <strong>without the overwhelm, without the guesswork.</strong></p>
+    <a class="btn-cta" href="YOUR_SYSTEME_IO_CHECKOUT_URL">Yes - I'm ready. Get instant access →</a>
+    <p class="hero-price">One-time payment · $27 · Instant access</p>
+  </div>
+
+  <!-- FOR YOU -->
+  <div class="for-you">
+    <p class="section-tag">This is for you if...</p>
+    <h2 class="section-title">You know you're meant for<br><em>more than this.</em></h2>
+    <ul class="pain-list">
+      <li>You're sitting in Sunday night dread, already dreading Monday morning, and you've been doing this for longer than you want to admit</li>
+      <li>You've thought about starting a business a hundred times but every time you get close, the overwhelm kicks in and you don't know where to start</li>
+      <li>You're watching other mums build online businesses from their kitchen table and wondering why it feels so impossible for you</li>
+      <li>You want to be present for your family - not just physically in the room, but actually there, not mentally still at work</li>
+      <li>You're done saying "one day" and you're ready to actually do something - you just need a clear path forward</li>
+    </ul>
+  </div>
+
+  <!-- STRIP -->
+  <div class="strip">
+    <p>"Most people don't fail because they lack talent. They fail because they never had a clear plan. This is your plan."</p>
+  </div>
+
+  <!-- WHAT IT IS -->
+  <div class="what">
+    <p class="section-tag">What this is</p>
+    <h2 class="section-title">Not a course you'll never finish.<br><em>A flight plan you'll actually follow.</em></h2>
+    <p>The Rise Flight Plan is an <strong>8-step self-paced programme</strong> that takes you from "I have no idea where to start" to running a simple online business with paying clients - using a clear framework, practical tools, and AI-powered prompts that do the heavy lifting for you.</p>
+    <p>Every step has a video lesson, a purpose-built interactive tool, and step-by-step instructions. You work through it at your own pace, in the gaps between everything else, and you come out the other side with a real business - not just a vision board and a half-finished logo.</p>
+    <p><strong>This isn't about hustle. It's about building something that actually fits your life.</strong></p>
+  </div>
+
+  <!-- 8 STEPS -->
+  <div class="steps">
+    <p class="section-tag">The 8 steps</p>
+    <h2 class="section-title">Your complete<br><em>flight plan.</em></h2>
+    <div class="steps-grid">
+      <div class="step-row">
+        <div class="step-n">1</div>
+        <div class="step-text">
+          <div class="step-name">Check Your Instruments</div>
+          <div class="step-desc">Find your real starting point with your Freedom Score. No sugarcoating - just clarity on where you are and what needs to change.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">2</div>
+        <div class="step-text">
+          <div class="step-name">Choose Your Flight Path</div>
+          <div class="step-desc">Pick the right business model for your skills, time, and goals from six proven online business models - and commit to one.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">3</div>
+        <div class="step-text">
+          <div class="step-name">Find Your People</div>
+          <div class="step-desc">Get specific about who you help and where to find them. Build your audience statement and start showing up where your clients already are.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">4</div>
+        <div class="step-text">
+          <div class="step-name">Pack Your Bag</div>
+          <div class="step-desc">Set up the five non-negotiables that let you take money and serve clients. Nothing extra. Nothing you don't need yet.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">5</div>
+        <div class="step-text">
+          <div class="step-name">Fill Your Pipeline</div>
+          <div class="step-desc">Choose your lead generation strategy - warm DMs, email marketing, challenges, referrals, or ads - and work it consistently for 30 days.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">6</div>
+        <div class="step-text">
+          <div class="step-name">Reading the Dashboard</div>
+          <div class="step-desc">Track four numbers every week. Know exactly what's working, what isn't, and what to fix. No guessing.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">7</div>
+        <div class="step-text">
+          <div class="step-name">Mindset at Altitude</div>
+          <div class="step-desc">The inner work that makes everything else stick. Identify what's really holding you back and reframe it so it stops running the show.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">8</div>
+        <div class="step-text">
+          <div class="step-name">Land and Launch Again</div>
+          <div class="step-desc">Celebrate what you built, capture your results, collect testimonials, and choose your next 90-day path. Then go again - better.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT'S INCLUDED -->
+  <div class="included">
+    <p class="section-tag">What's included</p>
+    <h2 class="section-title">Everything you need.<br><em>Nothing you don't.</em></h2>
+    <div class="included-grid">
+      <div class="included-item">
+        <div class="included-icon">🎬</div>
+        <div>
+          <div class="included-title">8 video lessons</div>
+          <div class="included-desc">One for each step of the Flight Plan. Watch on any device, at your own pace, as many times as you need.</div>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">🛠️</div>
+        <div>
+          <div class="included-title">17 interactive tools</div>
+          <div class="included-desc">Purpose-built for each step - quizzes, workbooks, planners, trackers, templates. All online, all free to use, no extra software needed.</div>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">🤖</div>
+        <div>
+          <div class="included-title">AI Hack prompts throughout</div>
+          <div class="included-desc">Every tool includes copy-and-paste ChatGPT prompts that generate your bio, your content plan, your sales copy, and more - in seconds.</div>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">♾️</div>
+        <div>
+          <div class="included-title">Lifetime access</div>
+          <div class="included-desc">Come back to it whenever you need. The tools and videos are yours to keep and revisit as your business grows.</div>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">📱</div>
+        <div>
+          <div class="included-title">Works on any device</div>
+          <div class="included-desc">All tools are mobile-friendly. Do the work from your phone during the school run, on your lunch break, wherever life takes you.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="about">
+    <img class="about-photo" src="https://d1yei2z3i6k35z.cloudfront.net/5678010/69bbf3eab5cb08.20824111_ALLESSANDIAMONTANA-7402288.jpg" alt="Jo Richardson">
+    <div class="about-text">
+      <div class="about-name">Jo Richardson</div>
+      <div class="about-role">Founder · Rise Beyond the 9 to 5</div>
+      <p class="about-bio">I know exactly what it feels like to sit in a job that pays the bills but costs you everything else. I built my online business from scratch while still employed - and hit consistent monthly income before I ever handed in my notice. The Rise Flight Plan is everything I wish someone had handed me at the start. Not theory. Not inspiration porn. A plan. I built it so you don't have to figure it out the hard way like I did.</p>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div class="testimonials">
+    <p class="section-tag">What clients say</p>
+    <h2 class="section-title">Real results from<br><em>real mums.</em></h2>
+    <div class="testi-grid">
+      <div class="testi-card testi-placeholder">
+        <div class="testi-quote">"This is where a real client testimonial will go. Something specific about their results - their first sale, their first client, the moment they realised this was actually working."</div>
+        <div class="testi-name">CLIENT NAME · Location</div>
+      </div>
+      <div class="testi-card testi-placeholder">
+        <div class="testi-quote">"Another genuine result from a real client. The more specific the better - numbers, timeframes, the feeling of finally having a clear direction."</div>
+        <div class="testi-name">CLIENT NAME · Location</div>
+      </div>
+      <div class="testi-card testi-placeholder">
+        <div class="testi-quote">"A third testimonial. What did this programme do for them that nothing else had? What would they say to someone sitting on the fence?"</div>
+        <div class="testi-name">CLIENT NAME · Location</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq">
+    <p class="section-tag">Questions</p>
+    <h2 class="section-title">Everything you<br><em>want to know.</em></h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">I'm not tech-savvy. Will I be able to do this? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Yes. Every tool is designed to be simple and intuitive - if you can use a smartphone you can use everything in this programme. The AI prompts also mean you don't need to be a great writer or marketer. You just copy, paste, and personalise.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">I have no idea what kind of business to start. Is this still for me? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">This is exactly what Step 2 is for. The Business Path Decision Framework walks you through six proven online business models and helps you identify the best fit for your skills, time, and income goals. You don't need to know what you want to do before you start.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How much time do I need each week? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">The programme is designed for busy mums. Each video lesson is short and focused. The tools can be completed in 15-30 minutes. Most steps can be done in a single nap time or lunch break. The daily visibility habits in Step 5 take 20-30 minutes a day - that's it.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Do I need to spend money to start my business? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">No. Step 4 includes a complete Free Tool List - everything you need to set up and run your business at the start is available for free. Paid tools come later, when you have revenue to justify them.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Is this only for mums? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">The programme is built with mums in mind - around school runs, nap times, and the reality of building something while life is already full. But the framework works for anyone who wants to build an online business around a busy life.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What if I get stuck or have questions? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">You can reach out directly at any time. Email jo@risebeyondthe9to5.com and I'll get back to you. If you want more hands-on support, the Business tier (group coaching) and First Class tier (1:1 mentoring) are also available.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Is there a refund policy? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Yes. If you go through the programme and feel it wasn't right for you, email within 14 days of purchase and I'll refund you in full. No awkward questions.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA BOTTOM -->
+  <div class="cta-bottom">
+    <h2>Ready to stop waiting<br><em>and start building?</em></h2>
+    <p>Everything you need is inside. The only thing standing between where you are and where you want to be is a decision.</p>
+    <div class="price-block">
+      <div class="price-now">$27</div>
+      <div class="price-note">One-time payment · Instant access · Lifetime access</div>
+    </div>
+    <a class="btn-cta" href="YOUR_SYSTEME_IO_CHECKOUT_URL">Yes - I'm ready. Get instant access →</a>
+    <p class="guarantee">14-day money-back guarantee · No questions asked</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span class="footer-brand">Rise Beyond the 9 to 5</span>
+    <span class="footer-links">© 2026 Rise Beyond the 9 to 5</span>
+  </div>
+
+</div>
+
+<script>
+function toggleFaq(el) {
+  const answer = el.nextElementSibling;
+  const arrow = el.querySelector('.faq-arrow');
+  const isOpen = answer.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-arrow').forEach(a => a.classList.remove('open'));
+  if (!isOpen) { answer.classList.add('open'); arrow.classList.add('open'); }
+}
+</script>
+</body>
+</html>
