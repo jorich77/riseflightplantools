@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Dashboard Tracker – Rise Beyond the 9 to 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #1a1a1a; --blush: #e8d9d0; --blush-deep: #d4c0b4;
+    --cream: #f5f0e8; --warm-grey: #6b6560; --light-grey: #d9d3cc; --white: #ffffff;
+    --green: #2e7d32; --green-bg: #e8f5e9;
+    --amber: #e65100; --amber-bg: #fff3e0;
+    --red: #c62828; --red-bg: #fce4ec;
+  }
+  body { background: var(--black); font-family: 'Inter', sans-serif; color: var(--black); min-height: 100vh; }
+  .page { max-width: 720px; margin: 0 auto; background: var(--white); min-height: 100vh; display: flex; flex-direction: column; }
+
+  .header { background: var(--black); padding: 36px 48px 28px; position: relative; overflow: hidden; flex-shrink: 0; }
+  .sunburst { position: absolute; right: -20px; top: -20px; width: 130px; height: 130px; opacity: 0.1; }
+  .brand-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; color: var(--blush); opacity: 0.6; margin-bottom: 10px; }
+  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 600; line-height: 1.1; color: var(--white); }
+  .header h1 em { color: var(--blush); font-style: italic; font-weight: 400; }
+  .header-sub { font-size: 12px; color: var(--blush); opacity: 0.55; font-weight: 300; margin-top: 8px; }
+  .strip { background: var(--blush); padding: 11px 48px; font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--black); }
+
+  .tabs { display: flex; border-bottom: 2px solid var(--light-grey); background: var(--cream); }
+  .tab { flex: 1; padding: 13px 8px; font-size: 11px; font-weight: 600; color: var(--warm-grey); cursor: pointer; text-align: center; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.15s; }
+  .tab.active { color: var(--black); border-bottom-color: var(--black); background: var(--white); }
+  .tab:hover:not(.active) { color: var(--black); }
+
+  .tab-content { display: none; padding: 32px 48px 48px; }
+  .tab-content.active { display: block; }
+  .intro-text { font-size: 13px; color: var(--warm-grey); line-height: 1.7; margin-bottom: 24px; }
+
+  /* TRAFFIC LIGHT SYSTEM */
+  .tl-grid { display: flex; flex-direction: column; gap: 4px; margin-bottom: 28px; }
+  .tl-header { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; padding: 8px 12px; }
+  .tl-header-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: var(--warm-grey); text-align: center; }
+  .tl-header-label:first-child { text-align: left; }
+  .tl-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; padding: 12px; border: 1.5px solid var(--light-grey); align-items: center; }
+  .tl-metric { font-weight: 600; font-size: 12.5px; color: var(--black); }
+  .tl-metric small { display: block; font-weight: 400; font-size: 11px; color: var(--warm-grey); margin-top: 2px; }
+  .tl-cell { text-align: center; padding: 6px 4px; font-size: 11px; font-weight: 600; border-radius: 2px; }
+  .green { background: var(--green-bg); color: var(--green); }
+  .amber { background: var(--amber-bg); color: var(--amber); }
+  .red { background: var(--red-bg); color: var(--red); }
+
+  /* TROUBLESHOOT */
+  .trouble-item { border-bottom: 1px solid var(--light-grey); padding: 16px 0; }
+  .trouble-item:last-child { border-bottom: none; }
+  .trouble-q { font-weight: 600; font-size: 13px; color: var(--black); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+  .trouble-tag { font-size: 10px; font-weight: 600; padding: 2px 8px; }
+  .trouble-a { font-size: 12.5px; color: var(--warm-grey); line-height: 1.65; }
+  .trouble-a strong { color: var(--black); }
+
+  /* SHEETS LINK */
+  .sheets-box { background: var(--black); padding: 24px 28px; margin-bottom: 24px; }
+  .sheets-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--white); margin-bottom: 8px; }
+  .sheets-desc { font-size: 12.5px; color: var(--blush); opacity: 0.7; line-height: 1.6; margin-bottom: 16px; }
+  .sheets-what { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .sheets-what li { font-size: 12px; color: var(--blush); opacity: 0.8; padding-left: 16px; position: relative; }
+  .sheets-what li::before { content: '✓'; position: absolute; left: 0; color: var(--blush-deep); }
+  .btn-sheets { background: var(--blush); color: var(--black); border: none; padding: 12px 24px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; display: inline-block; text-decoration: none; }
+
+  /* AI BOX */
+  .ai-box { background: var(--black); padding: 22px 26px; margin-top: 24px; }
+  .ai-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--blush); opacity: 0.7; margin-bottom: 8px; }
+  .ai-title { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--white); margin-bottom: 8px; }
+  .ai-desc { font-size: 12px; color: var(--blush); opacity: 0.65; line-height: 1.6; margin-bottom: 14px; }
+  .ai-prompt { background: #111; border-left: 3px solid var(--blush-deep); padding: 14px 16px; font-size: 11.5px; color: var(--blush); line-height: 1.7; font-style: italic; margin-bottom: 14px; white-space: pre-wrap; }
+  .btn-copy { background: var(--blush); color: var(--black); border: none; padding: 10px 18px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
+  .btn-copy:hover { opacity: 0.8; }
+  .btn-copy.copied { background: var(--blush-deep); }
+
+  .section-heading { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+  .section-rule { height: 1px; background: var(--light-grey); margin-bottom: 20px; }
+
+  .footer { background: var(--black); padding: 14px 48px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--blush); font-style: italic; }
+  .footer-step { font-size: 10px; color: var(--blush); opacity: 0.4; letter-spacing: 0.08em; }
+
+  @media print {
+    body { background: white; }
+    .header, .strip, .tabs, .footer, .ai-box, .sheets-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .tab-content { display: block !important; }
+    .tabs { display: none; }
+  }
+  @media (max-width: 520px) {
+    .header, .tab-content, .footer, .strip { padding-left: 24px; padding-right: 24px; }
+    .tl-cell { font-size: 10px; padding: 4px 2px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <svg class="sunburst" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(65,65)" fill="white">
+        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/><polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/><polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/><polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/><polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/><polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/><polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/><polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/><polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <p class="brand-tag">Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 6</p>
+    <h1>Business Dashboard<br><em>Tracker</em></h1>
+    <p class="header-sub">Four numbers. Weekly. Know exactly what to fix.</p>
+  </div>
+  <div class="strip">Feelings lie. Numbers don't. This is your dashboard.</div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('how')">How it works</div>
+    <div class="tab" onclick="switchTab('traffic')">Traffic light system</div>
+    <div class="tab" onclick="switchTab('troubleshoot')">Troubleshooter</div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="tab-content active" id="tab-how">
+    <p class="intro-text">Every week, you log four numbers. That's it. Four numbers tell you everything you need to know about what's working, what isn't, and exactly what to do next.</p>
+
+    <div class="sheets-box">
+      <div class="sheets-title">Your Weekly Tracker - Google Sheets</div>
+      <div class="sheets-desc">Make a copy of this Google Sheet to track your four numbers every week. It's pre-built with the traffic light formulas, a weekly chart, and a notes column so you always know what was different about any given week.</div>
+      <ul class="sheets-what">
+        <li>Pre-formatted weekly log with auto traffic light colour coding</li>
+        <li>Columns for leads, conversations, calls, and sales</li>
+        <li>Notes column for context (e.g. "launched new reel", "posted 3x instead of 5x")</li>
+        <li>Running totals and a simple trend chart</li>
+        <li>Instructions tab explaining what each metric means</li>
+      </ul>
+      <div style="font-size:12px;color:var(--blush);opacity:0.6;font-style:italic;">Create your own copy using the Google Sheets template below. Go to File → Make a copy to save it to your own Drive.</div>
+    </div>
+
+    <div class="section-heading">The four numbers</div>
+    <div class="section-rule"></div>
+
+    <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:28px;">
+      <div style="border:1.5px solid var(--light-grey);padding:16px 20px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+          <div style="background:var(--black);color:var(--blush);font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+          <div style="font-weight:600;font-size:13.5px;">Leads generated</div>
+        </div>
+        <div style="font-size:12.5px;color:var(--warm-grey);line-height:1.65;padding-left:44px;">How many new people entered your world this week - new followers, email sign-ups, DM conversations started, or people who raised their hand in some way. This is the top of your pipeline.</div>
+      </div>
+      <div style="border:1.5px solid var(--light-grey);padding:16px 20px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+          <div style="background:var(--black);color:var(--blush);font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+          <div style="font-weight:600;font-size:13.5px;">Conversations started</div>
+        </div>
+        <div style="font-size:12.5px;color:var(--warm-grey);line-height:1.65;padding-left:44px;">How many genuine two-way conversations did you have with potential clients this week - DMs, replies, comments, emails. Not broadcast, not posting - actual back-and-forth dialogue with a real person.</div>
+      </div>
+      <div style="border:1.5px solid var(--light-grey);padding:16px 20px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+          <div style="background:var(--black);color:var(--blush);font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
+          <div style="font-weight:600;font-size:13.5px;">Discovery calls booked</div>
+        </div>
+        <div style="font-size:12.5px;color:var(--warm-grey);line-height:1.65;padding-left:44px;">How many calls did you book this week from conversations - either completed this week or booked for next. This is the bridge between conversation and sale. If this number is zero every week, something is blocking the transition.</div>
+      </div>
+      <div style="border:1.5px solid var(--light-grey);padding:16px 20px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+          <div style="background:var(--black);color:var(--blush);font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</div>
+          <div style="font-weight:600;font-size:13.5px;">Sales made</div>
+        </div>
+        <div style="font-size:12.5px;color:var(--warm-grey);line-height:1.65;padding-left:44px;">How many paid clients did you get this week. This is the bottom of your pipeline - and it's always a reflection of everything above it. If sales are low, the problem is always higher up in the numbers.</div>
+      </div>
+    </div>
+
+    <div style="background:var(--cream);padding:16px 20px;font-size:12.5px;color:var(--warm-grey);line-height:1.65;margin-bottom:28px;border-left:3px solid var(--blush-deep);">
+      <strong style="color:var(--black);">The golden rule:</strong> if you're stuck at any step in the programme, the solution is almost always in the previous step. Low sales? Look at calls. Low calls? Look at conversations. Low conversations? Look at leads. Low leads? Look at your content and visibility habits from Step 5.
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Analyse your numbers and get a fix</div>
+      <div class="ai-desc">Copy this prompt weekly after you've logged your numbers to get a specific diagnosis and action plan.</div>
+      <div class="ai-prompt">I track four business metrics weekly and I need help understanding what my numbers mean and what to do next.
+
+My numbers this week:
+- Leads generated: [number]
+- Conversations started: [number]
+- Discovery calls booked: [number]
+- Sales made: [number]
+
+My niche: [who you help and what you help them do]
+My primary lead generation strategy: [warm DMs / lead magnet / challenges / offline / ads]
+What I posted this week: [how many times and what type of content]
+Anything different this week: [e.g. posted less, tried a new strategy, had a busy personal week]
+
+Please:
+1. Tell me what my numbers say about where the gap is in my pipeline
+2. Identify the ONE specific thing I should focus on fixing next week
+3. Give me 3 concrete actions to take this week based on my numbers
+4. Tell me what I should expect to see if those actions work
+
+Be direct and specific - not general advice. Base your answer on my actual numbers.</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <!-- TRAFFIC LIGHT -->
+  <div class="tab-content" id="tab-traffic">
+    <p class="intro-text">These benchmarks give you an instant read on each metric. Green means you're on track. Amber means something needs attention. Red means stop, diagnose, and fix before anything else.</p>
+
+    <div style="font-size:11px;color:var(--warm-grey);margin-bottom:16px;font-style:italic;">Note: these are starting benchmarks for the early stages of your business. As you grow, your own data becomes the benchmark - compare week on week, not against someone else's numbers.</div>
+
+    <div class="tl-grid">
+      <div class="tl-header">
+        <div class="tl-header-label">Metric</div>
+        <div class="tl-header-label" style="color:var(--green);">🟢 Green</div>
+        <div class="tl-header-label" style="color:var(--amber);">🟡 Amber</div>
+        <div class="tl-header-label" style="color:var(--red);">🔴 Red</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-metric">Leads generated<small>New people entering your world</small></div>
+        <div class="tl-cell green">10+ per week</div>
+        <div class="tl-cell amber">5-9 per week</div>
+        <div class="tl-cell red">Under 5</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-metric">Conversations started<small>Genuine two-way dialogue</small></div>
+        <div class="tl-cell green">5+ per week</div>
+        <div class="tl-cell amber">2-4 per week</div>
+        <div class="tl-cell red">0-1 per week</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-metric">Discovery calls booked<small>Booked or completed</small></div>
+        <div class="tl-cell green">2+ per week</div>
+        <div class="tl-cell amber">1 per week</div>
+        <div class="tl-cell red">0 per week</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-metric">Sales made<small>Paid clients secured</small></div>
+        <div class="tl-cell green">1+ per week</div>
+        <div class="tl-cell amber">1-2 per month</div>
+        <div class="tl-cell red">0 in 3+ weeks</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-metric">Content posted<small>Posts published this week</small></div>
+        <div class="tl-cell green">4-5 per week</div>
+        <div class="tl-cell amber">2-3 per week</div>
+        <div class="tl-cell red">0-1 per week</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-metric">Conversations to calls<small>Conversion rate</small></div>
+        <div class="tl-cell green">30%+ book a call</div>
+        <div class="tl-cell amber">10-29%</div>
+        <div class="tl-cell red">Under 10%</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-metric">Calls to sales<small>Close rate</small></div>
+        <div class="tl-cell green">30%+ close</div>
+        <div class="tl-cell amber">10-29%</div>
+        <div class="tl-cell red">Under 10%</div>
+      </div>
+    </div>
+
+    <div style="background:var(--cream);padding:16px 20px;font-size:12.5px;color:var(--warm-grey);line-height:1.65;margin-top:8px;border-left:3px solid var(--blush-deep);">
+      <strong style="color:var(--black);">Remember:</strong> one red week is data. Three red weeks in a row is a pattern that needs addressing. Don't panic at one bad week - do something about three in a row.
+    </div>
+  </div>
+
+  <!-- TROUBLESHOOTER -->
+  <div class="tab-content" id="tab-troubleshoot">
+    <p class="intro-text">If something isn't working, find your situation below and follow the fix. The solution to being stuck at any step is almost always found in the previous step.</p>
+
+    <div class="trouble-item">
+      <div class="trouble-q"><span class="trouble-tag red">Red</span>Low leads - under 5 new people per week</div>
+      <div class="trouble-a"><strong>Go back to Step 5 - Daily Visibility Checklist.</strong> You're not showing up enough. Check: are you posting 4-5x per week? Are you actively reaching out or just posting and waiting? Are your hooks strong enough to make people stop? The fix is almost always more consistent, more targeted visibility. Check your content prompts and hook swipe file and increase your posting frequency before anything else.</div>
+    </div>
+    <div class="trouble-item">
+      <div class="trouble-q"><span class="trouble-tag red">Red</span>Leads but no conversations - people aren't responding</div>
+      <div class="trouble-a"><strong>Go back to Step 5 - Fill Your Pipeline.</strong> People are seeing you but not engaging. Check: are you posting content that invites a response (polls, questions, calls to respond in comments or DMs)? Are you reaching out to people who engage, or just waiting for them to come to you? Are your DM opening messages personalised or copy-paste? Fix your outreach approach using the Sales Conversation Playbook.</div>
+    </div>
+    <div class="trouble-item">
+      <div class="trouble-q"><span class="trouble-tag amber">Amber</span>Conversations but no calls being booked</div>
+      <div class="trouble-a"><strong>Go back to Step 5 - Sales Conversation Playbook.</strong> You're talking to people but not moving them forward. Check: are you actually asking for the call, or hoping they'll ask? Are you using the 5-stage DM framework? The transition to a call should be natural and direct - use the exact call transition script from your playbook. Most people are too passive here. You have to ask.</div>
+    </div>
+    <div class="trouble-item">
+      <div class="trouble-q"><span class="trouble-tag red">Red</span>Calls happening but no sales closing</div>
+      <div class="trouble-a"><strong>Go back to Step 5 - Call and Follow-Up Kit.</strong> The call itself is the issue. Check: are you following the discovery call outline? Are you asking enough questions or pitching too early? Are you following up after calls that didn't close? Most sales happen in the follow-up - use your 3-message follow-up sequence. Also check: is your offer clear and specific, or are you overcomplicating it on the call?</div>
+    </div>
+    <div class="trouble-item">
+      <div class="trouble-q"><span class="trouble-tag amber">Amber</span>Everything looks okay but sales are inconsistent</div>
+      <div class="trouble-a"><strong>Focus on volume and consistency.</strong> Inconsistent sales usually mean inconsistent activity. Check your weekly numbers over the last 4 weeks - is there a pattern? Weeks you post less tend to be weeks you sell less, with a 2-3 week lag. The fix is showing up consistently even when it feels like nothing is happening. Sales lag behind activity by 2-4 weeks - keep going.</div>
+    </div>
+    <div class="trouble-item">
+      <div class="trouble-q"><span class="trouble-tag red">Red</span>Nothing is working - no leads, no conversations, no sales</div>
+      <div class="trouble-a"><strong>Go back to Step 3 - Find Your People.</strong> If you're getting zero traction across the board, the issue is usually one of three things: your niche isn't specific enough, you're not showing up where your audience actually is, or your message isn't resonating. Revisit your Niche Clarity Workbook and Audience Finder Guide. Talk to 3-5 people who fit your ideal client profile and ask them what they're struggling with. The data is always out there - you just need to find it.</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Rise Beyond the 9 to 5</span>
+    <span class="footer-step">Step 6 of 8 · Business Dashboard Tracker</span>
+  </div>
+</div>
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+function copyAI(btn) {
+  const prompt = btn.previousElementSibling.textContent.trim();
+  navigator.clipboard.writeText(prompt).then(() => {
+    btn.textContent = 'Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy prompt →'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
