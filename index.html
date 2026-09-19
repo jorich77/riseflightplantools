@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rise Flight Plan – Client Tools</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #1a1a1a; --blush: #e8d9d0; --blush-deep: #d4c0b4;
+    --cream: #f5f0e8; --warm-grey: #6b6560; --light-grey: #d9d3cc; --white: #ffffff;
+  }
+  body { background: var(--black); font-family: 'Inter', sans-serif; color: var(--black); min-height: 100vh; }
+  .page { max-width: 720px; margin: 0 auto; background: var(--white); min-height: 100vh; }
+
+  .header { background: var(--black); padding: 48px 48px 36px; position: relative; overflow: hidden; }
+  .sunburst { position: absolute; right: -20px; top: -20px; width: 180px; height: 180px; opacity: 0.07; }
+  .brand-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.14em; color: var(--blush); opacity: 0.6; margin-bottom: 12px; }
+  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 600; line-height: 1.05; color: var(--white); margin-bottom: 12px; }
+  .header h1 em { color: var(--blush); font-style: italic; font-weight: 400; }
+  .header-sub { font-size: 13px; color: var(--blush); opacity: 0.55; font-weight: 300; line-height: 1.6; max-width: 480px; }
+  .strip { background: var(--blush); padding: 12px 48px; font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--black); }
+
+  .body { padding: 40px 48px 64px; }
+
+  .step-block { margin-bottom: 36px; }
+  .step-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; color: var(--warm-grey); margin-bottom: 8px; }
+  .step-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--black); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--light-grey); }
+  .tool-list { display: flex; flex-direction: column; gap: 6px; }
+  .tool-link { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border: 1.5px solid var(--light-grey); text-decoration: none; color: var(--black); transition: all 0.15s; }
+  .tool-link:hover { border-color: var(--black); background: var(--cream); }
+  .tool-link-name { font-size: 13px; font-weight: 500; }
+  .tool-link-arrow { font-size: 12px; color: var(--warm-grey); }
+
+  .divider { height: 1px; background: var(--light-grey); margin: 36px 0; }
+
+  .footer { background: var(--black); padding: 16px 48px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: var(--blush); font-style: italic; }
+  .footer-tag { font-size: 10px; color: var(--blush); opacity: 0.4; letter-spacing: 0.08em; }
+
+  @media (max-width: 520px) {
+    .header, .body, .footer, .strip { padding-left: 24px; padding-right: 24px; }
+    .header h1 { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <svg class="sunburst" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(65,65)" fill="white">
+        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/><polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/><polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/><polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/><polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/><polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/><polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/><polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/><polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <p class="brand-tag">Rise Beyond the 9 to 5</p>
+    <h1>The Rise Flight Plan<br><em>Client Tools</em></h1>
+    <p class="header-sub">Everything you need to work through all 8 steps of the Rise Flight Plan. Open each tool, work through it, and move to the next step.</p>
+  </div>
+  <div class="strip">Your full toolkit - one page, all 8 steps.</div>
+
+  <div class="body">
+
+    <div class="step-block">
+      <div class="step-label">Step 1</div>
+      <div class="step-title">Check Your Instruments</div>
+      <div class="tool-list">
+        <a class="tool-link" href="step-1-freedom-score-scorecard.html"><span class="tool-link-name">Freedom Score Scorecard</span><span class="tool-link-arrow">Open →</span></a>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-label">Step 2</div>
+      <div class="step-title">Choose Your Flight Path</div>
+      <div class="tool-list">
+        <a class="tool-link" href="step-2-business-path-decision-framework.html"><span class="tool-link-name">Business Path Decision Framework</span><span class="tool-link-arrow">Open →</span></a>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-label">Step 3</div>
+      <div class="step-title">Find Your People</div>
+      <div class="tool-list">
+        <a class="tool-link" href="step-3-niche-clarity-workbook.html"><span class="tool-link-name">Niche Clarity Workbook</span><span class="tool-link-arrow">Open →</span></a>
+        <a class="tool-link" href="step-3-audience-finder-guide.html"><span class="tool-link-name">Audience Finder Guide</span><span class="tool-link-arrow">Open →</span></a>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-label">Step 4</div>
+      <div class="step-title">Pack Your Bag</div>
+      <div class="tool-list">
+        <a class="tool-link" href="step-4-setup-checklist.html"><span class="tool-link-name">Setup Checklist</span><span class="tool-link-arrow">Open →</span></a>
+        <a class="tool-link" href="step-4-offer-one-pager.html"><span class="tool-link-name">Offer One-Pager</span><span class="tool-link-arrow">Open →</span></a>
+        <a class="tool-link" href="step-4-free-tool-list.html"><span class="tool-link-name">Free Tool List</span><span class="tool-link-arrow">Open →</span></a>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-label">Step 5</div>
+      <div class="step-title">Fill Your Pipeline</div>
+      <div class="tool-list">
+        <a class="tool-link" href="step-5-content-creation-kit.html"><span class="tool-link-name">Content Creation Kit</span><span class="tool-link-arrow">Open →</span></a>
+        <a class="tool-link" href="step-5-fill-your-pipeline.html"><span class="tool-link-name">Fill Your Pipeline Strategy Guide</span><span class="tool-link-arrow">Open →</span></a>
+        <a class="tool-link" href="step-5-sales-conversation-playbook.html"><span class="tool-link-name">Sales Conversation Playbook</span><span class="tool-link-arrow">Open →</span></a>
+        <a class="tool-link" href="step-5-call-and-followup-kit.html"><span class="tool-link-name">Call and Follow-Up Kit</span><span class="tool-link-arrow">Open →</span></a>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-label">Step 6</div>
+      <div class="step-title">Reading the Dashboard</div>
+      <div class="tool-list">
+        <a class="tool-link" href="step-6-business-dashboard-tracker.html"><span class="tool-link-name">Business Dashboard Tracker</span><span class="tool-link-arrow">Open →</span></a>
+        <a class="tool-link" href="step-6-monthly-review-template.html"><span class="tool-link-name">Monthly Review Template</span><span class="tool-link-arrow">Open →</span></a>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="step-block">
+      <div class="step-label">Step 8</div>
+      <div class="step-title">Land and Launch Again</div>
+      <div class="tool-list">
+        <a class="tool-link" href="step-8-win-and-celebrate-kit.html"><span class="tool-link-name">Win and Celebrate Kit</span><span class="tool-link-arrow">Open →</span></a>
+        <a class="tool-link" href="step-8-testimonial-capture-template.html"><span class="tool-link-name">Testimonial Capture Template</span><span class="tool-link-arrow">Open →</span></a>
+        <a class="tool-link" href="step-8-launch-again-roadmap.html"><span class="tool-link-name">Launch Again Roadmap</span><span class="tool-link-arrow">Open →</span></a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Rise Beyond the 9 to 5</span>
+    <span class="footer-tag">The Rise Flight Plan · Client Toolkit</span>
+  </div>
+</div>
+</body>
+</html>
