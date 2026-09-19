@@ -24,16 +24,20 @@
 
   .body { padding: 40px 48px 64px; }
 
-  .step-block { margin-bottom: 36px; }
-  .step-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; color: var(--warm-grey); margin-bottom: 8px; }
-  .step-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--black); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--light-grey); }
-  .tool-list { display: flex; flex-direction: column; gap: 6px; }
-  .tool-link { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border: 1.5px solid var(--light-grey); text-decoration: none; color: var(--black); transition: all 0.15s; }
-  .tool-link:hover { border-color: var(--black); background: var(--cream); }
-  .tool-link-name { font-size: 13px; font-weight: 500; }
-  .tool-link-arrow { font-size: 12px; color: var(--warm-grey); }
+  /* STEP CARD */
+  .step-card { border: 1.5px solid var(--light-grey); margin-bottom: 12px; text-decoration: none; color: var(--black); display: block; transition: border-color 0.15s, background 0.15s; }
+  .step-card:hover { border-color: var(--black); background: var(--cream); }
+  .step-card-inner { display: flex; align-items: stretch; }
+  .step-num { background: var(--black); color: var(--blush); font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; min-width: 64px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; padding: 20px 0; }
+  .step-body { padding: 18px 20px; flex: 1; }
+  .step-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--warm-grey); margin-bottom: 4px; }
+  .step-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--black); margin-bottom: 6px; }
+  .step-tools { font-size: 11px; color: var(--warm-grey); line-height: 1.5; }
+  .step-arrow { display: flex; align-items: center; padding: 0 20px; color: var(--warm-grey); font-size: 16px; flex-shrink: 0; }
+  .step-card:hover .step-arrow { color: var(--black); }
 
-  .divider { height: 1px; background: var(--light-grey); margin: 36px 0; }
+  .section-divider { height: 1px; background: var(--light-grey); margin: 28px 0; }
+  .section-heading { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; color: var(--warm-grey); margin-bottom: 14px; }
 
   .footer { background: var(--black); padding: 16px 48px; display: flex; align-items: center; justify-content: space-between; }
   .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: var(--blush); font-style: italic; }
@@ -42,6 +46,7 @@
   @media (max-width: 520px) {
     .header, .body, .footer, .strip { padding-left: 24px; padding-right: 24px; }
     .header h1 { font-size: 32px; }
+    .step-num { min-width: 48px; font-size: 22px; }
   }
 </style>
 </head>
@@ -62,78 +67,107 @@
     </svg>
     <p class="brand-tag">Rise Beyond the 9 to 5</p>
     <h1>The Rise Flight Plan<br><em>Client Tools</em></h1>
-    <p class="header-sub">Everything you need to work through all 8 steps of the Rise Flight Plan. Open each tool, work through it, and move to the next step.</p>
+    <p class="header-sub">Everything you need to work through all 8 steps. Click any step to open your lesson and tools.</p>
   </div>
   <div class="strip">Your full toolkit - one page, all 8 steps.</div>
 
   <div class="body">
 
-    <div class="step-block">
-      <div class="step-label">Step 1</div>
-      <div class="step-title">Check Your Instruments</div>
-      <div class="tool-list">
-        <a class="tool-link" href="step-1-freedom-score-scorecard.html"><span class="tool-link-name">Freedom Score Scorecard</span><span class="tool-link-arrow">Open →</span></a>
+    <a class="step-card" href="course-step-1.html">
+      <div class="step-card-inner">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-tag">Check Your Instruments</div>
+          <div class="step-title">Find your starting point</div>
+          <div class="step-tools">Freedom Score Scorecard</div>
+        </div>
+        <div class="step-arrow">→</div>
       </div>
-    </div>
+    </a>
 
-    <div class="step-block">
-      <div class="step-label">Step 2</div>
-      <div class="step-title">Choose Your Flight Path</div>
-      <div class="tool-list">
-        <a class="tool-link" href="step-2-business-path-decision-framework.html"><span class="tool-link-name">Business Path Decision Framework</span><span class="tool-link-arrow">Open →</span></a>
+    <a class="step-card" href="course-step-2.html">
+      <div class="step-card-inner">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-tag">Choose Your Flight Path</div>
+          <div class="step-title">Pick your business model</div>
+          <div class="step-tools">Business Path Decision Framework</div>
+        </div>
+        <div class="step-arrow">→</div>
       </div>
-    </div>
+    </a>
 
-    <div class="step-block">
-      <div class="step-label">Step 3</div>
-      <div class="step-title">Find Your People</div>
-      <div class="tool-list">
-        <a class="tool-link" href="step-3-niche-clarity-workbook.html"><span class="tool-link-name">Niche Clarity Workbook</span><span class="tool-link-arrow">Open →</span></a>
-        <a class="tool-link" href="step-3-audience-finder-guide.html"><span class="tool-link-name">Audience Finder Guide</span><span class="tool-link-arrow">Open →</span></a>
+    <a class="step-card" href="course-step-3.html">
+      <div class="step-card-inner">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-tag">Find Your People</div>
+          <div class="step-title">Define your niche and audience</div>
+          <div class="step-tools">Niche Clarity Workbook · Audience Finder Guide</div>
+        </div>
+        <div class="step-arrow">→</div>
       </div>
-    </div>
+    </a>
 
-    <div class="step-block">
-      <div class="step-label">Step 4</div>
-      <div class="step-title">Pack Your Bag</div>
-      <div class="tool-list">
-        <a class="tool-link" href="step-4-setup-checklist.html"><span class="tool-link-name">Setup Checklist</span><span class="tool-link-arrow">Open →</span></a>
-        <a class="tool-link" href="step-4-offer-one-pager.html"><span class="tool-link-name">Offer One-Pager</span><span class="tool-link-arrow">Open →</span></a>
-        <a class="tool-link" href="step-4-free-tool-list.html"><span class="tool-link-name">Free Tool List</span><span class="tool-link-arrow">Open →</span></a>
+    <a class="step-card" href="course-step-4.html">
+      <div class="step-card-inner">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-tag">Pack Your Bag</div>
+          <div class="step-title">Set up your five non-negotiables</div>
+          <div class="step-tools">Setup Checklist · Offer One-Pager · Free Tool List</div>
+        </div>
+        <div class="step-arrow">→</div>
       </div>
-    </div>
+    </a>
 
-    <div class="step-block">
-      <div class="step-label">Step 5</div>
-      <div class="step-title">Fill Your Pipeline</div>
-      <div class="tool-list">
-        <a class="tool-link" href="step-5-content-creation-kit.html"><span class="tool-link-name">Content Creation Kit</span><span class="tool-link-arrow">Open →</span></a>
-        <a class="tool-link" href="step-5-fill-your-pipeline.html"><span class="tool-link-name">Fill Your Pipeline Strategy Guide</span><span class="tool-link-arrow">Open →</span></a>
-        <a class="tool-link" href="step-5-sales-conversation-playbook.html"><span class="tool-link-name">Sales Conversation Playbook</span><span class="tool-link-arrow">Open →</span></a>
-        <a class="tool-link" href="step-5-call-and-followup-kit.html"><span class="tool-link-name">Call and Follow-Up Kit</span><span class="tool-link-arrow">Open →</span></a>
+    <a class="step-card" href="course-step-5.html">
+      <div class="step-card-inner">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-tag">Fill Your Pipeline</div>
+          <div class="step-title">Get clients consistently</div>
+          <div class="step-tools">Fill Your Pipeline Guide · Content Kit · Sales Playbook · Call Kit</div>
+        </div>
+        <div class="step-arrow">→</div>
       </div>
-    </div>
+    </a>
 
-    <div class="step-block">
-      <div class="step-label">Step 6</div>
-      <div class="step-title">Reading the Dashboard</div>
-      <div class="tool-list">
-        <a class="tool-link" href="step-6-business-dashboard-tracker.html"><span class="tool-link-name">Business Dashboard Tracker</span><span class="tool-link-arrow">Open →</span></a>
-        <a class="tool-link" href="step-6-monthly-review-template.html"><span class="tool-link-name">Monthly Review Template</span><span class="tool-link-arrow">Open →</span></a>
+    <a class="step-card" href="course-step-6.html">
+      <div class="step-card-inner">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <div class="step-tag">Reading the Dashboard</div>
+          <div class="step-title">Track what matters and fix what's broken</div>
+          <div class="step-tools">Business Dashboard Tracker · Monthly Review Template</div>
+        </div>
+        <div class="step-arrow">→</div>
       </div>
-    </div>
+    </a>
 
-    <div class="divider"></div>
-
-    <div class="step-block">
-      <div class="step-label">Step 8</div>
-      <div class="step-title">Land and Launch Again</div>
-      <div class="tool-list">
-        <a class="tool-link" href="step-8-win-and-celebrate-kit.html"><span class="tool-link-name">Win and Celebrate Kit</span><span class="tool-link-arrow">Open →</span></a>
-        <a class="tool-link" href="step-8-testimonial-capture-template.html"><span class="tool-link-name">Testimonial Capture Template</span><span class="tool-link-arrow">Open →</span></a>
-        <a class="tool-link" href="step-8-launch-again-roadmap.html"><span class="tool-link-name">Launch Again Roadmap</span><span class="tool-link-arrow">Open →</span></a>
+    <a class="step-card" href="course-step-7.html">
+      <div class="step-card-inner">
+        <div class="step-num">7</div>
+        <div class="step-body">
+          <div class="step-tag">Mindset at Altitude</div>
+          <div class="step-title">The inner work that makes it stick</div>
+          <div class="step-tools">ATM Framework · coaching reflection</div>
+        </div>
+        <div class="step-arrow">→</div>
       </div>
-    </div>
+    </a>
+
+    <a class="step-card" href="course-step-8.html">
+      <div class="step-card-inner">
+        <div class="step-num">8</div>
+        <div class="step-body">
+          <div class="step-tag">Land and Launch Again</div>
+          <div class="step-title">Celebrate and choose your next path</div>
+          <div class="step-tools">Win Kit · Testimonial Template · Launch Again Roadmap</div>
+        </div>
+        <div class="step-arrow">→</div>
+      </div>
+    </a>
 
   </div>
 
