@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Creation Kit – Rise Beyond the 9 to 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #1a1a1a; --blush: #e8d9d0; --blush-deep: #d4c0b4;
+    --cream: #f5f0e8; --warm-grey: #6b6560; --light-grey: #d9d3cc; --white: #ffffff;
+    --pillar1: #1a1a1a; --pillar2: #6b6560; --pillar3: #d4c0b4;
+  }
+  body { background: var(--black); font-family: 'Inter', sans-serif; color: var(--black); min-height: 100vh; }
+  .page { max-width: 720px; margin: 0 auto; background: var(--white); min-height: 100vh; display: flex; flex-direction: column; }
+
+  /* HEADER */
+  .header { background: var(--black); padding: 36px 48px 28px; position: relative; overflow: hidden; flex-shrink: 0; }
+  .sunburst { position: absolute; right: -20px; top: -20px; width: 130px; height: 130px; opacity: 0.1; }
+  .brand-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; color: var(--blush); opacity: 0.6; margin-bottom: 10px; }
+  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 600; line-height: 1.1; color: var(--white); }
+  .header h1 em { color: var(--blush); font-style: italic; font-weight: 400; }
+  .header-sub { font-size: 12px; color: var(--blush); opacity: 0.55; font-weight: 300; margin-top: 8px; }
+  .strip { background: var(--blush); padding: 11px 48px; font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--black); }
+
+  /* TABS */
+  .tabs { display: flex; border-bottom: 2px solid var(--light-grey); background: var(--cream); }
+  .tab { flex: 1; padding: 13px 8px; font-size: 10.5px; font-weight: 600; letter-spacing: 0.02em; color: var(--warm-grey); cursor: pointer; text-align: center; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.15s; }
+  .tab.active { color: var(--black); border-bottom-color: var(--black); background: var(--white); }
+  .tab:hover:not(.active) { color: var(--black); }
+
+  .tab-content { display: none; padding: 32px 48px 48px; flex: 1; }
+  .tab-content.active { display: block; }
+  .intro-text { font-size: 13px; color: var(--warm-grey); line-height: 1.7; margin-bottom: 24px; }
+
+  /* PILLAR SETUP */
+  .pillar-setup { background: var(--cream); padding: 20px 24px; margin-bottom: 28px; }
+  .pillar-setup-title { font-weight: 600; font-size: 11.5px; margin-bottom: 14px; color: var(--black); }
+  .pillar-inputs { display: flex; flex-direction: column; gap: 8px; }
+  .pillar-input-row { display: flex; align-items: center; gap: 10px; }
+  .pillar-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .p1 { background: var(--pillar1); }
+  .p2 { background: var(--pillar2); }
+  .p3 { background: var(--blush-deep); }
+  .pillar-input-row input { flex: 1; border: 1.5px solid var(--light-grey); padding: 8px 12px; font-family: 'Inter', sans-serif; font-size: 12px; color: var(--black); outline: none; background: var(--white); transition: border-color 0.15s; }
+  .pillar-input-row input:focus { border-color: var(--black); }
+
+  /* CALENDAR */
+  .cal-header { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; margin-bottom: 3px; }
+  .cal-day-label { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; color: var(--warm-grey); text-align: center; padding: 6px 0; }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+  .cal-cell { min-height: 72px; border: 1.5px solid var(--light-grey); padding: 6px; position: relative; cursor: pointer; transition: border-color 0.12s; }
+  .cal-cell:hover { border-color: var(--black); }
+  .cal-cell.empty { background: var(--cream); border-color: transparent; cursor: default; }
+  .cal-cell.p1-cell { border-left: 3px solid var(--pillar1); }
+  .cal-cell.p2-cell { border-left: 3px solid var(--pillar2); }
+  .cal-cell.p3-cell { border-left: 3px solid var(--blush-deep); }
+  .cal-cell.done-cell { background: var(--cream); }
+  .cal-date { font-size: 10px; font-weight: 600; color: var(--warm-grey); margin-bottom: 4px; }
+  .cal-idea { font-size: 10px; color: var(--black); line-height: 1.4; }
+  .cal-format { font-size: 9px; color: var(--warm-grey); margin-top: 3px; font-style: italic; }
+  .cal-done-check { position: absolute; top: 5px; right: 5px; width: 14px; height: 14px; border: 1.5px solid var(--light-grey); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .cal-done-check.ticked { background: var(--black); border-color: var(--black); }
+  .cal-done-check.ticked::after { content: ''; width: 5px; height: 3px; border-left: 1.5px solid white; border-bottom: 1.5px solid white; transform: rotate(-45deg) translateY(-0.5px); display: block; }
+
+  .cal-legend { display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--warm-grey); }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* HOOKS */
+  .hook-category { margin-bottom: 28px; }
+  .hook-cat-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--warm-grey); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--light-grey); }
+  .hook-item { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--light-grey); }
+  .hook-item:last-child { border-bottom: none; }
+  .hook-text { font-size: 13px; color: var(--black); line-height: 1.55; flex: 1; font-style: italic; }
+  .hook-text strong { font-style: normal; font-weight: 600; }
+  .btn-copy-hook { background: var(--cream); border: 1px solid var(--light-grey); color: var(--black); padding: 6px 12px; font-size: 10px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; flex-shrink: 0; transition: all 0.12s; }
+  .btn-copy-hook:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+  .btn-copy-hook.copied { background: var(--blush-deep); border-color: var(--blush-deep); color: var(--black); }
+
+  /* STORY PROMPTS */
+  .story-day { border: 1.5px solid var(--light-grey); margin-bottom: 10px; }
+  .story-day-header { display: flex; align-items: center; gap: 14px; padding: 14px 18px; cursor: pointer; background: var(--cream); }
+  .story-day-num { width: 28px; height: 28px; min-width: 28px; background: var(--black); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 600; color: var(--white); }
+  .story-day-title { font-weight: 600; font-size: 13px; flex: 1; }
+  .story-day-format { font-size: 10px; color: var(--warm-grey); font-weight: 500; }
+  .story-day-arrow { font-size: 11px; color: var(--warm-grey); transition: transform 0.2s; }
+  .story-day-arrow.open { transform: rotate(180deg); }
+  .story-day-body { display: none; padding: 16px 18px 18px; }
+  .story-day-body.open { display: block; }
+  .story-prompt-text { font-size: 12.5px; color: var(--black); line-height: 1.65; margin-bottom: 10px; }
+  .story-caption-example { background: var(--cream); border-left: 3px solid var(--blush-deep); padding: 10px 14px; font-size: 12px; color: var(--warm-grey); font-style: italic; line-height: 1.6; margin-bottom: 10px; }
+  .story-tip { font-size: 11.5px; color: var(--warm-grey); font-style: italic; }
+
+  /* WEEKLY PLANNER */
+  .week-day { margin-bottom: 12px; border: 1.5px solid var(--light-grey); }
+  .week-day-header { background: var(--black); padding: 10px 16px; font-weight: 600; font-size: 12px; color: var(--white); display: flex; justify-content: space-between; align-items: center; }
+  .week-day-off { font-size: 10px; color: var(--blush); opacity: 0.6; }
+  .week-day-body { padding: 14px 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .week-field { }
+  .week-field-label { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; color: var(--warm-grey); margin-bottom: 5px; }
+  .week-field input, .week-field select { width: 100%; border: 1.5px solid var(--light-grey); padding: 8px 10px; font-family: 'Inter', sans-serif; font-size: 12px; color: var(--black); outline: none; background: var(--white); transition: border-color 0.15s; }
+  .week-field input:focus, .week-field select:focus { border-color: var(--black); }
+  .week-field.full { grid-column: 1 / -1; }
+  .rest-day { background: var(--cream); }
+  .rest-day .week-day-body { display: block; padding: 12px 16px; font-size: 12px; color: var(--warm-grey); font-style: italic; }
+
+  /* AI BOX */
+  .ai-box { background: var(--black); padding: 22px 26px; margin-top: 28px; }
+  .ai-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--blush); opacity: 0.7; margin-bottom: 8px; }
+  .ai-title { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--white); margin-bottom: 8px; }
+  .ai-desc { font-size: 12px; color: var(--blush); opacity: 0.65; line-height: 1.6; margin-bottom: 14px; }
+  .ai-prompt { background: #111; border-left: 3px solid var(--blush-deep); padding: 14px 16px; font-size: 11.5px; color: var(--blush); line-height: 1.7; font-style: italic; margin-bottom: 14px; white-space: pre-wrap; }
+  .btn-copy { background: var(--blush); color: var(--black); border: none; padding: 10px 18px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity 0.15s; }
+  .btn-copy:hover { opacity: 0.8; }
+  .btn-copy.copied { background: var(--blush-deep); }
+
+  .footer { background: var(--black); padding: 14px 48px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--blush); font-style: italic; }
+  .footer-step { font-size: 10px; color: var(--blush); opacity: 0.4; letter-spacing: 0.08em; }
+
+  @media (max-width: 520px) {
+    .header, .tab-content, .footer, .strip { padding-left: 24px; padding-right: 24px; }
+    .week-day-body { grid-template-columns: 1fr; }
+    .cal-cell { min-height: 56px; }
+    .cal-idea { font-size: 9px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <svg class="sunburst" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(65,65)" fill="white">
+        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/><polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/><polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/><polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/><polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/><polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/><polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/><polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/><polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <p class="brand-tag">Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 5</p>
+    <h1>Content Creation<br><em>Kit</em></h1>
+    <p class="header-sub">Everything you need to show up consistently - hooks, ideas, plans, and prompts.</p>
+  </div>
+  <div class="strip">You don't need to be creative every day. You need a system.</div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('calendar')">30-Day Calendar</div>
+    <div class="tab" onclick="switchTab('hooks')">Hook Swipe File</div>
+    <div class="tab" onclick="switchTab('stories')">Story Prompts</div>
+    <div class="tab" onclick="switchTab('planner')">Weekly Planner</div>
+  </div>
+
+  <!-- TAB 1: 30-DAY CALENDAR -->
+  <div class="tab-content active" id="tab-calendar">
+    <p class="intro-text">A full month of content ideas, organised across 3 pillars. Tick each day off as you post. Use the AI prompt below to regenerate with ideas specific to your niche.</p>
+
+    <div class="pillar-setup">
+      <div class="pillar-setup-title">Set your 3 content pillars (edit to match yours)</div>
+      <div class="pillar-inputs">
+        <div class="pillar-input-row"><div class="pillar-dot p1"></div><input id="pillar1" value="My story and journey" oninput="renderCalendar()"></div>
+        <div class="pillar-input-row"><div class="pillar-dot p2"></div><input id="pillar2" value="Tips and education for my audience" oninput="renderCalendar()"></div>
+        <div class="pillar-input-row"><div class="pillar-dot" style="background:var(--blush-deep)"></div><input id="pillar3" value="My offer and results" oninput="renderCalendar()"></div>
+      </div>
+    </div>
+
+    <div class="cal-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--pillar1)"></div><span id="legend1">My story and journey</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--pillar2)"></div><span id="legend2">Tips and education</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--blush-deep)"></div><span id="legend3">My offer and results</span></div>
+    </div>
+
+    <div class="cal-header">
+      <div class="cal-day-label">Mon</div><div class="cal-day-label">Tue</div><div class="cal-day-label">Wed</div>
+      <div class="cal-day-label">Thu</div><div class="cal-day-label">Fri</div><div class="cal-day-label">Sat</div>
+      <div class="cal-day-label">Sun</div>
+    </div>
+    <div class="cal-grid" id="cal-grid"></div>
+
+    <div class="ai-box" style="margin-top:24px;">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Regenerate this calendar for your niche</div>
+      <div class="ai-desc">Copy this prompt to get 30 niche-specific content ideas with hooks and formats.</div>
+      <div class="ai-prompt">I need a 30-day content calendar for my online business.
+
+My niche: I help [who you help] who [their problem] to [the result].
+My 3 content pillars:
+- Pillar 1: [your pillar 1]
+- Pillar 2: [your pillar 2]
+- Pillar 3: [your pillar 3]
+My platform: [Instagram / Facebook / TikTok / LinkedIn]
+I post [X] times per week.
+
+Please create a 30-day content plan. For each post give me:
+1. The day number (Day 1, Day 2, etc.)
+2. Which pillar it falls under
+3. The content idea (specific, not generic)
+4. The hook - the first line that makes someone stop scrolling
+5. The format (reel, carousel, talking head, text post, story, etc.)
+
+Rotate evenly across my 3 pillars. Make every idea specific to my niche - not generic advice. Use language my ideal client would immediately recognise.</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <!-- TAB 2: HOOK SWIPE FILE -->
+  <div class="tab-content" id="tab-hooks">
+    <p class="intro-text">The hook is the first line of your content. It decides whether someone stops scrolling or moves on. These 20 proven formulas work across reels, carousels, and captions. Copy any hook and fill in the brackets.</p>
+
+    <div class="hook-category">
+      <div class="hook-cat-label">Pain point hooks</div>
+      <div class="hook-item"><div class="hook-text">If you're <strong>[doing X]</strong> and still not getting <strong>[result]</strong>, this is why.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+      <div class="hook-item"><div class="hook-text">Nobody talks about how hard it is to <strong>[specific struggle]</strong>. So I will.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+      <div class="hook-item"><div class="hook-text">The reason you're still <strong>[stuck situation]</strong> isn't what you think.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+      <div class="hook-item"><div class="hook-text">Stop <strong>[common mistake]</strong>. Do this instead.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+    </div>
+
+    <div class="hook-category">
+      <div class="hook-cat-label">Curiosity hooks</div>
+      <div class="hook-item"><div class="hook-text">I used to think <strong>[wrong belief]</strong>. Then this happened.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+      <div class="hook-item"><div class="hook-text">Here's what no one tells you about <strong>[topic]</strong>.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+      <div class="hook-item"><div class="hook-text">The <strong>[number]</strong> things I wish I knew before <strong>[starting X]</strong>.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+      <div class="hook-item"><div class="hook-text">This one shift changed everything for me. And it took less than a week.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+    </div>
+
+    <div class="hook-category">
+      <div class="hook-cat-label">Story hooks</div>
+      <div class="hook-item"><div class="hook-text">A year ago I was <strong>[where you were]</strong>. Today I'm <strong>[where you are now]</strong>.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+      <div class="hook-item"><div class="hook-text">I almost gave up on <strong>[thing]</strong>. Here's what stopped me.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+      <div class="hook-item"><div class="hook-text">The moment I realised <strong>[realisation]</strong>, everything changed.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+      <div class="hook-item"><div class="hook-text">I was <strong>[relatable situation]</strong> when I finally decided enough was enough.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+    </div>
+
+    <div class="hook-category">
+      <div class="hook-cat-label">Bold statement hooks</div>
+      <div class="hook-item"><div class="hook-text">You don't need <strong>[common belief]</strong> to <strong>[achieve result]</strong>. Here's proof.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+      <div class="hook-item"><div class="hook-text"><strong>[Controversial take]</strong>. And I'll explain why.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+      <div class="hook-item"><div class="hook-text">Most <strong>[your niche audience]</strong> get this completely wrong.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+      <div class="hook-item"><div class="hook-text">The <strong>[thing everyone tells you to do]</strong> is keeping you stuck.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+    </div>
+
+    <div class="hook-category">
+      <div class="hook-cat-label">Offer and result hooks</div>
+      <div class="hook-item"><div class="hook-text">My client went from <strong>[before]</strong> to <strong>[after]</strong> in <strong>[timeframe]</strong>. Here's how.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+      <div class="hook-item"><div class="hook-text">What would your life look like if <strong>[dream outcome]</strong>? Let me show you how to get there.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+      <div class="hook-item"><div class="hook-text">I help <strong>[your audience]</strong> do <strong>[result]</strong>. And I'm looking for my next <strong>[number]</strong> clients.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+      <div class="hook-item"><div class="hook-text">If you've been waiting for a sign to start <strong>[thing]</strong> - this is it.</div><button class="btn-copy-hook" onclick="copyHook(this)">Copy</button></div>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Generate 20 hooks for your specific niche</div>
+      <div class="ai-desc">Copy this prompt to get a full swipe file of hooks written for your exact audience.</div>
+      <div class="ai-prompt">I need a swipe file of content hooks written specifically for my niche.
+
+My niche: I help [who you help] who [their problem] to [the result].
+My platform: [Instagram / Facebook / TikTok / LinkedIn]
+My tone: [warm and relatable / bold and direct / educational / story-led]
+
+Please write me 20 hooks across these 5 categories (4 per category):
+1. Pain point hooks - speak directly to their frustration
+2. Curiosity hooks - make them need to know more
+3. Story hooks - draw them into a personal moment
+4. Bold statement hooks - a take that makes them stop and react
+5. Offer/result hooks - attract people who are ready to buy
+
+For each hook:
+- Fill in the brackets with specifics from my niche (don't leave placeholders)
+- Keep it under 15 words where possible
+- Make it feel like a real person wrote it, not a template
+
+I want to copy and paste these directly into content - no editing required.</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <!-- TAB 3: STORY PROMPTS -->
+  <div class="tab-content" id="tab-stories">
+    <p class="intro-text">Stories build trust faster than any other format. Use these 7 prompts - one per day - and rotate the cycle each week. You never need to think about what to post in your stories again.</p>
+
+    <div id="story-days"></div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Write your story captions for the week</div>
+      <div class="ai-desc">Copy this prompt to get 7 ready-to-post story captions tailored to your niche.</div>
+      <div class="ai-prompt">I need 7 Instagram/Facebook story captions for this week - one per day.
+
+My niche: I help [who you help] who [their problem] to [the result].
+My story / background: [one sentence about your journey - where you were, where you are now]
+My offer: [what you sell]
+My personality / tone: [warm and funny / honest and direct / educational / motivational]
+
+Please write one caption for each of these 7 story types:
+Day 1 - Behind the scenes (show my real day)
+Day 2 - Education (one tip for my audience)
+Day 3 - Personal share (something vulnerable or honest)
+Day 4 - Poll or question (get my audience talking)
+Day 5 - Client win or testimonial (share a result)
+Day 6 - My offer (promote without being pushy)
+Day 7 - Motivation (end the week with something they need to hear)
+
+For each caption:
+- Keep it under 3 lines (stories are short)
+- Add a CTA where relevant (reply, DM, swipe up, book a call)
+- Make it feel like a real message, not a post</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <!-- TAB 4: WEEKLY PLANNER -->
+  <div class="tab-content" id="tab-planner">
+    <p class="intro-text">Plan your week of content in one sitting. Fill in each day's format, topic, hook, and CTA - then batch create. One hour of planning saves five hours of staring at a blank screen.</p>
+
+    <div id="week-planner"></div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Plan your entire week of content</div>
+      <div class="ai-desc">Fill in your details below and get a ready-to-use weekly content plan.</div>
+      <div class="ai-prompt">I need to plan my content for this week. Here are my details:
+
+My niche: I help [who you help] who [their problem] to [the result].
+My 3 content pillars: [pillar 1], [pillar 2], [pillar 3]
+How many posts this week: [number]
+My platform: [Instagram / Facebook / TikTok / LinkedIn]
+Anything specific happening this week I can tie content to: [e.g. a launch, a relevant awareness day, a personal milestone - or write 'nothing specific']
+My call to action this week: [what you want people to do - book a call, DM you, sign up, buy]
+
+Please create a week of content with:
+1. One post per day (Mon-Fri, or however many I said)
+2. The pillar each post falls under
+3. The format (reel, carousel, talking head, text post)
+4. The hook (first line - under 12 words)
+5. A 2-sentence caption body
+6. The CTA
+
+Make every post feel connected to a weekly theme if possible - not random. Tone: [warm and real / bold / educational].</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Rise Beyond the 9 to 5</span>
+    <span class="footer-step">Step 5 of 8 · Content Creation Kit</span>
+  </div>
+</div>
+
+<script>
+// ── CALENDAR ──────────────────────────────────────────────────────────────
+const CALENDAR_DATA = [
+  { idea: "Why I started this journey", format: "Reel", pillar: 1 },
+  { idea: "The #1 mistake beginners make", format: "Carousel", pillar: 2 },
+  { idea: "My offer explained in 60 seconds", format: "Talking head", pillar: 3 },
+  { idea: "A day in my life running this business", format: "Reel", pillar: 1 },
+  { idea: "3 things I wish I knew before starting", format: "Carousel", pillar: 2 },
+  { rest: true },
+  { rest: true },
+  { idea: "The moment everything changed for me", format: "Talking head", pillar: 1 },
+  { idea: "How to find your niche in one afternoon", format: "Carousel", pillar: 2 },
+  { idea: "Client result: from [X] to [Y]", format: "Graphic", pillar: 3 },
+  { idea: "What freedom actually looks like for me", format: "Reel", pillar: 1 },
+  { idea: "Why consistency beats talent every time", format: "Text post", pillar: 2 },
+  { rest: true },
+  { rest: true },
+  { idea: "The question that changed my business", format: "Talking head", pillar: 1 },
+  { idea: "5 free tools I use every day", format: "Carousel", pillar: 2 },
+  { idea: "Is this programme right for you?", format: "Talking head", pillar: 3 },
+  { idea: "What I got wrong in my first year", format: "Reel", pillar: 1 },
+  { idea: "How to write a bio that actually works", format: "Carousel", pillar: 2 },
+  { rest: true },
+  { rest: true },
+  { idea: "The real reason people don't start", format: "Talking head", pillar: 1 },
+  { idea: "3 signs you're ready to leave the 9-5", format: "Carousel", pillar: 2 },
+  { idea: "Spots open - here's what's included", format: "Graphic", pillar: 3 },
+  { idea: "My morning routine as a location-free mum", format: "Reel", pillar: 1 },
+  { idea: "How to get your first paying client", format: "Carousel", pillar: 2 },
+  { rest: true },
+  { rest: true },
+  { idea: "If I were starting from scratch today", format: "Talking head", pillar: 1 },
+  { idea: "The one mindset shift that changed everything", format: "Reel", pillar: 2 },
+];
+
+const ticked = new Set();
+
+function renderCalendar() {
+  const p1 = document.getElementById('pillar1').value || 'Pillar 1';
+  const p2 = document.getElementById('pillar2').value || 'Pillar 2';
+  const p3 = document.getElementById('pillar3').value || 'Pillar 3';
+  document.getElementById('legend1').textContent = p1;
+  document.getElementById('legend2').textContent = p2;
+  document.getElementById('legend3').textContent = p3;
+
+  const grid = document.getElementById('cal-grid');
+  grid.innerHTML = '';
+  let dayNum = 1;
+  CALENDAR_DATA.forEach((d, i) => {
+    const cell = document.createElement('div');
+    if (d.rest) {
+      cell.className = 'cal-cell empty';
+    } else {
+      const pClass = `p${d.pillar}-cell`;
+      const isDone = ticked.has(i);
+      cell.className = `cal-cell ${pClass} ${isDone ? 'done-cell' : ''}`;
+      const pillarName = d.pillar === 1 ? p1 : d.pillar === 2 ? p2 : p3;
+      cell.innerHTML = `
+        <div class="cal-date">Day ${dayNum}</div>
+        <div class="cal-idea">${d.idea}</div>
+        <div class="cal-format">${d.format}</div>
+        <div class="cal-done-check ${isDone ? 'ticked' : ''}" onclick="toggleDay(event,${i})"></div>`;
+      dayNum++;
+    }
+    grid.appendChild(cell);
+  });
+}
+
+function toggleDay(e, i) {
+  e.stopPropagation();
+  ticked.has(i) ? ticked.delete(i) : ticked.add(i);
+  renderCalendar();
+}
+
+// ── STORY PROMPTS ─────────────────────────────────────────────────────────
+const STORIES = [
+  { day: "Monday", title: "Behind the scenes", format: "Video / boomerang",
+    desc: "Show a real moment from your day - your workspace, your morning routine, where you're working from today. No filters, no perfection. Authenticity builds trust faster than polish.",
+    example: "Working from [location] today. Here's what my morning looked like before the kids woke up... [show your desk/coffee/notebook]",
+    tip: "Add a 'reply' sticker or ask a question to start a conversation." },
+  { day: "Tuesday", title: "Education - one tip", format: "Text slide or talking head",
+    desc: "Share one specific, actionable tip for your audience. One tip only - not a list. People remember one thing, not ten. Make it something they can do today.",
+    example: "The fastest way to get your first client isn't ads. It's this: [your tip]. Save this for later.",
+    tip: "Add a poll sticker asking 'Did you know this?' - it gets engagement and gives you data." },
+  { day: "Wednesday", title: "Personal share", format: "Selfie / casual video",
+    desc: "Share something honest and personal - a struggle, a lesson, a feeling. The stories that perform best are the ones that make people think 'that's exactly me'. Vulnerability is not weakness here - it's connection.",
+    example: "Can I be honest with you? Three months ago I almost quit. Here's what I wish someone had told me...",
+    tip: "Don't overthink this one. Type it like a message to a friend." },
+  { day: "Thursday", title: "Poll or question", format: "Poll / question sticker",
+    desc: "Ask your audience something. Use the poll sticker ('Yes / No') or the question box ('Ask me anything'). This builds two-way conversation, tells you what your audience wants, and boosts your story views.",
+    example: "Tell me: what's the biggest thing stopping you from starting your own business? [question box]",
+    tip: "Share the most common answers in a follow-up story - it shows you listen." },
+  { day: "Friday", title: "Client win or result", format: "Screenshot / graphic / quote",
+    desc: "Share a client testimonial, a win you've seen, or your own result. Use a screenshot, a quote graphic, or just type it on screen. Proof builds trust. Even small wins count.",
+    example: "[Client name] just [achieved result] after [timeframe]. This is exactly why I do this. [screenshot or quote]",
+    tip: "Always ask clients before sharing. A DM saying 'Can I share your win?' takes 10 seconds." },
+  { day: "Saturday", title: "Your offer", format: "Talking head / graphic",
+    desc: "Once a week, talk about what you offer. Not every day - but once. Keep it benefit-led: what does their life look like after? Lead with the transformation, not the features.",
+    example: "If you're a mum who's done with the 9-5 and ready to build something of your own - this is for you. Here's what we do together... [explain briefly] DM me 'START' if this sounds like you.",
+    tip: "Don't apologise for selling. You're offering something valuable." },
+  { day: "Sunday", title: "Motivation or reflection", format: "Text slide or quote",
+    desc: "End the week with something your audience needs to hear. A truth, a reminder, a reframe. This is often your most-shared content because people tag friends who need to hear it.",
+    example: "You are not too late. You are not behind. You are exactly where you need to be to start. Start anyway.",
+    tip: "Keep it short. The most powerful motivation fits in 2-3 lines." }
+];
+
+function renderStories() {
+  const container = document.getElementById('story-days');
+  STORIES.forEach((s, i) => {
+    const el = document.createElement('div');
+    el.className = 'story-day';
+    el.innerHTML = `
+      <div class="story-day-header" onclick="toggleStory(${i})">
+        <div class="story-day-num">${i + 1}</div>
+        <div class="story-day-title">${s.day} - ${s.title}</div>
+        <div class="story-day-format">${s.format}</div>
+        <div class="story-day-arrow" id="sarrow-${i}">▼</div>
+      </div>
+      <div class="story-day-body" id="sbody-${i}">
+        <p class="story-prompt-text">${s.desc}</p>
+        <div class="story-caption-example">${s.example}</div>
+        <p class="story-tip">💡 ${s.tip}</p>
+      </div>`;
+    container.appendChild(el);
+  });
+}
+
+function toggleStory(i) {
+  const body = document.getElementById(`sbody-${i}`);
+  const arrow = document.getElementById(`sarrow-${i}`);
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.story-day-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.story-day-arrow').forEach(a => a.classList.remove('open'));
+  if (!isOpen) { body.classList.add('open'); arrow.classList.add('open'); }
+}
+
+// ── WEEKLY PLANNER ────────────────────────────────────────────────────────
+const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const FORMATS = ['', 'Reel', 'Carousel', 'Talking head', 'Text post', 'Graphic', 'Story', 'Live'];
+
+function renderPlanner() {
+  const container = document.getElementById('week-planner');
+  DAYS.forEach((day, i) => {
+    const isWeekend = i >= 5;
+    const el = document.createElement('div');
+    el.className = `week-day ${isWeekend ? 'rest-day' : ''}`;
+    if (isWeekend) {
+      el.innerHTML = `
+        <div class="week-day-header">${day}<span class="week-day-off">Rest or repurpose</span></div>
+        <div class="week-day-body">Optional - repurpose your best post from the week, or take the day off. Consistency doesn't mean posting every single day.</div>`;
+    } else {
+      el.innerHTML = `
+        <div class="week-day-header">${day}</div>
+        <div class="week-day-body">
+          <div class="week-field">
+            <div class="week-field-label">Format</div>
+            <select><option value="">Choose...</option>${FORMATS.map(f => f ? `<option>${f}</option>` : '').join('')}</select>
+          </div>
+          <div class="week-field">
+            <div class="week-field-label">Pillar</div>
+            <select><option value="">Choose...</option><option>Pillar 1</option><option>Pillar 2</option><option>Pillar 3</option></select>
+          </div>
+          <div class="week-field full">
+            <div class="week-field-label">Topic / idea</div>
+            <input type="text" placeholder="What's this post about?">
+          </div>
+          <div class="week-field full">
+            <div class="week-field-label">Hook (first line)</div>
+            <input type="text" placeholder="The first line that makes them stop scrolling...">
+          </div>
+          <div class="week-field full">
+            <div class="week-field-label">Call to action</div>
+            <input type="text" placeholder="What do you want them to do? DM, book, save, share...">
+          </div>
+        </div>`;
+    }
+    container.appendChild(el);
+  });
+}
+
+// ── UTILS ─────────────────────────────────────────────────────────────────
+function switchTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyHook(btn) {
+  const text = btn.previousElementSibling.textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
+  });
+}
+
+function copyAI(btn) {
+  const prompt = btn.previousElementSibling.textContent.trim();
+  navigator.clipboard.writeText(prompt).then(() => {
+    btn.textContent = 'Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy prompt →'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+renderCalendar();
+renderStories();
+renderPlanner();
+</script>
+</body>
+</html>
