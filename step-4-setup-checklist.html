@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Setup Checklist – Rise Beyond the 9 to 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #1a1a1a; --blush: #e8d9d0; --blush-deep: #d4c0b4;
+    --cream: #f5f0e8; --warm-grey: #6b6560; --light-grey: #d9d3cc; --white: #ffffff;
+  }
+  body { background: var(--black); font-family: 'Inter', sans-serif; color: var(--black); min-height: 100vh; }
+  .page { max-width: 680px; margin: 0 auto; background: var(--white); min-height: 100vh; display: flex; flex-direction: column; }
+
+  .header { background: var(--black); padding: 36px 48px 28px; position: relative; overflow: hidden; flex-shrink: 0; }
+  .sunburst { position: absolute; right: -20px; top: -20px; width: 130px; height: 130px; opacity: 0.1; }
+  .brand-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; color: var(--blush); opacity: 0.6; margin-bottom: 10px; }
+  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 600; line-height: 1.1; color: var(--white); }
+  .header h1 em { color: var(--blush); font-style: italic; font-weight: 400; }
+  .header-sub { font-size: 12px; color: var(--blush); opacity: 0.55; font-weight: 300; margin-top: 8px; }
+  .strip { background: var(--blush); padding: 11px 48px; font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--black); }
+
+  /* PROGRESS */
+  .progress-bar-wrap { background: var(--cream); padding: 16px 48px; border-bottom: 1px solid var(--light-grey); display: flex; align-items: center; gap: 16px; }
+  .progress-track { flex: 1; height: 4px; background: var(--light-grey); }
+  .progress-fill { height: 100%; background: var(--black); transition: width 0.3s ease; width: 0%; }
+  .progress-label { font-size: 11px; font-weight: 600; color: var(--warm-grey); min-width: 48px; text-align: right; }
+
+  /* BODY */
+  .body { padding: 32px 48px 48px; flex: 1; }
+
+  /* ITEM */
+  .checklist-item { margin-bottom: 4px; }
+  .item-header { display: flex; align-items: flex-start; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--light-grey); cursor: pointer; }
+  .item-header:hover .item-title { color: var(--warm-grey); }
+  .check-circle { width: 28px; height: 28px; min-width: 28px; border: 2px solid var(--light-grey); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.2s; margin-top: 1px; }
+  .check-circle.done { background: var(--black); border-color: var(--black); }
+  .check-circle.done::after { content: ''; width: 8px; height: 6px; border-left: 2px solid white; border-bottom: 2px solid white; transform: rotate(-45deg) translateY(-1px); display: block; }
+  .item-main { flex: 1; }
+  .item-num { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--warm-grey); margin-bottom: 4px; }
+  .item-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--black); line-height: 1.2; transition: color 0.15s; }
+  .item-title.done { text-decoration: line-through; color: var(--light-grey); }
+  .expand-arrow { font-size: 12px; color: var(--warm-grey); margin-top: 6px; transition: transform 0.2s; flex-shrink: 0; }
+  .expand-arrow.open { transform: rotate(180deg); }
+
+  .item-detail { display: none; padding: 0 0 20px 42px; }
+  .item-detail.open { display: block; }
+  .detail-why { font-size: 12.5px; color: var(--warm-grey); line-height: 1.65; margin-bottom: 14px; font-style: italic; }
+  .detail-steps { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+  .detail-steps li { font-size: 12.5px; color: var(--black); line-height: 1.6; padding-left: 18px; position: relative; }
+  .detail-steps li::before { content: '→'; position: absolute; left: 0; color: var(--blush-deep); font-weight: 600; }
+  .detail-tools { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .tool-chip { background: var(--cream); border: 1px solid var(--light-grey); padding: 5px 12px; font-size: 11px; font-weight: 500; color: var(--black); }
+  .detail-tip { background: var(--black); padding: 12px 16px; font-size: 12px; color: var(--blush); line-height: 1.6; font-style: italic; }
+
+  /* AI BOX */
+  .ai-box { background: var(--black); padding: 22px 26px; margin-top: 32px; }
+  .ai-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--blush); opacity: 0.7; margin-bottom: 8px; }
+  .ai-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--white); margin-bottom: 8px; }
+  .ai-desc { font-size: 12px; color: var(--blush); opacity: 0.65; line-height: 1.6; margin-bottom: 14px; }
+  .ai-prompt { background: #111; border-left: 3px solid var(--blush-deep); padding: 14px 16px; font-size: 11.5px; color: var(--blush); line-height: 1.7; font-style: italic; margin-bottom: 14px; white-space: pre-wrap; }
+  .btn-copy { background: var(--blush); color: var(--black); border: none; padding: 10px 18px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity 0.15s; }
+  .btn-copy:hover { opacity: 0.8; }
+  .btn-copy.copied { background: var(--blush-deep); }
+
+  /* COMPLETE STATE */
+  .complete-banner { display: none; background: var(--black); padding: 24px 28px; margin-top: 32px; text-align: center; }
+  .complete-banner.show { display: block; }
+  .complete-banner h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--blush); margin-bottom: 8px; }
+  .complete-banner p { font-size: 12.5px; color: var(--white); opacity: 0.7; line-height: 1.6; }
+
+  .footer { background: var(--black); padding: 14px 48px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--blush); font-style: italic; }
+  .footer-step { font-size: 10px; color: var(--blush); opacity: 0.4; letter-spacing: 0.08em; }
+
+  @media (max-width: 520px) {
+    .header, .body, .progress-bar-wrap, .footer { padding-left: 24px; padding-right: 24px; }
+    .strip { padding-left: 24px; padding-right: 24px; }
+    .item-detail { padding-left: 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <svg class="sunburst" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(65,65)" fill="white">
+        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/><polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/><polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/><polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/><polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/><polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/><polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/><polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/><polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <p class="brand-tag">Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 4</p>
+    <h1>Setup<br><em>Checklist</em></h1>
+    <p class="header-sub">5 non-negotiables. One afternoon. Done.</p>
+  </div>
+  <div class="strip">Done is better than perfect. You need these five things and nothing else to start.</div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="progress-label" id="progress-label">0 of 5</div>
+  </div>
+
+  <div class="body">
+    <div id="checklist"></div>
+    <div class="complete-banner" id="complete-banner">
+      <h3>You're set up. Now go get a client.</h3>
+      <p>Everything you need is in place. Stop tweaking, stop adjusting, stop waiting until it's perfect. Your next step is Step 5 - show up every day and get visible.</p>
+    </div>
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Write your bio and first post in one go</div>
+      <div class="ai-desc">Once your profile is set up, use this prompt to write your bio and your very first piece of content.</div>
+      <div class="ai-prompt" id="ai-prompt-text">I've just set up my online business profile and I need help with two things.
+
+My niche: I help [who you help] who [their problem] to [the transformation].
+My business model: [coaching / digital products / services / network marketing / high-ticket direct sales]
+My personal story in one sentence: [why you do this and what makes you credible]
+My offer in one sentence: [what you sell, who it's for, what it costs]
+My call to action: [what you want people to do - book a call, DM you, visit a link]
+
+Please write me:
+1. An Instagram/Facebook bio (under 150 characters) that clearly states who I help and what to do next
+2. My first "introduction" post that tells my story, who I help, and what I offer - warm, honest, not salesy
+3. A caption for a story or reel I can post today to announce I'm open for business
+
+Tone: real, warm, and human. Not corporate. Not hype.</div>
+      <button class="btn-copy" onclick="copyPrompt()">Copy prompt →</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Rise Beyond the 9 to 5</span>
+    <span class="footer-step">Step 4 of 8 · Setup Checklist</span>
+  </div>
+</div>
+
+<script>
+const ITEMS = [
+  {
+    num: "Non-negotiable 1",
+    title: "A social profile that clearly says who you help",
+    why: "Your profile is your shop window. If someone lands on it and can't immediately understand who you are and who you help, they leave. You have 3 seconds.",
+    steps: [
+      "Update your name or handle to include your niche if possible (e.g. 'Jo | Freedom Business Coach')",
+      "Write a bio that states: who you help, what you help them do, and what to do next",
+      "Use a clear, recent photo of your face - not a logo, not a landscape",
+      "Add a link in bio (use Linktree or Stan Store if you have multiple links)",
+      "Check your profile on mobile - that's how most people will see it"
+    ],
+    tools: ["Canva (graphics)", "Linktree (free link in bio)", "Stan Store (free link hub)"],
+    tip: "Use this formula: I help [who] to [result]. [Call to action]. e.g. 'I help mums build online businesses around their family. Book a free call below.'"
+  },
+  {
+    num: "Non-negotiable 2",
+    title: "A way to capture leads",
+    why: "Social media followers are rented - algorithms change, accounts get suspended. An email list or WhatsApp group is yours. Start building it from day one.",
+    steps: [
+      "Decide where you'll capture leads: email list, WhatsApp community, or both",
+      "Set up a free account on Mailerlite, Brevo, or Kit (all free to start)",
+      "Create a simple opt-in - a free resource, a checklist, or a 'book a call' form",
+      "Add the sign-up link to your bio and start directing people to it in your content",
+      "If using WhatsApp, create a community or group with a clear name and purpose"
+    ],
+    tools: ["Mailerlite (free up to 1,000 subscribers)", "Brevo (free email)", "Kit (free for creators)", "Google Forms (simple lead capture)"],
+    tip: "You don't need a fancy opt-in page to start. A simple Google Form works. The habit of capturing emails matters more than the tool right now."
+  },
+  {
+    num: "Non-negotiable 3",
+    title: "A payment link",
+    why: "You cannot get paid without a way to receive money. Set this up before you have a client - not after someone says yes. Fumbling for payment details kills momentum.",
+    steps: [
+      "Set up PayPal.me with your name (free, instant, works globally)",
+      "Or create a Stripe account if you want a more professional checkout (free to set up, small % fee per transaction)",
+      "Or use Systeme.io which combines checkout, email, and course hosting in one free account",
+      "Test it - pay yourself £1 to make sure it works",
+      "Save the payment link somewhere you can send it instantly when needed"
+    ],
+    tools: ["PayPal.me (free, instant)", "Stripe (professional checkout)", "Systeme.io (all-in-one free plan)", "Buy Me a Coffee (simple one-off payments)"],
+    tip: "Don't overthink this. PayPal.me/yourname takes 2 minutes to set up. You can move to something more professional later. Done beats perfect."
+  },
+  {
+    num: "Non-negotiable 4",
+    title: "A simple weekly content plan",
+    why: "Consistency beats quality every time on social media. A plan means you're never staring at a blank screen wondering what to post - you already know.",
+    steps: [
+      "Decide how many times per week you can realistically post (3-5 is ideal, 1 is better than none)",
+      "Choose 3 content pillars - the 3 topics you'll rotate between (e.g. your story, tips for your niche, your offer)",
+      "Plan one week at a time - not a month. Keep it simple.",
+      "Batch your content: set aside 1-2 hours once a week to plan and create everything",
+      "Use your Content Creation Kit for hook ideas and prompt calendars"
+    ],
+    tools: ["Canva (create posts)", "Later or Buffer (free scheduling)", "Notes app (content planning)", "Google Sheets (simple content calendar)"],
+    tip: "Your 3 pillars might be: 1) Your story and journey, 2) Tips and education for your audience, 3) Your offer and results. Rotate between these and you'll never run out of content."
+  },
+  {
+    num: "Non-negotiable 5",
+    title: "One clear offer at one price",
+    why: "Confusion kills sales. If you have multiple things to offer, people choose nothing. You need one offer, at one price, with one way to buy. Everything else can come later.",
+    steps: [
+      "Define exactly what your offer is: what's included, how long, what they get",
+      "Set one price and commit to it for at least 30 days",
+      "Write your offer out using your Offer One-Pager template",
+      "Make sure you can explain your offer in one sentence when someone asks what you do",
+      "Put your offer in your bio, in your content, and ready to send the moment someone asks"
+    ],
+    tools: ["Offer One-Pager template (in your toolkit)", "Canva (create a visual offer summary)", "Google Docs (write your offer clearly)"],
+    tip: "One offer. One price. One call to action. When you're ready to add more, you'll know - but don't do it yet. Master one thing first."
+  }
+];
+
+let done = new Set();
+
+function render() {
+  const container = document.getElementById('checklist');
+  container.innerHTML = '';
+  ITEMS.forEach((item, i) => {
+    const isDone = done.has(i);
+    const el = document.createElement('div');
+    el.className = 'checklist-item';
+    el.innerHTML = `
+      <div class="item-header" onclick="toggleItem(${i})">
+        <div class="check-circle ${isDone ? 'done' : ''}" onclick="toggleDone(event,${i})"></div>
+        <div class="item-main">
+          <div class="item-num">${item.num}</div>
+          <div class="item-title ${isDone ? 'done' : ''}">${item.title}</div>
+        </div>
+        <div class="expand-arrow" id="arrow-${i}">▼</div>
+      </div>
+      <div class="item-detail" id="detail-${i}">
+        <p class="detail-why">${item.why}</p>
+        <ul class="detail-steps">${item.steps.map(s => `<li>${s}</li>`).join('')}</ul>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:var(--warm-grey);margin-bottom:8px;">Recommended free tools</div>
+        <div class="detail-tools">${item.tools.map(t => `<div class="tool-chip">${t}</div>`).join('')}</div>
+        <div class="detail-tip">${item.tip}</div>
+      </div>`;
+    container.appendChild(el);
+  });
+  updateProgress();
+}
+
+function toggleItem(i) {
+  const detail = document.getElementById(`detail-${i}`);
+  const arrow = document.getElementById(`arrow-${i}`);
+  const isOpen = detail.classList.contains('open');
+  document.querySelectorAll('.item-detail').forEach(d => d.classList.remove('open'));
+  document.querySelectorAll('.expand-arrow').forEach(a => a.classList.remove('open'));
+  if (!isOpen) { detail.classList.add('open'); arrow.classList.add('open'); }
+}
+
+function toggleDone(e, i) {
+  e.stopPropagation();
+  if (done.has(i)) { done.delete(i); } else { done.add(i); }
+  render();
+  const banner = document.getElementById('complete-banner');
+  banner.classList.toggle('show', done.size === ITEMS.length);
+}
+
+function updateProgress() {
+  const pct = (done.size / ITEMS.length) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${done.size} of ${ITEMS.length}`;
+}
+
+function copyPrompt() {
+  const text = document.getElementById('ai-prompt-text').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.btn-copy');
+    btn.textContent = 'Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy prompt →'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+render();
+</script>
+</body>
+</html>
