@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freedom Score Quiz – Rise Beyond the 9 to 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:      #1a1a1a;
+    --blush:      #e8d9d0;
+    --blush-deep: #d4c0b4;
+    --cream:      #f5f0e8;
+    --warm-grey:  #6b6560;
+    --light-grey: #d9d3cc;
+    --white:      #ffffff;
+  }
+
+  body {
+    background: var(--black);
+    font-family: 'Inter', sans-serif;
+    color: var(--black);
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .quiz-shell {
+    width: 100%;
+    max-width: 640px;
+    min-height: 100vh;
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── HEADER ── */
+  .q-header {
+    background: var(--black);
+    padding: 32px 40px 28px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .sunburst-deco {
+    position: absolute; right: -20px; top: -20px;
+    width: 130px; height: 130px; opacity: 0.1;
+  }
+
+  .brand-tag {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.12em;
+    color: var(--blush); opacity: 0.6; margin-bottom: 10px;
+  }
+
+  .q-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px; font-weight: 600; line-height: 1.1;
+    color: var(--white);
+  }
+
+  .q-header h1 em { color: var(--blush); font-style: italic; font-weight: 400; }
+
+  .header-sub {
+    font-size: 12px; color: var(--blush); opacity: 0.55;
+    font-weight: 300; margin-top: 6px;
+  }
+
+  /* ── PROGRESS ── */
+  .progress-bar-wrap {
+    background: var(--light-grey);
+    height: 3px;
+  }
+  .progress-bar {
+    height: 3px;
+    background: var(--black);
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  /* ── SCREENS ── */
+  .screen { display: none; flex: 1; flex-direction: column; }
+  .screen.active { display: flex; }
+
+  /* ── WELCOME SCREEN ── */
+  .welcome-body {
+    padding: 48px 40px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .welcome-body h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 600;
+    margin-bottom: 16px; line-height: 1.2;
+  }
+
+  .welcome-body p {
+    font-size: 14px; color: var(--warm-grey);
+    line-height: 1.7; margin-bottom: 12px;
+  }
+
+  .quiz-meta {
+    display: flex; gap: 24px; margin: 28px 0 36px;
+  }
+
+  .quiz-meta-item {
+    text-align: center;
+  }
+
+  .quiz-meta-item .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 600; color: var(--black);
+    line-height: 1;
+  }
+
+  .quiz-meta-item .lbl {
+    font-size: 11px; color: var(--warm-grey);
+    margin-top: 4px; font-weight: 500;
+  }
+
+  /* ── BUTTONS ── */
+  .btn-primary {
+    background: var(--black); color: var(--white);
+    border: none; padding: 16px 32px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; font-weight: 500;
+    cursor: pointer; width: 100%;
+    letter-spacing: 0.04em;
+    transition: opacity 0.15s;
+  }
+
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  /* ── QUESTION SCREEN ── */
+  .question-body {
+    padding: 40px 40px 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .q-counter {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+    color: var(--warm-grey); margin-bottom: 24px;
+  }
+
+  .q-area-badge {
+    display: inline-block;
+    background: var(--blush);
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 4px 12px;
+    margin-bottom: 14px;
+    color: var(--black);
+  }
+
+  .q-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 600;
+    line-height: 1.25; color: var(--black);
+    margin-bottom: 8px;
+  }
+
+  .q-sub {
+    font-size: 12.5px; color: var(--warm-grey);
+    line-height: 1.6; margin-bottom: 32px;
+  }
+
+  /* Score selector */
+  .score-label-row {
+    display: flex; justify-content: space-between;
+    font-size: 10px; color: var(--warm-grey);
+    margin-bottom: 8px; font-weight: 500;
+  }
+
+  .score-circles {
+    display: flex; gap: 0;
+    margin-bottom: 32px;
+  }
+
+  .score-circles input[type="radio"] { display: none; }
+
+  .score-circles label {
+    flex: 1;
+    aspect-ratio: 1;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 500;
+    color: var(--warm-grey);
+    border: 1.5px solid var(--light-grey);
+    border-right: none;
+    cursor: pointer;
+    transition: background 0.12s, color 0.12s, border-color 0.12s;
+  }
+
+  .score-circles label:last-of-type { border-right: 1.5px solid var(--light-grey); }
+
+  .score-circles label:hover {
+    background: var(--blush); color: var(--black);
+  }
+
+  .score-circles input[type="radio"]:checked + label {
+    background: var(--black); color: var(--white);
+    border-color: var(--black);
+  }
+
+  .q-nav {
+    margin-top: auto;
+    display: flex; gap: 12px;
+  }
+
+  .btn-back {
+    background: transparent; color: var(--warm-grey);
+    border: 1.5px solid var(--light-grey);
+    padding: 14px 20px;
+    font-family: 'Inter', sans-serif; font-size: 12px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+    flex-shrink: 0;
+  }
+
+  .btn-back:hover { border-color: var(--black); color: var(--black); }
+
+  /* ── LIFE-RIGHT-NOW SCREEN ── */
+  .life-body {
+    padding: 40px 40px 32px;
+    flex: 1; display: flex; flex-direction: column;
+  }
+
+  .life-body h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .life-body .intro-text {
+    font-size: 13px; color: var(--warm-grey);
+    line-height: 1.6; margin-bottom: 28px;
+  }
+
+  .field-group { margin-bottom: 20px; }
+
+  .field-label {
+    font-size: 12px; font-weight: 600;
+    margin-bottom: 8px; color: var(--black);
+    display: block;
+  }
+
+  .field-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1.5px solid var(--light-grey);
+    background: transparent;
+    padding: 8px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; color: var(--black);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .field-input:focus { border-bottom-color: var(--black); }
+
+  textarea.field-input {
+    resize: none; height: 60px;
+    line-height: 1.6; padding-top: 6px;
+  }
+
+  /* ── RESULTS SCREEN ── */
+  .results-body {
+    padding: 40px 40px 40px;
+    flex: 1; display: flex; flex-direction: column;
+  }
+
+  .score-hero {
+    background: var(--black);
+    padding: 32px;
+    display: flex; align-items: center;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .score-big {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px; font-weight: 600;
+    color: var(--blush); line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .score-big .denom {
+    font-size: 24px; opacity: 0.5;
+  }
+
+  .score-meta { color: var(--white); }
+
+  .score-band {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 600;
+    color: var(--blush); margin-bottom: 6px;
+  }
+
+  .score-desc {
+    font-size: 12px; color: var(--white); opacity: 0.6;
+    line-height: 1.6;
+  }
+
+  .breakdown-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .breakdown-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--light-grey);
+  }
+
+  .breakdown-row:last-child { border-bottom: none; }
+
+  .breakdown-label {
+    font-size: 12.5px; font-weight: 600;
+    flex: 1;
+  }
+
+  .breakdown-bar-wrap {
+    flex: 2;
+    height: 6px;
+    background: var(--light-grey);
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  .breakdown-bar {
+    height: 100%;
+    background: var(--black);
+    transition: width 0.6s ease;
+  }
+
+  .breakdown-score {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 600;
+    min-width: 28px; text-align: right;
+  }
+
+  /* AI insight */
+  .ai-insight {
+    background: var(--blush);
+    padding: 24px 28px;
+    margin: 28px 0;
+  }
+
+  .ai-insight-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.1em; color: var(--warm-grey);
+    margin-bottom: 10px;
+  }
+
+  .ai-insight-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; line-height: 1.55;
+    color: var(--black); font-style: italic;
+  }
+
+  .ai-loading {
+    display: flex; align-items: center; gap: 8px;
+    color: var(--warm-grey); font-size: 13px;
+  }
+
+  .dot-pulse {
+    display: flex; gap: 4px;
+  }
+
+  .dot-pulse span {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--warm-grey);
+    animation: pulse 1.2s ease-in-out infinite;
+  }
+
+  .dot-pulse span:nth-child(2) { animation-delay: 0.2s; }
+  .dot-pulse span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+  }
+
+  /* ── FOOTER ── */
+  .q-footer {
+    background: var(--black);
+    padding: 14px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; color: var(--blush); font-style: italic;
+  }
+
+  .footer-step {
+    font-size: 10px; color: var(--blush);
+    opacity: 0.4; letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 500px) {
+    .q-header, .question-body, .welcome-body,
+    .life-body, .results-body { padding-left: 24px; padding-right: 24px; }
+    .q-footer { padding-left: 24px; padding-right: 24px; }
+    .score-big { font-size: 56px; }
+    .score-band { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="quiz-shell">
+
+  <!-- HEADER -->
+  <div class="q-header">
+    <svg class="sunburst-deco" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(65,65)" fill="white">
+        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <p class="brand-tag">Rise Beyond the 9 to 5 &nbsp;·&nbsp; The Rise Flight Plan &nbsp;·&nbsp; Step 1</p>
+    <h1>Freedom Score<br><em>Scorecard</em></h1>
+    <p class="header-sub">Discover where you really are — and what to do next.</p>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+  <!-- SCREEN: WELCOME -->
+  <div class="screen active" id="screen-welcome">
+    <div class="welcome-body">
+      <h2>Before we build your freedom life, let's find your starting point.</h2>
+      <p>This scorecard takes 3 minutes. Rate yourself honestly across five areas of your life right now — not where you hope to be, where you actually are.</p>
+      <p>At the end you'll get your Freedom Score, a personalised breakdown, and a clear next step.</p>
+      <div class="quiz-meta">
+        <div class="quiz-meta-item">
+          <div class="num">5</div>
+          <div class="lbl">Areas</div>
+        </div>
+        <div class="quiz-meta-item">
+          <div class="num">3</div>
+          <div class="lbl">Minutes</div>
+        </div>
+        <div class="quiz-meta-item">
+          <div class="num">50</div>
+          <div class="lbl">Max Score</div>
+        </div>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="startQuiz()">Start My Scorecard</button>
+  </div>
+
+  <!-- SCREEN: QUESTIONS -->
+  <div class="screen" id="screen-question">
+    <div class="question-body">
+      <div class="q-counter" id="q-counter">Question 1 of 5</div>
+      <div class="q-area-badge" id="q-badge">Income</div>
+      <div class="q-text" id="q-text"></div>
+      <div class="q-sub" id="q-sub"></div>
+
+      <div class="score-label-row">
+        <span>Not at all</span>
+        <span>Completely</span>
+      </div>
+      <div class="score-circles" id="score-circles"></div>
+
+      <div class="q-nav">
+        <button class="btn-back" id="btn-back" onclick="prevQuestion()">← Back</button>
+        <button class="btn-primary" id="btn-next" onclick="nextQuestion()" disabled>Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: LIFE RIGHT NOW -->
+  <div class="screen" id="screen-life">
+    <div class="life-body">
+      <h2>One more thing — your starting line.</h2>
+      <p class="intro-text">These details become your "before." At Step 7 you'll look back at this and see exactly how far you've come. Be honest — no one else sees this.</p>
+
+      <div class="field-group">
+        <label class="field-label" for="f-income">My current income (approximate monthly)</label>
+        <input type="text" id="f-income" class="field-input" placeholder="e.g. £2,400 salary">
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="f-hours">Hours I work each week</label>
+        <input type="text" id="f-hours" class="field-input" placeholder="e.g. 45 hours employed + side hustle">
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="f-drain">What's draining my energy most right now</label>
+        <textarea id="f-drain" class="field-input" placeholder="The commute, no time with the kids, asking permission for a day off..."></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="f-vision">What I want my life to look like instead</label>
+        <textarea id="f-vision" class="field-input" placeholder="Where do you want to live? How do you want to spend your mornings?"></textarea>
+      </div>
+
+      <div class="q-nav" style="margin-top: 28px;">
+        <button class="btn-back" onclick="showScreen('screen-question'); currentQ = questions.length - 1; renderQuestion();">← Back</button>
+        <button class="btn-primary" onclick="showResults()">See My Freedom Score →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: RESULTS -->
+  <div class="screen" id="screen-results">
+    <div class="results-body">
+
+      <div class="score-hero">
+        <div class="score-big" id="result-score">—<span class="denom">/50</span></div>
+        <div class="score-meta">
+          <div class="score-band" id="result-band">—</div>
+          <div class="score-desc" id="result-desc">—</div>
+        </div>
+      </div>
+
+      <div class="breakdown-title">Your breakdown</div>
+      <div id="breakdown-rows"></div>
+
+      <div class="ai-insight" id="ai-insight">
+        <div class="ai-insight-label">Your personalised insight</div>
+        <div class="ai-loading">
+          <div class="dot-pulse">
+            <span></span><span></span><span></span>
+          </div>
+          <span>Getting your insight...</span>
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="window.print()">Print / Save My Scorecard</button>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="q-footer">
+    <span class="footer-brand">Rise Beyond the 9 to 5</span>
+    <span class="footer-step">Step 1 of 8</span>
+  </div>
+
+</div>
+
+<script>
+  const questions = [
+    {
+      area: "Income Confidence",
+      text: "How confident do you feel in your ability to earn consistently?",
+      sub: "Think about right now — not what you're working toward, but how you feel today about your income and earning power.",
+      key: "income"
+    },
+    {
+      area: "Time Freedom",
+      text: "How much real control do you have over your day?",
+      sub: "Not just weekends — your actual day-to-day. Do you choose how you spend your time, or does someone else?",
+      key: "time"
+    },
+    {
+      area: "Business Clarity",
+      text: "How clear are you on what your business looks like and who it serves?",
+      sub: "Do you have a clear offer, a clear audience, and a clear path? Or are you still figuring out your direction?",
+      key: "clarity"
+    },
+    {
+      area: "Daily Consistency",
+      text: "How consistently are you showing up and taking action?",
+      sub: "Not on good days — overall. Do you have a daily habit of working toward your goals, or is it still hit and miss?",
+      key: "consistency"
+    },
+    {
+      area: "Self-Belief",
+      text: "How strongly do you believe you can actually build this life?",
+      sub: "Deep down — not the version you say out loud. How much do you genuinely believe this is possible for you?",
+      key: "belief"
+    }
+  ];
+
+  const bands = [
+    { min: 1,  max: 20, name: "Just Getting Started",  desc: "You're at the very beginning — and that's completely fine. Most people start here. The fact that you're measuring means you're already ahead." },
+    { min: 21, max: 35, name: "Building Momentum",     desc: "Some foundations are in place but you haven't found your consistent groove yet. Steps 1–4 of the Rise Flight Plan will build your daily rhythm." },
+    { min: 36, max: 45, name: "On Your Way",            desc: "Real progress is happening. A few key areas need attention — your breakdown will show exactly where to focus your energy next." },
+    { min: 46, max: 50, name: "Ready to Scale",         desc: "Strong across the board. Your next focus is multiplication — building systems, leverage, and team into what's already working." }
+  ];
+
+  let scores = {};
+  let currentQ = 0;
+
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function updateProgress(step, total) {
+    document.getElementById('progress-bar').style.width = ((step / total) * 100) + '%';
+  }
+
+  function startQuiz() {
+    currentQ = 0;
+    scores = {};
+    showScreen('screen-question');
+    renderQuestion();
+    updateProgress(0, questions.length + 2);
+  }
+
+  function renderQuestion() {
+    const q = questions[currentQ];
+    document.getElementById('q-counter').textContent = `Question ${currentQ + 1} of ${questions.length}`;
+    document.getElementById('q-badge').textContent = q.area;
+    document.getElementById('q-text').textContent = q.text;
+    document.getElementById('q-sub').textContent = q.sub;
+
+    const container = document.getElementById('score-circles');
+    container.innerHTML = '';
+    for (let i = 1; i <= 10; i++) {
+      const input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'current-score';
+      input.id = `s${i}`;
+      input.value = i;
+      if (scores[q.key] === i) input.checked = true;
+      input.addEventListener('change', () => {
+        scores[q.key] = i;
+        document.getElementById('btn-next').disabled = false;
+      });
+
+      const label = document.createElement('label');
+      label.htmlFor = `s${i}`;
+      label.textContent = i;
+
+      container.appendChild(input);
+      container.appendChild(label);
+    }
+
+    document.getElementById('btn-next').disabled = !scores[q.key];
+    document.getElementById('btn-back').style.visibility = currentQ === 0 ? 'hidden' : 'visible';
+    updateProgress(currentQ, questions.length + 2);
+  }
+
+  function nextQuestion() {
+    if (!scores[questions[currentQ].key]) return;
+    if (currentQ < questions.length - 1) {
+      currentQ++;
+      renderQuestion();
+    } else {
+      showScreen('screen-life');
+      updateProgress(questions.length + 1, questions.length + 2);
+    }
+  }
+
+  function prevQuestion() {
+    if (currentQ > 0) { currentQ--; renderQuestion(); }
+  }
+
+  async function showResults() {
+    showScreen('screen-results');
+    updateProgress(questions.length + 2, questions.length + 2);
+
+    const total = Object.values(scores).reduce((a, b) => a + b, 0);
+    const band = bands.find(b => total >= b.min && total <= b.max) || bands[0];
+
+    document.getElementById('result-score').innerHTML = `${total}<span class="denom">/50</span>`;
+    document.getElementById('result-band').textContent = band.name;
+    document.getElementById('result-desc').textContent = band.desc;
+
+    // Breakdown
+    const breakdownEl = document.getElementById('breakdown-rows');
+    breakdownEl.innerHTML = '';
+    questions.forEach(q => {
+      const score = scores[q.key] || 0;
+      const row = document.createElement('div');
+      row.className = 'breakdown-row';
+      row.innerHTML = `
+        <div class="breakdown-label">${q.area}</div>
+        <div class="breakdown-bar-wrap">
+          <div class="breakdown-bar" style="width:${score * 10}%"></div>
+        </div>
+        <div class="breakdown-score">${score}</div>
+      `;
+      breakdownEl.appendChild(row);
+    });
+
+    // AI insight
+    const insightEl = document.getElementById('ai-insight');
+    try {
+      const sample = await window.claude.use('sample');
+      if (!sample) throw new Error('unavailable');
+
+      const breakdown = questions.map(q => `${q.area}: ${scores[q.key]}/10`).join(', ');
+      const lifeNow = [
+        document.getElementById('f-income').value,
+        document.getElementById('f-hours').value,
+        document.getElementById('f-drain').value,
+        document.getElementById('f-vision').value
+      ].filter(Boolean).join(' | ');
+
+      const prompt = `You are a warm, encouraging freedom lifestyle coach. A mum has just completed her Freedom Score Scorecard as part of Step 1 of the Rise Flight Plan coaching programme.
+
+Her scores: ${breakdown}
+Total: ${total}/50 — ${band.name}
+${lifeNow ? `Her life right now: ${lifeNow}` : ''}
+
+Write her a personalised 3-sentence insight. Be specific to her lowest scoring areas. Be warm and honest — acknowledge the real challenge, then redirect to belief and the next step. End with one specific action she should take in Step 1. Do not use bullet points. Do not use generic affirmations. Sound like a real coach who has read her actual scores.`;
+
+      let text = '';
+      await sample(prompt, {
+        modelTier: 'default',
+        onText: ({ text: t }) => {
+          text = t;
+          insightEl.innerHTML = `
+            <div class="ai-insight-label">Your personalised insight</div>
+            <div class="ai-insight-text">${text}</div>
+          `;
+        }
+      });
+    } catch (e) {
+      // Fallback if sample unavailable
+      const lowest = Object.entries(scores).sort((a,b) => a[1]-b[1])[0];
+      const lowestArea = questions.find(q => q.key === lowest[0])?.area || 'self-belief';
+      insightEl.innerHTML = `
+        <div class="ai-insight-label">Your next focus</div>
+        <div class="ai-insight-text">Your score of ${total}/50 shows exactly where you are right now — and ${lowestArea} is the area that needs your attention first. That's not a weakness, it's your roadmap. Complete the Freedom Quiz next to get specific about what your freedom life actually looks like, then move to Step 2.</div>
+      `;
+    }
+  }
+</script>
+</body>
+</html>
