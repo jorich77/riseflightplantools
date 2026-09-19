@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Win and Celebrate Kit – Rise Beyond the 9 to 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #1a1a1a; --blush: #e8d9d0; --blush-deep: #d4c0b4;
+    --cream: #f5f0e8; --warm-grey: #6b6560; --light-grey: #d9d3cc; --white: #ffffff;
+  }
+  body { background: var(--black); font-family: 'Inter', sans-serif; color: var(--black); min-height: 100vh; }
+  .page { max-width: 680px; margin: 0 auto; background: var(--white); min-height: 100vh; display: flex; flex-direction: column; }
+
+  .header { background: var(--black); padding: 36px 48px 28px; position: relative; overflow: hidden; flex-shrink: 0; }
+  .sunburst { position: absolute; right: -20px; top: -20px; width: 130px; height: 130px; opacity: 0.1; }
+  .brand-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; color: var(--blush); opacity: 0.6; margin-bottom: 10px; }
+  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 600; line-height: 1.1; color: var(--white); }
+  .header h1 em { color: var(--blush); font-style: italic; font-weight: 400; }
+  .header-sub { font-size: 12px; color: var(--blush); opacity: 0.55; font-weight: 300; margin-top: 8px; }
+  .strip { background: var(--blush); padding: 11px 48px; font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--black); }
+
+  .body { padding: 36px 48px 48px; flex: 1; }
+  .intro-text { font-size: 13px; color: var(--warm-grey); line-height: 1.7; margin-bottom: 28px; }
+  .print-btn { background: var(--blush-deep); color: var(--black); border: none; padding: 12px 24px; font-size: 11.5px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; margin-bottom: 28px; display: block; }
+
+  /* SCORECARD REPEAT */
+  .scorecard-repeat { background: var(--black); padding: 24px 28px; margin-bottom: 28px; }
+  .sc-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--blush); margin-bottom: 6px; }
+  .sc-desc { font-size: 12px; color: var(--white); opacity: 0.6; line-height: 1.6; margin-bottom: 18px; }
+  .sc-areas { display: flex; flex-direction: column; gap: 10px; }
+  .sc-area { display: flex; align-items: center; gap: 12px; }
+  .sc-label { font-size: 12px; color: var(--white); opacity: 0.8; min-width: 140px; }
+  .sc-circles { display: flex; gap: 4px; }
+  .sc-circles input[type="radio"] { display: none; }
+  .sc-circles label { width: 24px; height: 24px; border: 1.5px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 9px; color: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.12s; }
+  .sc-circles input[type="radio"]:checked + label { background: var(--blush); border-color: var(--blush); color: var(--black); font-weight: 600; }
+  .sc-total { margin-top: 14px; font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--blush); }
+  .sc-total span { font-size: 32px; font-weight: 600; }
+
+  /* WIN DEFINITION */
+  .section { margin-bottom: 28px; }
+  .section-header { background: var(--black); padding: 10px 16px; margin-bottom: 14px; }
+  .section-header-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--white); }
+  .section-header-sub { font-size: 10px; color: var(--blush); opacity: 0.6; }
+
+  .field-group { margin-bottom: 16px; }
+  .field-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; color: var(--warm-grey); margin-bottom: 6px; display: block; }
+  textarea, input[type="text"] {
+    width: 100%; border: 1.5px solid var(--light-grey); background: var(--white);
+    padding: 10px 14px; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--black);
+    outline: none; resize: none; line-height: 1.6; transition: border-color 0.15s;
+  }
+  textarea:focus, input[type="text"]:focus { border-color: var(--black); }
+
+  /* WIN CHECKLIST */
+  .win-check-list { display: flex; flex-direction: column; gap: 8px; }
+  .win-check { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border: 1.5px solid var(--light-grey); cursor: pointer; transition: all 0.12s; }
+  .win-check.ticked { background: var(--cream); border-color: var(--black); }
+  .win-check-box { width: 20px; height: 20px; min-width: 20px; border: 1.5px solid var(--light-grey); display: flex; align-items: center; justify-content: center; transition: all 0.12s; }
+  .win-check.ticked .win-check-box { background: var(--black); border-color: var(--black); }
+  .win-check.ticked .win-check-box::after { content: ''; width: 7px; height: 4px; border-left: 2px solid white; border-bottom: 2px solid white; transform: rotate(-45deg) translateY(-1px); display: block; }
+  .win-check-text { font-size: 12.5px; color: var(--black); line-height: 1.5; }
+
+  /* CELEBRATION */
+  .celebration-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+  .cel-option { border: 1.5px solid var(--light-grey); padding: 12px 14px; cursor: pointer; transition: all 0.12s; font-size: 12px; color: var(--black); display: flex; align-items: center; gap: 8px; }
+  .cel-option.selected { border-color: var(--black); background: var(--cream); }
+  .cel-option input[type="checkbox"] { display: none; }
+  .cel-box { width: 14px; height: 14px; min-width: 14px; border: 1.5px solid var(--light-grey); transition: all 0.12s; display: flex; align-items: center; justify-content: center; }
+  .cel-option.selected .cel-box { background: var(--black); border-color: var(--black); }
+  .cel-option.selected .cel-box::after { content: ''; width: 5px; height: 3px; border-left: 1.5px solid white; border-bottom: 1.5px solid white; transform: rotate(-45deg) translateY(-0.5px); display: block; }
+
+  /* BEFORE/AFTER */
+  .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .ba-box { padding: 16px; }
+  .ba-before { background: var(--light-grey); }
+  .ba-after { background: var(--black); }
+  .ba-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .ba-before .ba-label { color: var(--warm-grey); }
+  .ba-after .ba-label { color: var(--blush); opacity: 0.7; }
+  .ba-before textarea { background: var(--white); font-size: 12px; }
+  .ba-after textarea { background: rgba(255,255,255,0.1); color: var(--white); border-color: rgba(255,255,255,0.2); font-size: 12px; }
+  .ba-after textarea::placeholder { color: rgba(255,255,255,0.3); }
+  .ba-after textarea:focus { border-color: var(--blush); }
+
+  /* AI BOXES */
+  .ai-box { background: var(--black); padding: 22px 26px; margin-top: 8px; margin-bottom: 16px; }
+  .ai-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--blush); opacity: 0.7; margin-bottom: 8px; }
+  .ai-title { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--white); margin-bottom: 8px; }
+  .ai-desc { font-size: 12px; color: var(--blush); opacity: 0.65; line-height: 1.6; margin-bottom: 14px; }
+  .ai-prompt { background: #111; border-left: 3px solid var(--blush-deep); padding: 14px 16px; font-size: 11.5px; color: var(--blush); line-height: 1.7; font-style: italic; margin-bottom: 14px; white-space: pre-wrap; }
+  .btn-copy { background: var(--blush); color: var(--black); border: none; padding: 10px 18px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
+  .btn-copy:hover { opacity: 0.8; }
+  .btn-copy.copied { background: var(--blush-deep); }
+
+  .footer { background: var(--black); padding: 14px 48px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--blush); font-style: italic; }
+  .footer-step { font-size: 10px; color: var(--blush); opacity: 0.4; letter-spacing: 0.08em; }
+
+  @media print {
+    body { background: white; }
+    .print-btn, .ai-box { display: none; }
+    .header, .strip, .section-header, .scorecard-repeat, .ba-after, .footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  @media (max-width: 520px) {
+    .header, .body, .footer, .strip { padding-left: 24px; padding-right: 24px; }
+    .before-after, .celebration-options { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <svg class="sunburst" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(65,65)" fill="white">
+        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/><polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/><polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/><polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/><polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/><polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/><polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/><polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/><polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <p class="brand-tag">Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 8</p>
+    <h1>Win and<br><em>Celebrate Kit</em></h1>
+    <p class="header-sub">You've done something most people only talk about. Now prove it to yourself.</p>
+  </div>
+  <div class="strip">Celebrating your wins is not a luxury. It's a business strategy.</div>
+
+  <div class="body">
+    <p class="intro-text">Before you think about what's next - stop. Fill this in. Every section of it. The people who celebrate their wins are the people who keep going. This is your proof that you did it.</p>
+    <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+
+    <!-- FREEDOM SCORE REPEAT -->
+    <div class="scorecard-repeat">
+      <div class="sc-title">Your Freedom Score - now</div>
+      <div class="sc-desc">Fill this in and compare it to your Step 1 score. That difference is real. You did that.</div>
+      <div class="sc-areas">
+        <div class="sc-area">
+          <div class="sc-label">Income confidence</div>
+          <div class="sc-circles">
+            <input type="radio" name="sc1" id="sc1a"><label for="sc1a">1</label>
+            <input type="radio" name="sc1" id="sc1b"><label for="sc1b">2</label>
+            <input type="radio" name="sc1" id="sc1c"><label for="sc1c">3</label>
+            <input type="radio" name="sc1" id="sc1d"><label for="sc1d">4</label>
+            <input type="radio" name="sc1" id="sc1e"><label for="sc1e">5</label>
+            <input type="radio" name="sc1" id="sc1f"><label for="sc1f">6</label>
+            <input type="radio" name="sc1" id="sc1g"><label for="sc1g">7</label>
+            <input type="radio" name="sc1" id="sc1h"><label for="sc1h">8</label>
+            <input type="radio" name="sc1" id="sc1i"><label for="sc1i">9</label>
+            <input type="radio" name="sc1" id="sc1j"><label for="sc1j">10</label>
+          </div>
+        </div>
+        <div class="sc-area">
+          <div class="sc-label">Time freedom</div>
+          <div class="sc-circles">
+            <input type="radio" name="sc2" id="sc2a"><label for="sc2a">1</label>
+            <input type="radio" name="sc2" id="sc2b"><label for="sc2b">2</label>
+            <input type="radio" name="sc2" id="sc2c"><label for="sc2c">3</label>
+            <input type="radio" name="sc2" id="sc2d"><label for="sc2d">4</label>
+            <input type="radio" name="sc2" id="sc2e"><label for="sc2e">5</label>
+            <input type="radio" name="sc2" id="sc2f"><label for="sc2f">6</label>
+            <input type="radio" name="sc2" id="sc2g"><label for="sc2g">7</label>
+            <input type="radio" name="sc2" id="sc2h"><label for="sc2h">8</label>
+            <input type="radio" name="sc2" id="sc2i"><label for="sc2i">9</label>
+            <input type="radio" name="sc2" id="sc2j"><label for="sc2j">10</label>
+          </div>
+        </div>
+        <div class="sc-area">
+          <div class="sc-label">Business clarity</div>
+          <div class="sc-circles">
+            <input type="radio" name="sc3" id="sc3a"><label for="sc3a">1</label>
+            <input type="radio" name="sc3" id="sc3b"><label for="sc3b">2</label>
+            <input type="radio" name="sc3" id="sc3c"><label for="sc3c">3</label>
+            <input type="radio" name="sc3" id="sc3d"><label for="sc3d">4</label>
+            <input type="radio" name="sc3" id="sc3e"><label for="sc3e">5</label>
+            <input type="radio" name="sc3" id="sc3f"><label for="sc3f">6</label>
+            <input type="radio" name="sc3" id="sc3g"><label for="sc3g">7</label>
+            <input type="radio" name="sc3" id="sc3h"><label for="sc3h">8</label>
+            <input type="radio" name="sc3" id="sc3i"><label for="sc3i">9</label>
+            <input type="radio" name="sc3" id="sc3j"><label for="sc3j">10</label>
+          </div>
+        </div>
+        <div class="sc-area">
+          <div class="sc-label">Daily consistency</div>
+          <div class="sc-circles">
+            <input type="radio" name="sc4" id="sc4a"><label for="sc4a">1</label>
+            <input type="radio" name="sc4" id="sc4b"><label for="sc4b">2</label>
+            <input type="radio" name="sc4" id="sc4c"><label for="sc4c">3</label>
+            <input type="radio" name="sc4" id="sc4d"><label for="sc4d">4</label>
+            <input type="radio" name="sc4" id="sc4e"><label for="sc4e">5</label>
+            <input type="radio" name="sc4" id="sc4f"><label for="sc4f">6</label>
+            <input type="radio" name="sc4" id="sc4g"><label for="sc4g">7</label>
+            <input type="radio" name="sc4" id="sc4h"><label for="sc4h">8</label>
+            <input type="radio" name="sc4" id="sc4i"><label for="sc4i">9</label>
+            <input type="radio" name="sc4" id="sc4j"><label for="sc4j">10</label>
+          </div>
+        </div>
+        <div class="sc-area">
+          <div class="sc-label">Self-belief</div>
+          <div class="sc-circles">
+            <input type="radio" name="sc5" id="sc5a"><label for="sc5a">1</label>
+            <input type="radio" name="sc5" id="sc5b"><label for="sc5b">2</label>
+            <input type="radio" name="sc5" id="sc5c"><label for="sc5c">3</label>
+            <input type="radio" name="sc5" id="sc5d"><label for="sc5d">4</label>
+            <input type="radio" name="sc5" id="sc5e"><label for="sc5e">5</label>
+            <input type="radio" name="sc5" id="sc5f"><label for="sc5f">6</label>
+            <input type="radio" name="sc5" id="sc5g"><label for="sc5g">7</label>
+            <input type="radio" name="sc5" id="sc5h"><label for="sc5h">8</label>
+            <input type="radio" name="sc5" id="sc5i"><label for="sc5i">9</label>
+            <input type="radio" name="sc5" id="sc5j"><label for="sc5j">10</label>
+          </div>
+        </div>
+      </div>
+      <div class="sc-total">My total now: <span id="sc-total-num">—</span> / 50 &nbsp;|&nbsp; My score at Step 1: <input type="text" id="sc-step1" style="background:rgba(255,255,255,0.1);border:none;border-bottom:1px solid rgba(255,255,255,0.3);color:var(--blush);font-size:18px;font-family:'Cormorant Garamond',serif;font-weight:600;width:40px;padding:0 4px;outline:none;" placeholder="__"></div>
+    </div>
+
+    <!-- WIN DEFINITION -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-header-title">Define your win</div>
+        <div class="section-header-sub">Tick everything that applies to you</div>
+      </div>
+      <div class="win-check-list">
+        <div class="win-check" onclick="toggleWin(this)"><div class="win-check-box"></div><div class="win-check-text">I completed all 8 steps of the Rise Flight Plan</div></div>
+        <div class="win-check" onclick="toggleWin(this)"><div class="win-check-box"></div><div class="win-check-text">I made my first sale</div></div>
+        <div class="win-check" onclick="toggleWin(this)"><div class="win-check-box"></div><div class="win-check-text">I had my first discovery call</div></div>
+        <div class="win-check" onclick="toggleWin(this)"><div class="win-check-box"></div><div class="win-check-text">I showed up consistently when I didn't feel like it</div></div>
+        <div class="win-check" onclick="toggleWin(this)"><div class="win-check-box"></div><div class="win-check-text">I got my first lead organically</div></div>
+        <div class="win-check" onclick="toggleWin(this)"><div class="win-check-box"></div><div class="win-check-text">I built my email list from zero</div></div>
+        <div class="win-check" onclick="toggleWin(this)"><div class="win-check-box"></div><div class="win-check-text">I had a sales conversation without panicking</div></div>
+        <div class="win-check" onclick="toggleWin(this)"><div class="win-check-box"></div><div class="win-check-text">I chose my business model and committed to it</div></div>
+        <div class="win-check" onclick="toggleWin(this)"><div class="win-check-box"></div><div class="win-check-text">I created and launched my first offer</div></div>
+        <div class="win-check" onclick="toggleWin(this)"><div class="win-check-box"></div><div class="win-check-text">I put myself out there publicly for the first time</div></div>
+      </div>
+      <div class="field-group" style="margin-top:14px;">
+        <label class="field-label">My most important win - in my own words</label>
+        <textarea rows="3" placeholder="Write the win that means the most to you. The one that would have felt impossible when you started..."></textarea>
+      </div>
+    </div>
+
+    <!-- BEFORE AND AFTER -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-header-title">Before and after</div>
+        <div class="section-header-sub">Your starting point vs where you are now</div>
+      </div>
+      <div class="before-after">
+        <div class="ba-box ba-before">
+          <div class="ba-label">When I started, I was...</div>
+          <textarea rows="5" placeholder="Where were you? How did you feel? What was missing?"></textarea>
+        </div>
+        <div class="ba-box ba-after">
+          <div class="ba-label">Now I am...</div>
+          <textarea rows="5" placeholder="Where are you now? What's changed? What do you know or have that you didn't before?"></textarea>
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">The most surprising thing I discovered about myself</label>
+        <textarea rows="2" placeholder="What did you learn about what you're capable of?"></textarea>
+      </div>
+    </div>
+
+    <!-- CELEBRATION -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-header-title">How I'm celebrating</div>
+        <div class="section-header-sub">Choose at least two</div>
+      </div>
+      <div class="celebration-options">
+        <div class="cel-option" onclick="toggleCel(this)"><div class="cel-box"></div>Post my win in the community</div>
+        <div class="cel-option" onclick="toggleCel(this)"><div class="cel-box"></div>Screenshot collection saved</div>
+        <div class="cel-option" onclick="toggleCel(this)"><div class="cel-box"></div>Meal out or treat for myself</div>
+        <div class="cel-option" onclick="toggleCel(this)"><div class="cel-box"></div>Share on my social media</div>
+        <div class="cel-option" onclick="toggleCel(this)"><div class="cel-box"></div>Message someone who supported me</div>
+        <div class="cel-option" onclick="toggleCel(this)"><div class="cel-box"></div>Something just for me - no announcement</div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">My specific celebration plan</label>
+        <textarea rows="2" placeholder="What exactly are you doing to mark this? When? With who?"></textarea>
+      </div>
+    </div>
+
+    <!-- SHARE YOUR WIN - AI HACK -->
+    <div class="ai-box">
+      <div class="ai-label">AI HACK 1</div>
+      <div class="ai-title">Write your community win post</div>
+      <div class="ai-desc">Share your win in the community or on social media. Use this prompt to write it.</div>
+      <div class="ai-prompt">I've just completed a coaching programme and I want to write a post sharing my win with my community or on social media.
+
+My biggest win: [your answer from above]
+Where I started: [your before]
+Where I am now: [your after]
+The most surprising thing I discovered: [your answer]
+My Freedom Score went from [step 1 score] to [current score] out of 50
+
+Please write me:
+1. A heartfelt community post sharing my journey and win (3-4 paragraphs, personal and honest)
+2. A shorter Instagram/Facebook caption version (under 150 words) with a strong hook
+3. A story caption I can pair with a before/after or screenshot
+
+Tone: genuine, warm, and real. Not braggy - inspiring. Written like a message to someone who is standing at Step 1 right now wondering if this is possible for them.</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK 2</div>
+      <div class="ai-title">Turn your journey into a testimonial</div>
+      <div class="ai-desc">Your story is your most powerful marketing asset. Use this prompt to turn it into a case study.</div>
+      <div class="ai-prompt">I want to write a testimonial or case study about my experience going through a coaching programme.
+
+My name: [your name]
+The programme: The Rise Flight Plan - 8 step freedom business coaching
+Where I started: [your before in detail]
+What I struggled with most: [the thing that was hardest]
+The turning point: [the step or moment that changed things]
+My results: [specific outcomes - sales, leads, clarity, confidence, etc.]
+What I'd say to someone on the fence: [your honest advice]
+
+Please write me:
+1. A 3-4 sentence testimonial quote I can share publicly
+2. A short case study (intro, challenge, solution, result) in 200 words
+3. The one-line soundbite that captures my transformation
+
+Keep it honest and specific - no generic praise. The most powerful testimonials name specific results and real emotions.</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Rise Beyond the 9 to 5</span>
+    <span class="footer-step">Step 8 of 8 · Win and Celebrate Kit</span>
+  </div>
+</div>
+
+<script>
+// Scorecard total
+const scNames = ['sc1','sc2','sc3','sc4','sc5'];
+function updateTotal() {
+  let total = 0;
+  scNames.forEach(n => {
+    const checked = document.querySelector(`input[name="${n}"]:checked`);
+    if (checked) total += parseInt(checked.value);
+  });
+  document.getElementById('sc-total-num').textContent = total > 0 ? total : '—';
+}
+document.querySelectorAll('.sc-circles input').forEach(i => i.addEventListener('change', updateTotal));
+
+function toggleWin(el) { el.classList.toggle('ticked'); }
+function toggleCel(el) { el.classList.toggle('selected'); }
+
+function copyAI(btn) {
+  const prompt = btn.previousElementSibling.textContent.trim();
+  navigator.clipboard.writeText(prompt).then(() => {
+    btn.textContent = 'Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy prompt →'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
