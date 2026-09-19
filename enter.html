@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Rise Flight Plan – Client Access</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #1a1a1a; --blush: #e8d9d0; --blush-deep: #d4c0b4;
+    --cream: #f5f0e8; --warm-grey: #6b6560; --light-grey: #d9d3cc; --white: #ffffff;
+  }
+  body {
+    background: var(--black);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .card {
+    background: var(--white);
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-header {
+    background: var(--black);
+    padding: 40px 44px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .sunburst {
+    position: absolute; right: -16px; top: -16px;
+    width: 120px; height: 120px; opacity: 0.08;
+  }
+  .brand-tag {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.14em;
+    color: var(--blush); opacity: 0.6; margin-bottom: 12px;
+  }
+  .card-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px; font-weight: 600; line-height: 1.1;
+    color: var(--white); margin-bottom: 8px;
+  }
+  .card-header h1 em { color: var(--blush); font-style: italic; font-weight: 400; }
+  .card-header p {
+    font-size: 12px; color: var(--blush); opacity: 0.55;
+    font-weight: 300; line-height: 1.6;
+  }
+  .card-body { padding: 36px 44px 44px; }
+  .welcome-text {
+    font-size: 13.5px; color: var(--warm-grey); line-height: 1.7;
+    margin-bottom: 28px;
+  }
+  .welcome-text strong { color: var(--black); font-weight: 600; }
+  .field-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    color: var(--warm-grey); margin-bottom: 8px; display: block;
+  }
+  .password-wrap { position: relative; margin-bottom: 8px; }
+  input[type="password"], input[type="text"] {
+    width: 100%;
+    border: 1.5px solid var(--light-grey);
+    padding: 14px 48px 14px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px; color: var(--black);
+    outline: none;
+    transition: border-color 0.15s;
+    background: var(--white);
+    letter-spacing: 0.05em;
+  }
+  input:focus { border-color: var(--black); }
+  .toggle-pw {
+    position: absolute; right: 14px; top: 50%;
+    transform: translateY(-50%);
+    background: none; border: none; cursor: pointer;
+    font-size: 14px; color: var(--warm-grey); padding: 4px;
+  }
+  .error-msg {
+    font-size: 12px; color: #c62828;
+    margin-bottom: 16px; display: none; line-height: 1.5;
+  }
+  .error-msg.show { display: block; }
+  .btn-enter {
+    width: 100%; background: var(--black); color: var(--white);
+    border: none; padding: 16px;
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+    cursor: pointer; letter-spacing: 0.04em;
+    transition: opacity 0.15s; margin-bottom: 20px;
+  }
+  .btn-enter:hover { opacity: 0.85; }
+  .hint {
+    font-size: 11.5px; color: var(--light-grey);
+    text-align: center; line-height: 1.6;
+  }
+  .hint a { color: var(--warm-grey); text-decoration: none; border-bottom: 1px solid var(--light-grey); }
+  .hint a:hover { color: var(--black); border-bottom-color: var(--black); }
+  .divider { height: 1px; background: var(--light-grey); margin: 20px 0; }
+  @media (max-width: 400px) {
+    .card-header, .card-body { padding-left: 24px; padding-right: 24px; }
+    .card-header h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="card-header">
+    <svg class="sunburst" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(65,65)" fill="white">
+        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/><polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/><polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/><polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/><polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/><polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/><polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/><polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/><polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <p class="brand-tag">Rise Beyond the 9 to 5</p>
+    <h1>The Rise<br><em>Flight Plan</em></h1>
+    <p>Your 8-step toolkit to freedom. Enter your access password to get started.</p>
+  </div>
+
+  <div class="card-body">
+    <p class="welcome-text">Welcome. Everything you need to build your online business and leave the 9-5 is inside. <strong>Enter the password from your welcome email to access your toolkit.</strong></p>
+
+    <label class="field-label" for="pw-input">Access password</label>
+    <div class="password-wrap">
+      <input type="password" id="pw-input" placeholder="Enter your password" autocomplete="off" onkeydown="if(event.key==='Enter')checkPassword()">
+      <button class="toggle-pw" onclick="togglePw()" type="button" aria-label="Show password">👁</button>
+    </div>
+    <div class="error-msg" id="error-msg">That password isn't right. Check your welcome email and try again - it's case sensitive.</div>
+
+    <div class="divider"></div>
+
+    <button class="btn-enter" onclick="checkPassword()">Enter my toolkit →</button>
+
+    <p class="hint">Password not working? Email <a href="mailto:jo@risebeyondthe9to5.com">jo@risebeyondthe9to5.com</a></p>
+  </div>
+</div>
+
+<script>
+  function checkPassword() {
+    const input = document.getElementById('pw-input').value.trim();
+    const error = document.getElementById('error-msg');
+    if (input === 'FreedomFirst') {
+      // Store access in session so they don't have to re-enter on the same visit
+      sessionStorage.setItem('rfp_access', 'true');
+      window.location.href = 'index.html';
+    } else {
+      error.classList.add('show');
+      document.getElementById('pw-input').focus();
+      document.getElementById('pw-input').select();
+    }
+  }
+
+  function togglePw() {
+    const input = document.getElementById('pw-input');
+    input.type = input.type === 'password' ? 'text' : 'password';
+  }
+
+  // If they've already authenticated this session, skip straight to index
+  if (sessionStorage.getItem('rfp_access') === 'true') {
+    window.location.href = 'index.html';
+  }
+</script>
+</body>
+</html>
