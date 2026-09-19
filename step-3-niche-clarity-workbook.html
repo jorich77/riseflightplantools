@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Niche Clarity Workbook – Rise Beyond the 9 to 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #1a1a1a; --blush: #e8d9d0; --blush-deep: #d4c0b4;
+    --cream: #f5f0e8; --warm-grey: #6b6560; --light-grey: #d9d3cc; --white: #ffffff;
+  }
+  body { background: var(--black); font-family: 'Inter', sans-serif; color: var(--black); min-height: 100vh; }
+  .page { max-width: 680px; margin: 0 auto; background: var(--white); min-height: 100vh; display: flex; flex-direction: column; }
+
+  .header { background: var(--black); padding: 36px 48px 28px; position: relative; overflow: hidden; flex-shrink: 0; }
+  .sunburst { position: absolute; right: -20px; top: -20px; width: 130px; height: 130px; opacity: 0.1; }
+  .brand-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; color: var(--blush); opacity: 0.6; margin-bottom: 10px; }
+  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 600; line-height: 1.1; color: var(--white); }
+  .header h1 em { color: var(--blush); font-style: italic; font-weight: 400; }
+  .header-sub { font-size: 12px; color: var(--blush); opacity: 0.55; font-weight: 300; margin-top: 8px; }
+
+  .progress-wrap { background: #2a2a2a; height: 3px; }
+  .progress-bar { height: 3px; background: var(--blush); transition: width 0.4s ease; width: 0%; }
+
+  .screen { display: none; flex: 1; flex-direction: column; }
+  .screen.active { display: flex; }
+
+  /* WELCOME */
+  .welcome-body { padding: 44px 48px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .welcome-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; margin-bottom: 14px; line-height: 1.25; }
+  .welcome-body p { font-size: 13px; color: var(--warm-grey); line-height: 1.7; margin-bottom: 12px; }
+  .step-list { list-style: none; margin: 20px 0 32px; display: flex; flex-direction: column; gap: 10px; }
+  .step-list li { display: flex; gap: 14px; align-items: flex-start; font-size: 12.5px; color: var(--black); line-height: 1.5; }
+  .step-num { width: 24px; height: 24px; min-width: 24px; background: var(--blush); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 13px; }
+
+  /* QUESTION SCREEN */
+  .q-body { padding: 40px 48px 32px; flex: 1; display: flex; flex-direction: column; }
+  .q-step { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; color: var(--blush-deep); margin-bottom: 8px; }
+  .q-heading { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; line-height: 1.2; margin-bottom: 8px; }
+  .q-sub { font-size: 12.5px; color: var(--warm-grey); line-height: 1.65; margin-bottom: 24px; }
+  .q-example { background: var(--cream); border-left: 3px solid var(--blush-deep); padding: 12px 16px; font-size: 12px; color: var(--warm-grey); line-height: 1.6; margin-bottom: 20px; font-style: italic; }
+  .q-example strong { font-style: normal; color: var(--black); }
+
+  textarea, input[type="text"] {
+    width: 100%; border: 1.5px solid var(--light-grey); background: var(--white);
+    padding: 14px 16px; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--black);
+    outline: none; resize: none; line-height: 1.6; transition: border-color 0.15s;
+  }
+  textarea:focus, input[type="text"]:focus { border-color: var(--black); }
+  .char-hint { font-size: 11px; color: var(--light-grey); text-align: right; margin-top: 4px; }
+
+  .q-nav { margin-top: auto; padding-top: 24px; display: flex; gap: 10px; }
+  .btn-back { background: transparent; color: var(--warm-grey); border: 1.5px solid var(--light-grey); padding: 14px 20px; font-family: 'Inter', sans-serif; font-size: 12px; cursor: pointer; flex-shrink: 0; transition: all 0.15s; }
+  .btn-back:hover { border-color: var(--black); color: var(--black); }
+  .btn-primary { background: var(--black); color: var(--white); border: none; padding: 16px 32px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; width: 100%; transition: opacity 0.15s; }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-primary:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  /* RESULTS */
+  .results-body { padding: 40px 48px 48px; flex: 1; }
+  .results-heading { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; margin-bottom: 8px; }
+  .results-sub { font-size: 13px; color: var(--warm-grey); line-height: 1.65; margin-bottom: 28px; }
+
+  .statement-box { background: var(--black); padding: 28px 32px; margin-bottom: 28px; }
+  .statement-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--blush); opacity: 0.6; margin-bottom: 10px; }
+  .statement-text { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: var(--white); line-height: 1.5; font-style: italic; }
+
+  .summary-grid { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+  .summary-item { padding: 16px 20px; border: 1.5px solid var(--light-grey); }
+  .summary-item-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: var(--warm-grey); margin-bottom: 6px; }
+  .summary-item-value { font-size: 13px; color: var(--black); line-height: 1.6; }
+
+  /* AI PROMPT */
+  .ai-box { background: var(--black); padding: 24px 28px; margin-bottom: 20px; }
+  .ai-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--blush); opacity: 0.7; margin-bottom: 8px; }
+  .ai-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--white); margin-bottom: 10px; }
+  .ai-desc { font-size: 12px; color: var(--blush); opacity: 0.7; line-height: 1.6; margin-bottom: 14px; }
+  .ai-prompt { background: #111; border-left: 3px solid var(--blush-deep); padding: 16px; font-size: 12px; color: var(--blush); line-height: 1.7; font-style: italic; margin-bottom: 14px; white-space: pre-wrap; }
+  .btn-copy { background: var(--blush); color: var(--black); border: none; padding: 10px 18px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity 0.15s; }
+  .btn-copy:hover { opacity: 0.8; }
+  .btn-copy.copied { background: var(--blush-deep); }
+
+  .btn-restart { background: transparent; border: 1.5px solid var(--light-grey); color: var(--warm-grey); padding: 14px; font-size: 12px; cursor: pointer; font-family: 'Inter', sans-serif; width: 100%; margin-top: 8px; }
+  .btn-restart:hover { border-color: var(--black); color: var(--black); }
+
+  .footer { background: var(--black); padding: 14px 48px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--blush); font-style: italic; }
+  .footer-step { font-size: 10px; color: var(--blush); opacity: 0.4; letter-spacing: 0.08em; }
+
+  @media (max-width: 520px) {
+    .header, .welcome-body, .q-body, .results-body, .footer { padding-left: 24px; padding-right: 24px; }
+    .q-heading { font-size: 24px; }
+    .statement-text { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <svg class="sunburst" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(65,65)" fill="white">
+        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/><polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/><polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/><polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/><polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/><polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/><polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/><polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/><polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <p class="brand-tag">Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 3</p>
+    <h1>Niche Clarity<br><em>Workbook</em></h1>
+    <p class="header-sub">Answer 5 questions. Walk away with your audience statement.</p>
+  </div>
+  <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+  <!-- WELCOME -->
+  <div class="screen active" id="screen-welcome">
+    <div class="welcome-body">
+      <h2>The most important work you'll do in this programme.</h2>
+      <p>Most people skip this step. They pick a niche based on what looks popular, stay too broad, and wonder why no one is buying. This workbook fixes that.</p>
+      <p>Answer 5 questions honestly. At the end you'll have your audience statement - one clear sentence that tells the world exactly who you help and what you do.</p>
+      <ul class="step-list">
+        <li><div class="step-num">1</div><span>Who you help - getting specific</span></li>
+        <li><div class="step-num">2</div><span>The problem you solve</span></li>
+        <li><div class="step-num">3</div><span>The transformation you deliver</span></li>
+        <li><div class="step-num">4</div><span>Why you're the right person</span></li>
+        <li><div class="step-num">5</div><span>Your ideal client in one sentence</span></li>
+      </ul>
+    </div>
+    <button class="btn-primary" onclick="start()">Start the workbook</button>
+  </div>
+
+  <!-- QUESTIONS -->
+  <div class="screen" id="screen-q">
+    <div class="q-body">
+      <div class="q-step" id="q-step"></div>
+      <div class="q-heading" id="q-heading"></div>
+      <div class="q-sub" id="q-sub"></div>
+      <div class="q-example" id="q-example"></div>
+      <div id="q-input-area"></div>
+      <div class="q-nav">
+        <button class="btn-back" id="btn-back" onclick="prevQ()">← Back</button>
+        <button class="btn-primary" id="btn-next" onclick="nextQ()" disabled>Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="screen" id="screen-results">
+    <div class="results-body">
+      <div class="results-heading">Your audience statement</div>
+      <p class="results-sub">This is your working statement - not carved in stone, but clear enough to start. Use it in your bio, your content, and every sales conversation.</p>
+      <div class="statement-box">
+        <div class="statement-label">Your statement</div>
+        <div class="statement-text" id="statement-output"></div>
+      </div>
+      <div class="summary-grid" id="summary-grid"></div>
+
+      <div class="ai-box">
+        <div class="ai-label">AI HACK 1</div>
+        <div class="ai-title">Refine your statement with ChatGPT</div>
+        <div class="ai-desc">Copy this prompt into ChatGPT to get 3 polished versions of your audience statement in different tones.</div>
+        <div class="ai-prompt" id="ai-prompt-1"></div>
+        <button class="btn-copy" onclick="copyPrompt(this, 1)">Copy prompt →</button>
+      </div>
+
+      <div class="ai-box">
+        <div class="ai-label">AI HACK 2</div>
+        <div class="ai-title">Write your Instagram bio</div>
+        <div class="ai-desc">Turn your audience statement into a bio that stops the right people in their tracks.</div>
+        <div class="ai-prompt" id="ai-prompt-2"></div>
+        <button class="btn-copy" onclick="copyPrompt(this, 2)">Copy prompt →</button>
+      </div>
+
+      <div class="ai-box">
+        <div class="ai-label">AI HACK 3</div>
+        <div class="ai-title">Generate your first 10 content ideas</div>
+        <div class="ai-desc">Get 10 content ideas specifically for your niche - hooks, topics, and formats included.</div>
+        <div class="ai-prompt" id="ai-prompt-3"></div>
+        <button class="btn-copy" onclick="copyPrompt(this, 3)">Copy prompt →</button>
+      </div>
+
+      <button class="btn-primary" onclick="restart()" style="margin-top:8px;">Start again</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Rise Beyond the 9 to 5</span>
+    <span class="footer-step">Step 3 of 8 · Niche Clarity Workbook</span>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    step: "Question 1 of 5",
+    heading: "Who do you help?",
+    sub: "Be as specific as possible. Don't say 'women' or 'people'. Name them - their age, situation, what stage of life they're in. The more specific you are, the more your ideal client feels like you're talking directly to them.",
+    example: "<strong>Too broad:</strong> Women who want to change their lives<br><strong>Better:</strong> Mums in their 30s and 40s who are stuck in a job they hate and want to build an online business while still being present for their family",
+    placeholder: "e.g. Mums in their 30s and 40s who are working full time but feel trapped and want more freedom and flexibility in their life...",
+    key: "who",
+    rows: 4
+  },
+  {
+    step: "Question 2 of 5",
+    heading: "What is the main problem you solve for them?",
+    sub: "Think about the problem they're aware of - the thing keeping them up at night, the thing they'd type into Google. Not your solution, their problem. Write it in their words, not yours.",
+    example: "<strong>Their words:</strong> 'I don't know where to start', 'I feel stuck and overwhelmed', 'I want to quit my job but I can't afford to'<br><strong>Not your words:</strong> 'Lack of strategy' or 'insufficient mindset work'",
+    placeholder: "e.g. They feel stuck in a 9-5 that drains them, they don't know which business to start, and they're overwhelmed by all the options...",
+    key: "problem",
+    rows: 4
+  },
+  {
+    step: "Question 3 of 5",
+    heading: "What does their life look like after working with you?",
+    sub: "This is the transformation - the 'after'. Be specific and make it tangible. What can they do, feel, or have that they couldn't before? Paint a picture.",
+    example: "<strong>Vague:</strong> They feel more confident and free<br><strong>Specific:</strong> They've left their job, they're running a business they love, they choose their own hours and they're finally present for school pick-up every day",
+    placeholder: "e.g. They have a business that fits around their family, they've replaced their salary, they wake up excited instead of dreading Monday...",
+    key: "transformation",
+    rows: 4
+  },
+  {
+    step: "Question 4 of 5",
+    heading: "Why are you the right person to help them?",
+    sub: "This isn't about qualifications. It's about lived experience, results, and connection. Why do you understand this person better than anyone else? What have you been through that makes you credible here?",
+    example: "<strong>Think about:</strong> Have you been where they are? Have you achieved what they want? Do you have professional experience in this area? What makes your approach different?",
+    placeholder: "e.g. I was exactly where they are - stuck in a corporate job, working 50-hour weeks, missing my kids' milestones. I built my business from scratch while still employed and hit £5k months within 8 months...",
+    key: "why",
+    rows: 4
+  },
+  {
+    step: "Question 5 of 5",
+    heading: "Describe your ideal client in one sentence.",
+    sub: "This is for you, not for public use. Write it like you're describing a specific real person - their situation, their feeling, and what they want. Make it so specific that if they read it they'd think you wrote it about them.",
+    example: "<strong>Example:</strong> She's a 38-year-old mum of two, working in a job that pays well but suffocates her, she's been 'about to start a business' for two years and she's finally ready to actually do it.",
+    placeholder: "She's a...",
+    key: "client",
+    rows: 3
+  }
+];
+
+let current = 0;
+const answers = {};
+
+function start() {
+  current = 0;
+  showScreen('screen-q');
+  renderQ();
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function updateProgress() {
+  document.getElementById('progress-bar').style.width = ((current / QUESTIONS.length) * 100) + '%';
+}
+
+function renderQ() {
+  const q = QUESTIONS[current];
+  document.getElementById('q-step').textContent = q.step;
+  document.getElementById('q-heading').textContent = q.heading;
+  document.getElementById('q-sub').textContent = q.sub;
+  document.getElementById('q-example').innerHTML = q.example;
+
+  const area = document.getElementById('q-input-area');
+  const saved = answers[q.key] || '';
+  area.innerHTML = `
+    <textarea id="q-textarea" rows="${q.rows}" placeholder="${q.placeholder}">${saved}</textarea>
+    <div class="char-hint" id="char-hint">${saved.length > 0 ? saved.length + ' characters' : 'Start typing...'}</div>
+  `;
+
+  const ta = document.getElementById('q-textarea');
+  ta.addEventListener('input', () => {
+    answers[q.key] = ta.value;
+    document.getElementById('char-hint').textContent = ta.value.length > 0 ? ta.value.length + ' characters' : 'Start typing...';
+    document.getElementById('btn-next').disabled = ta.value.trim().length < 10;
+  });
+
+  document.getElementById('btn-next').disabled = saved.trim().length < 10;
+  document.getElementById('btn-back').style.visibility = current === 0 ? 'hidden' : 'visible';
+  updateProgress();
+}
+
+function nextQ() {
+  const ta = document.getElementById('q-textarea');
+  answers[QUESTIONS[current].key] = ta.value;
+  if (current < QUESTIONS.length - 1) { current++; renderQ(); } else { showResults(); }
+}
+
+function prevQ() {
+  if (current === 0) return;
+  const ta = document.getElementById('q-textarea');
+  answers[QUESTIONS[current].key] = ta.value;
+  current--; renderQ();
+}
+
+function showResults() {
+  document.getElementById('progress-bar').style.width = '100%';
+  showScreen('screen-results');
+
+  // Build audience statement
+  const who = answers.who || '[your audience]';
+  const problem = answers.problem || '[their problem]';
+  const transformation = answers.transformation || '[the result]';
+  const statement = `I help ${who.trim()} who ${problem.trim().toLowerCase().replace(/^they /,'')} to ${transformation.trim().toLowerCase().replace(/^they /,'').replace(/^they've /,'').split('.')[0]}.`;
+  document.getElementById('statement-output').textContent = statement;
+
+  // Summary
+  const labels = ['Who you help', 'The problem you solve', 'The transformation you deliver', 'Why you\'re the right person', 'Your ideal client'];
+  const keys = ['who','problem','transformation','why','client'];
+  document.getElementById('summary-grid').innerHTML = keys.map((k, i) => `
+    <div class="summary-item">
+      <div class="summary-item-label">${labels[i]}</div>
+      <div class="summary-item-value">${answers[k] || '—'}</div>
+    </div>`).join('');
+
+  // AI prompts
+  const p1 = `I am building an online business and I need help refining my audience statement. Here is what I've written:\n\nWho I help: ${answers.who}\nThe problem I solve: ${answers.problem}\nThe transformation I deliver: ${answers.transformation}\nWhy I'm the right person: ${answers.why}\n\nPlease write me 3 versions of a one-sentence audience statement using this format: "I help [who] who [problem] to [transformation]."\n\nVersion 1: Straightforward and clear\nVersion 2: Emotionally led - speaks to how they feel\nVersion 3: Punchy and bold - makes someone stop scrolling\n\nKeep every version under 25 words. No jargon. Sound like a real person.`;
+
+  const p2 = `I need an Instagram bio based on my audience statement.\n\nI help: ${answers.who}\nProblem I solve: ${answers.problem}\nResult I deliver: ${answers.transformation}\nMy credibility: ${answers.why}\n\nPlease write me 3 Instagram bio options. Each must:\n- Be under 150 characters\n- Start with who I help\n- Include the result or transformation\n- End with a call to action (e.g. "Book a free call" or "DM me START")\n- Sound human and warm - not corporate\n\nInclude a line break suggestion between each element.`;
+
+  const p3 = `I run a business helping the following audience and I need content ideas.\n\nMy niche: I help ${answers.who} who ${answers.problem} to ${answers.transformation}.\nMy story/credibility: ${answers.why}\n\nPlease give me:\n1. 10 content ideas for Instagram reels or posts that speak directly to my ideal client's pain points (not generic tips - specific to my niche)\n2. A hook for each idea (the first line that makes someone stop scrolling)\n3. The content format for each (reel, carousel, talking head, etc.)\n\nTone: relatable, honest, and warm. Avoid corporate language or generic advice.`;
+
+  document.getElementById('ai-prompt-1').textContent = p1;
+  document.getElementById('ai-prompt-2').textContent = p2;
+  document.getElementById('ai-prompt-3').textContent = p3;
+
+  window._prompts = { 1: p1, 2: p2, 3: p3 };
+}
+
+function copyPrompt(btn, num) {
+  navigator.clipboard.writeText(window._prompts[num]).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy prompt →'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function restart() {
+  Object.keys(answers).forEach(k => delete answers[k]);
+  current = 0;
+  document.getElementById('progress-bar').style.width = '0%';
+  showScreen('screen-welcome');
+}
+</script>
+</body>
+</html>
