@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Tool List – Rise Beyond the 9 to 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #1a1a1a; --blush: #e8d9d0; --blush-deep: #d4c0b4;
+    --cream: #f5f0e8; --warm-grey: #6b6560; --light-grey: #d9d3cc; --white: #ffffff;
+  }
+  body { background: var(--black); font-family: 'Inter', sans-serif; color: var(--black); min-height: 100vh; }
+  .page { max-width: 680px; margin: 0 auto; background: var(--white); }
+
+  .header { background: var(--black); padding: 36px 48px 28px; position: relative; overflow: hidden; }
+  .sunburst { position: absolute; right: -20px; top: -20px; width: 130px; height: 130px; opacity: 0.1; }
+  .brand-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; color: var(--blush); opacity: 0.6; margin-bottom: 10px; }
+  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 600; line-height: 1.1; color: var(--white); }
+  .header h1 em { color: var(--blush); font-style: italic; font-weight: 400; }
+  .header-sub { font-size: 12px; color: var(--blush); opacity: 0.55; font-weight: 300; margin-top: 8px; }
+  .strip { background: var(--blush); padding: 11px 48px; font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--black); }
+
+  /* TABS */
+  .tabs { display: flex; flex-wrap: wrap; border-bottom: 2px solid var(--light-grey); background: var(--cream); }
+  .tab { flex-shrink: 0; padding: 12px 14px; font-size: 11px; font-weight: 600; color: var(--warm-grey); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.15s; white-space: nowrap; }
+  .tab.active { color: var(--black); border-bottom-color: var(--black); background: var(--white); }
+  .tab:hover:not(.active) { color: var(--black); }
+
+  .tab-content { display: none; padding: 32px 48px 48px; }
+  .tab-content.active { display: block; }
+
+  .cat-intro { font-size: 13px; color: var(--warm-grey); line-height: 1.7; margin-bottom: 24px; }
+
+  /* TOOL CARD */
+  .tool-card { border-bottom: 1px solid var(--light-grey); padding: 18px 0; }
+  .tool-card:last-of-type { border-bottom: none; }
+  .tool-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+  .tool-name { font-weight: 600; font-size: 14px; color: var(--black); }
+  .tool-badge { font-size: 10px; font-weight: 600; padding: 3px 10px; flex-shrink: 0; }
+  .badge-free { background: var(--blush); color: var(--black); }
+  .badge-freemium { background: var(--cream); border: 1px solid var(--blush-deep); color: var(--black); }
+  .tool-desc { font-size: 12.5px; color: var(--warm-grey); line-height: 1.6; margin-bottom: 8px; }
+  .tool-best { font-size: 11.5px; color: var(--black); font-weight: 500; margin-bottom: 6px; }
+  .tool-best span { color: var(--warm-grey); font-weight: 400; }
+  .tool-link { font-size: 11.5px; color: var(--warm-grey); text-decoration: none; border-bottom: 1px solid var(--light-grey); transition: color 0.15s; }
+  .tool-link:hover { color: var(--black); border-bottom-color: var(--black); }
+
+  /* AI BOX */
+  .ai-box { background: var(--black); padding: 22px 26px; margin-top: 32px; }
+  .ai-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--blush); opacity: 0.7; margin-bottom: 8px; }
+  .ai-title { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--white); margin-bottom: 8px; }
+  .ai-desc { font-size: 12px; color: var(--blush); opacity: 0.65; line-height: 1.6; margin-bottom: 14px; }
+  .ai-prompt { background: #111; border-left: 3px solid var(--blush-deep); padding: 14px 16px; font-size: 11.5px; color: var(--blush); line-height: 1.7; font-style: italic; margin-bottom: 14px; white-space: pre-wrap; }
+  .btn-copy { background: var(--blush); color: var(--black); border: none; padding: 10px 18px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity 0.15s; }
+  .btn-copy:hover { opacity: 0.8; }
+  .btn-copy.copied { background: var(--blush-deep); }
+
+  .footer { background: var(--black); padding: 14px 48px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--blush); font-style: italic; }
+  .footer-step { font-size: 10px; color: var(--blush); opacity: 0.4; letter-spacing: 0.08em; }
+
+  @media (max-width: 520px) {
+    .header, .tab-content, .footer { padding-left: 24px; padding-right: 24px; }
+    .strip { padding-left: 24px; padding-right: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <svg class="sunburst" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(65,65)" fill="white">
+        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/><polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/><polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/><polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/><polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/><polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/><polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/><polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/><polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <p class="brand-tag">Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 4</p>
+    <h1>Free<br><em>Tool List</em></h1>
+    <p class="header-sub">Everything you need to set up your business. All free.</p>
+  </div>
+  <div class="strip">You don't need to spend money to start. These tools are all you need.</div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('profile')">Social Profile</div>
+    <div class="tab" onclick="switchTab('leads')">Lead Capture</div>
+    <div class="tab" onclick="switchTab('payments')">Payments</div>
+    <div class="tab" onclick="switchTab('content')">Content</div>
+    <div class="tab" onclick="switchTab('organisation')">Organisation</div>
+  </div>
+
+  <!-- SOCIAL PROFILE -->
+  <div class="tab-content active" id="tab-profile">
+    <p class="cat-intro">Your social profile is your shop window. These tools help you build a polished, professional presence without spending a penny.</p>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">Canva</div><div class="tool-badge badge-freemium">Free plan</div></div>
+      <div class="tool-desc">The go-to tool for creating graphics, profile images, highlight covers, post templates, and any visual content. The free plan is generous and more than enough to start.</div>
+      <div class="tool-best">Best for: <span>Profile graphics, post templates, story highlight covers, offer one-pagers</span></div>
+      <a class="tool-link" href="https://canva.com" target="_blank">canva.com →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">Linktree</div><div class="tool-badge badge-free">Free</div></div>
+      <div class="tool-desc">A simple link-in-bio page that lets you share multiple links from your Instagram or TikTok bio. Set it up in minutes and add your booking link, email sign-up, and payment link all in one place.</div>
+      <div class="tool-best">Best for: <span>Instagram/TikTok bio links, multiple CTAs in one place</span></div>
+      <a class="tool-link" href="https://linktr.ee" target="_blank">linktr.ee →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">Stan Store</div><div class="tool-badge badge-freemium">Free plan</div></div>
+      <div class="tool-desc">A step up from Linktree - Stan Store lets you sell digital products and bookings directly from your bio link. The free plan lets you sell one product. A great all-in-one option for starting out.</div>
+      <div class="tool-best">Best for: <span>Link in bio + simple product sales + booking links in one</span></div>
+      <a class="tool-link" href="https://stan.store" target="_blank">stan.store →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">Remove.bg</div><div class="tool-badge badge-free">Free</div></div>
+      <div class="tool-desc">Instantly removes backgrounds from photos. Upload a photo of yourself and get a clean cut-out in seconds - perfect for profile photos and graphics.</div>
+      <div class="tool-best">Best for: <span>Profile photo backgrounds, branded graphics</span></div>
+      <a class="tool-link" href="https://remove.bg" target="_blank">remove.bg →</a>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Write your bio in 60 seconds</div>
+      <div class="ai-desc">Copy this prompt to get three bio options you can test.</div>
+      <div class="ai-prompt">I need to write an Instagram/Facebook bio. Here are my details:
+
+Who I help: [your audience]
+What I help them do: [the result]
+My credibility in one line: [why you're the right person]
+My call to action: [what I want them to do next - book a call, DM me, click the link]
+
+Please write me 3 bio options:
+1. Clear and direct - states exactly what I do
+2. Story-led - opens with a relatable hook about my audience's problem
+3. Bold and punchy - makes someone stop scrolling
+
+Each must be under 150 characters. Use sentence case, not ALL CAPS. End each with a simple CTA.</div>
+      <button class="btn-copy" onclick="copyTab(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <!-- LEAD CAPTURE -->
+  <div class="tab-content" id="tab-leads">
+    <p class="cat-intro">An email list is your most valuable business asset. Social media followers are rented - your email list is owned. Start building it from day one with these free tools.</p>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">Mailerlite</div><div class="tool-badge badge-free">Free up to 1,000</div></div>
+      <div class="tool-desc">The cleanest, simplest email marketing tool for beginners. Free up to 1,000 subscribers and 12,000 emails per month. Includes landing pages, automation, and forms - everything you need to start building your list.</div>
+      <div class="tool-best">Best for: <span>Email list building, simple automations, lead magnet delivery</span></div>
+      <a class="tool-link" href="https://mailerlite.com" target="_blank">mailerlite.com →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">Brevo (formerly Sendinblue)</div><div class="tool-badge badge-free">Free plan</div></div>
+      <div class="tool-desc">Free plan includes unlimited contacts and up to 300 emails per day. Slightly more powerful than Mailerlite for automations. A great free option as your list grows.</div>
+      <div class="tool-best">Best for: <span>Email list, automations, transactional emails</span></div>
+      <a class="tool-link" href="https://brevo.com" target="_blank">brevo.com →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">Google Forms</div><div class="tool-badge badge-free">Free</div></div>
+      <div class="tool-desc">The fastest way to start capturing leads before you set up a proper email tool. Create a simple form, share the link, collect responses in Google Sheets. Not fancy but it works instantly.</div>
+      <div class="tool-best">Best for: <span>Quick lead capture, waitlist sign-ups, discovery call applications</span></div>
+      <a class="tool-link" href="https://forms.google.com" target="_blank">forms.google.com →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">WhatsApp Communities</div><div class="tool-badge badge-free">Free</div></div>
+      <div class="tool-desc">Build a free community directly in WhatsApp. Great for nurturing warm leads, sharing updates, and building relationships at a more personal level than email. Incredibly high open rates.</div>
+      <div class="tool-best">Best for: <span>Warm community building, high-engagement audience nurturing</span></div>
+      <a class="tool-link" href="https://whatsapp.com" target="_blank">whatsapp.com →</a>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Write your lead magnet and welcome email</div>
+      <div class="ai-desc">Use this prompt to create your free opt-in offer and the first email new subscribers receive.</div>
+      <div class="ai-prompt">I am building an email list and I need help with two things.
+
+My niche: I help [who you help] who [their problem] to [the result].
+My business model: [coaching / digital products / services / etc.]
+My offer: [what you sell]
+
+Please write me:
+1. Three lead magnet ideas that would attract my ideal client and that I could create quickly (checklist, guide, template, mini training, etc.)
+2. A subject line and welcome email for whichever lead magnet I choose - warm, genuine, and not salesy
+3. A social media post promoting my lead magnet to drive sign-ups
+
+For the welcome email:
+- Tell them what to expect from me
+- Give them the lead magnet or tell them how to access it
+- End with a soft next step (not a hard sell)
+- Tone: like a message from a friend who's good at this stuff</div>
+      <button class="btn-copy" onclick="copyTab(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <!-- PAYMENTS -->
+  <div class="tab-content" id="tab-payments">
+    <p class="cat-intro">You need to be able to receive money before you have a client - not after. Set one of these up today. It takes minutes.</p>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">PayPal.me</div><div class="tool-badge badge-free">Free to set up</div></div>
+      <div class="tool-desc">The fastest payment link to set up. PayPal.me/yourname gives you a direct payment link you can send anywhere. Small transaction fee per payment. Works globally. Perfect for your first client.</div>
+      <div class="tool-best">Best for: <span>First client payments, quick invoicing, international payments</span></div>
+      <a class="tool-link" href="https://paypal.me" target="_blank">paypal.me →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">Stripe</div><div class="tool-badge badge-free">Free to set up</div></div>
+      <div class="tool-desc">More professional than PayPal - creates branded payment pages and handles subscriptions, payment plans, and one-off payments. Small % fee per transaction. Takes a few days to set up and verify your account.</div>
+      <div class="tool-best">Best for: <span>Professional checkout pages, payment plans, recurring payments</span></div>
+      <a class="tool-link" href="https://stripe.com" target="_blank">stripe.com →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">Systeme.io</div><div class="tool-badge badge-free">Free plan</div></div>
+      <div class="tool-desc">An all-in-one platform that combines checkout, email marketing, courses, and sales funnels. The free plan is remarkably generous. If you want everything in one place from the start, this is it.</div>
+      <div class="tool-best">Best for: <span>All-in-one checkout + email + course hosting</span></div>
+      <a class="tool-link" href="https://systeme.io" target="_blank">systeme.io →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">Buy Me a Coffee</div><div class="tool-badge badge-free">Free to set up</div></div>
+      <div class="tool-desc">Simple platform for one-off payments, memberships, and digital product sales. Very easy to set up and looks clean. Good for coaches and creators who want a simple, no-fuss payment option.</div>
+      <div class="tool-best">Best for: <span>Simple one-off payments, digital downloads, memberships</span></div>
+      <a class="tool-link" href="https://buymeacoffee.com" target="_blank">buymeacoffee.com →</a>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Write your payment confirmation message</div>
+      <div class="ai-desc">The message someone gets right after they pay sets the tone for the whole relationship. Use this prompt to write it.</div>
+      <div class="ai-prompt">I've just set up my payment system and I need to write the message a client receives immediately after they pay. Here are my details:
+
+My offer: [what they've just bought]
+What happens next: [what you'll do now they've paid - e.g. you'll send them a welcome email, schedule a call, give them access]
+The tone I want to set: [warm and professional / exciting and personal / calm and reassuring]
+My name: [your name]
+
+Please write me:
+1. A payment confirmation message (short, warm, reassuring - confirms they made the right decision)
+2. A first follow-up message or email to send within the hour (what to expect, what to do next, how excited you are to work with them)
+
+Make both feel genuinely personal - not automated or corporate.</div>
+      <button class="btn-copy" onclick="copyTab(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="tab-content" id="tab-content">
+    <p class="cat-intro">You don't need expensive software to create great content. These free tools cover everything from design to scheduling to video editing.</p>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">Canva</div><div class="tool-badge badge-freemium">Free plan</div></div>
+      <div class="tool-desc">Already mentioned for profiles - but Canva is also your primary content creation tool. Use it for carousels, quote posts, story templates, reels covers, and anything visual. The mobile app is excellent for on-the-go content.</div>
+      <div class="tool-best">Best for: <span>Carousels, graphics, story templates, reels covers</span></div>
+      <a class="tool-link" href="https://canva.com" target="_blank">canva.com →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">CapCut</div><div class="tool-badge badge-free">Free</div></div>
+      <div class="tool-desc">The most popular free video editing app for Reels and TikToks. Auto-captions, trending templates, music, transitions - everything you need to create professional-looking short video content from your phone.</div>
+      <div class="tool-best">Best for: <span>Reels editing, auto-captions, trending video templates</span></div>
+      <a class="tool-link" href="https://capcut.com" target="_blank">capcut.com →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">Later</div><div class="tool-badge badge-freemium">Free plan</div></div>
+      <div class="tool-desc">Schedule your social media posts in advance so you're not posting in real time every day. The free plan covers one profile per platform and is enough to get started with batch scheduling.</div>
+      <div class="tool-best">Best for: <span>Scheduling posts in advance, batch content creation</span></div>
+      <a class="tool-link" href="https://later.com" target="_blank">later.com →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">ChatGPT</div><div class="tool-badge badge-freemium">Free plan</div></div>
+      <div class="tool-desc">Use the AI prompts throughout this programme to generate captions, hooks, emails, bios, and content ideas. The free plan is sufficient for most content tasks. Treat it as your writing assistant, not your ghostwriter - always add your voice.</div>
+      <div class="tool-best">Best for: <span>Caption drafts, hook ideas, email writing, content brainstorming</span></div>
+      <a class="tool-link" href="https://chat.openai.com" target="_blank">chat.openai.com →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">Notion</div><div class="tool-badge badge-free">Free</div></div>
+      <div class="tool-desc">Use Notion as your content planning hub - build a simple content calendar, save caption ideas, track what you've posted, and store your swipe file. The free plan is unlimited for personal use.</div>
+      <div class="tool-best">Best for: <span>Content calendar, caption bank, swipe file storage</span></div>
+      <a class="tool-link" href="https://notion.so" target="_blank">notion.so →</a>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Plan your first month of content</div>
+      <div class="ai-desc">Use this prompt to generate a full month of content ideas tailored to your niche.</div>
+      <div class="ai-prompt">I need to plan my content for the next 30 days. Here are my details:
+
+My niche: I help [who you help] who [their problem] to [the result].
+My platforms: [Instagram / Facebook / TikTok / LinkedIn]
+How often I can post: [e.g. 5x per week]
+My 3 content pillars: [e.g. 1. My story and journey 2. Tips and education 3. My offer and results]
+My business model: [coaching / digital products / services / network marketing / high-ticket]
+
+Please create:
+1. A 30-day content plan with one post idea per day, rotating across my 3 pillars
+2. The format for each post (reel, carousel, talking head, text post, story)
+3. A hook for each post (the first line that makes someone stop scrolling)
+
+Make the ideas specific to my niche - not generic. Use language my ideal client would recognise immediately.</div>
+      <button class="btn-copy" onclick="copyTab(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <!-- ORGANISATION -->
+  <div class="tab-content" id="tab-organisation">
+    <p class="cat-intro">Stay organised from the start. These free tools keep your business running smoothly without any overhead cost.</p>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">Google Workspace (free)</div><div class="tool-badge badge-free">Free</div></div>
+      <div class="tool-desc">Google Docs, Sheets, Drive, and Calendar - all free and all you need for basic business organisation. Use Docs for client materials, Sheets for tracking, Drive for storage, and Calendar for scheduling.</div>
+      <div class="tool-best">Best for: <span>Client documents, trackers, file storage, scheduling</span></div>
+      <a class="tool-link" href="https://workspace.google.com" target="_blank">workspace.google.com →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">Calendly</div><div class="tool-badge badge-freemium">Free plan</div></div>
+      <div class="tool-desc">Share a booking link and let people schedule calls with you automatically - no back-and-forth messaging to find a time. The free plan allows one meeting type (e.g. a 30-minute discovery call). Essential from day one.</div>
+      <div class="tool-best">Best for: <span>Discovery call booking, client session scheduling</span></div>
+      <a class="tool-link" href="https://calendly.com" target="_blank">calendly.com →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">Zoom</div><div class="tool-badge badge-freemium">Free plan</div></div>
+      <div class="tool-desc">Free plan allows 40-minute meetings. Enough for discovery calls and short coaching sessions. Upgrade to paid if you run longer sessions or group calls. Most clients will already have Zoom.</div>
+      <div class="tool-best">Best for: <span>Discovery calls, 1:1 coaching sessions, group calls</span></div>
+      <a class="tool-link" href="https://zoom.us" target="_blank">zoom.us →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">Notion</div><div class="tool-badge badge-free">Free</div></div>
+      <div class="tool-desc">Build your entire business hub in Notion - client tracker, content calendar, goal tracker, programme materials. The free plan is unlimited for personal use and is one of the most powerful organisation tools available.</div>
+      <div class="tool-best">Best for: <span>Business hub, client tracker, programme materials, goal setting</span></div>
+      <a class="tool-link" href="https://notion.so" target="_blank">notion.so →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">Wave</div><div class="tool-badge badge-free">Free</div></div>
+      <div class="tool-desc">Free invoicing and accounting software. Send professional invoices, track payments, and keep your finances organised from the start. Far better than chasing payments via WhatsApp.</div>
+      <div class="tool-best">Best for: <span>Invoicing, payment tracking, basic accounting</span></div>
+      <a class="tool-link" href="https://waveapps.com" target="_blank">waveapps.com →</a>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Build your client onboarding system</div>
+      <div class="ai-desc">Use this prompt to create everything you need to professionally onboard a new client.</div>
+      <div class="ai-prompt">I've just signed my first client and I want to onboard them professionally. Here are my details:
+
+My offer: [what they've bought - e.g. 8-week coaching programme]
+What's included: [list the main deliverables]
+How we'll communicate: [e.g. weekly Zoom calls, WhatsApp support, email]
+Tools they'll need to access: [e.g. Zoom, WhatsApp, any resources]
+My name and contact: [your name and how they reach you]
+
+Please create:
+1. A welcome email to send within the hour of them signing up (warm, excited, clear on next steps)
+2. A client onboarding checklist - what I need from them and what they need to know before we start
+3. A short "how this works" overview I can share with them (3-4 paragraphs, sets expectations, tone of the relationship)
+
+Make it feel personal and professional - not templated. They should feel excited and confident they made the right decision.</div>
+      <button class="btn-copy" onclick="copyTab(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Rise Beyond the 9 to 5</span>
+    <span class="footer-step">Step 4 of 8 · Free Tool List</span>
+  </div>
+</div>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyTab(btn) {
+  const prompt = btn.previousElementSibling.textContent.trim();
+  navigator.clipboard.writeText(prompt).then(() => {
+    btn.textContent = 'Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy prompt →'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
