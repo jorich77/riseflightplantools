@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Launch Again Roadmap – Rise Beyond the 9 to 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #1a1a1a; --blush: #e8d9d0; --blush-deep: #d4c0b4;
+    --cream: #f5f0e8; --warm-grey: #6b6560; --light-grey: #d9d3cc; --white: #ffffff;
+  }
+  body { background: var(--black); font-family: 'Inter', sans-serif; color: var(--black); min-height: 100vh; }
+  .page { max-width: 720px; margin: 0 auto; background: var(--white); min-height: 100vh; display: flex; flex-direction: column; }
+
+  .header { background: var(--black); padding: 36px 48px 28px; position: relative; overflow: hidden; flex-shrink: 0; }
+  .sunburst { position: absolute; right: -20px; top: -20px; width: 130px; height: 130px; opacity: 0.1; }
+  .brand-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; color: var(--blush); opacity: 0.6; margin-bottom: 10px; }
+  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 600; line-height: 1.1; color: var(--white); }
+  .header h1 em { color: var(--blush); font-style: italic; font-weight: 400; }
+  .header-sub { font-size: 12px; color: var(--blush); opacity: 0.55; font-weight: 300; margin-top: 8px; }
+  .strip { background: var(--blush); padding: 11px 48px; font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--black); }
+
+  /* PATH SELECTOR */
+  .path-selector { padding: 24px 48px; background: var(--cream); border-bottom: 1px solid var(--light-grey); }
+  .path-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--warm-grey); margin-bottom: 12px; }
+  .path-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  .pill { padding: 10px 20px; border: 1.5px solid var(--light-grey); font-size: 12px; font-weight: 500; cursor: pointer; color: var(--warm-grey); transition: all 0.15s; background: var(--white); }
+  .pill.active { background: var(--black); color: var(--white); border-color: var(--black); }
+  .pill:hover:not(.active) { border-color: var(--black); color: var(--black); }
+
+  /* PATH CONTENT */
+  .path-content { display: none; padding: 36px 48px 48px; flex: 1; }
+  .path-content.active { display: block; }
+  .intro-text { font-size: 13px; color: var(--warm-grey); line-height: 1.7; margin-bottom: 28px; }
+
+  /* PATH HERO */
+  .path-hero { background: var(--black); padding: 24px 28px; margin-bottom: 28px; display: flex; align-items: flex-start; gap: 16px; }
+  .path-icon { font-size: 28px; flex-shrink: 0; }
+  .path-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+  .path-tagline { font-size: 12.5px; color: var(--blush); opacity: 0.7; line-height: 1.55; }
+
+  /* 90 DAY PLAN */
+  .month-block { margin-bottom: 20px; }
+  .month-header { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+  .month-badge { background: var(--black); color: var(--blush); font-family: 'Cormorant Garamond', serif; font-size: 13px; font-weight: 600; padding: 4px 14px; letter-spacing: 0.04em; }
+  .month-focus { font-weight: 600; font-size: 13px; color: var(--black); }
+  .month-actions { list-style: none; display: flex; flex-direction: column; gap: 7px; padding-left: 0; }
+  .month-actions li { font-size: 12.5px; color: var(--black); line-height: 1.6; padding-left: 20px; position: relative; border-bottom: 1px solid var(--light-grey); padding-bottom: 7px; }
+  .month-actions li:last-child { border-bottom: none; }
+  .month-actions li::before { content: '→'; position: absolute; left: 0; color: var(--blush-deep); font-weight: 600; }
+
+  /* TIER CARDS */
+  .tier-section { margin-bottom: 28px; }
+  .tier-intro { font-size: 13px; color: var(--warm-grey); line-height: 1.7; margin-bottom: 16px; }
+  .tier-cards { display: flex; flex-direction: column; gap: 10px; }
+  .tier-card { border: 1.5px solid var(--light-grey); padding: 16px 20px; display: flex; align-items: flex-start; gap: 16px; }
+  .tier-card.featured { border-color: var(--black); background: var(--cream); }
+  .tier-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: var(--warm-grey); margin-bottom: 4px; }
+  .tier-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--black); margin-bottom: 4px; }
+  .tier-price { font-size: 16px; font-weight: 600; color: var(--black); margin-bottom: 6px; }
+  .tier-desc { font-size: 12px; color: var(--warm-grey); line-height: 1.6; }
+  .tier-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+
+  /* AFFILIATE */
+  .affiliate-box { background: var(--cream); border-left: 3px solid var(--blush-deep); padding: 20px 24px; margin-bottom: 24px; }
+  .affiliate-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+  .affiliate-desc { font-size: 12.5px; color: var(--warm-grey); line-height: 1.65; margin-bottom: 12px; }
+  .affiliate-steps { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .affiliate-steps li { font-size: 12.5px; color: var(--black); line-height: 1.6; padding-left: 18px; position: relative; }
+  .affiliate-steps li::before { content: '→'; position: absolute; left: 0; color: var(--blush-deep); font-weight: 600; }
+
+  /* 90 DAY TEMPLATE */
+  .plan-template { margin-bottom: 28px; }
+  .plan-grid { display: grid; grid-template-columns: 80px 1fr 1fr; gap: 2px; }
+  .plan-grid-header { background: var(--black); color: var(--blush); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; padding: 8px 12px; }
+  .plan-grid-cell { border: 1px solid var(--light-grey); padding: 10px 12px; }
+  .plan-grid-label { background: var(--cream); font-weight: 600; font-size: 12px; color: var(--black); padding: 10px 12px; border: 1px solid var(--light-grey); }
+  textarea.plan-cell { width: 100%; border: none; background: transparent; font-family: 'Inter', sans-serif; font-size: 12px; color: var(--black); outline: none; resize: none; line-height: 1.5; min-height: 60px; padding: 0; }
+
+  /* AI BOX */
+  .ai-box { background: var(--black); padding: 22px 26px; margin-top: 24px; }
+  .ai-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--blush); opacity: 0.7; margin-bottom: 8px; }
+  .ai-title { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--white); margin-bottom: 8px; }
+  .ai-desc { font-size: 12px; color: var(--blush); opacity: 0.65; line-height: 1.6; margin-bottom: 14px; }
+  .ai-prompt { background: #111; border-left: 3px solid var(--blush-deep); padding: 14px 16px; font-size: 11.5px; color: var(--blush); line-height: 1.7; font-style: italic; margin-bottom: 14px; white-space: pre-wrap; }
+  .btn-copy { background: var(--blush); color: var(--black); border: none; padding: 10px 18px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
+  .btn-copy:hover { opacity: 0.8; }
+  .btn-copy.copied { background: var(--blush-deep); }
+
+  .footer { background: var(--black); padding: 14px 48px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--blush); font-style: italic; }
+  .footer-step { font-size: 10px; color: var(--blush); opacity: 0.4; letter-spacing: 0.08em; }
+
+  @media (max-width: 520px) {
+    .header, .path-selector, .path-content, .footer, .strip { padding-left: 24px; padding-right: 24px; }
+    .plan-grid { grid-template-columns: 60px 1fr; }
+    .plan-grid-cell:nth-child(3n) { display: none; }
+    .plan-grid-header:nth-child(3) { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <svg class="sunburst" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(65,65)" fill="white">
+        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/><polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/><polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/><polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/><polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/><polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/><polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/><polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/><polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <p class="brand-tag">Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 8</p>
+    <h1>Launch Again<br><em>Roadmap</em></h1>
+    <p class="header-sub">You've proved the system works. Now choose your next flight.</p>
+  </div>
+  <div class="strip">You don't need a new plan. You need to multiply what's already working.</div>
+
+  <div class="path-selector">
+    <div class="path-label">Choose your next path</div>
+    <div class="path-pills">
+      <div class="pill active" onclick="showPath('wider')">Go wider</div>
+      <div class="pill" onclick="showPath('deeper')">Go deeper</div>
+      <div class="pill" onclick="showPath('broader')">Go broader</div>
+      <div class="pill" onclick="showPath('tiers')">Programme tiers</div>
+      <div class="pill" onclick="showPath('plan')">90-day plan</div>
+    </div>
+  </div>
+
+  <!-- GO WIDER -->
+  <div class="path-content active" id="path-wider">
+    <div class="path-hero">
+      <div class="path-icon">📣</div>
+      <div>
+        <div class="path-title">Go Wider</div>
+        <div class="path-tagline">Grow your audience and reach more of the right people. Same offer, bigger platform.</div>
+      </div>
+    </div>
+    <p class="intro-text">Going wider means expanding how many people know you exist - through more visibility, new platforms, collaborations, and scaling the lead generation strategies that are already working. You don't change what you sell. You just get it in front of more people.</p>
+
+    <div class="month-block">
+      <div class="month-header"><div class="month-badge">Month 1</div><div class="month-focus">Double down on what's working</div></div>
+      <ul class="month-actions">
+        <li>Identify which content type and platform is generating the most leads - and post more of that</li>
+        <li>Increase posting frequency from 3-4x to 5-7x per week on your primary platform</li>
+        <li>Start repurposing your best content across a second platform (e.g. Instagram → TikTok, or Instagram → LinkedIn)</li>
+        <li>Run a free challenge or workshop to rapidly grow your email list</li>
+        <li>Set a target: 25% increase in weekly leads generated</li>
+      </ul>
+    </div>
+    <div class="month-block">
+      <div class="month-header"><div class="month-badge">Month 2</div><div class="month-focus">Collaboration and reach</div></div>
+      <ul class="month-actions">
+        <li>Reach out to 5 accounts in complementary niches for collaboration - lives, joint posts, or audience swaps</li>
+        <li>Apply to be a guest on 3 podcasts that serve your ideal client</li>
+        <li>Start a simple referral programme - ask existing clients to refer one person in exchange for a bonus or discount</li>
+        <li>If you haven't started paid ads yet, begin testing with £5-£10/day on your best-performing organic content</li>
+      </ul>
+    </div>
+    <div class="month-block">
+      <div class="month-header"><div class="month-badge">Month 3</div><div class="month-focus">Systemise and scale</div></div>
+      <ul class="month-actions">
+        <li>Batch create 2-3 weeks of content at once so you can stay consistent even in busy periods</li>
+        <li>Set up a simple affiliate programme - offer 10-20% commission to people who refer paying clients</li>
+        <li>Review your lead generation data and double your budget/effort on the one channel converting best</li>
+        <li>Run a second challenge or free event with the improvements you made from the first</li>
+      </ul>
+    </div>
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Build your audience growth strategy</div>
+      <div class="ai-desc">Copy this prompt to get a specific plan for growing your reach in the next 90 days.</div>
+      <div class="ai-prompt">I've completed my first cycle of a coaching programme and I want to grow my audience over the next 90 days.
+
+My current situation:
+- Niche: [who you help and what you help them do]
+- Current weekly leads: [number]
+- Primary platform: [Instagram / Facebook / TikTok / LinkedIn]
+- Lead generation strategy that's working best: [warm DMs / lead magnet / challenges / offline / ads]
+- Current email list size: [number]
+- Monthly revenue: [approximate]
+
+My goals for the next 90 days:
+- Lead target: [number per week]
+- Revenue target: [monthly amount]
+- Audience growth: [followers or email subscribers target]
+
+Please create:
+1. A 90-day audience growth plan broken into 3 monthly focuses
+2. The top 3 highest-leverage actions I should take in month 1
+3. A collaboration outreach message I can send to complementary accounts
+4. A simple referral programme structure I can launch this month
+
+Base everything on my specific starting point - not generic advice.</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <!-- GO DEEPER -->
+  <div class="path-content" id="path-deeper">
+    <div class="path-hero">
+      <div class="path-icon">💎</div>
+      <div>
+        <div class="path-title">Go Deeper</div>
+        <div class="path-tagline">Develop a more premium offer. Serve fewer people better. Earn more per client.</div>
+      </div>
+    </div>
+    <p class="intro-text">Going deeper means increasing the value of what you offer and the price you charge for it. Instead of selling to more people, you sell a bigger transformation to fewer people. This path suits you if you want higher income without more volume.</p>
+
+    <div class="month-block">
+      <div class="month-header"><div class="month-badge">Month 1</div><div class="month-focus">Understand what your clients actually need</div></div>
+      <ul class="month-actions">
+        <li>Interview 3-5 existing or past clients - ask what they still struggle with after working with you</li>
+        <li>Identify the next logical problem your clients have after completing your programme</li>
+        <li>Research what a premium version of your offer would look like - more access, more accountability, more done-for-you</li>
+        <li>Raise your current price by 20-30% - test the market before building anything new</li>
+      </ul>
+    </div>
+    <div class="month-block">
+      <div class="month-header"><div class="month-badge">Month 2</div><div class="month-focus">Design and validate the premium offer</div></div>
+      <ul class="month-actions">
+        <li>Design your premium tier (see the Programme Tiers section) - what's included that your current offer doesn't have?</li>
+        <li>Offer it to 2-3 existing clients at a founding member rate before you formally launch</li>
+        <li>Create a waitlist for your premium offer and build anticipation through your content</li>
+        <li>Document your delivery process so you can serve more people without burning out</li>
+      </ul>
+    </div>
+    <div class="month-block">
+      <div class="month-header"><div class="month-badge">Month 3</div><div class="month-focus">Launch and position</div></div>
+      <ul class="month-actions">
+        <li>Formally launch your premium offer with a clear sales page or PDF one-pager</li>
+        <li>Position your current offer as the entry point and the premium offer as the next step</li>
+        <li>Create content specifically about the transformation your premium clients experience</li>
+        <li>Aim for 2-3 premium clients in month 3 - that may be more income than 10 standard clients</li>
+      </ul>
+    </div>
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Design your premium offer</div>
+      <div class="ai-desc">Copy this prompt to get a premium offer structure and launch plan.</div>
+      <div class="ai-prompt">I want to develop a premium version of my existing offer.
+
+My current offer:
+- What it is: [your current programme or service]
+- What's included: [deliverables]
+- Current price: [price]
+- Average client result: [what most clients achieve]
+
+What I know about what my clients need next:
+- The main struggle after completing my programme: [what you've observed]
+- What they ask for most: [common requests]
+
+What I could add to make a premium version:
+- [list 3-5 ideas: more 1:1 time, longer programme, done-for-you elements, community, etc.]
+
+Please help me:
+1. Design a premium offer structure (what's included, how it's delivered, suggested price)
+2. Write a one-paragraph description of the premium offer and who it's for
+3. Write the pitch for existing clients to upgrade
+4. Create a 30-day launch plan for the premium offer
+
+Focus on value first, price second. The premium offer should feel like a natural next step, not a hard sell.</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <!-- GO BROADER -->
+  <div class="path-content" id="path-broader">
+    <div class="path-hero">
+      <div class="path-icon">🌐</div>
+      <div>
+        <div class="path-title">Go Broader</div>
+        <div class="path-tagline">Build a team or affiliate structure so your business grows beyond your own effort.</div>
+      </div>
+    </div>
+    <p class="intro-text">Going broader means creating income and reach that isn't solely dependent on your own time and effort. This could mean building an affiliate network, starting a referral programme, or - for network marketing models - growing a team of distributors beneath you.</p>
+
+    <div class="affiliate-box">
+      <div class="affiliate-title">Setting up a simple affiliate programme</div>
+      <div class="affiliate-desc">An affiliate programme lets other people refer clients to you in exchange for a commission. It costs you nothing unless you make a sale - and it multiplies your reach without multiplying your workload.</div>
+      <ul class="affiliate-steps">
+        <li>Decide your commission rate - 10-20% is standard for coaching and digital products</li>
+        <li>Set up affiliate tracking using Systeme.io (free plan supports affiliates), ThriveCart, or a simple Google Form + manual tracking</li>
+        <li>Recruit your first affiliates from your existing clients - they already believe in what you do</li>
+        <li>Give them everything they need: a unique link, swipe copy, graphics, and email templates</li>
+        <li>Pay out monthly and celebrate their referrals publicly - it motivates them and attracts new affiliates</li>
+      </ul>
+    </div>
+
+    <div class="month-block">
+      <div class="month-header"><div class="month-badge">Month 1</div><div class="month-focus">Set up your referral structure</div></div>
+      <ul class="month-actions">
+        <li>Choose your affiliate platform and set it up (Systeme.io free plan is the simplest starting point)</li>
+        <li>Write your affiliate welcome pack - what they're promoting, the commission, how to refer, and all the copy they need</li>
+        <li>Invite your best 3-5 existing clients to become affiliates</li>
+        <li>Create one piece of content about the referral programme to attract more affiliates from your audience</li>
+      </ul>
+    </div>
+    <div class="month-block">
+      <div class="month-header"><div class="month-badge">Month 2</div><div class="month-focus">Activate and support your affiliates</div></div>
+      <ul class="month-actions">
+        <li>Send your affiliates a monthly content kit - new swipe copy, hooks, and graphics they can use</li>
+        <li>Host a monthly affiliate check-in call - even 20 minutes keeps them engaged and motivated</li>
+        <li>Celebrate every referral publicly (with permission) in your community</li>
+        <li>Track which affiliates are most active and invest more support in them</li>
+      </ul>
+    </div>
+    <div class="month-block">
+      <div class="month-header"><div class="month-badge">Month 3</div><div class="month-focus">Grow the network</div></div>
+      <ul class="month-actions">
+        <li>Aim for 10+ active affiliates by end of month 3</li>
+        <li>Create an affiliate-only community (WhatsApp group or Facebook group) for peer support</li>
+        <li>Introduce a tiered commission structure - more referrals earns higher commission</li>
+        <li>Start content specifically targeting people who want to be affiliates, not just clients</li>
+      </ul>
+    </div>
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Write your affiliate welcome pack</div>
+      <div class="ai-desc">Copy this prompt to get everything your affiliates need to start referring clients.</div>
+      <div class="ai-prompt">I'm launching an affiliate programme and I need to create a welcome pack for my affiliates.
+
+My offer:
+- What I sell: [your programme or service]
+- Price: [price]
+- Commission rate: [your rate]
+- Who it's for: [your ideal client]
+- Key results clients get: [specific outcomes]
+
+Please create my affiliate welcome pack including:
+1. A welcome message to send new affiliates (warm, excited, sets expectations)
+2. How it works - a clear 3-step explanation of the affiliate process
+3. Three ready-to-use social media captions they can post about my offer
+4. A DM script they can send to people who might be interested
+5. FAQ: the 5 most common questions affiliates or their referrals might ask
+
+Tone: warm, professional, and genuinely excited - this should make affiliates feel like they're joining something they're proud to promote.</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <!-- PROGRAMME TIERS -->
+  <div class="path-content" id="path-tiers">
+    <p class="intro-text">You've already built something that works. Now give people different ways to access it - so whoever is ready, wherever they are, has an entry point into your world.</p>
+
+    <div class="tier-section">
+      <div class="tier-cards">
+        <div class="tier-card">
+          <div class="tier-icon">✈️</div>
+          <div>
+            <div class="tier-label">Economy</div>
+            <div class="tier-name">Rise Flight Plan - Self-Paced</div>
+            <div class="tier-price">£27 - £47</div>
+            <div class="tier-desc">The full 8-step programme delivered as a self-paced mini course. Videos, tools, and templates - everything they need to go through the steps in their own time. No live support or community. Perfect for someone who wants the roadmap but isn't ready for full investment.</div>
+          </div>
+        </div>
+        <div class="tier-card featured">
+          <div class="tier-icon">🛫</div>
+          <div>
+            <div class="tier-label">Business - Most popular</div>
+            <div class="tier-name">Rise Flight Plan - Live Group</div>
+            <div class="tier-price">£997 (or 3 x £397)</div>
+            <div class="tier-desc">The full programme delivered live with weekly group coaching calls, a private community, all tools and templates, and direct access to Jo for support and accountability. For the mum who knows she needs structure and a coach in her corner to actually follow through.</div>
+          </div>
+        </div>
+        <div class="tier-card">
+          <div class="tier-icon">🛩️</div>
+          <div>
+            <div class="tier-label">First Class</div>
+            <div class="tier-name">Rise Flight Plan - 1:1 Mentoring</div>
+            <div class="tier-price">£2,000 - £10,000</div>
+            <div class="tier-desc">Direct 1:1 mentoring with Jo. Fully personalised to the client's business model, goals, and timeline. Includes everything in the Business tier plus unlimited voice note access, done-with-you sessions, and the fastest path to results. For the mum who wants it done right and fast.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--cream);border-left:3px solid var(--blush-deep);padding:16px 20px;margin-bottom:24px;font-size:12.5px;color:var(--warm-grey);line-height:1.65;">
+      <strong style="color:var(--black);">How to present the tiers:</strong> Always present all three options. People self-select. Your job is not to upsell - it's to give them enough information to choose the right level for where they are right now. The Economy tier is not a lesser product - it's a different product for a different buyer.
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Write your tier comparison copy</div>
+      <div class="ai-desc">Copy this prompt to get sales copy for all three tiers in one go.</div>
+      <div class="ai-prompt">I offer my coaching programme at three different tiers and I need help writing the copy for each.
+
+Economy tier:
+- Name: [your name for it]
+- Price: [price]
+- What's included: [self-paced content, tools, templates - no live support]
+- Who it's for: [the buyer who suits this tier]
+
+Business tier:
+- Name: [your name for it]
+- Price: [price]
+- What's included: [live programme, group calls, community, etc.]
+- Who it's for: [the buyer who suits this tier]
+
+First Class tier:
+- Name: [your name for it]
+- Price: [price]
+- What's included: [1:1 access, bespoke support, etc.]
+- Who it's for: [the buyer who suits this tier]
+
+Please write:
+1. A 2-3 sentence description for each tier (for a sales page or DM)
+2. A "which tier is right for you?" guide (3 bullets per tier: who it suits, what they get, what success looks like)
+3. A social post presenting all three tiers without being pushy
+
+Tone: clear, confident, and non-salesy. Help people self-select - don't push them toward the most expensive.</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <!-- 90-DAY PLAN -->
+  <div class="path-content" id="path-plan">
+    <p class="intro-text">Fill in your 90-day action plan below based on the path you've chosen. Keep it specific - not "grow my audience" but "post 5x per week and send 10 DMs per day." Vague goals produce vague results.</p>
+
+    <div class="plan-template">
+      <div style="margin-bottom:14px;">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:var(--warm-grey);margin-bottom:6px;">My chosen path</div>
+        <input type="text" placeholder="e.g. Go wider - grow my audience and double my weekly leads">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+        <div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:var(--warm-grey);margin-bottom:6px;">Revenue target (month 3)</div>
+          <input type="text" placeholder="£">
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:var(--warm-grey);margin-bottom:6px;">Weekly leads target (month 3)</div>
+          <input type="text" placeholder="e.g. 30 per week">
+        </div>
+      </div>
+
+      <div class="plan-grid">
+        <div class="plan-grid-header">Month</div>
+        <div class="plan-grid-header">Focus and key actions</div>
+        <div class="plan-grid-header">Weekly non-negotiables</div>
+        <div class="plan-grid-label">Month 1</div>
+        <div class="plan-grid-cell"><textarea class="plan-cell" placeholder="What's the focus? What are your 3 key actions this month?"></textarea></div>
+        <div class="plan-grid-cell"><textarea class="plan-cell" placeholder="What do you do every single week, no matter what?"></textarea></div>
+        <div class="plan-grid-label">Month 2</div>
+        <div class="plan-grid-cell"><textarea class="plan-cell" placeholder="What builds on month 1? What do you add or change?"></textarea></div>
+        <div class="plan-grid-cell"><textarea class="plan-cell" placeholder="Same or updated non-negotiables..."></textarea></div>
+        <div class="plan-grid-label">Month 3</div>
+        <div class="plan-grid-cell"><textarea class="plan-cell" placeholder="Where should you be by end of month 3? What's the final push?"></textarea></div>
+        <div class="plan-grid-cell"><textarea class="plan-cell" placeholder="Non-negotiables for the final month..."></textarea></div>
+      </div>
+
+      <div style="margin-top:16px;">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:var(--warm-grey);margin-bottom:6px;">The ONE thing that will make or break these 90 days</div>
+        <input type="text" placeholder="The single most important habit, action, or mindset for this period...">
+      </div>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Build your full 90-day action plan</div>
+      <div class="ai-desc">Complete the fields above first, then use this prompt to get a detailed week-by-week plan.</div>
+      <div class="ai-prompt">I've completed a coaching programme and I'm planning my next 90 days. I need a detailed action plan.
+
+My situation:
+- Niche: [who you help and what you help them do]
+- Current monthly revenue: [amount]
+- Current weekly leads: [number]
+- Primary lead generation strategy: [which one]
+- What's working: [your strongest area]
+- What needs work: [your weakest area]
+
+My 90-day path: [Go wider / Go deeper / Go broader]
+My revenue target by month 3: [amount]
+My lead target by month 3: [number per week]
+
+Please create:
+1. A 90-day plan broken into 3 monthly focuses with 3-5 specific actions per month
+2. A weekly non-negotiable routine (what I do every single week)
+3. The top 3 metrics I should track to know I'm on track
+4. Warning signs that I'm going off track and what to do if I see them
+5. A 30-day check-in prompt I can use to assess my progress
+
+Be specific and realistic. Base everything on my starting point, not an ideal scenario.</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Rise Beyond the 9 to 5</span>
+    <span class="footer-step">Step 8 of 8 · Launch Again Roadmap</span>
+  </div>
+</div>
+<script>
+function showPath(id) {
+  document.querySelectorAll('.path-content').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  document.getElementById('path-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+function copyAI(btn) {
+  const prompt = btn.previousElementSibling.textContent.trim();
+  navigator.clipboard.writeText(prompt).then(() => {
+    btn.textContent = 'Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy prompt →'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
