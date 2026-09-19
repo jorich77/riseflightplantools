@@ -20,7 +20,7 @@
   .hero-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; color: var(--black); opacity: 0.5; margin-bottom: 20px; }
   .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 54px; font-weight: 600; line-height: 1.0; color: var(--black); margin-bottom: 20px; }
   .hero h1 em { color: var(--warm-grey); font-style: italic; font-weight: 400; display: block; }
-  .hero-sub { font-size: 15px; color: var(--black); opacity: 0.65; line-height: 1.75; max-width: 480px; margin: 0 auto 36px; font-weight: 300; }
+  .hero-sub { font-size: 15px; color: var(--black); opacity: 0.82; line-height: 1.75; max-width: 480px; margin: 0 auto 36px; font-weight: 400; }
   .hero-sub strong { opacity: 1; font-weight: 600; color: var(--black); }
   .btn-cta { display: inline-block; background: var(--black); color: var(--blush); padding: 18px 48px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; text-decoration: none; letter-spacing: 0.04em; transition: opacity 0.15s; }
   .btn-cta:hover { opacity: 0.82; }
@@ -32,7 +32,7 @@
   .section-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 600; line-height: 1.15; margin-bottom: 28px; color: var(--white); }
   .section-title em { font-style: italic; color: var(--blush); font-weight: 400; }
   .pain-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
-  .pain-list li { font-size: 13.5px; color: var(--blush); opacity: 0.8; line-height: 1.7; padding-left: 22px; position: relative; }
+  .pain-list li { font-size: 13.5px; color: var(--blush); opacity: 1; line-height: 1.7; padding-left: 22px; position: relative; font-weight: 400; }
   .pain-list li::before { content: '–'; position: absolute; left: 0; color: var(--blush-deep); font-weight: 600; }
 
   /* ── BLUSH STRIP ── */
@@ -42,7 +42,7 @@
   /* ── WHAT IT IS ── */
   .what { background: var(--cream); padding: 56px 48px; }
   .what .section-title { color: var(--black); }
-  .what p { font-size: 14px; color: var(--warm-grey); line-height: 1.8; margin-bottom: 16px; }
+  .what p { font-size: 14px; color: var(--black); opacity: 0.75; line-height: 1.8; margin-bottom: 16px; font-weight: 400; }
   .what p strong { color: var(--black); }
 
   /* ── 8 STEPS ── */
@@ -53,8 +53,8 @@
   .step-row:last-child { border-bottom: none; }
   .step-n { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 600; color: var(--black); opacity: 0.25; min-width: 32px; line-height: 1; padding-top: 2px; }
   .step-text { }
-  .step-name { font-weight: 600; font-size: 14px; color: var(--black); margin-bottom: 4px; }
-  .step-desc { font-size: 12.5px; color: var(--black); opacity: 0.55; line-height: 1.65; }
+  .step-name { font-weight: 700; font-size: 14.5px; color: var(--black); margin-bottom: 4px; }
+  .step-desc { font-size: 13px; color: var(--black); opacity: 0.75; line-height: 1.65; font-weight: 400; }
 
   /* ── WHAT'S INCLUDED ── */
   .included { background: var(--black); padding: 56px 48px; }
@@ -62,8 +62,8 @@
   .included-grid { display: flex; flex-direction: column; gap: 3px; margin-top: 24px; }
   .included-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: rgba(232,217,208,0.07); border-left: 3px solid var(--blush-deep); }
   .included-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
-  .included-title { font-weight: 600; font-size: 14px; color: var(--blush); margin-bottom: 4px; }
-  .included-desc { font-size: 12px; color: var(--blush); opacity: 0.55; line-height: 1.6; }
+  .included-title { font-weight: 700; font-size: 14.5px; color: var(--blush); margin-bottom: 4px; }
+  .included-desc { font-size: 12.5px; color: var(--blush); opacity: 0.8; line-height: 1.6; font-weight: 400; }
 
   /* ── ABOUT ── */
   .about { background: var(--blush-deep); padding: 56px 48px; display: flex; gap: 36px; align-items: flex-start; }
@@ -71,7 +71,7 @@
   .about-text { }
   .about-name { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; color: var(--black); margin-bottom: 4px; }
   .about-role { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--black); opacity: 0.45; margin-bottom: 14px; }
-  .about-bio { font-size: 13px; color: var(--black); opacity: 0.7; line-height: 1.8; }
+  .about-bio { font-size: 13.5px; color: var(--black); opacity: 0.85; line-height: 1.8; font-weight: 400; }
 
   /* ── TESTIMONIALS ── */
   .testimonials { background: var(--black); padding: 56px 48px; }
@@ -87,11 +87,11 @@
   .faq .section-title { color: var(--black); }
   .faq-list { display: flex; flex-direction: column; gap: 0; margin-top: 24px; }
   .faq-item { border-bottom: 1px solid var(--blush-deep); }
-  .faq-q { font-weight: 600; font-size: 14px; color: var(--black); padding: 18px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+  .faq-q { font-weight: 700; font-size: 14.5px; color: var(--black); padding: 18px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
   .faq-q:hover { opacity: 0.7; }
   .faq-arrow { font-size: 11px; color: var(--black); opacity: 0.4; transition: transform 0.2s; flex-shrink: 0; margin-left: 12px; }
   .faq-arrow.open { transform: rotate(180deg); }
-  .faq-a { font-size: 13.5px; color: var(--black); opacity: 0.65; line-height: 1.75; padding: 0 0 18px; display: none; }
+  .faq-a { font-size: 13.5px; color: var(--black); opacity: 0.82; line-height: 1.75; padding: 0 0 18px; display: none; font-weight: 400; }
   .faq-a.open { display: block; }
 
   /* ── CTA BOTTOM ── */
@@ -99,7 +99,7 @@
   .cta-sunburst { position: absolute; left: 50%; top: -60px; transform: translateX(-50%); width: 400px; height: 400px; opacity: 0.05; }
   .cta-bottom h2 { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 600; color: var(--white); line-height: 1.15; margin-bottom: 16px; }
   .cta-bottom h2 em { color: var(--blush); font-style: italic; font-weight: 400; }
-  .cta-bottom p { font-size: 14px; color: var(--blush); opacity: 0.5; line-height: 1.7; max-width: 400px; margin: 0 auto 40px; }
+  .cta-bottom p { font-size: 14px; color: var(--blush); opacity: 0.75; line-height: 1.7; max-width: 400px; margin: 0 auto 40px; font-weight: 400; }
   .price-block { margin-bottom: 32px; }
   .price-now { font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 600; color: var(--blush); line-height: 1; }
   .price-note { font-size: 12px; color: var(--blush); opacity: 0.4; margin-top: 8px; }
