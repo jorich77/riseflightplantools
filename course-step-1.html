@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Step 1 – Check Your Instruments | Rise Flight Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --black:#1a1a1a; --blush:#e8d9d0; --blush-deep:#d4c0b4; --cream:#f5f0e8; --warm-grey:#6b6560; --light-grey:#d9d3cc; --white:#ffffff; }
+  body { background: var(--cream); font-family: 'Inter', sans-serif; color: var(--black); min-height: 100vh; }
+  .page { max-width: 720px; margin: 0 auto; background: var(--white); }
+
+  .header { background: var(--black); padding: 36px 48px 28px; position: relative; overflow: hidden; }
+  .sunburst { position: absolute; right: -20px; top: -20px; width: 130px; height: 130px; opacity: 0.08; }
+  .step-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; color: var(--blush); opacity: 0.7; margin-bottom: 10px; }
+  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 600; line-height: 1.1; color: var(--white); }
+  .header h1 em { color: var(--blush); font-style: italic; font-weight: 400; }
+  .header-sub { font-size: 12px; color: var(--blush); opacity: 0.55; font-weight: 300; margin-top: 8px; }
+  .strip { background: var(--blush); padding: 11px 48px; font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--black); }
+
+  .body { padding: 36px 48px 48px; }
+
+  /* VIDEO */
+  .video-wrap { background: var(--black); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; margin-bottom: 32px; position: relative; }
+  .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+  .video-placeholder { text-align: center; color: var(--blush); opacity: 0.4; }
+  .video-placeholder .play { font-size: 48px; margin-bottom: 8px; }
+  .video-placeholder p { font-size: 12px; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+
+  /* DESCRIPTION */
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--warm-grey); margin-bottom: 10px; }
+  .description { font-size: 13.5px; color: var(--warm-grey); line-height: 1.75; margin-bottom: 28px; }
+  .description strong { color: var(--black); font-weight: 600; }
+
+  /* WHAT YOU'LL DO */
+  .what-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
+  .what-list li { font-size: 13px; color: var(--black); line-height: 1.6; padding-left: 20px; position: relative; }
+  .what-list li::before { content: '→'; position: absolute; left: 0; color: var(--blush-deep); font-weight: 600; }
+
+  /* TOOLS */
+  .tools-section { margin-bottom: 36px; }
+  .tools-grid { display: flex; flex-direction: column; gap: 8px; }
+  .tool-btn { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; background: var(--black); color: var(--white); text-decoration: none; transition: opacity 0.15s; }
+  .tool-btn:hover { opacity: 0.85; }
+  .tool-btn-name { font-size: 13px; font-weight: 500; }
+  .tool-btn-tag { font-size: 10px; color: var(--blush); opacity: 0.7; margin-top: 2px; }
+  .tool-btn-arrow { font-size: 14px; color: var(--blush); flex-shrink: 0; }
+
+  /* NAV */
+  .nav-row { display: flex; justify-content: flex-end; padding-top: 24px; border-top: 1px solid var(--light-grey); }
+  .btn-next { background: var(--blush); color: var(--black); border: none; padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity 0.15s; }
+  .btn-next:hover { opacity: 0.8; }
+
+  .footer { background: var(--black); padding: 14px 48px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--blush); font-style: italic; }
+  .footer-step { font-size: 10px; color: var(--blush); opacity: 0.4; letter-spacing: 0.08em; }
+
+  @media (max-width: 520px) {
+    .header, .body, .footer, .strip { padding-left: 24px; padding-right: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <svg class="sunburst" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(65,65)" fill="white">
+        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/><polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/><polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/><polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/><polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/><polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/><polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/><polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/><polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <p class="step-tag">Step 1 of 8 · The Rise Flight Plan</p>
+    <h1>Check Your<br><em>Instruments</em></h1>
+    <p class="header-sub">Find your starting point before you take off.</p>
+  </div>
+  <div class="strip">You can't navigate without knowing where you are right now.</div>
+
+  <div class="body">
+    <div class="video-wrap">
+      <!-- Replace src with your video embed URL -->
+      <!-- <iframe src="YOUR_VIDEO_URL" allowfullscreen></iframe> -->
+      <div class="video-placeholder">
+        <div class="play">▶</div>
+        <p>Video coming soon</p>
+      </div>
+    </div>
+
+    <div class="section-label">What this step is about</div>
+    <p class="description">Before you build anything, you need to know your real starting point. Not the version you tell people at dinner - the honest one. <strong>Step 1 is about getting clear on where you actually are</strong> across five key areas of your life: income, time, clarity, consistency, and self-belief. Your Freedom Score gives you a number you can measure against at Step 8 - and the gap between those two numbers is the whole point of this programme.</p>
+
+    <div class="section-label" style="margin-bottom:10px;">In this step you will</div>
+    <ul class="what-list">
+      <li>Complete your Freedom Score Scorecard across 5 life areas</li>
+      <li>Record your "before" - your income, hours, and what's draining you</li>
+      <li>Get a personalised insight based on your lowest scoring areas</li>
+      <li>Set your starting benchmark to measure your growth against</li>
+    </ul>
+
+    <div class="tools-section">
+      <div class="section-label" style="margin-bottom:10px;">Your Step 1 tool</div>
+      <div class="tools-grid">
+        <a class="tool-btn" href="https://riseflightplantools.vercel.app/step-1-freedom-score-scorecard.html" target="_blank">
+          <div><div class="tool-btn-name">Freedom Score Scorecard</div><div class="tool-btn-tag">Interactive quiz · 3 minutes</div></div>
+          <div class="tool-btn-arrow">↗</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <a class="btn-next" href="course-step-2.html">Step 2: Choose Your Flight Path →</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Rise Beyond the 9 to 5</span>
+    <span class="footer-step">Step 1 of 8</span>
+  </div>
+</div>
+</body>
+</html>
