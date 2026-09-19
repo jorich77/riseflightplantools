@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monthly Review Template – Rise Beyond the 9 to 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #1a1a1a; --blush: #e8d9d0; --blush-deep: #d4c0b4;
+    --cream: #f5f0e8; --warm-grey: #6b6560; --light-grey: #d9d3cc; --white: #ffffff;
+  }
+  body { background: var(--black); font-family: 'Inter', sans-serif; color: var(--black); min-height: 100vh; }
+  .page { max-width: 680px; margin: 0 auto; background: var(--white); min-height: 100vh; display: flex; flex-direction: column; }
+
+  .header { background: var(--black); padding: 36px 48px 28px; position: relative; overflow: hidden; flex-shrink: 0; }
+  .sunburst { position: absolute; right: -20px; top: -20px; width: 130px; height: 130px; opacity: 0.1; }
+  .brand-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; color: var(--blush); opacity: 0.6; margin-bottom: 10px; }
+  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 600; line-height: 1.1; color: var(--white); }
+  .header h1 em { color: var(--blush); font-style: italic; font-weight: 400; }
+  .header-sub { font-size: 12px; color: var(--blush); opacity: 0.55; font-weight: 300; margin-top: 8px; }
+  .strip { background: var(--blush); padding: 11px 48px; font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--black); }
+
+  .body { padding: 36px 48px 48px; flex: 1; }
+  .intro-text { font-size: 13px; color: var(--warm-grey); line-height: 1.7; margin-bottom: 28px; }
+
+  .print-btn { background: var(--blush-deep); color: var(--black); border: none; padding: 12px 24px; font-size: 11.5px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; margin-bottom: 28px; display: block; }
+  .print-btn:hover { opacity: 0.8; }
+
+  .review-section { margin-bottom: 28px; }
+  .review-section-header { background: var(--black); padding: 10px 16px; margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
+  .section-icon { font-size: 16px; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--white); }
+  .section-sub { font-size: 10px; color: var(--blush); opacity: 0.6; margin-left: auto; }
+
+  .field-group { margin-bottom: 16px; }
+  .field-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; color: var(--warm-grey); margin-bottom: 6px; display: block; }
+  .field-hint { font-weight: 400; font-style: italic; color: var(--light-grey); }
+  textarea, input[type="text"] {
+    width: 100%; border: 1.5px solid var(--light-grey); background: var(--white);
+    padding: 10px 14px; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--black);
+    outline: none; resize: none; line-height: 1.6; transition: border-color 0.15s;
+  }
+  textarea:focus, input[type="text"]:focus { border-color: var(--black); }
+
+  .numbers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+  .number-field { }
+  .number-field label { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; color: var(--warm-grey); margin-bottom: 5px; display: block; }
+  .number-field input { border: 1.5px solid var(--light-grey); padding: 10px 12px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: var(--black); outline: none; width: 100%; transition: border-color 0.15s; }
+  .number-field input:focus { border-color: var(--black); }
+
+  .rating-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .rating-label { font-size: 12px; color: var(--black); flex: 1; }
+  .rating-circles { display: flex; gap: 5px; }
+  .rating-circles input[type="radio"] { display: none; }
+  .rating-circles label { width: 24px; height: 24px; border: 1.5px solid var(--light-grey); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; color: var(--warm-grey); cursor: pointer; transition: all 0.12s; }
+  .rating-circles input[type="radio"]:checked + label { background: var(--black); border-color: var(--black); color: var(--white); }
+
+  .one-thing-box { background: var(--cream); border: 2px solid var(--black); padding: 20px; margin-top: 4px; }
+  .one-thing-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--warm-grey); margin-bottom: 8px; }
+  .one-thing-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; margin-bottom: 12px; }
+  .one-thing-box textarea { background: var(--white); }
+
+  /* AI BOX */
+  .ai-box { background: var(--black); padding: 22px 26px; margin-top: 24px; }
+  .ai-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--blush); opacity: 0.7; margin-bottom: 8px; }
+  .ai-title { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--white); margin-bottom: 8px; }
+  .ai-desc { font-size: 12px; color: var(--blush); opacity: 0.65; line-height: 1.6; margin-bottom: 14px; }
+  .ai-prompt { background: #111; border-left: 3px solid var(--blush-deep); padding: 14px 16px; font-size: 11.5px; color: var(--blush); line-height: 1.7; font-style: italic; margin-bottom: 14px; white-space: pre-wrap; }
+  .btn-copy { background: var(--blush); color: var(--black); border: none; padding: 10px 18px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
+  .btn-copy:hover { opacity: 0.8; }
+  .btn-copy.copied { background: var(--blush-deep); }
+
+  .footer { background: var(--black); padding: 14px 48px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--blush); font-style: italic; }
+  .footer-step { font-size: 10px; color: var(--blush); opacity: 0.4; letter-spacing: 0.08em; }
+
+  @media print {
+    body { background: white; }
+    .print-btn, .ai-box { display: none; }
+    .header, .strip, .review-section-header, .one-thing-box, .footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  @media (max-width: 520px) {
+    .header, .body, .footer, .strip { padding-left: 24px; padding-right: 24px; }
+    .numbers-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <svg class="sunburst" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(65,65)" fill="white">
+        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/><polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/><polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/><polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/><polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/><polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/><polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/><polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/><polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <p class="brand-tag">Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 6</p>
+    <h1>Monthly Review<br><em>Template</em></h1>
+    <p class="header-sub">Once a month. Step back. See the bigger picture.</p>
+  </div>
+  <div class="strip">What worked, what didn't, and one thing to change. That's it.</div>
+
+  <div class="body">
+    <p class="intro-text">Set aside 30 minutes at the end of each month. Fill this in honestly. The goal is not to judge yourself - it's to learn from the month and carry one specific improvement into the next. Print it and keep it, or fill it in digitally.</p>
+
+    <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+
+    <!-- MONTH + NUMBERS -->
+    <div class="review-section">
+      <div class="review-section-header">
+        <span class="section-icon">📅</span>
+        <span class="section-title">Month in numbers</span>
+        <span class="section-sub">Transfer totals from your weekly tracker</span>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Month / Year</label>
+        <input type="text" placeholder="e.g. September 2026">
+      </div>
+      <div class="numbers-grid">
+        <div class="number-field"><label>Total leads generated</label><input type="text" placeholder="0"></div>
+        <div class="number-field"><label>Total conversations started</label><input type="text" placeholder="0"></div>
+        <div class="number-field"><label>Total discovery calls booked</label><input type="text" placeholder="0"></div>
+        <div class="number-field"><label>Total sales made</label><input type="text" placeholder="0"></div>
+        <div class="number-field"><label>Total revenue (£)</label><input type="text" placeholder="£0"></div>
+        <div class="number-field"><label>Posts published</label><input type="text" placeholder="0"></div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Compared to last month <span class="field-hint">up, down, or same for each metric?</span></label>
+        <textarea rows="2" placeholder="e.g. Leads up, conversations same, calls down (posted less in week 3), revenue up slightly..."></textarea>
+      </div>
+    </div>
+
+    <!-- WINS -->
+    <div class="review-section">
+      <div class="review-section-header">
+        <span class="section-icon">🏆</span>
+        <span class="section-title">Wins this month</span>
+        <span class="section-sub">Start here - before the gaps</span>
+      </div>
+      <div class="field-group">
+        <label class="field-label">What am I most proud of this month?</label>
+        <textarea rows="3" placeholder="Even small wins count. A first sale, a great conversation, a piece of content that really landed, showing up consistently..."></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">What worked better than expected?</label>
+        <textarea rows="2" placeholder="A strategy, a type of content, a conversation approach..."></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Client or community win worth celebrating</label>
+        <textarea rows="2" placeholder="A client result, a testimonial, a piece of feedback that meant something..."></textarea>
+      </div>
+    </div>
+
+    <!-- WHAT DIDN'T WORK -->
+    <div class="review-section">
+      <div class="review-section-header">
+        <span class="section-icon">🔍</span>
+        <span class="section-title">What didn't work</span>
+        <span class="section-sub">Data, not judgment</span>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Where did I fall short of my own expectations?</label>
+        <textarea rows="2" placeholder="Be honest but kind. This is information, not a verdict on your worth."></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">What did I avoid or procrastinate on?</label>
+        <textarea rows="2" placeholder="Sales conversations? Showing up on video? Following up with leads?"></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">What drained my energy most this month?</label>
+        <textarea rows="2" placeholder="Platforms, tasks, types of content, types of conversations..."></textarea>
+      </div>
+    </div>
+
+    <!-- ENERGY + MINDSET -->
+    <div class="review-section">
+      <div class="review-section-header">
+        <span class="section-icon">⚡</span>
+        <span class="section-title">Energy + mindset</span>
+        <span class="section-sub">Rate yourself 1-5</span>
+      </div>
+      <div class="rating-row">
+        <span class="rating-label">Overall consistency this month</span>
+        <div class="rating-circles">
+          <input type="radio" name="r1" id="r1a" value="1"><label for="r1a">1</label>
+          <input type="radio" name="r1" id="r1b" value="2"><label for="r1b">2</label>
+          <input type="radio" name="r1" id="r1c" value="3"><label for="r1c">3</label>
+          <input type="radio" name="r1" id="r1d" value="4"><label for="r1d">4</label>
+          <input type="radio" name="r1" id="r1e" value="5"><label for="r1e">5</label>
+        </div>
+      </div>
+      <div class="rating-row">
+        <span class="rating-label">Belief in myself and my offer</span>
+        <div class="rating-circles">
+          <input type="radio" name="r2" id="r2a" value="1"><label for="r2a">1</label>
+          <input type="radio" name="r2" id="r2b" value="2"><label for="r2b">2</label>
+          <input type="radio" name="r2" id="r2c" value="3"><label for="r2c">3</label>
+          <input type="radio" name="r2" id="r2d" value="4"><label for="r2d">4</label>
+          <input type="radio" name="r2" id="r2e" value="5"><label for="r2e">5</label>
+        </div>
+      </div>
+      <div class="rating-row">
+        <span class="rating-label">Energy and motivation levels</span>
+        <div class="rating-circles">
+          <input type="radio" name="r3" id="r3a" value="1"><label for="r3a">1</label>
+          <input type="radio" name="r3" id="r3b" value="2"><label for="r3b">2</label>
+          <input type="radio" name="r3" id="r3c" value="3"><label for="r3c">3</label>
+          <input type="radio" name="r3" id="r3d" value="4"><label for="r3d">4</label>
+          <input type="radio" name="r3" id="r3e" value="5"><label for="r3e">5</label>
+        </div>
+      </div>
+      <div class="rating-row">
+        <span class="rating-label">Comfort having sales conversations</span>
+        <div class="rating-circles">
+          <input type="radio" name="r4" id="r4a" value="1"><label for="r4a">1</label>
+          <input type="radio" name="r4" id="r4b" value="2"><label for="r4b">2</label>
+          <input type="radio" name="r4" id="r4c" value="3"><label for="r4c">3</label>
+          <input type="radio" name="r4" id="r4d" value="4"><label for="r4d">4</label>
+          <input type="radio" name="r4" id="r4e" value="5"><label for="r4e">5</label>
+        </div>
+      </div>
+      <div class="field-group" style="margin-top:12px;">
+        <label class="field-label">What was behind any low scores?</label>
+        <textarea rows="2" placeholder="Personal circumstances, mindset blocks, external pressures..."></textarea>
+      </div>
+    </div>
+
+    <!-- NEXT MONTH -->
+    <div class="review-section">
+      <div class="review-section-header">
+        <span class="section-icon">🎯</span>
+        <span class="section-title">Next month's focus</span>
+        <span class="section-sub">One thing only</span>
+      </div>
+      <div class="field-group">
+        <label class="field-label">What did this month teach me?</label>
+        <textarea rows="2" placeholder="One honest lesson from the month - about business, about yourself, about what works..."></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">My revenue target for next month</label>
+        <input type="text" placeholder="£">
+      </div>
+      <div class="field-group">
+        <label class="field-label">My activity targets for next month</label>
+        <textarea rows="2" placeholder="e.g. Post 5x per week, send 10 DMs per week, book 3 calls per week..."></textarea>
+      </div>
+      <div class="one-thing-box">
+        <div class="one-thing-label">The most important thing</div>
+        <div class="one-thing-title">The ONE thing I'm changing next month:</div>
+        <textarea rows="2" placeholder="One specific, concrete change. Not a list - one thing. What will be different?"></textarea>
+      </div>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Get your next month's strategy</div>
+      <div class="ai-desc">Complete your review first, then paste your answers into this prompt for a specific action plan for next month.</div>
+      <div class="ai-prompt">I've just completed my monthly business review and I need help planning next month's strategy.
+
+My numbers this month:
+- Leads: [number] | Conversations: [number] | Calls: [number] | Sales: [number] | Revenue: [amount]
+
+My biggest win this month: [your answer]
+What didn't work: [your answer]
+What I avoided: [your answer]
+The one thing I'm changing: [your answer]
+My revenue target for next month: [amount]
+My activity targets: [your answer]
+
+My niche: [who you help and what you help them do]
+My primary lead generation strategy: [which one you're using]
+
+Please give me:
+1. Based on my numbers, the single biggest bottleneck in my pipeline and how to fix it
+2. A specific weekly activity plan for next month (what to do Mon-Fri each week)
+3. Three content themes for next month based on where I am in my business journey
+4. One mindset shift I should carry into next month based on what I've shared
+
+Be specific and direct. No generic advice - base everything on what I've actually told you.</div>
+      <button class="btn-copy" onclick="copyAI(this)">Copy prompt →</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Rise Beyond the 9 to 5</span>
+    <span class="footer-step">Step 6 of 8 · Monthly Review Template</span>
+  </div>
+</div>
+<script>
+function copyAI(btn) {
+  const prompt = btn.previousElementSibling.textContent.trim();
+  navigator.clipboard.writeText(prompt).then(() => {
+    btn.textContent = 'Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy prompt →'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
