@@ -94,6 +94,14 @@
     .q-heading { font-size: 24px; }
     .statement-text { font-size: 18px; }
   }
+  @media print {
+    .screen:not(#screen-results) { display: none !important; }
+    #screen-results { display: block !important; }
+    .header, .progress-wrap, .footer, .btn-restart, .btn-save, .ai-box { display: none !important; }
+    .results-body { padding: 20px !important; }
+    body { background: white; }
+    .statement-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
 </style>
 </head>
 <body>
@@ -160,6 +168,10 @@
       </div>
       <div class="summary-grid" id="summary-grid"></div>
 
+      <div style="background:var(--cream);border-left:3px solid var(--blush-deep);padding:14px 18px;margin-bottom:20px;font-size:12.5px;color:var(--warm-grey);line-height:1.65;">
+        <strong style="color:var(--black);">Save this before you move on.</strong> Your audience statement and answers are your foundation for everything that comes next. Save or print now so you can refer back throughout the programme.
+      </div>
+      <button class="btn-save" onclick="saveResults()" style="background:var(--black);color:var(--white);border:none;padding:15px 32px;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;width:100%;margin-bottom:12px;transition:opacity 0.15s;" onmouseover="this.style.opacity=0.85" onmouseout="this.style.opacity=1">Save / print my results →</button>
       <div class="ai-box">
         <div class="ai-label">AI HACK 1</div>
         <div class="ai-title">Refine your statement with ChatGPT</div>
@@ -340,6 +352,61 @@ function copyPrompt(btn, num) {
     btn.classList.add('copied');
     setTimeout(() => { btn.textContent = 'Copy prompt →'; btn.classList.remove('copied'); }, 2000);
   });
+}
+
+function saveResults() {
+  const win = window.open('', '_blank');
+  const statement = document.getElementById('statement-output').textContent;
+  const labels = ['Who you help', 'The problem you solve', 'The transformation you deliver', 'Why you're the right person', 'Your ideal client'];
+  const keys = ['who','problem','transformation','why','client'];
+  const rows = keys.map((k, i) => `
+    <div class="row">
+      <div class="row-label">${labels[i]}</div>
+      <div class="row-value">${answers[k] || '—'}</div>
+    </div>`).join('');
+
+  win.document.write(`<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Niche Clarity Results - Rise Flight Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: white; padding: 48px; max-width: 680px; margin: 0 auto; }
+  .header { text-align: center; border-bottom: 3px solid #1a1a1a; padding-bottom: 24px; margin-bottom: 36px; }
+  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; margin-bottom: 6px; }
+  .header h1 em { font-style: italic; color: #6b6560; }
+  .header p { font-size: 12px; color: #6b6560; margin-top: 6px; }
+  .statement-box { background: #1a1a1a; padding: 28px 32px; margin-bottom: 32px; }
+  .statement-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: #e8d9d0; opacity: 0.6; margin-bottom: 10px; }
+  .statement-text { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: #e8d9d0; line-height: 1.5; font-style: italic; }
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: #6b6560; margin-bottom: 16px; }
+  .row { padding: 14px 0; border-bottom: 1px solid #d9d3cc; }
+  .row:last-child { border-bottom: none; }
+  .row-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: #6b6560; margin-bottom: 6px; }
+  .row-value { font-size: 13px; color: #1a1a1a; line-height: 1.65; }
+  .save-btn { display: block; margin: 32px auto 0; background: #1a1a1a; color: #e8d9d0; border: none; padding: 14px 32px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #d9d3cc; font-size: 11px; color: #6b6560; font-style: italic; }
+  @media print { .save-btn { display: none; } }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>Niche Clarity<br><em>Workbook Results</em></h1>
+    <p>Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 3</p>
+  </div>
+  <div class="statement-box">
+    <div class="statement-label">Your audience statement</div>
+    <div class="statement-text">${statement}</div>
+  </div>
+  <div class="section-label">Your full answers</div>
+  ${rows}
+  <button class="save-btn" onclick="window.print()">Save as PDF →</button>
+  <div class="footer">Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 3 of 8</div>
+</body>
+</html>\`);
+  win.document.close();
 }
 
 function restart() {
