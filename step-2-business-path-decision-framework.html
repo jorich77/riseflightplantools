@@ -415,4 +415,592 @@ function restart() {
   document.getElementById('progress-bar').style.width = '0%';
   showScreen('screen-welcome');
 }
+</script  win.document.write(`<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Rise Flight Plan - Your 5 Business Model Guides</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: white; padding: 40px; max-width: 860px; margin: 0 auto; }
+  .print-header { text-align: center; border-bottom: 3px solid #1a1a1a; padding-bottom: 24px; margin-bottom: 40px; }
+  .print-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 600; margin-bottom: 6px; }
+  .print-header h1 em { font-style: italic; color: #6b6560; }
+  .print-header p { font-size: 13px; color: #6b6560; margin-top: 8px; }
+  .print-btn { display: block; width: 200px; margin: 0 auto 40px; background: #1a1a1a; color: #e8d9d0; border: none; padding: 14px 24px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; text-align: center; }
+
+  /* MODEL SECTIONS */
+  .model-section { margin-bottom: 40px; page-break-inside: avoid; border: 1.5px solid #d9d3cc; }
+  .model-header { background: #1a1a1a; padding: 20px 28px; }
+  .model-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: #e8d9d0; margin-bottom: 4px; }
+  .model-tagline { font-size: 12px; color: #e8d9d0; opacity: 0.6; font-style: italic; }
+  .model-body { padding: 24px 28px; }
+  .model-overview { font-size: 13px; color: #6b6560; line-height: 1.75; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #d9d3cc; }
+  .col-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 20px; }
+  .col-heading { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: #6b6560; margin-bottom: 10px; margin-top: 16px; }
+  ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul li { font-size: 12.5px; color: #1a1a1a; line-height: 1.6; padding-left: 16px; position: relative; }
+  ul li::before { content: '→'; position: absolute; left: 0; color: #d4c0b4; font-weight: 600; }
+
+  /* COMPARISON TABLE */
+  .table-section { margin-top: 56px; page-break-before: always; }
+  .table-header { margin-bottom: 8px; }
+  .table-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; color: #d4c0b4; margin-bottom: 8px; }
+  .table-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; line-height: 1.15; margin-bottom: 4px; }
+  .table-sub { font-size: 13px; color: #6b6560; font-style: italic; margin-bottom: 24px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { background: #1a1a1a; color: #e8d9d0; padding: 14px 16px; text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 600; border-right: 2px solid #2a2a2a; }
+  th:first-child { text-align: left; background: #2a2a2a; width: 160px; }
+  th:last-child { border-right: none; }
+  td { padding: 14px 16px; text-align: center; border-bottom: 1px solid #d9d3cc; border-right: 1px solid #d9d3cc; color: #6b6560; line-height: 1.4; vertical-align: middle; }
+  td:first-child { text-align: left; font-weight: 600; color: #1a1a1a; font-size: 12px; background: #f5f0e8; border-right: 2px solid #d9d3cc; }
+  td:last-child { border-right: none; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td:not(:first-child) { background: #faf8f5; }
+  .highlight { font-weight: 700; color: #1a1a1a !important; }
+  .tag-best { display: inline-block; background: #e8d9d0; color: #1a1a1a; font-size: 9px; font-weight: 700; padding: 2px 6px; letter-spacing: 0.06em; margin-top: 3px; }
+  .table-footer { font-size: 12px; color: #6b6560; font-style: italic; margin-top: 16px; }
+
+  .print-footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #d9d3cc; font-size: 11px; color: #6b6560; font-style: italic; }
+  @media print {
+    .print-btn { display: none; }
+    body { padding: 20px; }
+    .model-section { page-break-inside: avoid; }
+    .table-section { page-break-before: always; }
+  }
+</style>
+</head>
+<body>
+  <div class="print-header">
+    <h1>The Rise Flight Plan<br><em>Your 5 Business Model Guides</em></h1>
+    <p>Rise Beyond the 9 to 5 · Step 2 of 8 · Read through each model, then choose one and commit.</p>
+  </div>
+  <button class="print-btn" onclick="window.print()">Save as PDF →</button>
+  \${modelSections}
+
+  <!-- COMPARISON TABLE -->
+  <div class="table-section">
+    <div class="table-header">
+      <div class="table-tag">SIDE BY SIDE</div>
+      <div class="table-title">Five models. Different tradeoffs.<br>Only one right fit for you right now.</div>
+      <div class="table-sub">There is no perfect model. Only different tradeoffs.</div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Coaching</th>
+          <th>Digital Products</th>
+          <th>Content Monetisation</th>
+          <th>Services / Freelancing</th>
+          <th>High-Ticket Affiliate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Startup investment</td>
+          <td><span class="highlight">£0–£200</span></td>
+          <td>£0–£100</td>
+          <td>£0–£300</td>
+          <td><span class="highlight">£0<br><span class="tag-best">Lowest</span></span></td>
+          <td>£500–£3,000+</td>
+        </tr>
+        <tr>
+          <td>Time to first income</td>
+          <td>30–60 days</td>
+          <td>2–4 months</td>
+          <td>6–12 months</td>
+          <td><span class="highlight">1–2 weeks<br><span class="tag-best">Fastest</span></span></td>
+          <td>First sale</td>
+        </tr>
+        <tr>
+          <td>Income ceiling</td>
+          <td>Medium–High</td>
+          <td><span class="highlight">Uncapped<br><span class="tag-best">Scalable</span></span></td>
+          <td><span class="highlight">Uncapped<br><span class="tag-best">Scalable</span></span></td>
+          <td>Capped by your hours</td>
+          <td><span class="highlight">Uncapped<br><span class="tag-best">Performance-tied</span></span></td>
+        </tr>
+        <tr>
+          <td>Fits alongside a job</td>
+          <td>Medium</td>
+          <td>Medium</td>
+          <td>Low early on</td>
+          <td>Medium</td>
+          <td><span class="highlight">Strong</span></td>
+        </tr>
+        <tr>
+          <td>Passive income potential</td>
+          <td>Low</td>
+          <td><span class="highlight">High</span></td>
+          <td><span class="highlight">High</span></td>
+          <td>None</td>
+          <td><span class="highlight">High</span></td>
+        </tr>
+        <tr>
+          <td>Visibility required</td>
+          <td>High</td>
+          <td>Medium</td>
+          <td><span class="highlight">Very high</span></td>
+          <td>Low–Medium</td>
+          <td>Medium</td>
+        </tr>
+        <tr>
+          <td>Operational complexity</td>
+          <td>Medium</td>
+          <td>Medium–High</td>
+          <td>High</td>
+          <td><span class="highlight">Low</span></td>
+          <td><span class="highlight">Very low</span></td>
+        </tr>
+        <tr>
+          <td>Relies on your time daily</td>
+          <td>High</td>
+          <td>Low (once built)</td>
+          <td>High</td>
+          <td>Very high</td>
+          <td>Medium</td>
+        </tr>
+        <tr>
+          <td>Flexibility</td>
+          <td>Medium</td>
+          <td><span class="highlight">High</span></td>
+          <td>Medium</td>
+          <td>Low–Medium</td>
+          <td><span class="highlight">High</span></td>
+        </tr>
+        <tr>
+          <td>Best for</td>
+          <td>People with expertise or lived experience</td>
+          <td>Creators who want income without trading time</td>
+          <td>Consistent creators playing the long game</td>
+          <td>Fast income from an existing skill</td>
+          <td>Confident communicators who want big commissions</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="table-footer">There is no perfect model. Only different tradeoffs. Pick the one that fits your life right now - you can always evolve.</div>
+  </div>
+
+  <div class="print-footer">Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 2 of 8</div>
+</body>
+</html>\`);
+  win.document.close();
+}{
+  coaching:    { name: "Coaching",                tagline: "Help people get a result you've already achieved." },
+  digital:     { name: "Digital Products",         tagline: "Create once, sell to hundreds while you sleep." },
+  content:     { name: "Content Monetisation",     tagline: "Build an audience and turn attention into income." },
+  services:    { name: "Services / Freelancing",   tagline: "Offer a skill as a service, get paid immediately." },
+  highticket: {
+    name: "High-Ticket Affiliate Marketing",
+    tagline: "Premium products, big commissions, proven system.",
+    overview: "High-ticket affiliate marketing means partnering with a company to sell their premium products and earning a significant commission per sale - often £500-£3,000+ per transaction. You don't create the product, handle fulfilment, or build a team. You find the right customers, introduce them to the product, and earn every time they buy. It suits someone who is confident in conversations, willing to learn a sales process, and wants big returns without the complexity of building something from scratch.",
+    start: [
+      "Research high-ticket affiliate programmes in a niche you're interested in - wellness, finance, education, software, and travel all have strong options",
+      "Choose one product or programme to focus on - don't spread across multiple until you've mastered one",
+      "Learn the product inside out - ideally use it yourself so you can speak about it authentically",
+      "Build your personal brand around the problem the product solves, not around the product itself",
+      "Start with warm outreach to people who fit the ideal customer profile - conversations before content"
+    ],
+    days90: [
+      "Month 1: Choose your product, set up your profile, start content around the problem your product solves, have 10+ conversations with potential customers",
+      "Month 2: Refine your sales conversation, follow up with all warm leads, post 5x per week, aim for your first 1-2 sales",
+      "Month 3: Double down on what's working, build a simple lead generation funnel, set a monthly sales target and track your pipeline weekly"
+    ],
+    aiPrompt: \`I am building a high-ticket affiliate marketing business and I need help with my content and sales strategy.
+
+The product I represent: [product name and what it does]
+Who it's perfect for: [ideal customer - their situation and problem]
+The price point: [price]
+My commission per sale: [commission]
+My personal connection to the product: [do you use it? why do you believe in it?]
+
+Please give me:
+1. A content strategy - 3 content pillars I should post about that attract my ideal customer without leading with the product
+2. A warm outreach message I can send to people who match the ideal customer profile
+3. A script for introducing the product naturally in a conversation without it feeling salesy
+4. 5 objection responses for the most common pushbacks on high-ticket purchases
+
+Tone: confident, honest, and belief-led. No hype.\`,
+    aiLabel: "Build your high-ticket sales strategy"
+  }
+};
+
+const MODEL_WHY = {
+  coaching:   { why: "You have knowledge or experience others would pay to learn from. Coaching has the lowest barrier to entry and can generate income quickly - all you need is your expertise and one client.", gets: ["Work 1:1 with clients you choose", "Set your own hours and rates", "No product to create or stock"] },
+  digital:    { why: "You love creating systems and content once and having it work for you repeatedly. Digital products take time to build but create passive income that scales without more of your time.", gets: ["Earn while you sleep", "Can sell on platforms independently", "Low ongoing effort once created"] },
+  content:    { why: "You enjoy being in front of the camera or behind the keyboard regularly. Content monetisation rewards consistency and personality - if you love sharing, this compounds over time.", gets: ["Multiple income streams (ads, sponsorships, products)", "Build a brand that attracts opportunities", "Location independent"] },
+  services:   { why: "You have a marketable skill right now - writing, design, social media, VA work, admin. Services/freelancing is the fastest path to income with zero upfront investment needed.", gets: ["Fastest route to first income", "No upfront investment required", "Total flexibility over clients and projects"] },
+  highticket: { why: "You're comfortable with premium positioning and high-value conversations. High-ticket affiliate marketing suits someone who wants big commissions per sale and is willing to learn a proven sales system.", gets: ["High commission per sale (£1,000+)", "Proven system and products already exist", "Suits confident communicators"] }
+};
+
+const GUIDES = {
+  coaching: {
+    overview: "Coaching is selling your knowledge, experience, and guidance directly to clients who want a result you've already achieved. You don't need a qualification - you need a result and a method.",
+    start: ["Identify one specific result you've achieved that others want", "Define your ideal client - who you were before you achieved it", "Create a simple 4-8 week programme around the steps you took", "Set your price (start £297-£997 for a first programme)", "Get one client through your network before spending on ads"],
+    days90: ["Month 1: Define your offer, get your first 1-2 clients through outreach, run the programme and gather feedback", "Month 2: Refine based on results, collect testimonials, start consistent content to attract inbound leads", "Month 3: Fill a second cohort, raise your price, consider a group version to scale"],
+    invest: "Zero to £200 (basic tools, Canva, payment link)",
+    income: "Within 30-60 days with one client",
+    pros: ["Lowest barrier to entry", "High profit margins", "Deep client relationships", "Fast income potential", "No stock or fulfilment"],
+    cons: ["Time-for-money model unless you build group programmes", "Requires consistent visibility and outreach", "Can feel draining without good client selection", "Income ceiling without scaling"],
+    aiPrompt: `I am starting a coaching business and need help creating content to attract my first clients. Here are my details:\n\nMy niche: [what you help people with]\nMy ideal client: [who they are, what they struggle with]\nThe result I help them achieve: [specific outcome]\nMy story: [brief version of how you achieved this yourself]\n\nPlease write me:\n1. A 3-sentence Instagram bio that positions me as a coach in this niche\n2. 5 content hook ideas for reels or posts that speak directly to my ideal client's pain points\n3. A DM outreach message I can send to potential clients who engage with my content\n\nKeep the tone warm, conversational, and real - not corporate or salesy.`,
+    aiLabel: "Write your first coaching content"
+  },
+  digital: {
+    overview: "Digital products are assets you create once and sell repeatedly - ebooks, templates, courses, workbooks, presets, swipe files. They scale without your time because delivery is automated.",
+    start: ["Identify one problem your audience has that you can solve with a document, template, or video series", "Start small - an ebook or template pack at £7-£27 before building a full course", "Create the product in Canva, Notion, or Google Docs", "Set up a simple sales page (Stan Store, Gumroad, or Systeme.io)", "Launch to your existing audience or email list first"],
+    days90: ["Month 1: Create your first product, set up your sales page, launch to your network and gather reviews", "Month 2: Create content specifically designed to drive people to your product, test different hooks", "Month 3: Build an email list from buyers, create a second product, set up a simple automated sequence"],
+    invest: "£0-£100 (most tools are free or low cost)",
+    income: "Slower build - typically 2-4 months for consistent sales",
+    pros: ["Passive income - earns while you sleep", "Scales without your time", "Low overhead costs", "Can sell globally", "Builds an asset you own"],
+    cons: ["Takes time to build an audience to sell to", "Requires upfront content creation effort", "Competitive market - needs strong positioning", "Inconsistent income initially"],
+    aiPrompt: `I am creating a digital product and need help with my launch content. Here are my details:\n\nMy product: [name and what it is - e.g. a Canva template pack for Instagram]\nWho it's for: [specific person]\nThe problem it solves: [what they're struggling with]\nThe result they get: [what changes after using it]\nPrice: [your price point]\n\nPlease write me:\n1. A product description (3-4 sentences) for my sales page\n2. 5 Instagram caption ideas to promote this product without being pushy\n3. A subject line and opening paragraph for a launch email\n\nTone: direct, clear, and benefit-focused. No fluff.`,
+    aiLabel: "Write your digital product launch content"
+  },
+  content: {
+    overview: "Content monetisation means building an audience through consistent content and then earning from their attention - through brand deals, ads, affiliate income, or selling your own products to a warm audience.",
+    start: ["Choose one platform to master first (Instagram, TikTok, YouTube, or a podcast)", "Define your content niche - one topic, one audience, one transformation", "Commit to a posting schedule you can sustain for 6+ months", "Focus on growth first - monetisation follows audience", "Start capturing email addresses from day one"],
+    days90: ["Month 1: Define your content pillars, post consistently 5x per week, study what performs", "Month 2: Double down on your best-performing content types, start building your email list, engage deeply with your audience", "Month 3: Introduce affiliate links or a simple product, pitch to your first brand partnership, analyse your data"],
+    invest: "£0-£300 (camera, lighting, scheduling tools)",
+    income: "6-12 months for meaningful monetisation",
+    pros: ["Multiple income streams", "Builds an asset (audience) you own", "Opens doors to partnerships and speaking", "Location independent", "Compound growth over time"],
+    cons: ["Slowest path to income", "Requires extreme consistency", "Algorithm-dependent", "Takes 6-12 months to see real results", "Burnout risk without systems"],
+    aiPrompt: `I am building a content-based business and need a content strategy. Here are my details:\n\nMy niche: [topic you create content about]\nMy platform: [Instagram / TikTok / YouTube / Podcast]\nMy ideal follower: [who they are and what they want]\nMy content goal: [grow audience / sell products / brand deals]\nMy posting schedule: [how often you can post]\n\nPlease give me:\n1. 3 content pillars I should rotate between (with a one-sentence description of each)\n2. 10 content ideas I can create this month based on my niche\n3. 5 hook formulas I can use to make people stop scrolling\n\nMake the ideas specific to my niche, not generic.`,
+    aiLabel: "Build your content strategy"
+  },
+  services: {
+    overview: "Services/freelancing means getting paid for a skill you already have - copywriting, social media management, graphic design, virtual assistance, bookkeeping, web design, or any other professional skill.",
+    start: ["Write down every skill you have that a business would pay for", "Pick one to lead with and define your offer clearly", "Set a starter rate (aim for £25-£50/hr or a project rate)", "Reach out to 10 people in your network who run businesses", "Create a simple one-page portfolio or PDF showing examples of your work"],
+    days90: ["Month 1: Land your first 1-2 clients through direct outreach, deliver excellent work, ask for a testimonial and referral", "Month 2: Raise your rate slightly, add a second service or package, systematise your delivery process", "Month 3: Build a waitlist, raise rates again, start getting referral-only clients"],
+    invest: "Zero - you already have the skill",
+    income: "Within 1-2 weeks with one client",
+    pros: ["Fastest route to income - zero barrier", "No investment needed", "Total flexibility", "Easy to start alongside employment", "Skills are transferable"],
+    cons: ["Trading time for money", "Income stops if you stop working", "Can feel like employment without the security", "Requires ongoing client acquisition"],
+    aiPrompt: `I am launching a freelance services business and need help marketing my services. Here are my details:\n\nMy service: [what you do - e.g. social media management, copywriting]\nWho I help: [type of business or person]\nThe result I deliver: [what they get from working with me]\nMy starting price: [your rate or package price]\nMy background: [relevant experience or skills]\n\nPlease write me:\n1. A one-paragraph services overview for my website or LinkedIn\n2. A cold outreach email I can send to potential clients\n3. 5 LinkedIn post ideas to position me as an expert in my service area\n\nTone: professional but approachable. Not desperate, confident.`,
+    aiLabel: "Write your freelance marketing content"
+  }
+};
+
+const COMPARE_DATA = [
+  { key: "coaching",   startup: "£0-£200",    income: "30-60 days", effort: "Medium", visibility: "High", scale: "Medium" },
+  { key: "digital",    startup: "£0-£100",    income: "2-4 months", effort: "High upfront", visibility: "Medium", scale: "High" },
+  { key: "content",    startup: "£0-£300",    income: "6-12 months", effort: "Very high", visibility: "Very high", scale: "Very high" },
+  { key: "services",   startup: "£0",          income: "1-2 weeks", effort: "Low upfront", visibility: "Low-Medium", scale: "Low" },
+  { key: "highticket", startup: "£500-£3,000+",income: "First sale",  effort: "Medium", visibility: "Medium", scale: "Medium" }
+];
+
+const QUESTIONS = [
+  { text: "How many hours a week can you realistically dedicate to your business right now?", options: [
+    { text: "Under 5 hours", scores: { services: 2, highticket: 1 } },
+    { text: "5-10 hours", scores: { coaching: 2, services: 2, highticket: 2 } },
+    { text: "10-20 hours", scores: { coaching: 3, digital: 2, content: 2, highticket: 2 } },
+    { text: "20+ hours - I'm all in", scores: { digital: 3, content: 3, coaching: 3, highticket: 3 } }
+  ]},
+  { text: "Do you prefer working directly with people, or creating things people use on their own?", options: [
+    { text: "Directly with people - I love conversation and connection", scores: { coaching: 3, highticket: 3, services: 1 } },
+    { text: "Creating things - I prefer to build and let people come to me", scores: { digital: 3, content: 3 } },
+    { text: "A mix of both", scores: { coaching: 2, content: 2, services: 2 } },
+    { text: "I honestly don't mind - I'll do whatever it takes", scores: { services: 2, coaching: 1, digital: 1, highticket: 1 } }
+  ]},
+  { text: "How comfortable are you being visible on social media - showing your face, sharing your story?", options: [
+    { text: "Very - I already do it or I'm excited to start", scores: { content: 3, coaching: 3, highticket: 2 } },
+    { text: "Comfortable but I'd need a bit of a push", scores: { coaching: 2, services: 2, highticket: 2 } },
+    { text: "I'd prefer to stay mostly behind the scenes", scores: { digital: 3, services: 3 } },
+    { text: "Not at all - I want minimal visibility", scores: { digital: 3, services: 2 } }
+  ]},
+  { text: "Do you have a skill or area of expertise someone would pay for right now?", options: [
+    { text: "Yes - a clear professional skill (writing, design, marketing, VA, etc.)", scores: { services: 3, coaching: 2, digital: 1 } },
+    { text: "Yes - life experience or results I've achieved", scores: { coaching: 3, content: 2 } },
+    { text: "Sort of - I'm still figuring out what my thing is", scores: { highticket: 2, services: 1 } },
+    { text: "Not really - I want to learn and build as I go", scores: { highticket: 3 } }
+  ]},
+  { text: "How quickly do you need to generate income?", options: [
+    { text: "Immediately - within the next 30 days", scores: { services: 3, highticket: 3, coaching: 2 } },
+    { text: "Within 1-3 months", scores: { coaching: 3, services: 2, highticket: 2 } },
+    { text: "3-6 months is fine", scores: { digital: 2, content: 2, coaching: 2 } },
+    { text: "I'm playing the long game - 6-12 months", scores: { digital: 3, content: 3 } }
+  ]},
+  { text: "How much money do you have available to invest upfront?", options: [
+    { text: "Nothing - I need to start for free", scores: { services: 3, coaching: 3 } },
+    { text: "Under £100 - very minimal", scores: { services: 3, coaching: 3, digital: 1 } },
+    { text: "£100-£500", scores: { digital: 2, content: 2, coaching: 2 } },
+    { text: "£500-£2,000", scores: { digital: 2, content: 2, highticket: 1 } },
+    { text: "£2,000+", scores: { highticket: 3, digital: 2 } }
+  ]},
+  { text: "How do you feel about building and leading a team?", options: [
+    { text: "Love it - I'm a natural leader and motivator", scores: { highticket: 2, coaching: 1 } },
+    { text: "Open to it once I've found my feet", scores: { coaching: 2, highticket: 2 } },
+    { text: "I'd rather work alone or with clients only", scores: { services: 3, coaching: 2, digital: 2 } },
+    { text: "Definitely not - solo all the way", scores: { services: 3, digital: 3, content: 2 } }
+  ]},
+  { text: "Do you enjoy creating content - writing, recording videos, teaching?", options: [
+    { text: "Yes, it's one of my favourite things", scores: { content: 3, digital: 3, coaching: 2 } },
+    { text: "I enjoy it but I'd need a system to stay consistent", scores: { coaching: 2, digital: 2, content: 2 } },
+    { text: "I can do it but it's not something I love", scores: { services: 2, highticket: 2 } },
+    { text: "Not really - I'd rather talk one-to-one", scores: { highticket: 3, coaching: 3 } }
+  ]},
+  { text: "How comfortable are you with a longer build phase before consistent income comes in?", options: [
+    { text: "Totally fine - I know good things take time", scores: { content: 3, digital: 3 } },
+    { text: "I can wait a few months but I need some early wins", scores: { coaching: 3, digital: 1 } },
+    { text: "I need income within weeks, not months", scores: { services: 3, highticket: 3, coaching: 2 } },
+    { text: "I need income almost immediately", scores: { services: 3, highticket: 3 } }
+  ]},
+  { text: "What does your ideal working day look like?", options: [
+    { text: "Calls and conversations with clients or prospects", scores: { coaching: 3, highticket: 3 } },
+    { text: "Creating - writing, filming, designing, recording", scores: { content: 3, digital: 3 } },
+    { text: "A mix - some client work, some content or creation", scores: { coaching: 2, services: 2, content: 2, digital: 1 } },
+    { text: "Building relationships and growing a community", scores: { content: 2, coaching: 1 } }
+  ]}
+];
+
+let currentQ = 0, answers = {}, scores = {};
+
+function startQuiz() {
+  currentQ = 0; answers = {};
+  scores = { coaching: 0, digital: 0, content: 0, services: 0, highticket: 0 };
+  showScreen('screen-question'); renderQ();
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function updateProgress(step) {
+  document.getElementById('progress-bar').style.width = ((step / QUESTIONS.length) * 100) + '%';
+}
+
+function renderQ() {
+  const q = QUESTIONS[currentQ];
+  document.getElementById('q-counter').textContent = `Question ${currentQ + 1} of ${QUESTIONS.length}`;
+  document.getElementById('q-text').textContent = q.text;
+  const container = document.getElementById('options-container');
+  container.innerHTML = '';
+  q.options.forEach((opt, idx) => {
+    const div = document.createElement('div');
+    div.className = 'option' + (answers[currentQ] === idx ? ' selected' : '');
+    div.innerHTML = `<div class="option-marker"></div><span>${opt.text}</span>`;
+    div.onclick = () => selectOption(idx);
+    container.appendChild(div);
+  });
+  document.getElementById('btn-next').disabled = answers[currentQ] === undefined;
+  document.getElementById('btn-back').style.visibility = currentQ === 0 ? 'hidden' : 'visible';
+  updateProgress(currentQ);
+}
+
+function selectOption(idx) {
+  answers[currentQ] = idx;
+  document.querySelectorAll('.option').forEach((el, i) => el.classList.toggle('selected', i === idx));
+  document.getElementById('btn-next').disabled = false;
+}
+
+function nextQ() {
+  if (answers[currentQ] === undefined) return;
+  const opt = QUESTIONS[currentQ].options[answers[currentQ]];
+  Object.entries(opt.scores).forEach(([m, pts]) => { scores[m] += pts; });
+  if (currentQ < QUESTIONS.length - 1) { currentQ++; renderQ(); } else { showResults(); }
+}
+
+function prevQ() {
+  if (currentQ === 0) return;
+  const opt = QUESTIONS[currentQ].options[answers[currentQ]];
+  if (opt) Object.entries(opt.scores).forEach(([m, pts]) => { scores[m] -= pts; });
+  currentQ--; renderQ();
+}
+
+function showResults() {
+  updateProgress(QUESTIONS.length);
+  showScreen('screen-results');
+  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  document.getElementById('results-intro').innerHTML =
+    `Based on your answers, your two strongest matches are <strong>${MODELS[sorted[0][0]].name}</strong> and <strong>${MODELS[sorted[1][0]].name}</strong>. Open each guide below - then pick one and commit.`;
+
+  const topModels = document.getElementById('top-models');
+  topModels.innerHTML = '';
+  [sorted[0], sorted[1]].forEach(([key], i) => {
+    const m = MODELS[key]; const info = MODEL_WHY[key];
+    const card = document.createElement('div');
+    card.className = 'model-card';
+    card.innerHTML = `
+      <div class="rank-badge ${i === 1 ? 'second' : ''}">${i === 0 ? 'Your #1 match' : 'Your #2 match'}</div>
+      <div class="model-inner">
+        <div class="model-name">${m.name}</div>
+        <div class="model-tagline">${m.tagline}</div>
+        <div class="model-why">${info.why}</div>
+        <div class="model-gets">${info.gets.map(g => `<div class="model-get">${g}</div>`).join('')}</div>
+        <div class="guide-btns">
+          <button class="btn-guide" onclick="openGuide('${key}')">Full guide →</button>
+        </div>
+      </div>`;
+    topModels.appendChild(card);
+  });
+}
+
+function openGuide(key) {
+  const g = GUIDES[key]; const m = MODELS[key];
+  document.getElementById('guide-modal-title').textContent = m.name;
+  document.getElementById('guide-modal-sub').textContent = m.tagline;
+
+  document.getElementById('guide-modal-body').innerHTML = `
+    <div class="guide-section">
+      <h3>What it is</h3>
+      <p>${g.overview}</p>
+      <p><strong>Upfront investment:</strong> ${g.invest} &nbsp;|&nbsp; <strong>First income:</strong> ${g.income}</p>
+    </div>
+    <div class="guide-section">
+      <h3>How to get started</h3>
+      <ul class="guide-list">${g.start.map(s => `<li>${s}</li>`).join('')}</ul>
+    </div>
+    <div class="guide-section">
+      <h3>Your first 90 days</h3>
+      <ul class="guide-list">${g.days90.map(d => `<li>${d}</li>`).join('')}</ul>
+    </div>
+    <div class="guide-section">
+      <h3>Pros and cons</h3>
+      <div class="pro-con-grid">
+        <div class="pro-con-box pro-box">
+          <div class="pro-con-label">Pros</div>
+          ${g.pros.map(p => `<div class="pro-con-item">${p}</div>`).join('')}
+        </div>
+        <div class="pro-con-box con-box">
+          <div class="pro-con-label">Watch out for</div>
+          ${g.cons.map(c => `<div class="pro-con-item">${c}</div>`).join('')}
+        </div>
+      </div>
+    </div>
+    <div class="ai-prompt-box">
+      <div class="ai-prompt-label">AI HACK</div>
+      <div class="ai-prompt-title">${g.aiLabel}</div>
+      <div class="ai-prompt-text">${g.aiPrompt.replace(/\n/g, '<br>')}</div>
+      <button class="btn-copy-prompt" onclick="copyPrompt(this, '${key}')">Copy prompt →</button>
+    </div>`;
+
+  document.getElementById('guide-modal').classList.add('open');
+}
+
+function copyPrompt(btn, key) {
+  navigator.clipboard.writeText(GUIDES[key].aiPrompt).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy prompt →'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function printAllModels() {
+  const win = window.open('', '_blank');
+  const modelKeys = ['coaching', 'digital', 'content', 'services', 'highticket'];
+  const modelSections = modelKeys.map(key => {
+    const g = GUIDES[key];
+    const m = MODELS[key];
+    const why = MODEL_WHY[key];
+    const startSteps = g.start ? g.start.map(s => `<li>${s}</li>`).join('') : '';
+    const days90 = g.days90 ? g.days90.map(d => `<li>${d}</li>`).join('') : '';
+    return `
+      <div class="model-section">
+        <div class="model-header">
+          <div class="model-name">${m.name}</div>
+          <div class="model-tagline">${m.tagline}</div>
+        </div>
+        <div class="model-body">
+          <div class="model-overview">${g.overview || why.why}</div>
+          <div class="col-wrap">
+            <div class="col">
+              <div class="col-heading">What you get</div>
+              <ul>${why.gets.map(g2 => `<li>${g2}</li>`).join('')}</ul>
+            </div>
+            <div class="col">
+              <div class="col-heading">How to start</div>
+              <ul>${startSteps}</ul>
+            </div>
+          </div>
+          <div class="col-heading">Your 90-day plan</div>
+          <ul>${days90}</ul>
+        </div>
+      </div>`;
+  }).join('');
+
+  win.document.write(\`<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Rise Flight Plan - Your 5 Business Model Guides</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: white; padding: 40px; max-width: 800px; margin: 0 auto; }
+  .print-header { text-align: center; border-bottom: 3px solid #1a1a1a; padding-bottom: 24px; margin-bottom: 40px; }
+  .print-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 600; margin-bottom: 6px; }
+  .print-header h1 em { font-style: italic; color: #6b6560; }
+  .print-header p { font-size: 13px; color: #6b6560; margin-top: 8px; }
+  .model-section { margin-bottom: 48px; page-break-inside: avoid; border: 1.5px solid #d9d3cc; }
+  .model-header { background: #1a1a1a; padding: 20px 28px; }
+  .model-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: #e8d9d0; margin-bottom: 4px; }
+  .model-tagline { font-size: 12px; color: #e8d9d0; opacity: 0.6; font-style: italic; }
+  .model-body { padding: 24px 28px; }
+  .model-overview { font-size: 13px; color: #6b6560; line-height: 1.75; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #d9d3cc; }
+  .col-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 20px; }
+  .col-heading { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: #6b6560; margin-bottom: 10px; margin-top: 16px; }
+  ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul li { font-size: 12.5px; color: #1a1a1a; line-height: 1.6; padding-left: 16px; position: relative; }
+  ul li::before { content: '→'; position: absolute; left: 0; color: #d4c0b4; font-weight: 600; }
+  .print-btn { display: block; width: 200px; margin: 0 auto 40px; background: #1a1a1a; color: #e8d9d0; border: none; padding: 14px 24px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; text-align: center; }
+  .print-footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #d9d3cc; font-size: 11px; color: #6b6560; font-style: italic; }
+  @media print {
+    .print-btn { display: none; }
+    body { padding: 20px; }
+    .model-section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+  <div class="print-header">
+    <h1>The Rise Flight Plan<br><em>Your 5 Business Model Guides</em></h1>
+    <p>Rise Beyond the 9 to 5 · Step 2 of 8 · Read through each model, then choose one and commit.</p>
+  </div>
+  <button class="print-btn" onclick="window.print()">Save as PDF →</button>
+  \${modelSections}
+  <div class="print-footer">Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 2 of 8</div>
+</body>
+</html>\`);
+  win.document.close();
+}
+
+function openCompare() {
+  const rows = COMPARE_DATA.map(d => {
+    const incomeTag = d.income.includes('week') || d.income.includes('days') ? 'tag-green' :
+                      d.income.includes('month') && !d.income.includes('6') ? 'tag-amber' : 'tag-red';
+    return `<tr>
+      <td class="model-col">${MODELS[d.key].name}</td>
+      <td>${d.startup}</td>
+      <td><span class="tag ${incomeTag}">${d.income}</span></td>
+      <td>${d.effort}</td>
+      <td>${d.visibility}</td>
+      <td>${d.scale}</td>
+    </tr>`;
+  }).join('');
+
+  document.getElementById('compare-modal-body').innerHTML = `
+    <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead><tr>
+          <th>Model</th><th>Startup cost</th><th>First income</th><th>Content effort</th><th>Visibility needed</th><th>Scale potential</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+    <p style="font-size:11px;color:var(--warm-grey);margin-top:16px;line-height:1.6;">These are estimates based on typical experiences. Your results will depend on your skills, consistency, and market. Use this as a guide, not a guarantee.</p>`;
+
+  document.getElementById('compare-modal').classList.add('open');
+}
+
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function closeIfOverlay(e, id) { if (e.target.id === id) closeModal(id); }
+
+function restart() {
+  scores = { coaching: 0, digital: 0, content: 0, services: 0, highticket: 0 };
+  answers = {}; currentQ = 0;
+  document.getElementById('progress-bar').style.width = '0%';
+  showScreen('screen-welcome');
+}
 </script>
