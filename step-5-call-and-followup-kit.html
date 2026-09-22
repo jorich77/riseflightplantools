@@ -101,6 +101,11 @@
 
   <div class="strip">The call is not a pitch. It is a conversation where you find out if you can genuinely help.</div>
 
+  <div style="background:var(--cream);padding:13px 48px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--light-grey);">
+    <p style="font-size:12px;color:var(--warm-grey);font-style:italic;">Save this kit to use before and after every discovery call.</p>
+    <button onclick="printGuide()" style="background:var(--black);color:var(--white);border:none;padding:10px 20px;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0;">Download / print guide →</button>
+  </div>
+
   <div class="tabs">
     <div class="tab active" onclick="switchTab('outline')">Call Outline</div>
     <div class="tab" onclick="switchTab('prep')">Pre-Call Prep</div>
@@ -236,7 +241,83 @@
 </div>
 
 <script>
-  function switchTab(id) {
+  function printGuide() {
+  const tabs = [
+    { id: 'outline', label: 'Discovery Call Outline' },
+    { id: 'prep', label: 'Pre-Call Prep Checklist' },
+    { id: 'followup', label: 'Follow-Up Sequence' }
+  ];
+
+  const sections = tabs.map(t => {
+    const el = document.getElementById('tab-' + t.id);
+    return `<div class="tab-section"><div class="tab-heading">${t.label}</div>${el.innerHTML}</div>`;
+  }).join('');
+
+  const win = window.open('', '_blank');
+  win.document.write(`<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Call and Follow-Up Kit - Rise Flight Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: white; padding: 40px; max-width: 720px; margin: 0 auto; }
+  .print-header { text-align: center; border-bottom: 3px solid #1a1a1a; padding-bottom: 24px; margin-bottom: 40px; }
+  .print-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; margin-bottom: 6px; }
+  .print-header h1 em { font-style: italic; color: #6b6560; }
+  .print-header p { font-size: 12px; color: #6b6560; margin-top: 6px; }
+  .save-btn { display: block; margin: 0 auto 36px; background: #1a1a1a; color: #e8d9d0; border: none; padding: 13px 28px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .tab-section { margin-bottom: 48px; page-break-before: always; }
+  .tab-section:first-child { page-break-before: avoid; }
+  .tab-heading { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; color: #1a1a1a; border-bottom: 2px solid #1a1a1a; padding-bottom: 8px; margin-bottom: 20px; }
+  .intro-text { font-size: 13px; color: #6b6560; line-height: 1.7; margin-bottom: 20px; }
+  .call-stage { border: 1.5px solid #d9d3cc; margin-bottom: 8px; }
+  .stage-header { background: #1a1a1a; padding: 11px 18px; display: flex; align-items: center; gap: 12px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .stage-num { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: #e8d9d0; min-width: 24px; }
+  .stage-title { font-weight: 600; font-size: 13px; color: #ffffff; flex: 1; }
+  .stage-time { font-size: 10px; color: #e8d9d0; opacity: 0.5; }
+  .stage-body { padding: 14px 18px; }
+  .stage-goal { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; color: #6b6560; margin-bottom: 8px; }
+  .stage-questions { display: flex; flex-direction: column; gap: 6px; }
+  .question { background: #f5f0e8; padding: 9px 13px; font-size: 12.5px; color: #1a1a1a; line-height: 1.55; font-style: italic; border-left: 3px solid #d4c0b4; }
+  .stage-tip { font-size: 11.5px; color: #6b6560; font-style: italic; margin-top: 8px; }
+  .prep-group { margin-bottom: 20px; }
+  .prep-group-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: #6b6560; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #d9d3cc; }
+  .prep-item { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid #f5f0e8; }
+  .prep-box { width: 16px; height: 16px; min-width: 16px; border: 1.5px solid #d9d3cc; margin-top: 2px; }
+  .prep-label { font-size: 12.5px; color: #1a1a1a; line-height: 1.5; }
+  .followup-msg { border: 1.5px solid #d9d3cc; margin-bottom: 10px; }
+  .followup-header { background: #1a1a1a; padding: 11px 18px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .followup-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: #e8d9d0; opacity: 0.6; margin-bottom: 3px; }
+  .followup-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: #ffffff; }
+  .followup-timing { font-size: 10px; color: #e8d9d0; opacity: 0.4; margin-top: 2px; }
+  .followup-body { padding: 14px 18px; }
+  .followup-text { font-size: 12.5px; color: #1a1a1a; line-height: 1.7; font-style: italic; background: #f5f0e8; padding: 12px 14px; border-left: 3px solid #d4c0b4; }
+  .ai-box { background: #1a1a1a; padding: 18px 22px; margin-top: 18px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .ai-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: #e8d9d0; opacity: 0.7; margin-bottom: 6px; }
+  .ai-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #ffffff; margin-bottom: 6px; }
+  .ai-desc { font-size: 12px; color: #e8d9d0; opacity: 0.65; line-height: 1.6; margin-bottom: 10px; }
+  .ai-prompt { background: #111; border-left: 3px solid #d4c0b4; padding: 12px 14px; font-size: 11px; color: #e8d9d0; line-height: 1.7; font-style: italic; white-space: pre-wrap; }
+  .btn-copy, .btn-followup-copy { display: none; }
+  .print-footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #d9d3cc; font-size: 11px; color: #6b6560; font-style: italic; }
+  @media print { .save-btn { display: none; } body { padding: 20px; } }
+</style>
+</head>
+<body>
+  <div class="print-header">
+    <h1>Call and Follow-Up<br><em>Kit</em></h1>
+    <p>Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 5 · Use before, during, and after every discovery call</p>
+  </div>
+  <button class="save-btn" onclick="window.print()">Save as PDF →</button>
+  \${sections}
+  <div class="print-footer">Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 5 of 8</div>
+</body>
+</html>\`);
+  win.document.close();
+}
+
+function switchTab(id) {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
     document.getElementById('tab-' + id).classList.add('active');
