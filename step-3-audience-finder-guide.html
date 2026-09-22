@@ -22,62 +22,78 @@
   .header-sub { font-size: 12px; color: var(--blush); opacity: 0.55; font-weight: 300; margin-top: 8px; }
   .strip { background: var(--blush); padding: 11px 48px; font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--black); }
 
-  /* TABS */
-  .tabs { display: flex; border-bottom: 2px solid var(--light-grey); background: var(--cream); overflow-x: auto; }
-  .tab { flex-shrink: 0; padding: 13px 16px; font-size: 11px; font-weight: 600; color: var(--warm-grey); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.15s; white-space: nowrap; }
-  .tab.active { color: var(--black); border-bottom-color: var(--black); background: var(--white); }
-  .tab:hover:not(.active) { color: var(--black); }
+  /* SAVE BUTTON */
+  .save-bar { background: var(--cream); padding: 14px 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--light-grey); }
+  .save-bar p { font-size: 12px; color: var(--warm-grey); font-style: italic; }
+  .btn-save { background: var(--black); color: var(--white); border: none; padding: 11px 24px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; transition: opacity 0.15s; white-space: nowrap; flex-shrink: 0; }
+  .btn-save:hover { opacity: 0.8; }
 
-  .tab-content { display: none; padding: 36px 48px 48px; }
-  .tab-content.active { display: block; }
+  .body { padding: 36px 48px 48px; }
+  .intro-text { font-size: 13px; color: var(--warm-grey); line-height: 1.7; margin-bottom: 32px; }
 
-  .intro-text { font-size: 13px; color: var(--warm-grey); line-height: 1.7; margin-bottom: 28px; }
-
-  /* PLATFORM CARD */
-  .platform-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  /* PLATFORM SECTIONS */
+  .platform-section { margin-bottom: 44px; padding-bottom: 44px; border-bottom: 2px solid var(--light-grey); }
+  .platform-section:last-of-type { border-bottom: none; }
+  .platform-header { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
   .platform-icon { width: 40px; height: 40px; background: var(--black); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-  .platform-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; }
-  .platform-tag { font-size: 10px; font-weight: 600; color: var(--warm-grey); }
+  .platform-name { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; }
+  .platform-tag { font-size: 11px; color: var(--warm-grey); margin-bottom: 16px; padding-left: 54px; font-style: italic; }
 
-  .guide-section { margin-bottom: 24px; }
-  .guide-section h3 { font-weight: 600; font-size: 11.5px; letter-spacing: 0.05em; color: var(--warm-grey); margin-bottom: 10px; }
-  .guide-section p { font-size: 12.5px; color: var(--black); line-height: 1.65; margin-bottom: 8px; }
-  .step-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-  .step-list li { font-size: 12.5px; color: var(--black); line-height: 1.6; padding-left: 20px; position: relative; }
+  .guide-section { margin-bottom: 20px; }
+  .guide-section h3 { font-weight: 600; font-size: 11px; letter-spacing: 0.06em; color: var(--warm-grey); margin-bottom: 10px; text-transform: uppercase; }
+  .step-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .step-list li { font-size: 13px; color: var(--black); line-height: 1.65; padding-left: 20px; position: relative; }
   .step-list li::before { content: '→'; position: absolute; left: 0; color: var(--blush-deep); font-weight: 600; }
 
-  .watch-box { background: var(--cream); border-left: 3px solid var(--blush-deep); padding: 14px 18px; margin: 16px 0; }
-  .watch-box p { font-size: 12px; color: var(--warm-grey); line-height: 1.65; font-style: italic; }
+  .watch-box { background: var(--cream); border-left: 3px solid var(--blush-deep); padding: 13px 17px; margin: 16px 0; font-size: 12.5px; color: var(--warm-grey); line-height: 1.65; font-style: italic; }
   .watch-box strong { font-style: normal; color: var(--black); }
 
-  .divider { height: 1px; background: var(--light-grey); margin: 24px 0; }
-
   /* AI BOX */
-  .ai-box { background: var(--black); padding: 22px 26px; margin-top: 24px; }
+  .ai-box { background: var(--black); padding: 22px 26px; margin-top: 20px; }
   .ai-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--blush); opacity: 0.7; margin-bottom: 8px; }
-  .ai-title { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--white); margin-bottom: 8px; }
+  .ai-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--white); margin-bottom: 8px; }
   .ai-desc { font-size: 12px; color: var(--blush); opacity: 0.65; line-height: 1.6; margin-bottom: 14px; }
-  .ai-prompt { background: #111; border-left: 3px solid var(--blush-deep); padding: 14px 16px; font-size: 11.5px; color: var(--blush); line-height: 1.7; font-style: italic; margin-bottom: 14px; white-space: pre-wrap; }
-  .btn-copy { background: var(--blush); color: var(--black); border: none; padding: 10px 18px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity 0.15s; }
+  .ai-prompt { background: #111; border-left: 3px solid var(--blush-deep); padding: 13px 15px; font-size: 11.5px; color: var(--blush); line-height: 1.7; font-style: italic; margin-bottom: 14px; white-space: pre-wrap; }
+  .btn-copy { background: var(--blush); color: var(--black); border: none; padding: 9px 16px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
   .btn-copy:hover { opacity: 0.8; }
   .btn-copy.copied { background: var(--blush-deep); }
 
-  /* RESEARCH TRACKER */
-  .tracker-row { display: flex; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--light-grey); }
+  /* TRACKER */
+  .tracker-section { background: var(--cream); padding: 28px 32px; margin-top: 8px; }
+  .tracker-heading { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+  .tracker-sub { font-size: 12.5px; color: var(--warm-grey); line-height: 1.65; margin-bottom: 24px; }
+  .tracker-group { margin-bottom: 24px; }
+  .tracker-group-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: var(--warm-grey); margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--light-grey); }
+  .tracker-row { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--light-grey); }
   .tracker-row:last-child { border-bottom: none; }
-  .tracker-check { width: 18px; height: 18px; min-width: 18px; border: 1.5px solid var(--light-grey); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.12s; }
+  .tracker-check { width: 18px; height: 18px; min-width: 18px; border: 1.5px solid var(--light-grey); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.12s; margin-top: 2px; flex-shrink: 0; }
   .tracker-check.done { background: var(--black); border-color: var(--black); }
   .tracker-check.done::after { content: ''; width: 6px; height: 4px; border-left: 2px solid white; border-bottom: 2px solid white; transform: rotate(-45deg) translateY(-1px); display: block; }
   .tracker-label { font-size: 12.5px; color: var(--black); flex: 1; line-height: 1.5; }
-  .tracker-note { width: 100%; border: none; border-bottom: 1px solid var(--light-grey); background: transparent; font-family: 'Inter', sans-serif; font-size: 12px; padding: 6px 0; outline: none; color: var(--warm-grey); }
+  .tracker-note { width: 100%; border: none; border-bottom: 1px solid var(--light-grey); background: transparent; font-family: 'Inter', sans-serif; font-size: 12px; padding: 5px 0; outline: none; color: var(--warm-grey); margin-top: 4px; }
+  .tracker-note::placeholder { color: var(--light-grey); }
+
+  /* MASTER AI */
+  .master-ai { margin-top: 36px; }
+
+  /* BOTTOM SAVE */
+  .bottom-save { background: var(--cream); padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--light-grey); }
+  .bottom-save p { font-size: 12px; color: var(--warm-grey); font-style: italic; }
 
   .footer { background: var(--black); padding: 14px 48px; display: flex; align-items: center; justify-content: space-between; }
   .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--blush); font-style: italic; }
   .footer-step { font-size: 10px; color: var(--blush); opacity: 0.4; letter-spacing: 0.08em; }
 
+  @media print {
+    body { background: white; }
+    .save-bar, .bottom-save, .footer, .btn-copy, .btn-save { display: none !important; }
+    .header, .strip, .ai-box, .tracker-section { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { max-width: 100%; }
+    .platform-section { page-break-inside: avoid; }
+    .tracker-section { page-break-before: auto; }
+  }
   @media (max-width: 520px) {
-    .header, .tab-content, .footer { padding-left: 24px; padding-right: 24px; }
-    .strip { padding-left: 24px; padding-right: 24px; }
+    .header, .body, .footer, .strip, .save-bar, .bottom-save, .tracker-section { padding-left: 24px; padding-right: 24px; }
   }
 </style>
 </head>
@@ -102,308 +118,368 @@
   </div>
   <div class="strip">Your audience already exists. Your job is to find where they gather and show up there.</div>
 
-  <div class="tabs">
-    <div class="tab active" onclick="switchTab('facebook')">Facebook</div>
-    <div class="tab" onclick="switchTab('instagram')">Instagram</div>
-    <div class="tab" onclick="switchTab('youtube')">YouTube</div>
-    <div class="tab" onclick="switchTab('reddit')">Reddit</div>
-    <div class="tab" onclick="switchTab('network')">Your Network</div>
-    <div class="tab" onclick="switchTab('tracker')">Tracker</div>
+  <div class="save-bar">
+    <p>Save this guide and tracker to refer back to during your research.</p>
+    <button class="btn-save" onclick="saveGuide()">Download / print guide →</button>
   </div>
 
-  <!-- FACEBOOK -->
-  <div class="tab-content active" id="tab-facebook">
-    <p class="intro-text">Facebook groups are one of the richest sources of audience research. Your ideal clients are in there asking questions, venting, and sharing exactly what they need - for free.</p>
+  <div class="body">
+    <p class="intro-text">Work through each platform below, take notes as you go, then complete the tracker at the end. Use the AI prompts to turn your research into content. Bring your completed tracker to your next coaching session.</p>
 
-    <div class="platform-header">
-      <div class="platform-icon">👥</div>
-      <div><div class="platform-name">Facebook Groups</div><div class="platform-tag">Best for: community research, warm outreach, direct engagement</div></div>
+    <!-- FACEBOOK -->
+    <div class="platform-section">
+      <div class="platform-header">
+        <div class="platform-icon">👥</div>
+        <div class="platform-name">Facebook Groups</div>
+      </div>
+      <div class="platform-tag">Best for: community research, warm outreach, direct engagement</div>
+
+      <div class="guide-section">
+        <h3>How to find the right groups</h3>
+        <ul class="step-list">
+          <li>Search your niche topic in the Facebook search bar - not your solution, their problem (e.g. "work from home mums" not "online business coaching")</li>
+          <li>Filter results by Groups and sort by Most Members</li>
+          <li>Look for groups with 1,000+ members AND recent daily activity - size without activity is useless</li>
+          <li>Join 5-10 groups and spend a week reading before you post anything</li>
+          <li>Note which groups feel like your people - the language, the questions, the level of engagement</li>
+        </ul>
+      </div>
+
+      <div class="guide-section">
+        <h3>What to look for once you're inside</h3>
+        <ul class="step-list">
+          <li>The most-liked and most-commented posts - what topics generate the most engagement?</li>
+          <li>Questions people ask repeatedly - these are your content ideas and your offer topics</li>
+          <li>The exact words and phrases people use to describe their problem - use these in your content verbatim</li>
+          <li>Who gets the most helpful responses - potential collaborators or competitors to study</li>
+          <li>Posts that get strong emotional reactions - frustration, relief, excitement - these map to pain points and desires</li>
+        </ul>
+      </div>
+
+      <div class="watch-box"><strong>Search trick:</strong> In any Facebook group, use the search bar and search "help", "struggling", or "how do I" - you'll find a goldmine of exactly what your audience needs that no one is properly serving.</div>
+
+      <div class="guide-section">
+        <h3>How to show up (without being spammy)</h3>
+        <ul class="step-list">
+          <li>Spend the first week just commenting helpfully on other people's posts - add value before you promote anything</li>
+          <li>When you do post, ask questions rather than share content - "Anyone here tried X?" gets far more engagement</li>
+          <li>Share your story as a member, not as a business owner - vulnerability builds faster trust than expertise</li>
+          <li>If the group allows it, share a relevant free resource occasionally - never lead with a sale</li>
+        </ul>
+      </div>
+
+      <div class="ai-box">
+        <div class="ai-label">AI HACK</div>
+        <div class="ai-title">Turn group research into content</div>
+        <div class="ai-desc">Copy the most common questions or complaints you've seen in Facebook groups and paste them into this prompt.</div>
+        <div class="ai-prompt">I've been researching Facebook groups where my ideal clients hang out. Here are the most common questions and complaints I've found:
+
+[Paste 5-10 real questions or complaints from the groups, in their exact words]
+
+My niche: [who you help and what you help them with]
+
+Please:
+1. Identify the top 3 underlying pain points behind these questions
+2. Turn each pain point into a content hook I can use for a reel or carousel
+3. Write a caption opening line for each that would make my ideal client stop scrolling
+
+Use the language from their actual posts - not polished marketing language.</div>
+        <button class="btn-copy" onclick="copyPrompt(this)">Copy prompt →</button>
+      </div>
     </div>
 
-    <div class="guide-section">
-      <h3>How to find the right groups</h3>
-      <ul class="step-list">
-        <li>Search your niche topic in the Facebook search bar - not your solution, their problem (e.g. "work from home mums" not "online business coaching")</li>
-        <li>Filter results by Groups and sort by Most Members</li>
-        <li>Look for groups with 1,000+ members AND recent daily activity - size without activity is useless</li>
-        <li>Join 5-10 groups and spend a week reading before you post anything</li>
-        <li>Note which groups feel like your people - the language, the questions, the level of engagement</li>
-      </ul>
+    <!-- INSTAGRAM -->
+    <div class="platform-section">
+      <div class="platform-header">
+        <div class="platform-icon">📱</div>
+        <div class="platform-name">Instagram</div>
+      </div>
+      <div class="platform-tag">Best for: content research, competitor analysis, visual audience mapping</div>
+
+      <div class="guide-section">
+        <h3>Hashtag research</h3>
+        <ul class="step-list">
+          <li>Search hashtags related to your client's PROBLEM - not your solution (e.g. #workingmumlife, #corporateburnout, #mumwantingmore)</li>
+          <li>Look at the Top Posts tab - what content is getting the most saves and comments?</li>
+          <li>Sweet spot: hashtags with 10k-500k posts - big enough to have an audience, small enough to be visible</li>
+          <li>Save a list of 20-30 relevant hashtags across three categories: niche-specific, problem-specific, identity-based</li>
+        </ul>
+      </div>
+
+      <div class="guide-section">
+        <h3>Account research</h3>
+        <ul class="step-list">
+          <li>Find 5-10 accounts who serve a similar audience (adjacent niches work well)</li>
+          <li>Read their comments - what are people asking? What resonates most?</li>
+          <li>Look at their most-saved posts - high save count means content people want to refer back to</li>
+          <li>Notice what language their followers use - copy the phrases, not the content</li>
+          <li>Check who's following them - tap on a few followers and look at their profiles. Is that your person?</li>
+        </ul>
+      </div>
+
+      <div class="watch-box"><strong>Comment mining:</strong> Go to a popular account in your space and filter comments by Most Relevant. "I needed this because..." and "This is exactly what I've been struggling with..." are pure audience research.</div>
+
+      <div class="guide-section">
+        <h3>What to document</h3>
+        <ul class="step-list">
+          <li>The 5 posts with the highest comment count you've seen - what made people respond?</li>
+          <li>Recurring phrases your ideal clients use in comments</li>
+          <li>Content formats that get the most saves (talking head, carousel, text-only, etc.)</li>
+          <li>Gaps - what questions are being asked that no one is properly answering?</li>
+        </ul>
+      </div>
+
+      <div class="ai-box">
+        <div class="ai-label">AI HACK</div>
+        <div class="ai-title">Build your Instagram content strategy</div>
+        <div class="ai-desc">Paste your research findings and get a ready-to-use content plan.</div>
+        <div class="ai-prompt">I've researched Instagram accounts and hashtags in my niche. Here's what I found:
+
+Top performing content types I saw: [e.g. talking head videos, carousels with text, before/after]
+Most common questions in comments: [paste 3-5 real questions]
+Phrases my ideal clients use: [paste their actual words]
+Gaps I noticed - questions no one is answering well: [your observations]
+
+My niche: [who you help and what you help them with]
+
+Please create:
+1. My 3 content pillars based on this research
+2. A 2-week content plan (10 posts) with a format, topic, and hook for each
+3. 5 hashtag strategy recommendations based on my niche
+
+Make it specific to what I've found - not generic advice.</div>
+        <button class="btn-copy" onclick="copyPrompt(this)">Copy prompt →</button>
+      </div>
     </div>
 
-    <div class="guide-section">
-      <h3>What to look for once you're inside</h3>
-      <ul class="step-list">
-        <li>The most-liked and most-commented posts - what topics generate the most engagement?</li>
-        <li>Questions people ask repeatedly - these are your content ideas and your offer topics</li>
-        <li>The exact words and phrases people use to describe their problem - use these in your content verbatim</li>
-        <li>Who gets the most helpful responses - are there potential collaborators or competitors to study?</li>
-        <li>Posts that get strong emotional reactions - frustration, relief, excitement - these map to pain points and desires</li>
-      </ul>
+    <!-- YOUTUBE -->
+    <div class="platform-section">
+      <div class="platform-header">
+        <div class="platform-icon">▶️</div>
+        <div class="platform-name">YouTube</div>
+      </div>
+      <div class="platform-tag">Best for: deep pain point research, long-form content ideas, keyword discovery</div>
+
+      <div class="guide-section">
+        <h3>How to use YouTube for research</h3>
+        <ul class="step-list">
+          <li>Search your niche topic and filter by View Count - most-viewed videos show what your audience cares about most</li>
+          <li>Read comments on the top 5-10 videos in your space - sort by Top Comments</li>
+          <li>Look for comments starting with "I've been struggling with..." or "What I really need is..."</li>
+          <li>Note which videos have the highest like-to-view ratio - this signals strong audience resonance</li>
+          <li>Check the "Questions" filter in comments - direct questions are direct content ideas</li>
+        </ul>
+      </div>
+
+      <div class="guide-section">
+        <h3>What to look for in comments</h3>
+        <ul class="step-list">
+          <li>Personal stories - people share their exact situations in YouTube comments in ways they don't elsewhere</li>
+          <li>Frustrations with the creator's advice - "but what about..." comments tell you the gap in existing content</li>
+          <li>Requests - "can you make a video about..." is a direct brief for your content</li>
+          <li>Thank you comments that explain why the video helped - the specific detail in these is gold</li>
+        </ul>
+      </div>
+
+      <div class="watch-box"><strong>Search trick:</strong> Type your niche topic followed by "for beginners" or "I don't know where to start" into YouTube. The comments on those videos map exactly to where your audience is right now.</div>
+
+      <div class="ai-box">
+        <div class="ai-label">AI HACK</div>
+        <div class="ai-title">Turn YouTube comments into content ideas</div>
+        <div class="ai-desc">Copy and paste real comments from YouTube videos in your niche into this prompt.</div>
+        <div class="ai-prompt">I've been reading YouTube comments on videos in my niche. Here are some of the most insightful comments I found:
+
+[Paste 5-10 real comments, as written by real people]
+
+My niche: [who you help and what you help them with]
+
+Please:
+1. Summarise the top 5 pain points hiding in these comments
+2. For each pain point, suggest one piece of content I could create that directly addresses it
+3. Write the opening line for each piece of content that would make someone feel immediately understood
+
+Stay close to the language people actually used - don't clean it up too much.</div>
+        <button class="btn-copy" onclick="copyPrompt(this)">Copy prompt →</button>
+      </div>
     </div>
 
-    <div class="watch-box">
-      <p><strong>Search trick:</strong> In any Facebook group, use the search bar inside the group and search the word "help" or "struggling" or "how do I" - you'll find a goldmine of exactly what your audience needs that no one is properly serving.</p>
+    <!-- REDDIT -->
+    <div class="platform-section">
+      <div class="platform-header">
+        <div class="platform-icon">🔍</div>
+        <div class="platform-name">Reddit</div>
+      </div>
+      <div class="platform-tag">Best for: raw, unfiltered pain point research - the truth your audience won't say on Instagram</div>
+
+      <div class="guide-section">
+        <h3>How to find the right subreddits</h3>
+        <ul class="step-list">
+          <li>Search Reddit for your audience's identity or situation - e.g. r/workingmoms, r/financialindependence, r/sidehustle</li>
+          <li>Look for subreddits with 50k+ members and daily posts</li>
+          <li>Search within subreddits for "help", "advice", "how do I" - these threads are research gold</li>
+          <li>Sort by Top Posts (past year) to see what resonated most with that community</li>
+        </ul>
+      </div>
+
+      <div class="guide-section">
+        <h3>What to document</h3>
+        <ul class="step-list">
+          <li>The exact words people use to describe their frustration - Reddit language is raw and specific</li>
+          <li>Common misconceptions - things people believe that are wrong, which you could correct with content</li>
+          <li>Questions that get 100+ comments - that level of response means it's a deeply felt problem</li>
+          <li>Thread titles that made you immediately think "that's my person" - save them as content hook templates</li>
+        </ul>
+      </div>
+
+      <div class="watch-box"><strong>Important:</strong> Reddit communities hate being sold to. Never post promotional content or links to your business in subreddits. Use this purely for research - the insight you gain will make your content and messaging 10x more resonant.</div>
+
+      <div class="ai-box">
+        <div class="ai-label">AI HACK</div>
+        <div class="ai-title">Mine Reddit for messaging gold</div>
+        <div class="ai-desc">Paste the most insightful Reddit posts or comments you've found and let AI extract the patterns.</div>
+        <div class="ai-prompt">I've been researching Reddit threads where my ideal clients post. Here are some of the most revealing posts and comments I found:
+
+[Paste 5-10 Reddit posts or comments - include the raw, unfiltered language]
+
+My niche: [who you help and what you help them with]
+
+Please:
+1. Identify the 3 deepest fears or frustrations hiding in these posts
+2. Identify the 3 biggest desires or hopes
+3. Pull out 5 specific phrases I should use in my own content because they come directly from my audience's voice
+4. Suggest one piece of content for each fear/desire pair that bridges the gap
+
+Keep their language raw and real - don't sanitise it.</div>
+        <button class="btn-copy" onclick="copyPrompt(this)">Copy prompt →</button>
+      </div>
     </div>
 
-    <div class="guide-section">
-      <h3>How to show up in groups (without being spammy)</h3>
-      <ul class="step-list">
-        <li>Spend the first week just commenting helpfully on other people's posts - add value before you promote anything</li>
-        <li>When you do post, ask questions rather than share content - "Anyone here tried X? What happened?" gets far more engagement</li>
-        <li>Share your story as a member, not as a business owner - vulnerability and honesty build faster trust than expertise</li>
-        <li>If the group allows it, share a relevant free resource occasionally - never lead with a sale</li>
-      </ul>
+    <!-- YOUR NETWORK -->
+    <div class="platform-section">
+      <div class="platform-header">
+        <div class="platform-icon">📞</div>
+        <div class="platform-name">Your Existing Network</div>
+      </div>
+      <div class="platform-tag">Best for: fast validation, warm leads, real conversations</div>
+
+      <div class="guide-section">
+        <h3>Who to reach out to</h3>
+        <ul class="step-list">
+          <li>Former colleagues who you know are unhappy in their roles or who have expressed interest in doing something different</li>
+          <li>Friends who have mentioned wanting more flexibility, freedom, or income</li>
+          <li>People who have asked you how you do what you do</li>
+          <li>People in your WhatsApp groups who share content about side hustles, working from home, or lifestyle change</li>
+          <li>Anyone who has liked or commented on your content when you've talked about your own journey</li>
+        </ul>
+      </div>
+
+      <div class="guide-section">
+        <h3>How to have research conversations (not sales calls)</h3>
+        <ul class="step-list">
+          <li>Frame it as research: "I'm building something and I'd love 20 minutes to understand your experience - not to sell you anything"</li>
+          <li>Ask what their biggest challenge is right now - then ask "what's hard about that?" twice to get to the real answer</li>
+          <li>Ask what they've already tried and what didn't work - this tells you what the market is missing</li>
+          <li>Ask what their life would look like if this problem was solved - this is your marketing copy</li>
+          <li>Never pitch. End with "thank you, this is incredibly helpful." If they ask what you're building, tell them briefly.</li>
+        </ul>
+      </div>
+
+      <div class="watch-box"><strong>The goal of these conversations:</strong> You are not selling. You are listening. The phrases people use to describe their problems - write them down verbatim. These become your hooks, your captions, and your sales page copy.</div>
+
+      <div class="guide-section">
+        <h3>LinkedIn</h3>
+        <ul class="step-list">
+          <li>Search your niche keywords in LinkedIn Posts (not People) - see what professional content resonates</li>
+          <li>Look at posts with high comment counts - what did people respond to and why?</li>
+          <li>Connect with people who match your ideal client profile and engage genuinely before reaching out</li>
+          <li>Post about your own journey - LinkedIn audiences are often more engaged and responsive for B2B adjacent niches</li>
+        </ul>
+      </div>
+
+      <div class="ai-box">
+        <div class="ai-label">AI HACK</div>
+        <div class="ai-title">Write your research outreach message</div>
+        <div class="ai-desc">Use this prompt to create a message you can personalise and send to people in your network.</div>
+        <div class="ai-prompt">I want to have research conversations with people in my network who might be my ideal client. I am NOT trying to sell them anything.
+
+My niche: I help [who you help] who [their problem] to [the transformation].
+The type of person I want to talk to: [describe them]
+
+Please write me:
+1. A WhatsApp message I can send to someone I know well asking for 20 minutes of their time
+2. A LinkedIn message for someone I know less well
+3. 5 questions I should ask in these conversations to get the most useful information
+
+Tone: warm, honest, genuinely curious. No sales language at all.</div>
+        <button class="btn-copy" onclick="copyPrompt(this)">Copy prompt →</button>
+      </div>
     </div>
 
-    <div class="ai-box">
-      <div class="ai-label">AI HACK</div>
-      <div class="ai-title">Turn group research into content</div>
-      <div class="ai-desc">Copy the most common questions or complaints you've seen in Facebook groups and paste them into this prompt.</div>
-      <div class="ai-prompt">I've been researching Facebook groups where my ideal clients hang out. Here are the most common questions and complaints I've found:\n\n[Paste 5-10 real questions or complaints from the groups, in their exact words]\n\nMy niche: [who you help and what you help them with]\n\nPlease:\n1. Identify the top 3 underlying pain points behind these questions\n2. Turn each pain point into a content hook I can use for a reel or carousel\n3. Write a caption opening line for each that would make my ideal client stop scrolling\n\nUse the language from their actual posts - not polished marketing language.</div>
-      <button class="btn-copy" onclick="copyTab(this)">Copy prompt →</button>
+    <!-- TRACKER -->
+    <div class="tracker-section">
+      <div class="tracker-heading">Research Tracker</div>
+      <p class="tracker-sub">Tick each task off as you complete it and add a note on what you found. Bring this to your next coaching session.</p>
+
+      <div class="tracker-group">
+        <div class="tracker-group-label">Facebook Groups</div>
+        <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Searched and joined 3-5 relevant Facebook groups</div><input class="tracker-note" placeholder="Which groups?" onclick="event.stopPropagation()"></div></div>
+        <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Spent one week reading before posting</div><input class="tracker-note" placeholder="What did you notice?" onclick="event.stopPropagation()"></div></div>
+        <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Noted the most common questions and phrases</div><input class="tracker-note" placeholder="Top 2-3 patterns..." onclick="event.stopPropagation()"></div></div>
+        <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Used the AI hack to turn findings into content</div><input class="tracker-note" placeholder="Best content idea..." onclick="event.stopPropagation()"></div></div>
+      </div>
+
+      <div class="tracker-group">
+        <div class="tracker-group-label">Instagram</div>
+        <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Found and saved 20-30 relevant hashtags</div><input class="tracker-note" placeholder="Top performing hashtags..." onclick="event.stopPropagation()"></div></div>
+        <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Researched 5 accounts serving a similar audience</div><input class="tracker-note" placeholder="Which accounts? What performed best?" onclick="event.stopPropagation()"></div></div>
+        <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Mined comments for phrases and pain points</div><input class="tracker-note" placeholder="Best phrases found..." onclick="event.stopPropagation()"></div></div>
+      </div>
+
+      <div class="tracker-group">
+        <div class="tracker-group-label">YouTube &amp; Reddit</div>
+        <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Read comments on top YouTube videos in my niche</div><input class="tracker-note" placeholder="Most revealing insight..." onclick="event.stopPropagation()"></div></div>
+        <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Found relevant subreddits and read top posts</div><input class="tracker-note" placeholder="Which subreddits? Key patterns..." onclick="event.stopPropagation()"></div></div>
+        <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Used AI hacks to process findings into content</div><input class="tracker-note" placeholder="What I'm going to create..." onclick="event.stopPropagation()"></div></div>
+      </div>
+
+      <div class="tracker-group">
+        <div class="tracker-group-label">Your Network</div>
+        <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Listed 10 people in my network who fit my ideal client</div><input class="tracker-note" placeholder="Names or initials..." onclick="event.stopPropagation()"></div></div>
+        <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Had 3+ research conversations</div><input class="tracker-note" placeholder="Most useful thing I heard..." onclick="event.stopPropagation()"></div></div>
+        <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Written down exact phrases they used</div><input class="tracker-note" placeholder="Best phrase to use in content..." onclick="event.stopPropagation()"></div></div>
+      </div>
+
+      <div class="master-ai">
+        <div class="ai-box">
+          <div class="ai-label">AI HACK - FINAL STEP</div>
+          <div class="ai-title">Synthesise all your research</div>
+          <div class="ai-desc">Once you've completed research across all platforms, use this master prompt to pull everything together into a clear audience profile.</div>
+          <div class="ai-prompt">I've done audience research across Facebook groups, Instagram, YouTube, Reddit, and conversations with real people in my network. Here's what I found:
+
+Most common pain points (in their words): [paste your findings]
+Most common desires (what they want): [paste your findings]
+Phrases they actually use: [paste exact quotes]
+What they've already tried that didn't work: [your findings]
+The gap I noticed - what no one is properly serving: [your observation]
+
+My niche: [who you help and what you help them with]
+
+Please write me:
+1. A one-paragraph ideal client profile I can refer back to when creating content
+2. My top 5 content themes based on this research
+3. Three "I help" statements in different tones I could test in my bio
+4. One piece of content I should create first based on the highest-pain, lowest-served gap I found
+
+Base everything on the real research above - not generic assumptions.</div>
+          <button class="btn-copy" onclick="copyPrompt(this)">Copy prompt →</button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- INSTAGRAM -->
-  <div class="tab-content" id="tab-instagram">
-    <p class="intro-text">Instagram is where your audience scrolls, discovers, and decides who to follow and trust. Hashtag and account research here tells you exactly what content they engage with.</p>
-
-    <div class="platform-header">
-      <div class="platform-icon">📱</div>
-      <div><div class="platform-name">Instagram</div><div class="platform-tag">Best for: content research, competitor analysis, visual audience mapping</div></div>
-    </div>
-
-    <div class="guide-section">
-      <h3>Hashtag research</h3>
-      <ul class="step-list">
-        <li>Search hashtags related to your client's PROBLEM - not your solution (e.g. #workingmumlife, #corporateburnout, #mumwantingmore)</li>
-        <li>Look at the Top Posts tab - what content is getting the most saves and comments?</li>
-        <li>Check the size: hashtags with 10k-500k posts hit the sweet spot - big enough to have an audience, small enough to be visible</li>
-        <li>Save a list of 20-30 relevant hashtags across three categories: niche-specific, problem-specific, and identity-based</li>
-      </ul>
-    </div>
-
-    <div class="guide-section">
-      <h3>Account research</h3>
-      <ul class="step-list">
-        <li>Find 5-10 accounts who serve a similar audience (not direct competitors - adjacent niches work well)</li>
-        <li>Read their comments - what are people asking? What are they sharing? What resonates most?</li>
-        <li>Look at their most-saved posts (high save count = content people want to refer back to - this is gold)</li>
-        <li>Notice what language their followers use - copy the phrases, not the content</li>
-        <li>Check who's following them - tap on a few followers and look at their profiles. Is that your person?</li>
-      </ul>
-    </div>
-
-    <div class="watch-box">
-      <p><strong>Comment mining:</strong> Go to a popular account in your space and filter comments by Most Relevant. People leave incredibly specific, honest reactions in comments. "I needed this because..." and "This is exactly what I've been struggling with..." are pure audience research.</p>
-    </div>
-
-    <div class="guide-section">
-      <h3>What to document</h3>
-      <ul class="step-list">
-        <li>The 5 posts with the highest comment count you've seen - what made people respond?</li>
-        <li>Recurring phrases your ideal clients use in comments</li>
-        <li>Content formats that get the most saves (talking head, carousel, text-only, etc.)</li>
-        <li>Gaps - what questions are being asked that no one is properly answering?</li>
-      </ul>
-    </div>
-
-    <div class="ai-box">
-      <div class="ai-label">AI HACK</div>
-      <div class="ai-title">Build your Instagram content strategy</div>
-      <div class="ai-desc">Paste your research findings and get a ready-to-use content plan.</div>
-      <div class="ai-prompt">I've researched Instagram accounts and hashtags in my niche. Here's what I found:\n\nTop performing content types I saw: [e.g. talking head videos, carousels with text, before/after]\nMost common questions in comments: [paste 3-5 real questions]\nPhrases my ideal clients use: [paste their actual words]\nGaps I noticed - questions no one is answering well: [your observations]\n\nMy niche: [who you help and what you help them with]\n\nPlease create:\n1. My 3 content pillars based on this research\n2. A 2-week content plan (10 posts) with a format, topic, and hook for each\n3. 5 hashtag strategy recommendations based on my niche\n\nMake it specific to what I've found - not generic advice.</div>
-      <button class="btn-copy" onclick="copyTab(this)">Copy prompt →</button>
-    </div>
-  </div>
-
-  <!-- YOUTUBE -->
-  <div class="tab-content" id="tab-youtube">
-    <p class="intro-text">YouTube comments are the most honest, unfiltered audience research available. People write paragraphs in YouTube comments. They share their whole story. Mine them.</p>
-
-    <div class="platform-header">
-      <div class="platform-icon">▶️</div>
-      <div><div class="platform-name">YouTube</div><div class="platform-tag">Best for: deep pain point research, long-form content ideas, keyword discovery</div></div>
-    </div>
-
-    <div class="guide-section">
-      <h3>How to use YouTube for research</h3>
-      <ul class="step-list">
-        <li>Search your niche topic and filter by View Count - the most-viewed videos show you what your audience is most interested in</li>
-        <li>Read the comments on the top 5-10 videos in your space - sort by Top Comments</li>
-        <li>Look for comments that start with "I've been struggling with..." or "This helped me because..." or "What I really need is..."</li>
-        <li>Note which videos have the highest like-to-view ratio - this signals strong audience resonance</li>
-        <li>Check the "Questions" filter in comments if available - direct questions = direct content ideas</li>
-      </ul>
-    </div>
-
-    <div class="guide-section">
-      <h3>What to look for in comments</h3>
-      <ul class="step-list">
-        <li>Personal stories - people share their exact situations in YouTube comments in ways they don't elsewhere</li>
-        <li>Frustrations with the creator's advice - "but what about..." comments tell you the gap in existing content</li>
-        <li>Requests - "can you make a video about..." is a direct brief for your content</li>
-        <li>Thank you comments that explain why the video helped - the specific detail in these is pure gold</li>
-      </ul>
-    </div>
-
-    <div class="watch-box">
-      <p><strong>Search trick:</strong> Type your niche topic followed by "for beginners" or "I don't know where to start" into YouTube search. The videos that come up - and their comments - map exactly to where your audience is right now.</p>
-    </div>
-
-    <div class="ai-box">
-      <div class="ai-label">AI HACK</div>
-      <div class="ai-title">Turn YouTube comments into content ideas</div>
-      <div class="ai-desc">Copy and paste real comments from YouTube videos in your niche into this prompt.</div>
-      <div class="ai-prompt">I've been reading YouTube comments on videos in my niche. Here are some of the most insightful comments I found:\n\n[Paste 5-10 real comments, as written by real people]\n\nMy niche: [who you help and what you help them with]\n\nPlease:\n1. Summarise the top 5 pain points hiding in these comments\n2. For each pain point, suggest one piece of content I could create that directly addresses it\n3. Write the opening line for each piece of content that would make someone feel immediately understood\n\nStay close to the language people actually used - don't clean it up too much.</div>
-      <button class="btn-copy" onclick="copyTab(this)">Copy prompt →</button>
-    </div>
-  </div>
-
-  <!-- REDDIT -->
-  <div class="tab-content" id="tab-reddit">
-    <p class="intro-text">Reddit is where people say what they actually think - anonymously, honestly, and in detail. It's the most unfiltered audience research tool available and almost no one in the coaching space uses it.</p>
-
-    <div class="platform-header">
-      <div class="platform-icon">🔍</div>
-      <div><div class="platform-name">Reddit</div><div class="platform-tag">Best for: raw, unfiltered pain point research - the truth your audience won't say on Instagram</div></div>
-    </div>
-
-    <div class="guide-section">
-      <h3>How to find the right subreddits</h3>
-      <ul class="step-list">
-        <li>Search Reddit for your audience's identity or situation - e.g. r/workingmoms, r/financialindependence, r/digitalnomad, r/sidehustle</li>
-        <li>Look for subreddits with 50k+ members and daily posts</li>
-        <li>Search within subreddits for "help", "advice", "how do I" - these threads are research gold</li>
-        <li>Sort by Top Posts (past year) to see the content that resonated most with that community</li>
-      </ul>
-    </div>
-
-    <div class="guide-section">
-      <h3>What to document</h3>
-      <ul class="step-list">
-        <li>The exact words people use to describe their frustration - Reddit language is raw and specific</li>
-        <li>Common misconceptions - things people believe that are wrong, which you could correct with content</li>
-        <li>The questions that get 100+ comments - that level of response means it's a deeply felt problem</li>
-        <li>What advice people are giving each other - is it good? Is there a gap you could fill better?</li>
-        <li>Thread titles that made you immediately think "that's my person" - save them as content hook templates</li>
-      </ul>
-    </div>
-
-    <div class="watch-box">
-      <p><strong>Important:</strong> Reddit communities hate being sold to. Never post promotional content or links to your business in subreddits. Use this purely for research - the insight you gain will make your content and messaging 10x more resonant.</p>
-    </div>
-
-    <div class="ai-box">
-      <div class="ai-label">AI HACK</div>
-      <div class="ai-title">Mine Reddit for messaging gold</div>
-      <div class="ai-desc">Paste the most insightful Reddit posts or comments you've found and let AI extract the patterns.</div>
-      <div class="ai-prompt">I've been researching Reddit threads where my ideal clients post. Here are some of the most revealing posts and comments I found:\n\n[Paste 5-10 Reddit posts or comments - include the raw, unfiltered language]\n\nMy niche: [who you help and what you help them with]\n\nPlease:\n1. Identify the 3 deepest fears or frustrations hiding in these posts\n2. Identify the 3 biggest desires or hopes\n3. Pull out 5 specific phrases I should use in my own content because they come directly from my audience's voice\n4. Suggest one piece of content for each fear/desire pair that bridges the gap\n\nKeep their language raw and real - don't sanitise it.</div>
-      <button class="btn-copy" onclick="copyTab(this)">Copy prompt →</button>
-    </div>
-  </div>
-
-  <!-- YOUR NETWORK -->
-  <div class="tab-content" id="tab-network">
-    <p class="intro-text">Your warmest audience is already in your phone. Before you spend a single hour on cold outreach or content creation, your existing network is your fastest and most underused research tool.</p>
-
-    <div class="platform-header">
-      <div class="platform-icon">📞</div>
-      <div><div class="platform-name">Your Existing Network</div><div class="platform-tag">Best for: fast validation, warm leads, real conversations</div></div>
-    </div>
-
-    <div class="guide-section">
-      <h3>Who to reach out to</h3>
-      <ul class="step-list">
-        <li>Former colleagues who you know are unhappy in their roles or who have expressed interest in doing something different</li>
-        <li>Friends who have mentioned wanting more flexibility, freedom, or income</li>
-        <li>People who have asked you how you do what you do</li>
-        <li>People in your WhatsApp groups who share content about side hustles, working from home, or lifestyle change</li>
-        <li>Anyone who has liked or commented on your content when you've talked about your own journey</li>
-      </ul>
-    </div>
-
-    <div class="guide-section">
-      <h3>How to have research conversations (not sales calls)</h3>
-      <ul class="step-list">
-        <li>Frame it as research: "I'm building something and I'd love 20 minutes to understand your experience - not to sell you anything"</li>
-        <li>Ask what their biggest challenge is right now - and then ask "what's hard about that?" twice to get to the real answer</li>
-        <li>Ask what they've already tried and what didn't work - this tells you what the market is missing</li>
-        <li>Ask what their life would look like if this problem was solved - this is your marketing copy</li>
-        <li>Never pitch. End with "thank you, this is incredibly helpful." If they ask what you're building, tell them briefly and ask if they'd like to hear more.</li>
-      </ul>
-    </div>
-
-    <div class="watch-box">
-      <p><strong>The goal of these conversations:</strong> You are not selling. You are listening. The phrases people use to describe their problems - write them down verbatim. These become your hooks, your captions, and your sales page copy. Nobody describes your clients' problems better than your clients.</p>
-    </div>
-
-    <div class="guide-section">
-      <h3>LinkedIn - your professional network</h3>
-      <ul class="step-list">
-        <li>Search your niche keywords in LinkedIn Posts (not People) - see what professional content resonates in your space</li>
-        <li>Look at posts with high comment counts - what did people respond to and why?</li>
-        <li>Connect with people who match your ideal client profile and engage with their content genuinely before reaching out</li>
-        <li>Post about your own journey - LinkedIn audiences are often more engaged and responsive than Instagram for B2B adjacent niches</li>
-      </ul>
-    </div>
-
-    <div class="ai-box">
-      <div class="ai-label">AI HACK</div>
-      <div class="ai-title">Write your research outreach message</div>
-      <div class="ai-desc">Use this prompt to create a message you can personalise and send to people in your network for research conversations.</div>
-      <div class="ai-prompt">I want to have research conversations with people in my network who might be my ideal client. I am NOT trying to sell them anything - I genuinely want to understand their experience.\n\nMy niche: I help [who you help] who [their problem] to [the transformation].\nThe type of person I want to talk to: [describe them - their job, situation, what they're going through]\n\nPlease write me:\n1. A WhatsApp message I can send to someone I know well asking for 20 minutes of their time for research\n2. A LinkedIn message for someone I know less well\n3. 5 questions I should ask in these conversations to get the most useful information\n\nTone: warm, honest, genuinely curious. No sales language at all.</div>
-      <button class="btn-copy" onclick="copyTab(this)">Copy prompt →</button>
-    </div>
-  </div>
-
-  <!-- TRACKER -->
-  <div class="tab-content" id="tab-tracker">
-    <p class="intro-text">Track your research as you go. Tick each task off when done and add a note on what you found. Bring this to your next coaching session.</p>
-
-    <div style="margin-bottom:24px;">
-      <div style="font-weight:600;font-size:11px;letter-spacing:0.06em;color:var(--warm-grey);margin-bottom:14px;">Facebook Groups</div>
-      <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Searched and joined 3-5 relevant Facebook groups</div><input class="tracker-note" placeholder="Which groups?" onclick="event.stopPropagation()"></div></div>
-      <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Spent one week reading before posting</div><input class="tracker-note" placeholder="What did you notice?" onclick="event.stopPropagation()"></div></div>
-      <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Noted the most common questions and phrases</div><input class="tracker-note" placeholder="Top 2-3 patterns..." onclick="event.stopPropagation()"></div></div>
-      <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Used the AI hack to turn findings into content</div><input class="tracker-note" placeholder="Best content idea from this..." onclick="event.stopPropagation()"></div></div>
-    </div>
-
-    <div style="height:1px;background:var(--light-grey);margin-bottom:24px;"></div>
-
-    <div style="margin-bottom:24px;">
-      <div style="font-weight:600;font-size:11px;letter-spacing:0.06em;color:var(--warm-grey);margin-bottom:14px;">Instagram</div>
-      <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Found and saved 20-30 relevant hashtags</div><input class="tracker-note" placeholder="Top performing hashtags..." onclick="event.stopPropagation()"></div></div>
-      <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Researched 5 accounts serving a similar audience</div><input class="tracker-note" placeholder="Which accounts? What performed best?" onclick="event.stopPropagation()"></div></div>
-      <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Mined comments for phrases and pain points</div><input class="tracker-note" placeholder="Best phrases found..." onclick="event.stopPropagation()"></div></div>
-    </div>
-
-    <div style="height:1px;background:var(--light-grey);margin-bottom:24px;"></div>
-
-    <div style="margin-bottom:24px;">
-      <div style="font-weight:600;font-size:11px;letter-spacing:0.06em;color:var(--warm-grey);margin-bottom:14px;">YouTube & Reddit</div>
-      <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Read comments on top YouTube videos in my niche</div><input class="tracker-note" placeholder="Most revealing insight..." onclick="event.stopPropagation()"></div></div>
-      <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Found relevant subreddits and read top posts</div><input class="tracker-note" placeholder="Which subreddits? Key patterns..." onclick="event.stopPropagation()"></div></div>
-      <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Used AI hacks to process findings into content</div><input class="tracker-note" placeholder="What I'm going to create..." onclick="event.stopPropagation()"></div></div>
-    </div>
-
-    <div style="height:1px;background:var(--light-grey);margin-bottom:24px;"></div>
-
-    <div style="margin-bottom:24px;">
-      <div style="font-weight:600;font-size:11px;letter-spacing:0.06em;color:var(--warm-grey);margin-bottom:14px;">Your Network</div>
-      <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Listed 10 people in my network who fit my ideal client</div><input class="tracker-note" placeholder="Names or initials..." onclick="event.stopPropagation()"></div></div>
-      <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Had 3+ research conversations</div><input class="tracker-note" placeholder="Most useful thing I heard..." onclick="event.stopPropagation()"></div></div>
-      <div class="tracker-row" onclick="toggleTracker(this)"><div class="tracker-check"></div><div style="flex:1"><div class="tracker-label">Written down exact phrases they used</div><input class="tracker-note" placeholder="Best phrase to use in content..." onclick="event.stopPropagation()"></div></div>
-    </div>
-
-    <div class="ai-box">
-      <div class="ai-label">AI HACK - FINAL STEP</div>
-      <div class="ai-title">Synthesise all your research</div>
-      <div class="ai-desc">Once you've completed your research across all platforms, use this master prompt to pull everything together into a clear audience profile.</div>
-      <div class="ai-prompt">I've done audience research across Facebook groups, Instagram, YouTube, Reddit, and conversations with real people in my network. Here's what I found:\n\nMost common pain points (in their words): [paste your findings]\nMost common desires (what they want): [paste your findings]\nPhrases they actually use: [paste exact quotes]\nWhat they've already tried that didn't work: [your findings]\nThe gap I noticed - what no one is properly serving: [your observation]\n\nMy niche: [who you help and what you help them with]\n\nPlease write me:\n1. A one-paragraph ideal client profile I can refer back to when creating content\n2. My top 5 content themes based on this research\n3. Three "I help" statements in different tones I could test in my bio\n4. One piece of content I should create first based on the highest-pain, lowest-served gap I found\n\nBase everything on the real research above - not generic assumptions.</div>
-      <button class="btn-copy" onclick="copyTab(this)">Copy prompt →</button>
-    </div>
+  <div class="bottom-save">
+    <p>Completed your research? Download this guide with your notes.</p>
+    <button class="btn-save" onclick="saveGuide()">Download / print guide →</button>
   </div>
 
   <div class="footer">
@@ -413,25 +489,21 @@
 </div>
 
 <script>
-function switchTab(id) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
-  event.target.classList.add('active');
+function toggleTracker(row) {
+  const check = row.querySelector('.tracker-check');
+  check.classList.toggle('done');
 }
 
-function copyTab(btn) {
+function copyPrompt(btn) {
   const prompt = btn.previousElementSibling.textContent.trim();
   navigator.clipboard.writeText(prompt).then(() => {
-    btn.textContent = 'Copied!';
-    btn.classList.add('copied');
+    btn.textContent = 'Copied!'; btn.classList.add('copied');
     setTimeout(() => { btn.textContent = 'Copy prompt →'; btn.classList.remove('copied'); }, 2000);
   });
 }
 
-function toggleTracker(row) {
-  const check = row.querySelector('.tracker-check');
-  check.classList.toggle('done');
+function saveGuide() {
+  window.print();
 }
 </script>
 </body>
