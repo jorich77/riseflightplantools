@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bonus Resources – Rise Flight Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --black:#1a1a1a; --blush:#e8d9d0; --blush-deep:#d4c0b4; --cream:#f5f0e8; --warm-grey:#6b6560; --light-grey:#d9d3cc; --white:#ffffff; }
+  body { background: var(--cream); font-family: 'Inter', sans-serif; color: var(--black); min-height: 100vh; }
+  .page { max-width: 720px; margin: 0 auto; background: var(--white); }
+
+  .header { background: var(--black); padding: 36px 48px 28px; position: relative; overflow: hidden; }
+  .sunburst { position: absolute; right: -20px; top: -20px; width: 130px; height: 130px; opacity: 0.08; }
+  .step-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; color: var(--blush); opacity: 0.7; margin-bottom: 10px; }
+  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 600; line-height: 1.1; color: var(--white); }
+  .header h1 em { color: var(--blush); font-style: italic; font-weight: 400; }
+  .header-sub { font-size: 12px; color: var(--blush); opacity: 0.55; font-weight: 300; margin-top: 8px; }
+  .strip { background: var(--blush); padding: 11px 48px; font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--black); }
+
+  .body { padding: 36px 48px 48px; }
+  .intro { font-size: 13.5px; color: var(--warm-grey); line-height: 1.75; margin-bottom: 36px; }
+  .intro strong { color: var(--black); }
+
+  /* BONUS CARDS */
+  .bonus-card { border: 1.5px solid var(--light-grey); margin-bottom: 24px; }
+  .bonus-card-header { background: var(--black); padding: 22px 28px; display: flex; align-items: center; gap: 16px; }
+  .bonus-icon { width: 44px; height: 44px; background: rgba(232,217,208,0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .bonus-header-text { }
+  .bonus-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--blush); opacity: 0.6; margin-bottom: 4px; }
+  .bonus-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--white); }
+  .bonus-body { padding: 24px 28px; }
+  .bonus-desc { font-size: 13px; color: var(--warm-grey); line-height: 1.75; margin-bottom: 20px; }
+  .bonus-desc strong { color: var(--black); }
+
+  .resource-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .resource-item { display: flex; align-items: center; justify-content: space-between; padding: 13px 16px; background: var(--cream); border-left: 3px solid var(--blush-deep); text-decoration: none; color: var(--black); transition: opacity 0.15s; }
+  .resource-item:hover { opacity: 0.8; }
+  .resource-item-left { }
+  .resource-name { font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 2px; }
+  .resource-tag { font-size: 10px; color: var(--warm-grey); }
+  .resource-arrow { font-size: 13px; color: var(--warm-grey); flex-shrink: 0; }
+
+  .placeholder-box { background: var(--cream); border: 1.5px dashed var(--light-grey); padding: 16px 20px; display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .placeholder-box p { font-size: 12px; color: var(--warm-grey); line-height: 1.6; font-style: italic; }
+  .placeholder-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: var(--blush-deep); margin-bottom: 3px; }
+
+  .what-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .what-list li { font-size: 12.5px; color: var(--black); line-height: 1.6; padding-left: 20px; position: relative; }
+  .what-list li::before { content: '→'; position: absolute; left: 0; color: var(--blush-deep); font-weight: 600; }
+
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--warm-grey); margin-bottom: 10px; }
+
+  /* NAV */
+  .nav-row { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid var(--light-grey); }
+  .btn-back { font-size: 12px; color: var(--warm-grey); text-decoration: none; }
+  .btn-back:hover { color: var(--black); }
+  .btn-next { background: var(--blush); color: var(--black); border: none; padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity 0.15s; }
+  .btn-next:hover { opacity: 0.8; }
+
+  .footer { background: var(--black); padding: 14px 48px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--blush); font-style: italic; }
+  .footer-step { font-size: 10px; color: var(--blush); opacity: 0.4; letter-spacing: 0.08em; }
+
+  @media (max-width: 520px) { .header, .body, .footer, .strip { padding-left: 24px; padding-right: 24px; } .bonus-card-header, .bonus-body { padding-left: 20px; padding-right: 20px; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <svg class="sunburst" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(65,65)" fill="white">
+        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/><polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/><polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/><polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/><polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/><polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/><polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/><polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
+        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/><polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <p class="step-tag">Bonus Resources · The Rise Flight Plan</p>
+    <h1>Mindset &amp; Time<br><em>Bonus Resources</em></h1>
+    <p class="header-sub">Access these any time - before you begin, or whenever you need them.</p>
+  </div>
+  <div class="strip">The inner work and the practical tools that make everything else possible.</div>
+
+  <div class="body">
+    <p class="intro">These bonus resources sit outside the 8 core steps but they're just as important. <strong>Come here if you're feeling overwhelmed before you start, if a mindset block is slowing you down mid-programme, or if you're struggling to find the time.</strong> You can access these at any point - they're not locked behind any step.</p>
+
+    <!-- BONUS 1: MINDSET -->
+    <div class="bonus-card">
+      <div class="bonus-card-header">
+        <div class="bonus-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e8d9d0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/><circle cx="12" cy="12" r="10"/></svg>
+        </div>
+        <div class="bonus-header-text">
+          <div class="bonus-tag">BONUS 1</div>
+          <div class="bonus-title">Mindset at Altitude</div>
+        </div>
+      </div>
+      <div class="bonus-body">
+        <p class="bonus-desc">Your strategy is only as strong as the belief running underneath it. This bonus covers the inner work - the fears, stories, and patterns that either power your progress or quietly sabotage it. <strong>If you've tried to build a business before and stopped, or if the fear of being visible is louder than your ambition right now, start here.</strong></p>
+
+        <div class="section-label" style="margin-bottom:10px;">What's covered</div>
+        <ul class="what-list">
+          <li>Why most people self-sabotage before they even begin - and how to spot it in yourself</li>
+          <li>The beliefs that keep smart, capable women stuck - and the reframes that shift them</li>
+          <li>How to tell the difference between a strategy problem and a mindset problem</li>
+          <li>What to do when imposter syndrome, fear of visibility, or perfectionism show up</li>
+          <li>The ATM framework - Answer, Tools, Mentoring - for working through any block</li>
+        </ul>
+
+        <div class="section-label" style="margin-bottom:10px;">Resources</div>
+        <div class="resource-list">
+          <div class="placeholder-box">
+            <div>
+              <div class="placeholder-tag">EBOOK · Coming soon</div>
+              <p>Your mindset ebook will be linked here once uploaded. You can adapt and upload it directly or share as a PDF download link.</p>
+            </div>
+          </div>
+          <div class="placeholder-box">
+            <div>
+              <div class="placeholder-tag">VIDEO · Coming soon</div>
+              <p>Record a short mindset video to go alongside the ebook - 10-15 minutes covering the core framework. Add the embed link here when ready.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--black);padding:16px 20px;margin-top:4px;">
+          <div class="section-label" style="color:var(--blush);opacity:0.7;margin-bottom:8px;">REFLECTION PROMPT</div>
+          <p style="font-size:12.5px;color:var(--blush);opacity:0.8;line-height:1.7;font-style:italic;">"What is the one belief about yourself or your abilities that is most holding you back right now? Write it down. Then write the opposite. That opposite is what we're building towards."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BONUS 2: TIME MANAGEMENT -->
+    <div class="bonus-card">
+      <div class="bonus-card-header">
+        <div class="bonus-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e8d9d0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="bonus-header-text">
+          <div class="bonus-tag">BONUS 2</div>
+          <div class="bonus-title">Time Management for Busy Mums</div>
+        </div>
+      </div>
+      <div class="bonus-body">
+        <p class="bonus-desc">The number one reason people don't finish programmes is not motivation - it's not protecting their time. <strong>This bonus is for anyone who is wondering how they'll fit this in around work, kids, and everything else life throws at them.</strong> The answer is not "find more time". It's use the time you have differently.</p>
+
+        <div class="section-label" style="margin-bottom:10px;">What's covered</div>
+        <ul class="what-list">
+          <li>Why "I don't have time" is never the real problem - and what is</li>
+          <li>How to build a business in 30-minute windows - the micro-session method</li>
+          <li>The weekly planning system that keeps you moving without burning out</li>
+          <li>How to protect your business time without guilt - the non-negotiable session</li>
+          <li>What to do on the days when life takes over completely</li>
+        </ul>
+
+        <div class="section-label" style="margin-bottom:10px;">Resources</div>
+        <div class="resource-list">
+          <div class="placeholder-box">
+            <div>
+              <div class="placeholder-tag">CONTENT · Coming soon</div>
+              <p>Your time management content will be linked here. Upload as a PDF, adapt into a short guide, or embed a video - whatever format works best.</p>
+            </div>
+          </div>
+          <div class="placeholder-box">
+            <div>
+              <div class="placeholder-tag">WORKSHEET · Coming soon</div>
+              <p>A simple weekly time audit worksheet could sit here - helps clients find the hidden pockets of time in their current week.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--black);padding:16px 20px;margin-top:4px;">
+          <div class="section-label" style="color:var(--blush);opacity:0.7;margin-bottom:8px;">ACTION PROMPT</div>
+          <p style="font-size:12.5px;color:var(--blush);opacity:0.8;line-height:1.7;font-style:italic;">"Open your calendar right now. Find three 30-minute windows this week that you can protect for this programme. Block them. Label them 'Rise Flight Plan'. Those three sessions are your start."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BONUS 3: STEP 7 LINK -->
+    <div class="bonus-card">
+      <div class="bonus-card-header">
+        <div class="bonus-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e8d9d0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="bonus-header-text">
+          <div class="bonus-tag">STEP 7</div>
+          <div class="bonus-title">Deeper Mindset Work</div>
+        </div>
+      </div>
+      <div class="bonus-body">
+        <p class="bonus-desc">Step 7 of the core programme is dedicated entirely to mindset at altitude - the deeper inner work that consolidates everything you've built across Steps 1-6. If the bonus content above has opened something up for you, <strong>you can jump to Step 7 at any time</strong> - you don't have to wait until you've completed every step in order.</p>
+        <a class="resource-item" href="course-step-7.html">
+          <div class="resource-item-left">
+            <div class="resource-name">Go to Step 7 - Mindset at Altitude</div>
+            <div class="resource-tag">The full mindset module · available any time</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <a class="btn-back" href="course-step-1.html">← Back to Step 1</a>
+      <a class="btn-next" href="course-step-1.html">Ready - back to Step 1 →</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Rise Beyond the 9 to 5</span>
+    <span class="footer-step">Bonus Resources · Rise Flight Plan</span>
+  </div>
+</div>
+</body>
+</html>
