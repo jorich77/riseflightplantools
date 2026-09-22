@@ -1,230 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Business Path Decision Framework – Rise Beyond the 9 to 5</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --black: #1a1a1a; --blush: #e8d9d0; --blush-deep: #d4c0b4;
-    --cream: #f5f0e8; --warm-grey: #6b6560; --light-grey: #d9d3cc; --white: #ffffff;
-  }
-  body { background: var(--black); font-family: 'Inter', sans-serif; color: var(--black); min-height: 100vh; }
-  .page { max-width: 680px; margin: 0 auto; background: var(--white); min-height: 100vh; display: flex; flex-direction: column; }
-
-  .header { background: var(--black); padding: 36px 48px 28px; position: relative; overflow: hidden; flex-shrink: 0; }
-  .sunburst { position: absolute; right: -20px; top: -20px; width: 130px; height: 130px; opacity: 0.1; }
-  .brand-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; color: var(--blush); opacity: 0.6; margin-bottom: 10px; }
-  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 600; line-height: 1.1; color: var(--white); }
-  .header h1 em { color: var(--blush); font-style: italic; font-weight: 400; }
-  .header-sub { font-size: 12px; color: var(--blush); opacity: 0.55; font-weight: 300; margin-top: 8px; }
-
-  .progress-wrap { background: #2a2a2a; height: 3px; flex-shrink: 0; }
-  .progress-bar { height: 3px; background: var(--blush); transition: width 0.4s ease; width: 0%; }
-
-  .screen { display: none; flex: 1; flex-direction: column; }
-  .screen.active { display: flex; }
-
-  /* WELCOME */
-  .welcome-body { padding: 44px 48px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
-  .welcome-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; margin-bottom: 14px; line-height: 1.25; }
-  .welcome-body p { font-size: 13px; color: var(--warm-grey); line-height: 1.7; margin-bottom: 10px; }
-
-  /* QUESTION */
-  .question-body { padding: 36px 48px 28px; flex: 1; display: flex; flex-direction: column; }
-  .q-counter { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--warm-grey); margin-bottom: 20px; }
-  .q-text { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; line-height: 1.25; color: var(--black); margin-bottom: 28px; }
-  .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
-  .option { border: 1.5px solid var(--light-grey); padding: 14px 18px; cursor: pointer; font-size: 13px; color: var(--black); line-height: 1.5; transition: all 0.12s; display: flex; align-items: flex-start; gap: 12px; }
-  .option:hover { border-color: var(--blush-deep); background: var(--cream); }
-  .option.selected { border-color: var(--black); background: var(--black); color: var(--white); }
-  .option-marker { width: 20px; height: 20px; min-width: 20px; border: 1.5px solid currentColor; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 1px; flex-shrink: 0; }
-  .option.selected .option-marker::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--blush); display: block; }
-  .q-nav { margin-top: auto; display: flex; gap: 12px; }
-  .btn-back { background: transparent; color: var(--warm-grey); border: 1.5px solid var(--light-grey); padding: 14px 20px; font-family: 'Inter', sans-serif; font-size: 12px; cursor: pointer; transition: all 0.15s; flex-shrink: 0; }
-  .btn-back:hover { border-color: var(--black); color: var(--black); }
-  .btn-primary { background: var(--black); color: var(--white); border: none; padding: 16px 32px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; width: 100%; transition: opacity 0.15s; }
-  .btn-primary:hover { opacity: 0.85; }
-  .btn-primary:disabled { opacity: 0.3; cursor: not-allowed; }
-
-  /* RESULTS */
-  .results-body { padding: 40px 48px 48px; flex: 1; }
-  .results-intro { font-size: 13px; color: var(--warm-grey); line-height: 1.7; margin-bottom: 28px; }
-
-  .model-card { margin-bottom: 16px; }
-  .rank-badge { background: var(--black); color: var(--blush); font-family: 'Cormorant Garamond', serif; font-size: 11px; font-weight: 600; padding: 5px 14px; letter-spacing: 0.06em; display: inline-block; }
-  .rank-badge.second { background: var(--blush); color: var(--black); }
-  .model-inner { border: 1.5px solid var(--black); padding: 24px; }
-  .model-card:nth-child(2) .model-inner { border-color: var(--blush-deep); }
-  .model-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; margin-bottom: 6px; }
-  .model-tagline { font-size: 12px; color: var(--warm-grey); margin-bottom: 14px; font-style: italic; }
-  .model-why { font-size: 12.5px; color: var(--black); line-height: 1.65; margin-bottom: 16px; }
-  .model-gets { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
-  .model-get { display: flex; gap: 10px; font-size: 12px; color: var(--warm-grey); line-height: 1.5; }
-  .model-get::before { content: '→'; color: var(--blush-deep); flex-shrink: 0; font-weight: 600; }
-
-  /* GUIDE BUTTONS */
-  .guide-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
-  .btn-guide { background: var(--cream); border: 1.5px solid var(--light-grey); color: var(--black); padding: 10px 16px; font-size: 11.5px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.12s; flex: 1; min-width: 120px; text-align: center; }
-  .btn-guide:hover { border-color: var(--black); background: var(--blush); }
-  .btn-compare { background: transparent; border: 1.5px solid var(--light-grey); color: var(--warm-grey); padding: 14px; font-size: 12px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.12s; width: 100%; margin-top: 20px; }
-  .btn-compare:hover { border-color: var(--black); color: var(--black); }
-  .btn-restart { background: transparent; border: 1.5px solid var(--light-grey); color: var(--warm-grey); padding: 14px; font-size: 12px; cursor: pointer; font-family: 'Inter', sans-serif; width: 100%; margin-top: 8px; }
-  .btn-restart:hover { border-color: var(--black); color: var(--black); }
-
-  /* MODAL */
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100; overflow-y: auto; padding: 24px 16px; }
-  .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
-  .modal { background: var(--white); max-width: 640px; width: 100%; position: relative; }
-  .modal-header { background: var(--black); padding: 28px 32px 24px; }
-  .modal-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
-  .modal-header p { font-size: 12px; color: var(--blush); opacity: 0.6; }
-  .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--blush); font-size: 20px; cursor: pointer; line-height: 1; padding: 4px 8px; }
-  .modal-body { padding: 28px 32px 32px; }
-
-  /* GUIDE SECTIONS */
-  .guide-section { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--light-grey); }
-  .guide-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-  .guide-section h3 { font-weight: 600; font-size: 12px; letter-spacing: 0.06em; color: var(--warm-grey); margin-bottom: 10px; }
-  .guide-section p { font-size: 12.5px; color: var(--black); line-height: 1.65; margin-bottom: 8px; }
-  .guide-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-  .guide-list li { font-size: 12.5px; color: var(--black); line-height: 1.6; padding-left: 16px; position: relative; }
-  .guide-list li::before { content: '–'; position: absolute; left: 0; color: var(--blush-deep); }
-
-  /* PRO/CON */
-  .pro-con-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .pro-con-box { padding: 14px 16px; }
-  .pro-box { background: var(--cream); }
-  .con-box { background: #faf7f5; border: 1px solid var(--light-grey); }
-  .pro-con-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; margin-bottom: 8px; color: var(--warm-grey); }
-  .pro-con-item { font-size: 12px; line-height: 1.55; color: var(--black); padding: 4px 0; border-bottom: 1px solid var(--light-grey); }
-  .pro-con-item:last-child { border-bottom: none; }
-
-  /* AI PROMPT */
-  .ai-prompt-box { background: var(--black); padding: 20px 24px; margin-top: 20px; }
-  .ai-prompt-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--blush); margin-bottom: 10px; opacity: 0.7; }
-  .ai-prompt-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--white); margin-bottom: 10px; }
-  .ai-prompt-text { font-size: 12px; color: var(--blush); opacity: 0.8; line-height: 1.65; font-style: italic; margin-bottom: 14px; }
-  .btn-copy-prompt { background: var(--blush); color: var(--black); border: none; padding: 10px 18px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity 0.15s; }
-  .btn-copy-prompt:hover { opacity: 0.8; }
-  .btn-copy-prompt.copied { background: var(--blush-deep); }
-
-  /* COMPARE TABLE */
-  .compare-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
-  .compare-table th { background: var(--black); color: var(--blush); padding: 10px 12px; text-align: left; font-weight: 500; font-size: 11px; }
-  .compare-table td { padding: 10px 12px; border-bottom: 1px solid var(--light-grey); vertical-align: top; line-height: 1.5; }
-  .compare-table tr:nth-child(even) td { background: var(--cream); }
-  .compare-table .model-col { font-weight: 600; font-size: 12px; }
-  .tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; margin: 2px 2px 2px 0; }
-  .tag-green { background: #e8f5e9; color: #2e7d32; }
-  .tag-amber { background: #fff8e1; color: #f57f17; }
-  .tag-red { background: #fce4ec; color: #c62828; }
-
-  /* DOWNLOAD BTN */
-  .btn-download { background: var(--blush-deep); color: var(--black); border: none; padding: 12px 20px; font-size: 11.5px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; width: 100%; margin-top: 20px; transition: opacity 0.15s; }
-  .btn-download:hover { opacity: 0.8; }
-
-  .footer { background: var(--black); padding: 14px 48px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--blush); font-style: italic; }
-  .footer-step { font-size: 10px; color: var(--blush); opacity: 0.4; letter-spacing: 0.08em; }
-
-  @media (max-width: 520px) {
-    .header, .welcome-body, .question-body, .results-body, .footer { padding-left: 24px; padding-right: 24px; }
-    .modal-header, .modal-body { padding-left: 20px; padding-right: 20px; }
-    .q-text { font-size: 22px; }
-    .pro-con-grid { grid-template-columns: 1fr; }
-    .compare-table { font-size: 10.5px; }
-  }
-</style>
-</head>
-<body>
-<div class="page">
-
-  <div class="header">
-    <svg class="sunburst" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <g transform="translate(65,65)" fill="white">
-        <polygon points="0,0 5,62 -5,62" transform="rotate(0)"/><polygon points="0,0 5,62 -5,62" transform="rotate(22.5)"/>
-        <polygon points="0,0 5,62 -5,62" transform="rotate(45)"/><polygon points="0,0 5,62 -5,62" transform="rotate(67.5)"/>
-        <polygon points="0,0 5,62 -5,62" transform="rotate(90)"/><polygon points="0,0 5,62 -5,62" transform="rotate(112.5)"/>
-        <polygon points="0,0 5,62 -5,62" transform="rotate(135)"/><polygon points="0,0 5,62 -5,62" transform="rotate(157.5)"/>
-        <polygon points="0,0 5,62 -5,62" transform="rotate(180)"/><polygon points="0,0 5,62 -5,62" transform="rotate(202.5)"/>
-        <polygon points="0,0 5,62 -5,62" transform="rotate(225)"/><polygon points="0,0 5,62 -5,62" transform="rotate(247.5)"/>
-        <polygon points="0,0 5,62 -5,62" transform="rotate(270)"/><polygon points="0,0 5,62 -5,62" transform="rotate(292.5)"/>
-        <polygon points="0,0 5,62 -5,62" transform="rotate(315)"/><polygon points="0,0 5,62 -5,62" transform="rotate(337.5)"/>
-      </g>
-    </svg>
-    <p class="brand-tag">Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 2</p>
-    <h1>Business Path<br><em>Decision Framework</em></h1>
-    <p class="header-sub">10 questions. Your top 2 business models. Everything you need to get started.</p>
-  </div>
-
-  <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
-
-  <!-- WELCOME -->
-  <div class="screen active" id="screen-welcome">
-    <div class="welcome-body">
-      <h2>Stop researching. Start deciding.</h2>
-      <p>Answer 10 honest questions about your life, your skills, and your goals. We'll match you to your top 2 business models - and give you a full guide for each one.</p>
-      <p style="font-size:12px;color:var(--warm-grey);margin-top:16px;">Takes about 3 minutes. Answer based on where you are now, not where you hope to be.</p>
-    </div>
-    <button class="btn-primary" onclick="startQuiz()">Find My Path</button>
-  </div>
-
-  <!-- QUESTION -->
-  <div class="screen" id="screen-question">
-    <div class="question-body">
-      <div class="q-counter" id="q-counter">Question 1 of 10</div>
-      <div class="q-text" id="q-text"></div>
-      <div class="options" id="options-container"></div>
-      <div class="q-nav">
-        <button class="btn-back" id="btn-back" onclick="prevQ()">← Back</button>
-        <button class="btn-primary" id="btn-next" onclick="nextQ()" disabled>Continue</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- RESULTS -->
-  <div class="screen" id="screen-results">
-    <div class="results-body">
-      <p class="results-intro" id="results-intro"></p>
-      <div id="top-models"></div>
-      <button class="btn-compare" onclick="openCompare()">Compare all 5 models →</button>
-      <button class="btn-restart" onclick="restart()">Start again</button>
-    </div>
-  </div>
-
-  <div class="footer">
-    <span class="footer-brand">Rise Beyond the 9 to 5</span>
-    <span class="footer-step">Step 2 of 8 · Business Path Decision Framework</span>
-  </div>
-</div>
-
-<!-- GUIDE MODAL -->
-<div class="modal-overlay" id="guide-modal" onclick="closeIfOverlay(event,'guide-modal')">
-  <div class="modal" id="guide-modal-inner">
-    <button class="modal-close" onclick="closeModal('guide-modal')">✕</button>
-    <div class="modal-header">
-      <h2 id="guide-modal-title"></h2>
-      <p id="guide-modal-sub"></p>
-    </div>
-    <div class="modal-body" id="guide-modal-body"></div>
-  </div>
-</div>
-
-<!-- COMPARE MODAL -->
-<div class="modal-overlay" id="compare-modal" onclick="closeIfOverlay(event,'compare-modal')">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('compare-modal')">✕</button>
-    <div class="modal-header">
-      <h2>All 6 Models Compared</h2>
-      <p>Use this to confirm your choice - or hand it to your coach on your next call.</p>
-    </div>
-    <div class="modal-body" id="compare-modal-body"></div>
-  </div>
-</div>
-
 <script>
 const MODELS = {
   coaching:    { name: "Coaching",                tagline: "Help people get a result you've already achieved." },
@@ -526,6 +299,85 @@ function copyPrompt(btn, key) {
   });
 }
 
+function printAllModels() {
+  const win = window.open('', '_blank');
+  const modelKeys = ['coaching', 'digital', 'content', 'services', 'highticket'];
+  const modelSections = modelKeys.map(key => {
+    const g = GUIDES[key];
+    const m = MODELS[key];
+    const why = MODEL_WHY[key];
+    const startSteps = g.start ? g.start.map(s => `<li>${s}</li>`).join('') : '';
+    const days90 = g.days90 ? g.days90.map(d => `<li>${d}</li>`).join('') : '';
+    return `
+      <div class="model-section">
+        <div class="model-header">
+          <div class="model-name">${m.name}</div>
+          <div class="model-tagline">${m.tagline}</div>
+        </div>
+        <div class="model-body">
+          <div class="model-overview">${g.overview || why.why}</div>
+          <div class="col-wrap">
+            <div class="col">
+              <div class="col-heading">What you get</div>
+              <ul>${why.gets.map(g2 => `<li>${g2}</li>`).join('')}</ul>
+            </div>
+            <div class="col">
+              <div class="col-heading">How to start</div>
+              <ul>${startSteps}</ul>
+            </div>
+          </div>
+          <div class="col-heading">Your 90-day plan</div>
+          <ul>${days90}</ul>
+        </div>
+      </div>`;
+  }).join('');
+
+  win.document.write(\`<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Rise Flight Plan - Your 5 Business Model Guides</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: white; padding: 40px; max-width: 800px; margin: 0 auto; }
+  .print-header { text-align: center; border-bottom: 3px solid #1a1a1a; padding-bottom: 24px; margin-bottom: 40px; }
+  .print-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 600; margin-bottom: 6px; }
+  .print-header h1 em { font-style: italic; color: #6b6560; }
+  .print-header p { font-size: 13px; color: #6b6560; margin-top: 8px; }
+  .model-section { margin-bottom: 48px; page-break-inside: avoid; border: 1.5px solid #d9d3cc; }
+  .model-header { background: #1a1a1a; padding: 20px 28px; }
+  .model-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: #e8d9d0; margin-bottom: 4px; }
+  .model-tagline { font-size: 12px; color: #e8d9d0; opacity: 0.6; font-style: italic; }
+  .model-body { padding: 24px 28px; }
+  .model-overview { font-size: 13px; color: #6b6560; line-height: 1.75; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #d9d3cc; }
+  .col-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 20px; }
+  .col-heading { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: #6b6560; margin-bottom: 10px; margin-top: 16px; }
+  ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul li { font-size: 12.5px; color: #1a1a1a; line-height: 1.6; padding-left: 16px; position: relative; }
+  ul li::before { content: '→'; position: absolute; left: 0; color: #d4c0b4; font-weight: 600; }
+  .print-btn { display: block; width: 200px; margin: 0 auto 40px; background: #1a1a1a; color: #e8d9d0; border: none; padding: 14px 24px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; text-align: center; }
+  .print-footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #d9d3cc; font-size: 11px; color: #6b6560; font-style: italic; }
+  @media print {
+    .print-btn { display: none; }
+    body { padding: 20px; }
+    .model-section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+  <div class="print-header">
+    <h1>The Rise Flight Plan<br><em>Your 5 Business Model Guides</em></h1>
+    <p>Rise Beyond the 9 to 5 · Step 2 of 8 · Read through each model, then choose one and commit.</p>
+  </div>
+  <button class="print-btn" onclick="window.print()">Save as PDF →</button>
+  \${modelSections}
+  <div class="print-footer">Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 2 of 8</div>
+</body>
+</html>\`);
+  win.document.close();
+}
+
 function openCompare() {
   const rows = COMPARE_DATA.map(d => {
     const incomeTag = d.income.includes('week') || d.income.includes('days') ? 'tag-green' :
@@ -564,5 +416,3 @@ function restart() {
   showScreen('screen-welcome');
 }
 </script>
-</body>
-</html>
