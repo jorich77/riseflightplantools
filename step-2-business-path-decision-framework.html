@@ -231,7 +231,39 @@ const MODELS = {
   digital:     { name: "Digital Products",         tagline: "Create once, sell to hundreds while you sleep." },
   content:     { name: "Content Monetisation",     tagline: "Build an audience and turn attention into income." },
   services:    { name: "Services / Freelancing",   tagline: "Offer a skill as a service, get paid immediately." },
-  highticket:  { name: "High-Ticket Affiliate Marketing", tagline: "Premium products, big commissions, proven system." }
+  highticket: {
+    name: "High-Ticket Affiliate Marketing",
+    tagline: "Premium products, big commissions, proven system.",
+    overview: "High-ticket affiliate marketing means partnering with a company to sell their premium products and earning a significant commission per sale - often £500-£3,000+ per transaction. You don't create the product, handle fulfilment, or build a team. You find the right customers, introduce them to the product, and earn every time they buy. It suits someone who is confident in conversations, willing to learn a sales process, and wants big returns without the complexity of building something from scratch.",
+    start: [
+      "Research high-ticket affiliate programmes in a niche you're interested in - wellness, finance, education, software, and travel all have strong options",
+      "Choose one product or programme to focus on - don't spread across multiple until you've mastered one",
+      "Learn the product inside out - ideally use it yourself so you can speak about it authentically",
+      "Build your personal brand around the problem the product solves, not around the product itself",
+      "Start with warm outreach to people who fit the ideal customer profile - conversations before content"
+    ],
+    days90: [
+      "Month 1: Choose your product, set up your profile, start content around the problem your product solves, have 10+ conversations with potential customers",
+      "Month 2: Refine your sales conversation, follow up with all warm leads, post 5x per week, aim for your first 1-2 sales",
+      "Month 3: Double down on what's working, build a simple lead generation funnel, set a monthly sales target and track your pipeline weekly"
+    ],
+    aiPrompt: \`I am building a high-ticket affiliate marketing business and I need help with my content and sales strategy.
+
+The product I represent: [product name and what it does]
+Who it's perfect for: [ideal customer - their situation and problem]
+The price point: [price]
+My commission per sale: [commission]
+My personal connection to the product: [do you use it? why do you believe in it?]
+
+Please give me:
+1. A content strategy - 3 content pillars I should post about that attract my ideal customer without leading with the product
+2. A warm outreach message I can send to people who match the ideal customer profile
+3. A script for introducing the product naturally in a conversation without it feeling salesy
+4. 5 objection responses for the most common pushbacks on high-ticket purchases
+
+Tone: confident, honest, and belief-led. No hype.\`,
+    aiLabel: "Build your high-ticket sales strategy"
+  }
 };
 
 const MODEL_WHY = {
