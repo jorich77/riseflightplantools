@@ -497,35 +497,7 @@
     </div>
   </div>
 
-  <!-- SCREEN: LIFE RIGHT NOW -->
-  <div class="screen" id="screen-life">
-    <div class="life-body">
-      <h2>One more thing — your starting line.</h2>
-      <p class="intro-text">These details become your "before." At Step 7 you'll look back at this and see exactly how far you've come. Be honest — no one else sees this.</p>
 
-      <div class="field-group">
-        <label class="field-label" for="f-income">My current income (approximate monthly)</label>
-        <input type="text" id="f-income" class="field-input" placeholder="e.g. £2,400 salary">
-      </div>
-      <div class="field-group">
-        <label class="field-label" for="f-hours">Hours I work each week</label>
-        <input type="text" id="f-hours" class="field-input" placeholder="e.g. 45 hours employed + side hustle">
-      </div>
-      <div class="field-group">
-        <label class="field-label" for="f-drain">What's draining my energy most right now</label>
-        <textarea id="f-drain" class="field-input" placeholder="The commute, no time with the kids, asking permission for a day off..."></textarea>
-      </div>
-      <div class="field-group">
-        <label class="field-label" for="f-vision">What I want my life to look like instead</label>
-        <textarea id="f-vision" class="field-input" placeholder="Where do you want to live? How do you want to spend your mornings?"></textarea>
-      </div>
-
-      <div class="q-nav" style="margin-top: 28px;">
-        <button class="btn-back" onclick="showScreen('screen-question'); currentQ = questions.length - 1; renderQuestion();">← Back</button>
-        <button class="btn-primary" onclick="showResults()">See My Freedom Score →</button>
-      </div>
-    </div>
-  </div>
 
   <!-- SCREEN: RESULTS -->
   <div class="screen" id="screen-results">
@@ -666,7 +638,7 @@
       currentQ++;
       renderQuestion();
     } else {
-      showScreen('screen-life');
+      showResults();
       updateProgress(questions.length + 1, questions.length + 2);
     }
   }
@@ -711,10 +683,7 @@
 
       const breakdown = questions.map(q => `${q.area}: ${scores[q.key]}/10`).join(', ');
       const lifeNow = [
-        document.getElementById('f-income').value,
-        document.getElementById('f-hours').value,
-        document.getElementById('f-drain').value,
-        document.getElementById('f-vision').value
+        '', '', '', ''
       ].filter(Boolean).join(' | ');
 
       const prompt = `You are a warm, encouraging freedom lifestyle coach. A mum has just completed her Freedom Score Scorecard as part of Step 1 of the Rise Flight Plan coaching programme.
