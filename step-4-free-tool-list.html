@@ -88,8 +88,14 @@
   </div>
   <div class="strip">You don't need to spend money to start. These tools are all you need.</div>
 
+  <div style="background:var(--cream);padding:13px 48px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--light-grey);">
+    <p style="font-size:12px;color:var(--warm-grey);font-style:italic;">Save this guide to refer back to as you set up your tools.</p>
+    <button onclick="printGuide()" style="background:var(--black);color:var(--white);border:none;padding:10px 20px;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0;">Download / print guide →</button>
+  </div>
+
   <div class="tabs">
     <div class="tab active" onclick="switchTab('profile')">Social Profile</div>
+    <div class="tab" onclick="switchTab('systeme')">Systeme.io</div>
     <div class="tab" onclick="switchTab('leads')">Lead Capture</div>
     <div class="tab" onclick="switchTab('payments')">Payments</div>
     <div class="tab" onclick="switchTab('content')">Content</div>
@@ -379,6 +385,80 @@ Make it feel personal and professional - not templated. They should feel excited
     </div>
   </div>
 
+  <!-- SYSTEME.IO -->
+  <div class="tab-content" id="tab-systeme">
+    <p class="cat-intro">Systeme.io is the one tool that replaces almost everything else on this list. If you want one platform that handles email, payments, courses, funnels, and affiliates - all for free - this is it.</p>
+
+    <div class="tool-card">
+      <div class="tool-top"><div class="tool-name">Systeme.io</div><div class="tool-badge badge-free">Free plan</div></div>
+      <div class="tool-desc">The most generous all-in-one platform available for online business owners. The free plan includes email marketing (up to 2,000 contacts), sales funnels, course hosting, payment pages, a blog, and an affiliate programme. Most tools on this list can be replaced by Systeme.io alone.</div>
+      <div class="tool-best">Best for: <span>Everything - email, payments, courses, funnels, affiliates</span></div>
+      <a class="tool-link" href="https://systeme.io/?sa=sa0129032799ae2d3a185b699cefd1cfa76f6ae6bf" target="_blank">systeme.io (affiliate link) →</a>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;margin-top:20px;">
+      <div style="background:var(--cream);padding:16px;border-left:3px solid var(--blush-deep);">
+        <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;color:var(--warm-grey);margin-bottom:10px;">What's free</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+          <li style="font-size:12px;color:var(--black);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--blush-deep);">✓</span>Up to 2,000 email contacts</li>
+          <li style="font-size:12px;color:var(--black);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--blush-deep);">✓</span>Unlimited emails</li>
+          <li style="font-size:12px;color:var(--black);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--blush-deep);">✓</span>3 sales funnels</li>
+          <li style="font-size:12px;color:var(--black);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--blush-deep);">✓</span>1 course (unlimited students)</li>
+          <li style="font-size:12px;color:var(--black);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--blush-deep);">✓</span>Payment pages</li>
+          <li style="font-size:12px;color:var(--black);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--blush-deep);">✓</span>Affiliate programme</li>
+          <li style="font-size:12px;color:var(--black);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--blush-deep);">✓</span>Automation rules</li>
+        </ul>
+      </div>
+      <div style="background:var(--cream);padding:16px;border-left:3px solid var(--blush-deep);">
+        <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;color:var(--warm-grey);margin-bottom:10px;">Replaces these tools</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+          <li style="font-size:12px;color:var(--black);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--blush-deep);">→</span>Mailerlite / Brevo (email)</li>
+          <li style="font-size:12px;color:var(--black);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--blush-deep);">→</span>Stripe / PayPal (payments)</li>
+          <li style="font-size:12px;color:var(--black);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--blush-deep);">→</span>Teachable / Kajabi (courses)</li>
+          <li style="font-size:12px;color:var(--black);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--blush-deep);">→</span>Linktree (bio link)</li>
+          <li style="font-size:12px;color:var(--black);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--blush-deep);">→</span>ClickFunnels (funnels)</li>
+          <li style="font-size:12px;color:var(--black);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--blush-deep);">→</span>Tapfiliate (affiliates)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="background:var(--black);padding:16px 20px;margin-bottom:24px;">
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;color:var(--blush);opacity:0.7;margin-bottom:6px;">Recommended setup order</div>
+      <ol style="list-style:none;display:flex;flex-direction:column;gap:8px;counter-reset:steps;">
+        <li style="font-size:12.5px;color:var(--blush);opacity:0.85;padding-left:24px;position:relative;counter-increment:steps;"><span style="position:absolute;left:0;color:var(--blush-deep);font-weight:700;">1.</span>Create your free account and connect your payment method (Stripe or PayPal)</li>
+        <li style="font-size:12.5px;color:var(--blush);opacity:0.85;padding-left:24px;position:relative;counter-increment:steps;"><span style="position:absolute;left:0;color:var(--blush-deep);font-weight:700;">2.</span>Set up your email list and create a simple opt-in form</li>
+        <li style="font-size:12.5px;color:var(--blush);opacity:0.85;padding-left:24px;position:relative;counter-increment:steps;"><span style="position:absolute;left:0;color:var(--blush-deep);font-weight:700;">3.</span>Create a sales page or payment link for your offer</li>
+        <li style="font-size:12.5px;color:var(--blush);opacity:0.85;padding-left:24px;position:relative;counter-increment:steps;"><span style="position:absolute;left:0;color:var(--blush-deep);font-weight:700;">4.</span>Set up a welcome email automation for new subscribers</li>
+        <li style="font-size:12.5px;color:var(--blush);opacity:0.85;padding-left:24px;position:relative;counter-increment:steps;"><span style="position:absolute;left:0;color:var(--blush-deep);font-weight:700;">5.</span>Upload your course or programme content when you're ready</li>
+      </ol>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-label">AI HACK</div>
+      <div class="ai-title">Set up your Systeme.io welcome sequence</div>
+      <div class="ai-desc">Use this prompt to write a 3-email welcome sequence to set up in Systeme.io automations.</div>
+      <div class="ai-prompt">I've just set up Systeme.io for my online business and I need a 3-email welcome sequence for new subscribers.
+
+My niche: I help [who you help] who [their problem] to [the result].
+My lead magnet or opt-in: [what they signed up for]
+My paid offer: [what you sell and at what price]
+My name: [your name]
+My tone: [warm and personal / educational / motivational]
+
+Please write:
+Email 1 (send immediately): Welcome + deliver the lead magnet + what to expect from me
+Email 2 (send day 2): My story - why I do this and who I am
+Email 3 (send day 4): A tip or teaching that demonstrates my expertise + soft mention of my offer
+
+For each email:
+- Subject line
+- Body (under 200 words, conversational, like a message from a friend)
+- One clear call to action
+- No salesy language</div>
+      <button class="btn-copy" onclick="copyTab(this)">Copy prompt →</button>
+    </div>
+  </div>
+
   <div class="footer">
     <span class="footer-brand">Rise Beyond the 9 to 5</span>
     <span class="footer-step">Step 4 of 8 · Free Tool List</span>
@@ -386,6 +466,72 @@ Make it feel personal and professional - not templated. They should feel excited
 </div>
 
 <script>
+function printGuide() {
+  const win = window.open('', '_blank');
+  const cats = [
+    { id: 'profile', label: 'Social Profile' },
+    { id: 'leads', label: 'Lead Capture' },
+    { id: 'payments', label: 'Payments' },
+    { id: 'content', label: 'Content' },
+    { id: 'organisation', label: 'Organisation' },
+    { id: 'systeme', label: 'Systeme.io - All-in-One Platform' }
+  ];
+  const sections = cats.map(cat => {
+    const el = document.getElementById('tab-' + cat.id);
+    return `<div class="cat-section"><div class="cat-heading">${cat.label}</div>${el.innerHTML}</div>`;
+  }).join('');
+
+  win.document.write(`<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Free Tool List - Rise Flight Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: white; padding: 40px; max-width: 720px; margin: 0 auto; }
+  .print-header { text-align: center; border-bottom: 3px solid #1a1a1a; padding-bottom: 24px; margin-bottom: 40px; }
+  .print-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; margin-bottom: 6px; }
+  .print-header h1 em { font-style: italic; color: #6b6560; }
+  .print-header p { font-size: 12px; color: #6b6560; margin-top: 6px; }
+  .save-btn { display: block; margin: 0 auto 36px; background: #1a1a1a; color: #e8d9d0; border: none; padding: 13px 28px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .cat-section { margin-bottom: 40px; page-break-inside: avoid; }
+  .cat-heading { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: #1a1a1a; border-bottom: 2px solid #1a1a1a; padding-bottom: 8px; margin-bottom: 16px; }
+  .cat-intro { font-size: 13px; color: #6b6560; line-height: 1.7; margin-bottom: 20px; }
+  .tool-card { border-bottom: 1px solid #d9d3cc; padding: 16px 0; }
+  .tool-card:last-of-type { border-bottom: none; }
+  .tool-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+  .tool-name { font-weight: 600; font-size: 14px; color: #1a1a1a; }
+  .tool-badge { font-size: 10px; font-weight: 600; padding: 3px 10px; }
+  .badge-free { background: #e8d9d0; color: #1a1a1a; }
+  .badge-freemium { background: #f5f0e8; border: 1px solid #d4c0b4; color: #1a1a1a; }
+  .tool-desc { font-size: 12.5px; color: #6b6560; line-height: 1.6; margin-bottom: 6px; }
+  .tool-best { font-size: 11.5px; color: #1a1a1a; font-weight: 500; margin-bottom: 4px; }
+  .tool-best span { font-weight: 400; color: #6b6560; }
+  .tool-link { font-size: 11.5px; color: #6b6560; }
+  .ai-box { background: #1a1a1a; padding: 18px 22px; margin-top: 16px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .ai-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: #e8d9d0; opacity: 0.7; margin-bottom: 6px; }
+  .ai-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #ffffff; margin-bottom: 6px; }
+  .ai-desc { font-size: 12px; color: #e8d9d0; opacity: 0.65; line-height: 1.6; margin-bottom: 10px; }
+  .ai-prompt { background: #111; border-left: 3px solid #d4c0b4; padding: 12px 14px; font-size: 11px; color: #e8d9d0; line-height: 1.7; font-style: italic; white-space: pre-wrap; }
+  .btn-copy { display: none; }
+  .print-footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #d9d3cc; font-size: 11px; color: #6b6560; font-style: italic; }
+  @media print { .save-btn { display: none; } }
+</style>
+</head>
+<body>
+  <div class="print-header">
+    <h1>Free Tool List<br><em>Everything you need to start</em></h1>
+    <p>Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 4 · All tools are free or have a generous free plan</p>
+  </div>
+  <button class="save-btn" onclick="window.print()">Save as PDF →</button>
+  \${sections}
+  <div class="print-footer">Rise Beyond the 9 to 5 · The Rise Flight Plan · Step 4 of 8</div>
+</body>
+</html>\`);
+  win.document.close();
+}
+
 function switchTab(id) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
