@@ -2,7 +2,38 @@
 const MODELS = {
   coaching:    { name: "Coaching",                tagline: "Help people get a result you've already achieved." },
   digital:     { name: "Digital Products",         tagline: "Create once, sell to hundreds while you sleep." },
-  content:     { name: "Content Monetisation",     tagline: "Build an audience and turn attention into income." },
+  products: {
+    name: "Physical Products",
+    tagline: "Sell products online - print on demand, dropshipping, no inventory needed.",
+    overview: "Physical products - through print on demand or dropshipping - means you sell real products online without ever touching stock. With print on demand you design the product (a t-shirt, mug, print, notebook) and a supplier prints and ships it when someone orders. With dropshipping you market products from a supplier's catalogue and they fulfil the order. Both models follow the same formula: build content around a niche, grow an audience of buyers, drive them to your shop, and earn on every sale. No warehouse, no upfront costs, no packing boxes.",
+    start: [
+      "Choose your niche - ideally something you're passionate about or knowledgeable in (travel, fitness, pets, parenting, motivation, art)",
+      "Decide your model: print on demand (Printful, Printify) for custom designed products, or dropshipping (Zendrop, CJDropshipping) for existing products",
+      "Set up a free store on Shopify, Etsy, or TikTok Shop - Etsy works particularly well for print on demand with built-in traffic",
+      "Create your first 5-10 product designs or listings using Canva",
+      "Build content on Instagram, TikTok, or Pinterest around your niche - not around your shop. Lifestyle content that leads to product discovery."
+    ],
+    days90: [
+      "Month 1: Choose your niche and platform, create your first 10 product listings, set up your shop, post content daily around your niche to build an audience",
+      "Month 2: Analyse which products get the most views and sales, double down on those designs and that content style, aim for your first 10 sales",
+      "Month 3: Scale what's working - more designs in your best-selling category, grow your content reach, test one paid ad to your best-selling product"
+    ],
+    aiPrompt: \`I am building a physical products business using print on demand / dropshipping and I need help with my content and product strategy.
+
+My niche: [your niche - e.g. travel, fitness, pets, motivation]
+My platform: [where you're selling - Etsy, Shopify, TikTok Shop]
+My content platform: [Instagram, TikTok, Pinterest]
+My target customer: [who they are and what they care about]
+
+Please give me:
+1. 10 product ideas that would sell well to this audience (for print on demand, suggest designs/slogans; for dropshipping, suggest product categories)
+2. A content strategy - 3 content pillars that attract my ideal buyer without directly selling
+3. A 2-week content plan (10 posts) with format, topic, and hook for each
+4. The opening line for my shop bio that immediately attracts my ideal customer
+
+Make it specific to my niche - not generic e-commerce advice.\`,
+    aiLabel: "Build your physical products strategy"
+  },
   services:    { name: "Services / Freelancing",   tagline: "Offer a skill as a service, get paid immediately." },
   highticket: {
     name: "High-Ticket Affiliate Marketing",
@@ -42,7 +73,7 @@ Tone: confident, honest, and belief-led. No hype.\`,
 const MODEL_WHY = {
   coaching:   { why: "You have knowledge or experience others would pay to learn from. Coaching has the lowest barrier to entry and can generate income quickly - all you need is your expertise and one client.", gets: ["Work 1:1 with clients you choose", "Set your own hours and rates", "No product to create or stock"] },
   digital:    { why: "You love creating systems and content once and having it work for you repeatedly. Digital products take time to build but create passive income that scales without more of your time.", gets: ["Earn while you sleep", "Can sell on platforms independently", "Low ongoing effort once created"] },
-  content:    { why: "You enjoy being in front of the camera or behind the keyboard regularly. Content monetisation rewards consistency and personality - if you love sharing, this compounds over time.", gets: ["Multiple income streams (ads, sponsorships, products)", "Build a brand that attracts opportunities", "Location independent"] },
+  products:    { why: "You want to sell physical products online without holding inventory or managing fulfilment yourself. Print on demand and dropshipping let you create content around a product niche, drive traffic, and earn on every sale - with no upfront stock costs.", gets: ["No inventory or fulfilment to manage", "Earn on every sale with no stock risk", "Scale through content without more of your time"] },
   services:   { why: "You have a marketable skill right now - writing, design, social media, VA work, admin. Services/freelancing is the fastest path to income with zero upfront investment needed.", gets: ["Fastest route to first income", "No upfront investment required", "Total flexibility over clients and projects"] },
   highticket: { why: "You're comfortable with premium positioning and high-value conversations. High-ticket affiliate marketing suits someone who wants big commissions per sale and is willing to learn a proven sales system.", gets: ["High commission per sale (£1,000+)", "Proven system and products already exist", "Suits confident communicators"] }
 };
@@ -70,8 +101,8 @@ const GUIDES = {
     aiPrompt: `I am creating a digital product and need help with my launch content. Here are my details:\n\nMy product: [name and what it is - e.g. a Canva template pack for Instagram]\nWho it's for: [specific person]\nThe problem it solves: [what they're struggling with]\nThe result they get: [what changes after using it]\nPrice: [your price point]\n\nPlease write me:\n1. A product description (3-4 sentences) for my sales page\n2. 5 Instagram caption ideas to promote this product without being pushy\n3. A subject line and opening paragraph for a launch email\n\nTone: direct, clear, and benefit-focused. No fluff.`,
     aiLabel: "Write your digital product launch content"
   },
-  content: {
-    overview: "Content monetisation means building an audience through consistent content and then earning from their attention - through brand deals, ads, affiliate income, or selling your own products to a warm audience.",
+  products: {
+    overview: "Physical products means building an audience through consistent content and then earning from their attention - through brand deals, ads, affiliate income, or selling your own products to a warm audience.",
     start: ["Choose one platform to master first (Instagram, TikTok, YouTube, or a podcast)", "Define your content niche - one topic, one audience, one transformation", "Commit to a posting schedule you can sustain for 6+ months", "Focus on growth first - monetisation follows audience", "Start capturing email addresses from day one"],
     days90: ["Month 1: Define your content pillars, post consistently 5x per week, study what performs", "Month 2: Double down on your best-performing content types, start building your email list, engage deeply with your audience", "Month 3: Introduce affiliate links or a simple product, pitch to your first brand partnership, analyse your data"],
     invest: "£0-£300 (camera, lighting, scheduling tools)",
@@ -97,7 +128,7 @@ const GUIDES = {
 const COMPARE_DATA = [
   { key: "coaching",   startup: "£0-£200",    income: "30-60 days", effort: "Medium", visibility: "High", scale: "Medium" },
   { key: "digital",    startup: "£0-£100",    income: "2-4 months", effort: "High upfront", visibility: "Medium", scale: "High" },
-  { key: "content",    startup: "£0-£300",    income: "6-12 months", effort: "Very high", visibility: "Very high", scale: "Very high" },
+  { key: "products",    startup: "£0-£300",    income: "6-12 months", effort: "Very high", visibility: "Very high", scale: "Very high" },
   { key: "services",   startup: "£0",          income: "1-2 weeks", effort: "Low upfront", visibility: "Low-Medium", scale: "Low" },
   { key: "highticket", startup: "£500-£3,000+",income: "First sale",  effort: "Medium", visibility: "Medium", scale: "Medium" }
 ];
@@ -106,63 +137,63 @@ const QUESTIONS = [
   { text: "How many hours a week can you realistically dedicate to your business right now?", options: [
     { text: "Under 5 hours", scores: { services: 2, highticket: 1 } },
     { text: "5-10 hours", scores: { coaching: 2, services: 2, highticket: 2 } },
-    { text: "10-20 hours", scores: { coaching: 3, digital: 2, content: 2, highticket: 2 } },
-    { text: "20+ hours - I'm all in", scores: { digital: 3, content: 3, coaching: 3, highticket: 3 } }
+    { text: "10-20 hours", scores: { coaching: 3, digital: 2, products: 2, highticket: 2 } },
+    { text: "20+ hours - I'm all in", scores: { digital: 3, products: 3, coaching: 3, highticket: 3 } }
   ]},
   { text: "Do you prefer working directly with people, or creating things people use on their own?", options: [
     { text: "Directly with people - I love conversation and connection", scores: { coaching: 3, highticket: 3, services: 1 } },
-    { text: "Creating things - I prefer to build and let people come to me", scores: { digital: 3, content: 3 } },
-    { text: "A mix of both", scores: { coaching: 2, content: 2, services: 2 } },
+    { text: "Creating things - I prefer to build and let people come to me", scores: { digital: 3, products: 3 } },
+    { text: "A mix of both", scores: { coaching: 2, products: 2, services: 2 } },
     { text: "I honestly don't mind - I'll do whatever it takes", scores: { services: 2, coaching: 1, digital: 1, highticket: 1 } }
   ]},
   { text: "How comfortable are you being visible on social media - showing your face, sharing your story?", options: [
-    { text: "Very - I already do it or I'm excited to start", scores: { content: 3, coaching: 3, highticket: 2 } },
+    { text: "Very - I already do it or I'm excited to start", scores: { products: 3, coaching: 3, highticket: 2 } },
     { text: "Comfortable but I'd need a bit of a push", scores: { coaching: 2, services: 2, highticket: 2 } },
     { text: "I'd prefer to stay mostly behind the scenes", scores: { digital: 3, services: 3 } },
     { text: "Not at all - I want minimal visibility", scores: { digital: 3, services: 2 } }
   ]},
   { text: "Do you have a skill or area of expertise someone would pay for right now?", options: [
     { text: "Yes - a clear professional skill (writing, design, marketing, VA, etc.)", scores: { services: 3, coaching: 2, digital: 1 } },
-    { text: "Yes - life experience or results I've achieved", scores: { coaching: 3, content: 2 } },
+    { text: "Yes - life experience or results I've achieved", scores: { coaching: 3, products: 2 } },
     { text: "Sort of - I'm still figuring out what my thing is", scores: { highticket: 2, services: 1 } },
     { text: "Not really - I want to learn and build as I go", scores: { highticket: 3 } }
   ]},
   { text: "How quickly do you need to generate income?", options: [
     { text: "Immediately - within the next 30 days", scores: { services: 3, highticket: 3, coaching: 2 } },
     { text: "Within 1-3 months", scores: { coaching: 3, services: 2, highticket: 2 } },
-    { text: "3-6 months is fine", scores: { digital: 2, content: 2, coaching: 2 } },
-    { text: "I'm playing the long game - 6-12 months", scores: { digital: 3, content: 3 } }
+    { text: "3-6 months is fine", scores: { digital: 2, products: 2, coaching: 2 } },
+    { text: "I'm playing the long game - 6-12 months", scores: { digital: 3, products: 3 } }
   ]},
   { text: "How much money do you have available to invest upfront?", options: [
     { text: "Nothing - I need to start for free", scores: { services: 3, coaching: 3 } },
     { text: "Under £100 - very minimal", scores: { services: 3, coaching: 3, digital: 1 } },
-    { text: "£100-£500", scores: { digital: 2, content: 2, coaching: 2 } },
-    { text: "£500-£2,000", scores: { digital: 2, content: 2, highticket: 1 } },
+    { text: "£100-£500", scores: { digital: 2, products: 2, coaching: 2 } },
+    { text: "£500-£2,000", scores: { digital: 2, products: 2, highticket: 1 } },
     { text: "£2,000+", scores: { highticket: 3, digital: 2 } }
   ]},
   { text: "How do you feel about building and leading a team?", options: [
     { text: "Love it - I'm a natural leader and motivator", scores: { highticket: 2, coaching: 1 } },
     { text: "Open to it once I've found my feet", scores: { coaching: 2, highticket: 2 } },
     { text: "I'd rather work alone or with clients only", scores: { services: 3, coaching: 2, digital: 2 } },
-    { text: "Definitely not - solo all the way", scores: { services: 3, digital: 3, content: 2 } }
+    { text: "Definitely not - solo all the way", scores: { services: 3, digital: 3, products: 2 } }
   ]},
   { text: "Do you enjoy creating content - writing, recording videos, teaching?", options: [
-    { text: "Yes, it's one of my favourite things", scores: { content: 3, digital: 3, coaching: 2 } },
-    { text: "I enjoy it but I'd need a system to stay consistent", scores: { coaching: 2, digital: 2, content: 2 } },
+    { text: "Yes, it's one of my favourite things", scores: { products: 3, digital: 3, coaching: 2 } },
+    { text: "I enjoy it but I'd need a system to stay consistent", scores: { coaching: 2, digital: 2, products: 2 } },
     { text: "I can do it but it's not something I love", scores: { services: 2, highticket: 2 } },
     { text: "Not really - I'd rather talk one-to-one", scores: { highticket: 3, coaching: 3 } }
   ]},
   { text: "How comfortable are you with a longer build phase before consistent income comes in?", options: [
-    { text: "Totally fine - I know good things take time", scores: { content: 3, digital: 3 } },
+    { text: "Totally fine - I know good things take time", scores: { products: 3, digital: 3 } },
     { text: "I can wait a few months but I need some early wins", scores: { coaching: 3, digital: 1 } },
     { text: "I need income within weeks, not months", scores: { services: 3, highticket: 3, coaching: 2 } },
     { text: "I need income almost immediately", scores: { services: 3, highticket: 3 } }
   ]},
   { text: "What does your ideal working day look like?", options: [
     { text: "Calls and conversations with clients or prospects", scores: { coaching: 3, highticket: 3 } },
-    { text: "Creating - writing, filming, designing, recording", scores: { content: 3, digital: 3 } },
-    { text: "A mix - some client work, some content or creation", scores: { coaching: 2, services: 2, content: 2, digital: 1 } },
-    { text: "Building relationships and growing a community", scores: { content: 2, coaching: 1 } }
+    { text: "Creating - writing, filming, designing, recording", scores: { products: 3, digital: 3 } },
+    { text: "A mix - some client work, some content or creation", scores: { coaching: 2, services: 2, products: 2, digital: 1 } },
+    { text: "Building relationships and growing a community", scores: { products: 2, coaching: 1 } }
   ]}
 ];
 
@@ -170,7 +201,7 @@ let currentQ = 0, answers = {}, scores = {};
 
 function startQuiz() {
   currentQ = 0; answers = {};
-  scores = { coaching: 0, digital: 0, content: 0, services: 0, highticket: 0 };
+  scores = { coaching: 0, digital: 0, products: 0, services: 0, highticket: 0 };
   showScreen('screen-question'); renderQ();
 }
 
@@ -301,7 +332,7 @@ function copyPrompt(btn, key) {
 
 function printAllModels() {
   const win = window.open('', '_blank');
-  const modelKeys = ['coaching', 'digital', 'content', 'services', 'highticket'];
+  const modelKeys = ['coaching', 'digital', 'products', 'services', 'highticket'];
   const modelSections = modelKeys.map(key => {
     const g = GUIDES[key];
     const m = MODELS[key];
@@ -355,7 +386,7 @@ function printAllModels() {
   .col-heading { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: #6b6560; margin-bottom: 10px; margin-top: 16px; }
   ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
   ul li { font-size: 12.5px; color: #1a1a1a; line-height: 1.6; padding-left: 16px; position: relative; }
-  ul li::before { content: '→'; position: absolute; left: 0; color: #d4c0b4; font-weight: 600; }
+  ul li::before { products: '→'; position: absolute; left: 0; color: #d4c0b4; font-weight: 600; }
   .print-btn { display: block; width: 200px; margin: 0 auto 40px; background: #1a1a1a; color: #e8d9d0; border: none; padding: 14px 24px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; text-align: center; }
   .print-footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #d9d3cc; font-size: 11px; color: #6b6560; font-style: italic; }
   @media print {
@@ -410,7 +441,7 @@ function closeModal(id) { document.getElementById(id).classList.remove('open'); 
 function closeIfOverlay(e, id) { if (e.target.id === id) closeModal(id); }
 
 function restart() {
-  scores = { coaching: 0, digital: 0, content: 0, services: 0, highticket: 0 };
+  scores = { coaching: 0, digital: 0, products: 0, services: 0, highticket: 0 };
   answers = {}; currentQ = 0;
   document.getElementById('progress-bar').style.width = '0%';
   showScreen('screen-welcome');
@@ -441,7 +472,7 @@ function restart() {
   .col-heading { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: #6b6560; margin-bottom: 10px; margin-top: 16px; }
   ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
   ul li { font-size: 12.5px; color: #1a1a1a; line-height: 1.6; padding-left: 16px; position: relative; }
-  ul li::before { content: '→'; position: absolute; left: 0; color: #d4c0b4; font-weight: 600; }
+  ul li::before { products: '→'; position: absolute; left: 0; color: #d4c0b4; font-weight: 600; }
 
   /* COMPARISON TABLE */
   .table-section { margin-top: 56px; page-break-before: always; }
@@ -492,7 +523,7 @@ function restart() {
           <th></th>
           <th>Coaching</th>
           <th>Digital Products</th>
-          <th>Content Monetisation</th>
+          <th>Physical Products</th>
           <th>Services / Freelancing</th>
           <th>High-Ticket Affiliate</th>
         </tr>
@@ -590,7 +621,38 @@ function restart() {
 }{
   coaching:    { name: "Coaching",                tagline: "Help people get a result you've already achieved." },
   digital:     { name: "Digital Products",         tagline: "Create once, sell to hundreds while you sleep." },
-  content:     { name: "Content Monetisation",     tagline: "Build an audience and turn attention into income." },
+  products: {
+    name: "Physical Products",
+    tagline: "Sell products online - print on demand, dropshipping, no inventory needed.",
+    overview: "Physical products - through print on demand or dropshipping - means you sell real products online without ever touching stock. With print on demand you design the product (a t-shirt, mug, print, notebook) and a supplier prints and ships it when someone orders. With dropshipping you market products from a supplier's catalogue and they fulfil the order. Both models follow the same formula: build content around a niche, grow an audience of buyers, drive them to your shop, and earn on every sale. No warehouse, no upfront costs, no packing boxes.",
+    start: [
+      "Choose your niche - ideally something you're passionate about or knowledgeable in (travel, fitness, pets, parenting, motivation, art)",
+      "Decide your model: print on demand (Printful, Printify) for custom designed products, or dropshipping (Zendrop, CJDropshipping) for existing products",
+      "Set up a free store on Shopify, Etsy, or TikTok Shop - Etsy works particularly well for print on demand with built-in traffic",
+      "Create your first 5-10 product designs or listings using Canva",
+      "Build content on Instagram, TikTok, or Pinterest around your niche - not around your shop. Lifestyle content that leads to product discovery."
+    ],
+    days90: [
+      "Month 1: Choose your niche and platform, create your first 10 product listings, set up your shop, post content daily around your niche to build an audience",
+      "Month 2: Analyse which products get the most views and sales, double down on those designs and that content style, aim for your first 10 sales",
+      "Month 3: Scale what's working - more designs in your best-selling category, grow your content reach, test one paid ad to your best-selling product"
+    ],
+    aiPrompt: \`I am building a physical products business using print on demand / dropshipping and I need help with my content and product strategy.
+
+My niche: [your niche - e.g. travel, fitness, pets, motivation]
+My platform: [where you're selling - Etsy, Shopify, TikTok Shop]
+My content platform: [Instagram, TikTok, Pinterest]
+My target customer: [who they are and what they care about]
+
+Please give me:
+1. 10 product ideas that would sell well to this audience (for print on demand, suggest designs/slogans; for dropshipping, suggest product categories)
+2. A content strategy - 3 content pillars that attract my ideal buyer without directly selling
+3. A 2-week content plan (10 posts) with format, topic, and hook for each
+4. The opening line for my shop bio that immediately attracts my ideal customer
+
+Make it specific to my niche - not generic e-commerce advice.\`,
+    aiLabel: "Build your physical products strategy"
+  },
   services:    { name: "Services / Freelancing",   tagline: "Offer a skill as a service, get paid immediately." },
   highticket: {
     name: "High-Ticket Affiliate Marketing",
@@ -630,7 +692,7 @@ Tone: confident, honest, and belief-led. No hype.\`,
 const MODEL_WHY = {
   coaching:   { why: "You have knowledge or experience others would pay to learn from. Coaching has the lowest barrier to entry and can generate income quickly - all you need is your expertise and one client.", gets: ["Work 1:1 with clients you choose", "Set your own hours and rates", "No product to create or stock"] },
   digital:    { why: "You love creating systems and content once and having it work for you repeatedly. Digital products take time to build but create passive income that scales without more of your time.", gets: ["Earn while you sleep", "Can sell on platforms independently", "Low ongoing effort once created"] },
-  content:    { why: "You enjoy being in front of the camera or behind the keyboard regularly. Content monetisation rewards consistency and personality - if you love sharing, this compounds over time.", gets: ["Multiple income streams (ads, sponsorships, products)", "Build a brand that attracts opportunities", "Location independent"] },
+  products:    { why: "You want to sell physical products online without holding inventory or managing fulfilment yourself. Print on demand and dropshipping let you create content around a product niche, drive traffic, and earn on every sale - with no upfront stock costs. - if you love sharing, this compounds over time.", gets: ["Multiple income streams (ads, sponsorships, products)", "Build a brand that attracts opportunities", "Location independent"] },
   services:   { why: "You have a marketable skill right now - writing, design, social media, VA work, admin. Services/freelancing is the fastest path to income with zero upfront investment needed.", gets: ["Fastest route to first income", "No upfront investment required", "Total flexibility over clients and projects"] },
   highticket: { why: "You're comfortable with premium positioning and high-value conversations. High-ticket affiliate marketing suits someone who wants big commissions per sale and is willing to learn a proven sales system.", gets: ["High commission per sale (£1,000+)", "Proven system and products already exist", "Suits confident communicators"] }
 };
@@ -658,8 +720,8 @@ const GUIDES = {
     aiPrompt: `I am creating a digital product and need help with my launch content. Here are my details:\n\nMy product: [name and what it is - e.g. a Canva template pack for Instagram]\nWho it's for: [specific person]\nThe problem it solves: [what they're struggling with]\nThe result they get: [what changes after using it]\nPrice: [your price point]\n\nPlease write me:\n1. A product description (3-4 sentences) for my sales page\n2. 5 Instagram caption ideas to promote this product without being pushy\n3. A subject line and opening paragraph for a launch email\n\nTone: direct, clear, and benefit-focused. No fluff.`,
     aiLabel: "Write your digital product launch content"
   },
-  content: {
-    overview: "Content monetisation means building an audience through consistent content and then earning from their attention - through brand deals, ads, affiliate income, or selling your own products to a warm audience.",
+  products: {
+    overview: "Physical products means building an audience through consistent content and then earning from their attention - through brand deals, ads, affiliate income, or selling your own products to a warm audience.",
     start: ["Choose one platform to master first (Instagram, TikTok, YouTube, or a podcast)", "Define your content niche - one topic, one audience, one transformation", "Commit to a posting schedule you can sustain for 6+ months", "Focus on growth first - monetisation follows audience", "Start capturing email addresses from day one"],
     days90: ["Month 1: Define your content pillars, post consistently 5x per week, study what performs", "Month 2: Double down on your best-performing content types, start building your email list, engage deeply with your audience", "Month 3: Introduce affiliate links or a simple product, pitch to your first brand partnership, analyse your data"],
     invest: "£0-£300 (camera, lighting, scheduling tools)",
@@ -685,7 +747,7 @@ const GUIDES = {
 const COMPARE_DATA = [
   { key: "coaching",   startup: "£0-£200",    income: "30-60 days", effort: "Medium", visibility: "High", scale: "Medium" },
   { key: "digital",    startup: "£0-£100",    income: "2-4 months", effort: "High upfront", visibility: "Medium", scale: "High" },
-  { key: "content",    startup: "£0-£300",    income: "6-12 months", effort: "Very high", visibility: "Very high", scale: "Very high" },
+  { key: "products",    startup: "£0-£300",    income: "6-12 months", effort: "Very high", visibility: "Very high", scale: "Very high" },
   { key: "services",   startup: "£0",          income: "1-2 weeks", effort: "Low upfront", visibility: "Low-Medium", scale: "Low" },
   { key: "highticket", startup: "£500-£3,000+",income: "First sale",  effort: "Medium", visibility: "Medium", scale: "Medium" }
 ];
@@ -694,63 +756,63 @@ const QUESTIONS = [
   { text: "How many hours a week can you realistically dedicate to your business right now?", options: [
     { text: "Under 5 hours", scores: { services: 2, highticket: 1 } },
     { text: "5-10 hours", scores: { coaching: 2, services: 2, highticket: 2 } },
-    { text: "10-20 hours", scores: { coaching: 3, digital: 2, content: 2, highticket: 2 } },
-    { text: "20+ hours - I'm all in", scores: { digital: 3, content: 3, coaching: 3, highticket: 3 } }
+    { text: "10-20 hours", scores: { coaching: 3, digital: 2, products: 2, highticket: 2 } },
+    { text: "20+ hours - I'm all in", scores: { digital: 3, products: 3, coaching: 3, highticket: 3 } }
   ]},
   { text: "Do you prefer working directly with people, or creating things people use on their own?", options: [
     { text: "Directly with people - I love conversation and connection", scores: { coaching: 3, highticket: 3, services: 1 } },
-    { text: "Creating things - I prefer to build and let people come to me", scores: { digital: 3, content: 3 } },
-    { text: "A mix of both", scores: { coaching: 2, content: 2, services: 2 } },
+    { text: "Creating things - I prefer to build and let people come to me", scores: { digital: 3, products: 3 } },
+    { text: "A mix of both", scores: { coaching: 2, products: 2, services: 2 } },
     { text: "I honestly don't mind - I'll do whatever it takes", scores: { services: 2, coaching: 1, digital: 1, highticket: 1 } }
   ]},
   { text: "How comfortable are you being visible on social media - showing your face, sharing your story?", options: [
-    { text: "Very - I already do it or I'm excited to start", scores: { content: 3, coaching: 3, highticket: 2 } },
+    { text: "Very - I already do it or I'm excited to start", scores: { products: 3, coaching: 3, highticket: 2 } },
     { text: "Comfortable but I'd need a bit of a push", scores: { coaching: 2, services: 2, highticket: 2 } },
     { text: "I'd prefer to stay mostly behind the scenes", scores: { digital: 3, services: 3 } },
     { text: "Not at all - I want minimal visibility", scores: { digital: 3, services: 2 } }
   ]},
   { text: "Do you have a skill or area of expertise someone would pay for right now?", options: [
     { text: "Yes - a clear professional skill (writing, design, marketing, VA, etc.)", scores: { services: 3, coaching: 2, digital: 1 } },
-    { text: "Yes - life experience or results I've achieved", scores: { coaching: 3, content: 2 } },
+    { text: "Yes - life experience or results I've achieved", scores: { coaching: 3, products: 2 } },
     { text: "Sort of - I'm still figuring out what my thing is", scores: { highticket: 2, services: 1 } },
     { text: "Not really - I want to learn and build as I go", scores: { highticket: 3 } }
   ]},
   { text: "How quickly do you need to generate income?", options: [
     { text: "Immediately - within the next 30 days", scores: { services: 3, highticket: 3, coaching: 2 } },
     { text: "Within 1-3 months", scores: { coaching: 3, services: 2, highticket: 2 } },
-    { text: "3-6 months is fine", scores: { digital: 2, content: 2, coaching: 2 } },
-    { text: "I'm playing the long game - 6-12 months", scores: { digital: 3, content: 3 } }
+    { text: "3-6 months is fine", scores: { digital: 2, products: 2, coaching: 2 } },
+    { text: "I'm playing the long game - 6-12 months", scores: { digital: 3, products: 3 } }
   ]},
   { text: "How much money do you have available to invest upfront?", options: [
     { text: "Nothing - I need to start for free", scores: { services: 3, coaching: 3 } },
     { text: "Under £100 - very minimal", scores: { services: 3, coaching: 3, digital: 1 } },
-    { text: "£100-£500", scores: { digital: 2, content: 2, coaching: 2 } },
-    { text: "£500-£2,000", scores: { digital: 2, content: 2, highticket: 1 } },
+    { text: "£100-£500", scores: { digital: 2, products: 2, coaching: 2 } },
+    { text: "£500-£2,000", scores: { digital: 2, products: 2, highticket: 1 } },
     { text: "£2,000+", scores: { highticket: 3, digital: 2 } }
   ]},
   { text: "How do you feel about building and leading a team?", options: [
     { text: "Love it - I'm a natural leader and motivator", scores: { highticket: 2, coaching: 1 } },
     { text: "Open to it once I've found my feet", scores: { coaching: 2, highticket: 2 } },
     { text: "I'd rather work alone or with clients only", scores: { services: 3, coaching: 2, digital: 2 } },
-    { text: "Definitely not - solo all the way", scores: { services: 3, digital: 3, content: 2 } }
+    { text: "Definitely not - solo all the way", scores: { services: 3, digital: 3, products: 2 } }
   ]},
   { text: "Do you enjoy creating content - writing, recording videos, teaching?", options: [
-    { text: "Yes, it's one of my favourite things", scores: { content: 3, digital: 3, coaching: 2 } },
-    { text: "I enjoy it but I'd need a system to stay consistent", scores: { coaching: 2, digital: 2, content: 2 } },
+    { text: "Yes, it's one of my favourite things", scores: { products: 3, digital: 3, coaching: 2 } },
+    { text: "I enjoy it but I'd need a system to stay consistent", scores: { coaching: 2, digital: 2, products: 2 } },
     { text: "I can do it but it's not something I love", scores: { services: 2, highticket: 2 } },
     { text: "Not really - I'd rather talk one-to-one", scores: { highticket: 3, coaching: 3 } }
   ]},
   { text: "How comfortable are you with a longer build phase before consistent income comes in?", options: [
-    { text: "Totally fine - I know good things take time", scores: { content: 3, digital: 3 } },
+    { text: "Totally fine - I know good things take time", scores: { products: 3, digital: 3 } },
     { text: "I can wait a few months but I need some early wins", scores: { coaching: 3, digital: 1 } },
     { text: "I need income within weeks, not months", scores: { services: 3, highticket: 3, coaching: 2 } },
     { text: "I need income almost immediately", scores: { services: 3, highticket: 3 } }
   ]},
   { text: "What does your ideal working day look like?", options: [
     { text: "Calls and conversations with clients or prospects", scores: { coaching: 3, highticket: 3 } },
-    { text: "Creating - writing, filming, designing, recording", scores: { content: 3, digital: 3 } },
-    { text: "A mix - some client work, some content or creation", scores: { coaching: 2, services: 2, content: 2, digital: 1 } },
-    { text: "Building relationships and growing a community", scores: { content: 2, coaching: 1 } }
+    { text: "Creating - writing, filming, designing, recording", scores: { products: 3, digital: 3 } },
+    { text: "A mix - some client work, some content or creation", scores: { coaching: 2, services: 2, products: 2, digital: 1 } },
+    { text: "Building relationships and growing a community", scores: { products: 2, coaching: 1 } }
   ]}
 ];
 
@@ -758,7 +820,7 @@ let currentQ = 0, answers = {}, scores = {};
 
 function startQuiz() {
   currentQ = 0; answers = {};
-  scores = { coaching: 0, digital: 0, content: 0, services: 0, highticket: 0 };
+  scores = { coaching: 0, digital: 0, products: 0, services: 0, highticket: 0 };
   showScreen('screen-question'); renderQ();
 }
 
@@ -889,7 +951,7 @@ function copyPrompt(btn, key) {
 
 function printAllModels() {
   const win = window.open('', '_blank');
-  const modelKeys = ['coaching', 'digital', 'content', 'services', 'highticket'];
+  const modelKeys = ['coaching', 'digital', 'products', 'services', 'highticket'];
   const modelSections = modelKeys.map(key => {
     const g = GUIDES[key];
     const m = MODELS[key];
@@ -943,7 +1005,7 @@ function printAllModels() {
   .col-heading { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: #6b6560; margin-bottom: 10px; margin-top: 16px; }
   ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
   ul li { font-size: 12.5px; color: #1a1a1a; line-height: 1.6; padding-left: 16px; position: relative; }
-  ul li::before { content: '→'; position: absolute; left: 0; color: #d4c0b4; font-weight: 600; }
+  ul li::before { products: '→'; position: absolute; left: 0; color: #d4c0b4; font-weight: 600; }
   .print-btn { display: block; width: 200px; margin: 0 auto 40px; background: #1a1a1a; color: #e8d9d0; border: none; padding: 14px 24px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; text-align: center; }
   .print-footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #d9d3cc; font-size: 11px; color: #6b6560; font-style: italic; }
   @media print {
@@ -998,7 +1060,7 @@ function closeModal(id) { document.getElementById(id).classList.remove('open'); 
 function closeIfOverlay(e, id) { if (e.target.id === id) closeModal(id); }
 
 function restart() {
-  scores = { coaching: 0, digital: 0, content: 0, services: 0, highticket: 0 };
+  scores = { coaching: 0, digital: 0, products: 0, services: 0, highticket: 0 };
   answers = {}; currentQ = 0;
   document.getElementById('progress-bar').style.width = '0%';
   showScreen('screen-welcome');
