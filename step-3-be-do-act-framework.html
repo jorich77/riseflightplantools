@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Be, Do, Act - Clear the Runway</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #1a1a1a;
+    --blush: #e8d9d0;
+    --blush-deep: #d4c0b4;
+    --cream: #f5f0e8;
+    --warm-grey: #6b6560;
+    --white: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--black);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Back button */
+  .back-btn {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--black);
+    color: var(--blush);
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 9px 14px;
+    border: 1px solid rgba(232,217,208,0.2);
+  }
+
+  /* Header */
+  .header {
+    background: var(--black);
+    padding: 56px 24px 40px;
+    text-align: center;
+  }
+
+  .step-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--blush);
+    opacity: 0.6;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .header h1 em {
+    font-style: italic;
+    color: var(--blush);
+  }
+
+  .header p {
+    font-size: 13px;
+    color: var(--blush);
+    opacity: 0.75;
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* Framework explainer */
+  .framework-strip {
+    background: var(--blush);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .framework-item {
+    flex: 1;
+    max-width: 200px;
+    padding: 20px 16px;
+    text-align: center;
+    border-right: 1px solid var(--blush-deep);
+  }
+
+  .framework-item:last-child { border-right: none; }
+
+  .framework-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--black);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .framework-word {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+    margin-bottom: 6px;
+  }
+
+  .framework-desc {
+    font-size: 11px;
+    color: var(--black);
+    opacity: 0.7;
+    line-height: 1.5;
+  }
+
+  /* Main content */
+  .main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .intro-text {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .intro-text p {
+    font-size: 14px;
+    color: var(--warm-grey);
+    line-height: 1.8;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* Block cards */
+  .block-card {
+    background: var(--white);
+    border: 1px solid var(--blush-deep);
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+
+  .block-header {
+    background: var(--black);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .block-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--blush);
+    opacity: 0.5;
+    line-height: 1;
+    min-width: 24px;
+  }
+
+  .block-header-text {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blush);
+  }
+
+  .block-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .field-group { display: flex; flex-direction: column; gap: 6px; }
+
+  .field-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+  }
+
+  .field-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--black);
+    line-height: 1;
+    width: 16px;
+  }
+
+  .field-hint {
+    font-size: 11px;
+    color: var(--warm-grey);
+    opacity: 0.8;
+    line-height: 1.5;
+    font-style: italic;
+    margin-bottom: 4px;
+  }
+
+  textarea {
+    width: 100%;
+    border: 1px solid var(--blush-deep);
+    background: var(--cream);
+    padding: 10px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--black);
+    line-height: 1.6;
+    resize: vertical;
+    min-height: 64px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  textarea:focus { border-color: var(--black); background: var(--white); }
+  textarea::placeholder { color: var(--warm-grey); opacity: 0.5; }
+
+  /* Daily steps section */
+  .daily-steps {
+    background: var(--black);
+    padding: 20px;
+    margin-top: 4px;
+  }
+
+  .daily-steps-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blush);
+    opacity: 0.6;
+    margin-bottom: 10px;
+  }
+
+  .daily-steps textarea {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(232,217,208,0.2);
+    color: var(--blush);
+    min-height: 56px;
+  }
+
+  .daily-steps textarea:focus {
+    border-color: var(--blush);
+    background: rgba(255,255,255,0.08);
+  }
+
+  .daily-steps textarea::placeholder { color: var(--blush); opacity: 0.3; }
+
+  /* Summary */
+  .summary-section {
+    background: var(--blush);
+    padding: 28px 24px;
+    margin-top: 8px;
+    display: none;
+  }
+
+  .summary-section.visible { display: block; }
+
+  .summary-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .summary-block {
+    background: var(--white);
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    border-left: 3px solid var(--black);
+  }
+
+  .summary-block-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+    margin-bottom: 6px;
+  }
+
+  .summary-block-content {
+    font-size: 13px;
+    color: var(--black);
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+
+  /* Buttons */
+  .btn-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--black);
+    color: var(--blush);
+    border: none;
+    padding: 14px 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    flex: 1;
+  }
+
+  .btn-primary:hover { opacity: 0.85; }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--black);
+    border: 1px solid var(--black);
+    padding: 14px 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    flex: 1;
+  }
+
+  .btn-secondary:hover { background: var(--blush-deep); }
+
+  /* Save reminder */
+  .save-reminder {
+    background: var(--blush-deep);
+    padding: 14px 20px;
+    margin-top: 24px;
+    font-size: 12px;
+    color: var(--black);
+    opacity: 0.8;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  @media (max-width: 480px) {
+    .header h1 { font-size: 28px; }
+    .framework-strip { flex-direction: column; }
+    .framework-item { border-right: none; border-bottom: 1px solid var(--blush-deep); max-width: 100%; }
+    .btn-row { flex-direction: column; }
+  }
+
+  @media print {
+    .back-btn, .btn-row, .save-reminder { display: none; }
+    body { background: white; }
+    .block-card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-btn">← Menu</a>
+
+<div class="header">
+  <div class="step-tag">Step 3 · Clear the Runway</div>
+  <h1>Be, Do, <em>Act</em></h1>
+  <p>Name your 3 biggest blocks. Work through the framework. Find the one small step you'll take every day.</p>
+</div>
+
+<div class="framework-strip">
+  <div class="framework-item">
+    <div class="framework-letter">Be</div>
+    <div class="framework-word">Identity</div>
+    <div class="framework-desc">Who do you want to be? Decide her first.</div>
+  </div>
+  <div class="framework-item">
+    <div class="framework-letter">Do</div>
+    <div class="framework-word">Action</div>
+    <div class="framework-desc">What would she do? Do that today.</div>
+  </div>
+  <div class="framework-item">
+    <div class="framework-letter">Act</div>
+    <div class="framework-word">Daily step</div>
+    <div class="framework-desc">One small action. Every day. Non-negotiable.</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="intro-text">
+    <p>Most blocks aren't strategy problems. They're identity problems. This framework helps you close the gap between who you are now and who you need to be to build this.</p>
+  </div>
+
+  <!-- Block 1 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-num">1</div>
+      <div class="block-header-text">My biggest block right now</div>
+    </div>
+    <div class="block-body">
+      <div class="field-group">
+        <div class="field-label"><span class="field-letter"></span>The block</div>
+        <div class="field-hint">Name it honestly. What is the thought, fear, or pattern that keeps stopping you?</div>
+        <textarea id="b1-block" placeholder="e.g. I keep telling myself I'm not ready yet. I need to learn more before I can start." rows="3"></textarea>
+      </div>
+      <div class="field-group">
+        <div class="field-label"><span class="field-letter">Be</span>Who do you want to be?</div>
+        <div class="field-hint">Forget where you are now. Describe the version of you who has already moved past this block. How does she think about it?</div>
+        <textarea id="b1-be" placeholder="e.g. She backs herself. She knows she doesn't need to be perfect to start - she just needs to begin." rows="3"></textarea>
+      </div>
+      <div class="field-group">
+        <div class="field-label"><span class="field-letter">Do</span>What would she do?</div>
+        <div class="field-hint">What would that version of you do today, even with the fear still there?</div>
+        <textarea id="b1-do" placeholder="e.g. She would publish the post anyway. She would send the DM. She would set up the profile even if it's not perfect." rows="3"></textarea>
+      </div>
+    </div>
+    <div class="daily-steps">
+      <div class="daily-steps-label"><span class="field-letter" style="color:var(--blush);font-size:16px;">Act</span> My daily step for this block</div>
+      <textarea id="b1-act" placeholder="One specific, small action I will take every day until this block loses its grip..." rows="2"></textarea>
+    </div>
+  </div>
+
+  <!-- Block 2 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-num">2</div>
+      <div class="block-header-text">My second block</div>
+    </div>
+    <div class="block-body">
+      <div class="field-group">
+        <div class="field-label"><span class="field-letter"></span>The block</div>
+        <div class="field-hint">Name it honestly. What is the thought, fear, or pattern that keeps stopping you?</div>
+        <textarea id="b2-block" placeholder="e.g. I'm scared of what people will think if I put myself out there." rows="3"></textarea>
+      </div>
+      <div class="field-group">
+        <div class="field-label"><span class="field-letter">Be</span>Who do you want to be?</div>
+        <div class="field-hint">Describe the version of you who has already moved past this block.</div>
+        <textarea id="b2-be" placeholder="e.g. She shows up anyway. She knows the people who matter will respect her for trying." rows="3"></textarea>
+      </div>
+      <div class="field-group">
+        <div class="field-label"><span class="field-letter">Do</span>What would she do?</div>
+        <div class="field-hint">What would that version of you do today, even with the fear still there?</div>
+        <textarea id="b2-do" placeholder="e.g. She would post the reel. She would go live. She would show her face." rows="3"></textarea>
+      </div>
+    </div>
+    <div class="daily-steps">
+      <div class="daily-steps-label"><span class="field-letter" style="color:var(--blush);font-size:16px;">Act</span> My daily step for this block</div>
+      <textarea id="b2-act" placeholder="One specific, small action I will take every day..." rows="2"></textarea>
+    </div>
+  </div>
+
+  <!-- Block 3 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-num">3</div>
+      <div class="block-header-text">My third block</div>
+    </div>
+    <div class="block-body">
+      <div class="field-group">
+        <div class="field-label"><span class="field-letter"></span>The block</div>
+        <div class="field-hint">Name it honestly. What is the thought, fear, or pattern that keeps stopping you?</div>
+        <textarea id="b3-block" placeholder="e.g. I don't have enough time. Everything else gets in the way." rows="3"></textarea>
+      </div>
+      <div class="field-group">
+        <div class="field-label"><span class="field-letter">Be</span>Who do you want to be?</div>
+        <div class="field-hint">Describe the version of you who has already moved past this block.</div>
+        <textarea id="b3-be" placeholder="e.g. She protects her business time like a non-negotiable appointment with herself." rows="3"></textarea>
+      </div>
+      <div class="field-group">
+        <div class="field-label"><span class="field-letter">Do</span>What would she do?</div>
+        <div class="field-hint">What would that version of you do today, even with the fear still there?</div>
+        <textarea id="b3-do" placeholder="e.g. She would block 30 minutes in the diary tonight and treat it like a meeting she cannot cancel." rows="3"></textarea>
+      </div>
+    </div>
+    <div class="daily-steps">
+      <div class="daily-steps-label"><span class="field-letter" style="color:var(--blush);font-size:16px;">Act</span> My daily step for this block</div>
+      <textarea id="b3-act" placeholder="One specific, small action I will take every day..." rows="2"></textarea>
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="btn-row">
+    <button class="btn-primary" onclick="generateSummary()">Generate my daily action plan</button>
+    <button class="btn-secondary" onclick="window.print()">Print / save as PDF</button>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-section" id="summary">
+    <div class="summary-title">Your daily action plan</div>
+
+    <div class="summary-block">
+      <div class="summary-block-title">Block 1 - <span id="s1-block-label"></span></div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;color:var(--warm-grey);margin-bottom:4px;text-transform:uppercase;">Who she is</div>
+      <div class="summary-block-content" id="s1-be"></div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;color:var(--warm-grey);margin:10px 0 4px;text-transform:uppercase;">What she does</div>
+      <div class="summary-block-content" id="s1-do"></div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;color:var(--black);margin:10px 0 4px;text-transform:uppercase;">My daily step</div>
+      <div class="summary-block-content" id="s1-act" style="font-weight:500;"></div>
+    </div>
+
+    <div class="summary-block">
+      <div class="summary-block-title">Block 2 - <span id="s2-block-label"></span></div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;color:var(--warm-grey);margin-bottom:4px;text-transform:uppercase;">Who she is</div>
+      <div class="summary-block-content" id="s2-be"></div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;color:var(--warm-grey);margin:10px 0 4px;text-transform:uppercase;">What she does</div>
+      <div class="summary-block-content" id="s2-do"></div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;color:var(--black);margin:10px 0 4px;text-transform:uppercase;">My daily step</div>
+      <div class="summary-block-content" id="s2-act" style="font-weight:500;"></div>
+    </div>
+
+    <div class="summary-block">
+      <div class="summary-block-title">Block 3 - <span id="s3-block-label"></span></div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;color:var(--warm-grey);margin-bottom:4px;text-transform:uppercase;">Who she is</div>
+      <div class="summary-block-content" id="s3-be"></div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;color:var(--warm-grey);margin:10px 0 4px;text-transform:uppercase;">What she does</div>
+      <div class="summary-block-content" id="s3-do"></div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;color:var(--black);margin:10px 0 4px;text-transform:uppercase;">My daily step</div>
+      <div class="summary-block-content" id="s3-act" style="font-weight:500;"></div>
+    </div>
+
+    <div style="margin-top:20px;padding:16px;background:var(--black);color:var(--blush);font-size:13px;line-height:1.7;font-family:'Cormorant Garamond',serif;font-style:italic;">
+      "The gap between who you are and who you want to be closes through small choices, not big moments. You don't wait to become her. You choose her. Today."
+    </div>
+
+    <div class="btn-row" style="margin-top:16px;">
+      <button class="btn-primary" onclick="window.print()">Print / save as PDF</button>
+    </div>
+  </div>
+
+  <div class="save-reminder">
+    💡 Use Print / save as PDF to keep a copy - your answers won't be saved when you close this page.
+  </div>
+
+</div>
+
+<script>
+  function generateSummary() {
+    const blocks = [
+      { n: 1, block: document.getElementById('b1-block').value, be: document.getElementById('b1-be').value, do_: document.getElementById('b1-do').value, act: document.getElementById('b1-act').value },
+      { n: 2, block: document.getElementById('b2-block').value, be: document.getElementById('b2-be').value, do_: document.getElementById('b2-do').value, act: document.getElementById('b2-act').value },
+      { n: 3, block: document.getElementById('b3-block').value, be: document.getElementById('b3-be').value, do_: document.getElementById('b3-do').value, act: document.getElementById('b3-act').value },
+    ];
+
+    // Check at least one block has content
+    if (!blocks[0].block && !blocks[1].block && !blocks[2].block) {
+      alert('Fill in at least one block to generate your action plan.');
+      return;
+    }
+
+    for (let i = 0; i < 3; i++) {
+      const n = i + 1;
+      document.getElementById(`s${n}-block-label`).textContent = blocks[i].block || '(not filled in)';
+      document.getElementById(`s${n}-be`).textContent = blocks[i].be || '-';
+      document.getElementById(`s${n}-do`).textContent = blocks[i].do_ || '-';
+      document.getElementById(`s${n}-act`).textContent = blocks[i].act || '-';
+    }
+
+    const summary = document.getElementById('summary');
+    summary.classList.add('visible');
+    summary.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+</script>
+
+</body>
+</html>
